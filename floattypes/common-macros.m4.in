@@ -35,5 +35,5 @@ define(`tolower',`translit($1,uppercase,lowercase)')
 define(`toupper',`translit($1,lowercase,uppercase)')
 
 define(`foreach',`pushdef(`$1',`')foreach_(`$1',`$2',`$3')popdef(`$1')')
-define(`arg1_',`$1')
-define(`foreach_',`ifelse(`$2',`()',,`define(`$1',arg1_$2)$3`'foreach_(`$1',(shift$2),`$3')')')
+define(`foreach_arg1__',`$1')
+define(`foreach_',`ifelse(`$2',`()',,`define(`$1',foreach_arg1__$2)$3`'foreach_(`$1',(shift$2),`$3')')')
