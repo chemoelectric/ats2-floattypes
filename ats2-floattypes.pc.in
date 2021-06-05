@@ -1,0 +1,17 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+host=@host@
+package=@PACKAGE@
+version=@VERSION@
+
+CFLAGS="-I${includedir}/${package} -I${includedir}/${package}/${host}"
+PATSOPTFLAGS="-IATS ${includedir}/${package} -IATS ${includedir}/${package}/${host}"
+PATSCCFLAGS="-IATS ${includedir}/${package} -IATS ${includedir}/${package}/${host}"
+
+Name: ${package}
+Description: More floating-point support for ATS2/Postiats
+Version: ${version}
+Libs: -L${libdir} -lats2-floattypes
+Cflags: ${CFLAGS}
