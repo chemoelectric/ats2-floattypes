@@ -29,11 +29,12 @@ ACLOCAL_AMFLAGS = -I m4 --install
 AUTOMAKE_OPTIONS =
 AUTOMAKE_OPTIONS += foreign
 AUTOMAKE_OPTIONS += subdir-objects
-AUTOMAKE_OPTIONS += no-dependencies
 AUTOMAKE_OPTIONS += -Wno-portability
 
 @GNU@ include $(srcdir)/silent-rules.mk
 EXTRA_DIST += $(srcdir)/silent-rules.mk
+
+EXTRA_DIST += README
 
 DISTCLEANFILES += Makefile
 
@@ -70,7 +71,7 @@ CLEANFILES += $(BUILT_SOURCES)
 
 floattypes/CATS/floattype.cats: floattypes/CATS/floattypes.cats.m4
 floattypes/SATS/floattype.sats: floattypes/SATS/floattypes.sats.m4
-floattypes/DATS/floattype.dats: floattypes/DATS/floattypes.dats.m4
+#floattypes/DATS/floattype.dats: floattypes/DATS/floattypes.dats.m4
 
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats

@@ -637,17 +637,34 @@ ifnGNUmake
 ifGNUmake
 GNU_MAKE
 GNU
-DEF__DECIMAL128X
-DEF__DECIMAL64X
-DEF__FLOAT128X
-DEF__FLOAT64X
-DEF__FLOAT32X
-DEF__DECIMAL128
-DEF__DECIMAL64
-DEF__DECIMAL32
-DEF__FLOAT128
-DEF__FLOAT64
-DEF__FLOAT32
+DEF_floattypes__fmod_decimal128x
+DEF_floattypes__fmod_decimal64x
+DEF_floattypes__fmod_float128x
+DEF_floattypes__fmod_float64x
+DEF_floattypes__fmod_float32x
+DEF_floattypes__fmod_decimal128
+DEF_floattypes__fmod_decimal64
+DEF_floattypes__fmod_decimal32
+DEF_floattypes__fmod_float128
+DEF_floattypes__fmod_float64
+DEF_floattypes__fmod_float32
+DEF_floattypes__fmod_ldouble
+DEF_floattypes__fmod_double
+DEF_floattypes__fmod_float
+DEF_floattypes_decimal128x
+DEF_floattypes_decimal64x
+DEF_floattypes_float128x
+DEF_floattypes_float64x
+DEF_floattypes_float32x
+DEF_floattypes_decimal128
+DEF_floattypes_decimal64
+DEF_floattypes_decimal32
+DEF_floattypes_float128
+DEF_floattypes_float64
+DEF_floattypes_float32
+DEF_floattypes_ldouble
+DEF_floattypes_double
+DEF_floattypes_float
 M4
 PATSOPT
 LT_SYS_LIBRARY_PATH
@@ -12152,6 +12169,9 @@ CC=$lt_save_CC
 
 
 
+
+
+
 #--------------------------------------------------------------------------
 #
 # Checks for programs.
@@ -13430,108 +13450,133 @@ $as_echo "$ac_cv_path_EGREP" >&6; }
 
 
 
+ac_fn_c_check_type "$LINENO" "float" "ac_cv_type_float" "$ac_includes_default"
+if test "x$ac_cv_type_float" = xyes; then :
+  DEF_floattypes_float='define HAVE_floattypes_float 1'
 
+else
+  DEF_floattypes_float='undef HAVE_floattypes_float'
+
+fi
+
+ac_fn_c_check_type "$LINENO" "double" "ac_cv_type_double" "$ac_includes_default"
+if test "x$ac_cv_type_double" = xyes; then :
+  DEF_floattypes_double='define HAVE_floattypes_double 1'
+
+else
+  DEF_floattypes_double='undef HAVE_floattypes_double'
+
+fi
+
+ac_fn_c_check_type "$LINENO" "long double" "ac_cv_type_long_double" "$ac_includes_default"
+if test "x$ac_cv_type_long_double" = xyes; then :
+  DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 1'
+
+else
+  DEF_floattypes_ldouble='undef HAVE_floattypes_ldouble'
+
+fi
 
 
 ac_fn_c_check_type "$LINENO" "_Float32" "ac_cv_type__Float32" "$ac_includes_default"
 if test "x$ac_cv_type__Float32" = xyes; then :
-  DEF__FLOAT32='define HAVE__FLOAT32 1'
+  DEF_floattypes_float32='define HAVE_floattypes_float32 1'
 
 else
-  DEF__FLOAT32='undef HAVE__FLOAT32'
+  DEF_floattypes_float32='undef HAVE_floattypes_float32'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Float64" "ac_cv_type__Float64" "$ac_includes_default"
 if test "x$ac_cv_type__Float64" = xyes; then :
-  DEF__FLOAT64='define HAVE__FLOAT64 1'
+  DEF_floattypes_float64='define HAVE_floattypes_float64 1'
 
 else
-  DEF__FLOAT64='undef HAVE__FLOAT64'
+  DEF_floattypes_float64='undef HAVE_floattypes_float64'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Float128" "ac_cv_type__Float128" "$ac_includes_default"
 if test "x$ac_cv_type__Float128" = xyes; then :
-  DEF__FLOAT128='define HAVE__FLOAT128 1'
+  DEF_floattypes_float128='define HAVE_floattypes_float128 1'
 
 else
-  DEF__FLOAT128='undef HAVE__FLOAT128'
+  DEF_floattypes_float128='undef HAVE_floattypes_float128'
 
 fi
 
 
 ac_fn_c_check_type "$LINENO" "_Decimal32" "ac_cv_type__Decimal32" "$ac_includes_default"
 if test "x$ac_cv_type__Decimal32" = xyes; then :
-  DEF__DECIMAL32='define HAVE__DECIMAL32 1'
+  DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 1'
 
 else
-  DEF__DECIMAL32='undef HAVE__DECIMAL32'
+  DEF_floattypes_decimal32='undef HAVE_floattypes_decimal32'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Decimal64" "ac_cv_type__Decimal64" "$ac_includes_default"
 if test "x$ac_cv_type__Decimal64" = xyes; then :
-  DEF__DECIMAL64='define HAVE__DECIMAL64 1'
+  DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 1'
 
 else
-  DEF__DECIMAL64='undef HAVE__DECIMAL64'
+  DEF_floattypes_decimal64='undef HAVE_floattypes_decimal64'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Decimal128" "ac_cv_type__Decimal128" "$ac_includes_default"
 if test "x$ac_cv_type__Decimal128" = xyes; then :
-  DEF__DECIMAL128='define HAVE__DECIMAL128 1'
+  DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 1'
 
 else
-  DEF__DECIMAL128='undef HAVE__DECIMAL128'
+  DEF_floattypes_decimal128='undef HAVE_floattypes_decimal128'
 
 fi
 
 
 ac_fn_c_check_type "$LINENO" "_Float32x" "ac_cv_type__Float32x" "$ac_includes_default"
 if test "x$ac_cv_type__Float32x" = xyes; then :
-  DEF__FLOAT32X='define HAVE__FLOAT32X 1'
+  DEF_floattypes_float32x='define HAVE_floattypes_float32x 1'
 
 else
-  DEF__FLOAT32X='undef HAVE__FLOAT32X'
+  DEF_floattypes_float32x='undef HAVE_floattypes_float32x'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Float64x" "ac_cv_type__Float64x" "$ac_includes_default"
 if test "x$ac_cv_type__Float64x" = xyes; then :
-  DEF__FLOAT64X='define HAVE__FLOAT64X 1'
+  DEF_floattypes_float64x='define HAVE_floattypes_float64x 1'
 
 else
-  DEF__FLOAT64X='undef HAVE__FLOAT64X'
+  DEF_floattypes_float64x='undef HAVE_floattypes_float64x'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Float128x" "ac_cv_type__Float128x" "$ac_includes_default"
 if test "x$ac_cv_type__Float128x" = xyes; then :
-  DEF__FLOAT128X='define HAVE__FLOAT128X 1'
+  DEF_floattypes_float128x='define HAVE_floattypes_float128x 1'
 
 else
-  DEF__FLOAT128X='undef HAVE__FLOAT128X'
+  DEF_floattypes_float128x='undef HAVE_floattypes_float128x'
 
 fi
 
 
 ac_fn_c_check_type "$LINENO" "_Decimal64x" "ac_cv_type__Decimal64x" "$ac_includes_default"
 if test "x$ac_cv_type__Decimal64x" = xyes; then :
-  DEF__DECIMAL64X='define HAVE__DECIMAL64X 1'
+  DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 1'
 
 else
-  DEF__DECIMAL64X='undef HAVE__DECIMAL64X'
+  DEF_floattypes_decimal64x='undef HAVE_floattypes_decimal64x'
 
 fi
 
 ac_fn_c_check_type "$LINENO" "_Decimal128x" "ac_cv_type__Decimal128x" "$ac_includes_default"
 if test "x$ac_cv_type__Decimal128x" = xyes; then :
-  DEF__DECIMAL128X='define HAVE__DECIMAL128X 1'
+  DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 1'
 
 else
-  DEF__DECIMAL128X='undef HAVE__DECIMAL128X'
+  DEF_floattypes_decimal128x='undef HAVE_floattypes_decimal128x'
 
 fi
 
@@ -13539,6 +13584,182 @@ fi
 #--------------------------------------------------------------------------
 #
 # Checks for library functions.
+
+# We will need the math library.
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for sin in -lm" >&5
+$as_echo_n "checking for sin in -lm... " >&6; }
+if ${ac_cv_lib_m_sin+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lm  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char sin ();
+int
+main ()
+{
+return sin ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_m_sin=yes
+else
+  ac_cv_lib_m_sin=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_m_sin" >&5
+$as_echo "$ac_cv_lib_m_sin" >&6; }
+if test "x$ac_cv_lib_m_sin" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBM 1
+_ACEOF
+
+  LIBS="-lm $LIBS"
+
+fi
+
+
+
+
+ac_fn_c_check_func "$LINENO" "fmodf" "ac_cv_func_fmodf"
+if test "x$ac_cv_func_fmodf" = xyes; then :
+  DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 1'
+
+else
+  DEF_floattypes__fmod_float='undef HAVE_floattypes__fmod_float'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmod" "ac_cv_func_fmod"
+if test "x$ac_cv_func_fmod" = xyes; then :
+  DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 1'
+
+else
+  DEF_floattypes__fmod_double='undef HAVE_floattypes__fmod_double'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodl" "ac_cv_func_fmodl"
+if test "x$ac_cv_func_fmodl" = xyes; then :
+  DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 1'
+
+else
+  DEF_floattypes__fmod_ldouble='undef HAVE_floattypes__fmod_ldouble'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf32" "ac_cv_func_fmodf32"
+if test "x$ac_cv_func_fmodf32" = xyes; then :
+  DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 1'
+
+else
+  DEF_floattypes__fmod_float32='undef HAVE_floattypes__fmod_float32'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf64" "ac_cv_func_fmodf64"
+if test "x$ac_cv_func_fmodf64" = xyes; then :
+  DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 1'
+
+else
+  DEF_floattypes__fmod_float64='undef HAVE_floattypes__fmod_float64'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf128" "ac_cv_func_fmodf128"
+if test "x$ac_cv_func_fmodf128" = xyes; then :
+  DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 1'
+
+else
+  DEF_floattypes__fmod_float128='undef HAVE_floattypes__fmod_float128'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodd32" "ac_cv_func_fmodd32"
+if test "x$ac_cv_func_fmodd32" = xyes; then :
+  DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 1'
+
+else
+  DEF_floattypes__fmod_decimal32='undef HAVE_floattypes__fmod_decimal32'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodd64" "ac_cv_func_fmodd64"
+if test "x$ac_cv_func_fmodd64" = xyes; then :
+  DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 1'
+
+else
+  DEF_floattypes__fmod_decimal64='undef HAVE_floattypes__fmod_decimal64'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodd128" "ac_cv_func_fmodd128"
+if test "x$ac_cv_func_fmodd128" = xyes; then :
+  DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 1'
+
+else
+  DEF_floattypes__fmod_decimal128='undef HAVE_floattypes__fmod_decimal128'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf32x" "ac_cv_func_fmodf32x"
+if test "x$ac_cv_func_fmodf32x" = xyes; then :
+  DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 1'
+
+else
+  DEF_floattypes__fmod_float32x='undef HAVE_floattypes__fmod_float32x'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf64x" "ac_cv_func_fmodf64x"
+if test "x$ac_cv_func_fmodf64x" = xyes; then :
+  DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 1'
+
+else
+  DEF_floattypes__fmod_float64x='undef HAVE_floattypes__fmod_float64x'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodf128x" "ac_cv_func_fmodf128x"
+if test "x$ac_cv_func_fmodf128x" = xyes; then :
+  DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 1'
+
+else
+  DEF_floattypes__fmod_float128x='undef HAVE_floattypes__fmod_float128x'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodd64x" "ac_cv_func_fmodd64x"
+if test "x$ac_cv_func_fmodd64x" = xyes; then :
+  DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 1'
+
+else
+  DEF_floattypes__fmod_decimal64x='undef HAVE_floattypes__fmod_decimal64x'
+
+fi
+
+ac_fn_c_check_func "$LINENO" "fmodd128x" "ac_cv_func_fmodd128x"
+if test "x$ac_cv_func_fmodd128x" = xyes; then :
+  DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 1'
+
+else
+  DEF_floattypes__fmod_decimal128x='undef HAVE_floattypes__fmod_decimal128x'
+
+fi
+
 
 #--------------------------------------------------------------------------
 

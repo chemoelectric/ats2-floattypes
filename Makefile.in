@@ -178,8 +178,10 @@ am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 am__v_at_1 = 
 DEFAULT_INCLUDES = -I.@am__isrc@
-depcomp =
-am__maybe_remake_depfiles =
+depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
+am__maybe_remake_depfiles = depfiles
+am__depfiles_remade = floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -234,13 +236,15 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
+	$(top_srcdir)/build-aux/depcomp \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/ltmain.sh \
 	$(top_srcdir)/build-aux/missing \
 	$(top_srcdir)/floattypes/HATS/config.hats.in \
 	$(top_srcdir)/floattypes/common-macros.m4.in COPYING INSTALL \
-	build-aux/compile build-aux/config.guess build-aux/config.sub \
-	build-aux/install-sh build-aux/ltmain.sh build-aux/missing
+	README build-aux/compile build-aux/config.guess \
+	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
+	build-aux/ltmain.sh build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -275,17 +279,34 @@ CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
-DEF__DECIMAL128 = @DEF__DECIMAL128@
-DEF__DECIMAL128X = @DEF__DECIMAL128X@
-DEF__DECIMAL32 = @DEF__DECIMAL32@
-DEF__DECIMAL64 = @DEF__DECIMAL64@
-DEF__DECIMAL64X = @DEF__DECIMAL64X@
-DEF__FLOAT128 = @DEF__FLOAT128@
-DEF__FLOAT128X = @DEF__FLOAT128X@
-DEF__FLOAT32 = @DEF__FLOAT32@
-DEF__FLOAT32X = @DEF__FLOAT32X@
-DEF__FLOAT64 = @DEF__FLOAT64@
-DEF__FLOAT64X = @DEF__FLOAT64X@
+DEF_floattypes__fmod_decimal128 = @DEF_floattypes__fmod_decimal128@
+DEF_floattypes__fmod_decimal128x = @DEF_floattypes__fmod_decimal128x@
+DEF_floattypes__fmod_decimal32 = @DEF_floattypes__fmod_decimal32@
+DEF_floattypes__fmod_decimal64 = @DEF_floattypes__fmod_decimal64@
+DEF_floattypes__fmod_decimal64x = @DEF_floattypes__fmod_decimal64x@
+DEF_floattypes__fmod_double = @DEF_floattypes__fmod_double@
+DEF_floattypes__fmod_float = @DEF_floattypes__fmod_float@
+DEF_floattypes__fmod_float128 = @DEF_floattypes__fmod_float128@
+DEF_floattypes__fmod_float128x = @DEF_floattypes__fmod_float128x@
+DEF_floattypes__fmod_float32 = @DEF_floattypes__fmod_float32@
+DEF_floattypes__fmod_float32x = @DEF_floattypes__fmod_float32x@
+DEF_floattypes__fmod_float64 = @DEF_floattypes__fmod_float64@
+DEF_floattypes__fmod_float64x = @DEF_floattypes__fmod_float64x@
+DEF_floattypes__fmod_ldouble = @DEF_floattypes__fmod_ldouble@
+DEF_floattypes_decimal128 = @DEF_floattypes_decimal128@
+DEF_floattypes_decimal128x = @DEF_floattypes_decimal128x@
+DEF_floattypes_decimal32 = @DEF_floattypes_decimal32@
+DEF_floattypes_decimal64 = @DEF_floattypes_decimal64@
+DEF_floattypes_decimal64x = @DEF_floattypes_decimal64x@
+DEF_floattypes_double = @DEF_floattypes_double@
+DEF_floattypes_float = @DEF_floattypes_float@
+DEF_floattypes_float128 = @DEF_floattypes_float128@
+DEF_floattypes_float128x = @DEF_floattypes_float128x@
+DEF_floattypes_float32 = @DEF_floattypes_float32@
+DEF_floattypes_float32x = @DEF_floattypes_float32x@
+DEF_floattypes_float64 = @DEF_floattypes_float64@
+DEF_floattypes_float64x = @DEF_floattypes_float64x@
+DEF_floattypes_ldouble = @DEF_floattypes_ldouble@
 DEPDIR = @DEPDIR@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
@@ -394,7 +415,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = $(srcdir)/silent-rules.mk \
+EXTRA_DIST = $(srcdir)/silent-rules.mk README \
 	floattypes/CATS/floattypes.cats.m4 \
 	floattypes/SATS/floattypes.sats.m4
 #EXTRA_DIST += floattypes/DATS/floattypes.dats.m4
@@ -407,8 +428,7 @@ MOSTLYCLEANFILES =
 CLEANFILES = $(BUILT_SOURCES)
 DISTCLEANFILES = Makefile
 ACLOCAL_AMFLAGS = -I m4 --install
-AUTOMAKE_OPTIONS = foreign subdir-objects no-dependencies \
-	-Wno-portability
+AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
 ######################################################################
 lib_LTLIBRARIES = libats2-floattypes.la
@@ -515,7 +535,11 @@ clean-libLTLIBRARIES:
 floattypes/SATS/$(am__dirstamp):
 	@$(MKDIR_P) floattypes/SATS
 	@: > floattypes/SATS/$(am__dirstamp)
-floattypes/SATS/floattypes_sats.lo: floattypes/SATS/$(am__dirstamp)
+floattypes/SATS/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) floattypes/SATS/$(DEPDIR)
+	@: > floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
+floattypes/SATS/floattypes_sats.lo: floattypes/SATS/$(am__dirstamp) \
+	floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
 
 libats2-floattypes.la: $(libats2_floattypes_la_OBJECTS) $(libats2_floattypes_la_DEPENDENCIES) $(EXTRA_libats2_floattypes_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libats2_floattypes_la_OBJECTS) $(libats2_floattypes_la_LIBADD) $(LIBS)
@@ -528,14 +552,37 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
+
+$(am__depfiles_remade):
+	@$(MKDIR_P) $(@D)
+	@echo '# dummy' >$@-t && $(am__mv) $@-t $@
+
+am--depfiles: $(am__depfiles_remade)
+
 .c.o:
-	$(AM_V_CC)$(COMPILE) -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-	$(AM_V_CC)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .c.lo:
-	$(AM_V_CC)$(LTCOMPILE) -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -885,6 +932,7 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
 	-rm -f floattypes/SATS/$(am__dirstamp)
 	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
@@ -899,6 +947,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+		-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f GNUmakefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-libtool distclean-tags
@@ -948,6 +997,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
+		-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f GNUmakefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -971,18 +1021,18 @@ uninstall-am: uninstall-libLTLIBRARIES \
 
 .MAKE: all check install install-am install-exec install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am am--refresh check check-am clean \
-	clean-cscope clean-generic clean-libLTLIBRARIES clean-libtool \
-	cscope cscopelist-am ctags ctags-am dist dist-all dist-bzip2 \
-	dist-gzip dist-lzip dist-shar dist-tarZ dist-xz dist-zip \
-	dist-zstd distcheck distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags \
-	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-libLTLIBRARIES install-man \
-	install-nobase_nodist_pkghostincludeHEADERS \
+.PHONY: CTAGS GTAGS TAGS all all-am am--depfiles am--refresh check \
+	check-am clean clean-cscope clean-generic clean-libLTLIBRARIES \
+	clean-libtool cscope cscopelist-am ctags ctags-am dist \
+	dist-all dist-bzip2 dist-gzip dist-lzip dist-shar dist-tarZ \
+	dist-xz dist-zip dist-zstd distcheck distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-libLTLIBRARIES \
+	install-man install-nobase_nodist_pkghostincludeHEADERS \
 	install-nobase_nodist_pkgincludeHEADERS \
 	install-nodist_pkgconfigDATA install-pdf install-pdf-am \
 	install-ps install-ps-am install-strip installcheck \
@@ -1003,7 +1053,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 
 floattypes/CATS/floattype.cats: floattypes/CATS/floattypes.cats.m4
 floattypes/SATS/floattype.sats: floattypes/SATS/floattypes.sats.m4
-floattypes/DATS/floattype.dats: floattypes/DATS/floattypes.dats.m4
+#floattypes/DATS/floattype.dats: floattypes/DATS/floattypes.dats.m4
 
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats

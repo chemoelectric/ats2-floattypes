@@ -1,0 +1,10 @@
+Floating-point support for ATS2/Postiats beyond what is in the
+prelude.
+
+In particular, support for binary and decimal floating point types
+specified in ISO/IEC TS 18661-3:2015, ‘Floating point extensions for
+C: interchange and extended types’.
+
+--
+
+Licensing is GNU General Public License, version 3 or greater.

@@ -14,6 +14,19 @@
 # along with this program. If not, see
 # <https://www.gnu.org/licenses/>.
 
+define(`extra_floattypes',dnl
+`float32,
+float64,
+float128,
+decimal32,
+decimal64,
+decimal128,
+float32x,
+float64x,
+float128x,
+decimal64x,
+decimal128x')
+
 define(`lowercase',`abcdefghijklmnopqrstuvwxyz')
 define(`uppercase',`ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 define(`tolower',`translit($1,uppercase,lowercase)')

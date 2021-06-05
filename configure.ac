@@ -36,6 +36,9 @@ AM_SILENT_RULES
 AM_MAINTAINER_MODE
 LT_INIT
 
+m4_define([add_def],[AC_SUBST(DEF_$1,['define HAVE_$1 1'])])
+m4_define([add_undef],[AC_SUBST(DEF_$1,['undef HAVE_$1'])])
+
 #--------------------------------------------------------------------------
 #
 # Checks for programs.
@@ -66,29 +69,52 @@ AC_PROG_EGREP
 #
 # Checks for typedefs, structures, and compiler characteristics.
 
-m4_define([add_def],[AC_SUBST(DEF_[]m4_toupper($1),['define HAVE_[]m4_toupper($1) 1'])])
-m4_define([add_undef],[AC_SUBST(DEF_[]m4_toupper($1),['undef HAVE_[]m4_toupper($1)'])])
+m4_define([check_type],
+          [AC_CHECK_TYPE([$1],[add_def([$2])],[add_undef([$2])])])
 
-m4_define([check_type],[AC_CHECK_TYPE([$1],[add_def([$1])],[add_undef([$1])])])
+check_type([float],[floattypes_float])
+check_type([double],[floattypes_double])
+check_type([long double],[floattypes_ldouble])
 
-check_type([_Float32])
-check_type([_Float64])
-check_type([_Float128])
+check_type([_Float32],[floattypes_float32])
+check_type([_Float64],[floattypes_float64])
+check_type([_Float128],[floattypes_float128])
 
-check_type([_Decimal32])
-check_type([_Decimal64])
-check_type([_Decimal128])
+check_type([_Decimal32],[floattypes_decimal32])
+check_type([_Decimal64],[floattypes_decimal64])
+check_type([_Decimal128],[floattypes_decimal128])
 
-check_type([_Float32x])
-check_type([_Float64x])
-check_type([_Float128x])
+check_type([_Float32x],[floattypes_float32x])
+check_type([_Float64x],[floattypes_float64x])
+check_type([_Float128x],[floattypes_float128x])
 
-check_type([_Decimal64x])
-check_type([_Decimal128x])
+check_type([_Decimal64x],[floattypes_decimal64x])
+check_type([_Decimal128x],[floattypes_decimal128x])
 
 #--------------------------------------------------------------------------
 #
 # Checks for library functions.
+
+# We will need the math library.
+AC_CHECK_LIB([m],[sin])
+
+m4_define([check_func],
+          [AC_CHECK_FUNC([$1],[add_def([$2])],[add_undef([$2])])])
+
+check_func([fmodf],[floattypes__fmod_float])
+check_func([fmod],[floattypes__fmod_double])
+check_func([fmodl],[floattypes__fmod_ldouble])
+check_func([fmodf32],[floattypes__fmod_float32])
+check_func([fmodf64],[floattypes__fmod_float64])
+check_func([fmodf128],[floattypes__fmod_float128])
+check_func([fmodd32],[floattypes__fmod_decimal32])
+check_func([fmodd64],[floattypes__fmod_decimal64])
+check_func([fmodd128],[floattypes__fmod_decimal128])
+check_func([fmodf32x],[floattypes__fmod_float32x])
+check_func([fmodf64x],[floattypes__fmod_float64x])
+check_func([fmodf128x],[floattypes__fmod_float128x])
+check_func([fmodd64x],[floattypes__fmod_decimal64x])
+check_func([fmodd128x],[floattypes__fmod_decimal128x])
 
 #--------------------------------------------------------------------------
 

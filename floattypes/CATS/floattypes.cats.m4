@@ -21,7 +21,15 @@ along with this program. If not, see
 `#ifndef FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
 `#define FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
 
+`#include <math.h>'
 `#include "floattypes/HATS/config.hats"'
+
+_Static_assert(sizeof (atstype_float) == sizeof (float),
+               "atstype_float is not the same as float");
+_Static_assert(sizeof (atstype_double) == sizeof (double),
+               "atstype_double is not the same as double");
+_Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
+               "atstype_ldouble is not the same as long double");
 
 `/*
  * The following statements are #define instead of typedef,
@@ -43,9 +51,7 @@ along with this program. If not, see
 #define floattypes_decimal128x _Decimal128x
 'dnl
 
-divert(-1)                      # Not supported on my system yet.
-`
-#define floattypes__fmod_float fmodf
+`#define floattypes__fmod_float fmodf
 #define floattypes__fmod_double fmod
 #define floattypes__fmod_ldouble fmodl
 #define floattypes__fmod_float32 fmodf32
@@ -60,7 +66,6 @@ divert(-1)                      # Not supported on my system yet.
 #define floattypes__fmod_decimal64x fmodd64x
 #define floattypes__fmod_decimal128x fmodd128x
 'dnl
-divert`'dnl
 
 divert(-1)
 
@@ -109,10 +114,12 @@ floattypes__g0float_$2_$1_$4 (floattypes_$1 f1, $4 f2) dnl
 { return (f1 $3 ((floattypes_$1) f2)); }')
 
 define(`mod_op',
-`ATSinline() dnl
+`#if HAVE_floattypes__fmod_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return (floattypes__fmod_$1 (f1, f2)); }')
+{ return (floattypes__fmod_$1 (f1, f2)); }
+#endif')
 
 define(`comparison_op',
 `ATSinline() dnl
@@ -153,7 +160,7 @@ floattypes__g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 divert`'dnl
 
 foreach(`t',(extra_floattypes),dnl
-``#if' HAVE__`'toupper(t)
+``#if' HAVE_floattypes_`'t
 
 negation_op(t)
 abs_op(t)
@@ -175,7 +182,7 @@ binary_op_float_sometype(t,`sub',`-',`int')
 binary_op_float_sometype(t,`mul',`*',`int')
 binary_op_float_sometype(t,`div',`/',`int')
 dnl
-dnl mod_op(t)
+mod_op(t)
 dnl
 comparison_op(t,`lt',`<')
 comparison_op(t,`lte',`<=')
@@ -196,7 +203,7 @@ dnl
 min_op(t)
 max_op(t)
 
-`#endif' /* HAVE__`'toupper(t) */
+`#endif' /* HAVE_floattypes_`'t */
 
 ')
 
