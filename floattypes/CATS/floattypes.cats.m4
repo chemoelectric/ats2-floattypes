@@ -72,139 +72,174 @@ divert(-1)
 include(`floattypes/common-macros.m4')
 
 define(`negation_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_neg_$1 (floattypes_$1 f) dnl
-{ return (-f); }')
+{ return (-f); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`abs_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_abs_$1 (floattypes_$1 f) dnl
-{ return ((f < 0) ? (-f) : (f)); }')
+{ return ((f < 0) ? (-f) : (f)); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`successor_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_succ_$1 (floattypes_$1 f) dnl
-{ return (f + 1); }')
+{ return (f + 1); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`predecessor_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_pred_$1 (floattypes_$1 f) dnl
-{ return (f - 1); }')
+{ return (f - 1); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`binary_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return (f1 $3 f2); }')
+{ return (f1 $3 f2); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`binary_op_sometype_float',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$4_$1 ($4 f1, floattypes_$1 f2) dnl
-{ return (((floattypes_$1) f1) $3 f2); }')
+{ return (((floattypes_$1) f1) $3 f2); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`binary_op_float_sometype',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$1_$4 (floattypes_$1 f1, $4 f2) dnl
-{ return (f1 $3 ((floattypes_$1) f2)); }')
+{ return (f1 $3 ((floattypes_$1) f2)); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`mod_op',
-`#if HAVE_floattypes__fmod_$1
+`#if HAVE_floattypes_$1
+#if HAVE_floattypes__fmod_$1
 ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (floattypes__fmod_$1 (f1, f2)); }
-#endif')
+#endif /* HAVE_floattypes__fmod_$1 */
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`comparison_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return ((f1 $3 f2) ? atsbool_true : atsbool_false); }')
+{ return ((f1 $3 f2) ? atsbool_true : atsbool_false); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`comparison_op_sometype_float',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$4_$1 ($4 f1, floattypes_$1 f2) dnl
-{ return ((((floattypes_$1) f1) $3 f2) ? atsbool_true : atsbool_false); }')
+{ return ((((floattypes_$1) f1) $3 f2) ? atsbool_true : atsbool_false); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`comparison_op_float_sometype',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$1_$4 (floattypes_$1 f1, $4 f2) dnl
-{ return ((f1 $3 ((floattypes_$1) f2)) ? atsbool_true : atsbool_false); }')
+{ return ((f1 $3 ((floattypes_$1) f2)) ? atsbool_true : atsbool_false); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`compare_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_compare_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return ((f1 < f2) ? -1 : ((f2 < f1) ? 1 : 0)); }')
+{ return ((f1 < f2) ? -1 : ((f2 < f1) ? 1 : 0)); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`min_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_min_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return ((f1 <= f2) ? f1 : f2); }')
+{ return ((f1 <= f2) ? f1 : f2); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 define(`max_op',
-`ATSinline() dnl
+`#if HAVE_floattypes_$1
+ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return ((f1 >= f2) ? f1 : f2); }')
+{ return ((f1 >= f2) ? f1 : f2); }
+#endif /* HAVE_floattypes_$1 */
+')
 
 divert`'dnl
 
-foreach(`t',(extra_floattypes),dnl
-``#if' HAVE_floattypes_`'t
-
-negation_op(t)
-abs_op(t)
-successor_op(t)
-predecessor_op(t)
+foreach(`t',(extra_floattypes),`negation_op(t)')
+foreach(`t',(extra_floattypes),`abs_op(t)')
+foreach(`t',(extra_floattypes),`successor_op(t)')
+foreach(`t',(extra_floattypes),`predecessor_op(t)')
 dnl
-binary_op(t,`add',`+')
-binary_op(t,`sub',`-')
-binary_op(t,`mul',`*')
-binary_op(t,`div',`/')
+foreach(`t',(extra_floattypes),`binary_op(t,`add',`+')')
+foreach(`t',(extra_floattypes),`binary_op(t,`sub',`-')')
+foreach(`t',(extra_floattypes),`binary_op(t,`mul',`*')')
+foreach(`t',(extra_floattypes),`binary_op(t,`div',`/')')
 dnl
-binary_op_sometype_float(t,`add',`+',`int')
-binary_op_sometype_float(t,`sub',`-',`int')
-binary_op_sometype_float(t,`mul',`*',`int')
-binary_op_sometype_float(t,`div',`/',`int')
+foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`add',`+',`int')')
+foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`sub',`-',`int')')
+foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`mul',`*',`int')')
+foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`div',`/',`int')')
 dnl
-binary_op_float_sometype(t,`add',`+',`int')
-binary_op_float_sometype(t,`sub',`-',`int')
-binary_op_float_sometype(t,`mul',`*',`int')
-binary_op_float_sometype(t,`div',`/',`int')
+foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`add',`+',`int')')
+foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`sub',`-',`int')')
+foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`mul',`*',`int')')
+foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`div',`/',`int')')
 dnl
-mod_op(t)
+foreach(`t',(extra_floattypes),`mod_op(t)')
 dnl
-comparison_op(t,`lt',`<')
-comparison_op(t,`lte',`<=')
-comparison_op(t,`gt',`>')
-comparison_op(t,`gte',`>=')
-comparison_op(t,`eq',`==')
-comparison_op(t,`neq',`!=')
+foreach(`t',(extra_floattypes),`comparison_op(t,`lt',`<')')
+foreach(`t',(extra_floattypes),`comparison_op(t,`lte',`<=')')
+foreach(`t',(extra_floattypes),`comparison_op(t,`gt',`>')')
+foreach(`t',(extra_floattypes),`comparison_op(t,`gte',`>=')')
+foreach(`t',(extra_floattypes),`comparison_op(t,`eq',`==')')
+foreach(`t',(extra_floattypes),`comparison_op(t,`neq',`!=')')
 dnl
-comparison_op_sometype_float(t,`lt',`<',`int')
-comparison_op_sometype_float(t,`lte',`<=',`int')
-comparison_op_sometype_float(t,`gt',`>',`int')
-comparison_op_sometype_float(t,`gte',`>=',`int')
-comparison_op_sometype_float(t,`eq',`==',`int')
-comparison_op_sometype_float(t,`neq',`!=',`int')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`lt',`<',`int')')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`lte',`<=',`int')')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`gt',`>',`int')')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`gte',`>=',`int')')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`eq',`==',`int')')
+foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`neq',`!=',`int')')
 dnl
-compare_op(t)
+foreach(`t',(extra_floattypes),`compare_op(t)')
 dnl
-min_op(t)
-max_op(t)
-
-`#endif' /* HAVE_floattypes_`'t */
-
-')
+foreach(`t',(extra_floattypes),`min_op(t)')
+foreach(`t',(extra_floattypes),`max_op(t)')
 
 `#endif /* FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__ */'

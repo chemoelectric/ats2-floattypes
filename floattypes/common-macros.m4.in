@@ -27,6 +27,8 @@ float128x,
 decimal64x,
 decimal128x')
 
+define(`floattypes',`float,double,ldouble,'extra_floattypes)
+
 define(`lowercase',`abcdefghijklmnopqrstuvwxyz')
 define(`uppercase',`ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 define(`tolower',`translit($1,uppercase,lowercase)')
