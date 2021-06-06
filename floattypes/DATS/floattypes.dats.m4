@@ -33,4 +33,30 @@ divert(-1)
 
 include(`floattypes/common-macros.m4')
 
+define(`implement_float',`implement g0float_$1<$2`'_kind> = g0float_$1_$2
+')
+
 divert`'
+
+foreach(`t',(extra_floattypes),`implement_float(`neg',t)')
+foreach(`t',(extra_floattypes),`implement_float(`abs',t)')
+foreach(`t',(extra_floattypes),`implement_float(`succ',t)')
+foreach(`t',(extra_floattypes),`implement_float(`pred',t)')
+dnl
+foreach(`t',(extra_floattypes),`implement_float(`add',t)')
+foreach(`t',(extra_floattypes),`implement_float(`sub',t)')
+foreach(`t',(extra_floattypes),`implement_float(`mul',t)')
+foreach(`t',(extra_floattypes),`implement_float(`div',t)')
+foreach(`t',(extra_floattypes),`implement_float(`mod',t)')
+dnl
+foreach(`t',(extra_floattypes),`implement_float(`lt',t)')
+foreach(`t',(extra_floattypes),`implement_float(`lte',t)')
+foreach(`t',(extra_floattypes),`implement_float(`gt',t)')
+foreach(`t',(extra_floattypes),`implement_float(`gte',t)')
+foreach(`t',(extra_floattypes),`implement_float(`eq',t)')
+foreach(`t',(extra_floattypes),`implement_float(`neq',t)')
+dnl
+foreach(`t',(extra_floattypes),`implement_float(`compare',t)')
+dnl
+foreach(`t',(extra_floattypes),`implement_float(`max',t)')
+foreach(`t',(extra_floattypes),`implement_float(`min',t)')
