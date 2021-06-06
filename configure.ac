@@ -158,20 +158,52 @@ AC_CHECK_LIB([m],[sin])
 m4_define([check_math_func],
           [MY_CHECK_MATH_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
 
-check_math_func([fmodf],[floattypes__fmod_float])
-check_math_func([fmod],[floattypes__fmod_double])
-check_math_func([fmodl],[floattypes__fmod_ldouble])
-check_math_func([fmodf32],[floattypes__fmod_float32])
-check_math_func([fmodf64],[floattypes__fmod_float64])
-check_math_func([fmodf128],[floattypes__fmod_float128])
-check_math_func([fmodd32],[floattypes__fmod_decimal32])
-check_math_func([fmodd64],[floattypes__fmod_decimal64])
-check_math_func([fmodd128],[floattypes__fmod_decimal128])
-check_math_func([fmodf32x],[floattypes__fmod_float32x])
-check_math_func([fmodf64x],[floattypes__fmod_float64x])
-check_math_func([fmodf128x],[floattypes__fmod_float128x])
-check_math_func([fmodd64x],[floattypes__fmod_decimal64x])
-check_math_func([fmodd128x],[floattypes__fmod_decimal128x])
+m4_define([math_functions],[
+  fmod
+  pow
+  sqrt hypot cbrt
+  exp exp2 exp10 expm1
+  log log2 log10 log1p
+  sin cos tan
+  asin acos atan atan2
+  sinh cosh tanh
+  asinh acosh atanh
+  erf erfc
+  lgamma tgamma
+  j0 j1 jn y0 y1 yn
+])
+
+m4_foreach_w([the_func],math_functions,[
+  check_math_func(the_func[f],[floattypes__]the_func[_float])
+  check_math_func(the_func,[floattypes__]the_func[_double])
+  check_math_func(the_func[l],[floattypes__]the_func[_ldouble])
+  check_math_func(the_func[f32],[floattypes__]the_func[_float32])
+  check_math_func(the_func[f64],[floattypes__]the_func[_float64])
+  check_math_func(the_func[f128],[floattypes__]the_func[_float128])
+  check_math_func(the_func[d32],[floattypes__]the_func[_decimal32])
+  check_math_func(the_func[d64],[floattypes__]the_func[_decimal64])
+  check_math_func(the_func[d128],[floattypes__]the_func[_decimal128])
+  check_math_func(the_func[f32x],[floattypes__]the_func[_float32x])
+  check_math_func(the_func[f64x],[floattypes__]the_func[_float64x])
+  check_math_func(the_func[f128x],[floattypes__]the_func[_float128x])
+  check_math_func(the_func[d64x],[floattypes__]the_func[_decimal64x])
+  check_math_func(the_func[d128x],[floattypes__]the_func[_decimal128x])
+])
+
+check_math_func([lgamma][f][_r],[floattypes__][lgamma_r][_float])
+check_math_func([lgamma][_r],[floattypes__][lgamma_r][_double])
+check_math_func([lgamma][l][_r],[floattypes__][lgamma_r][_ldouble])
+check_math_func([lgamma][f32][_r],[floattypes__][lgamma_r][_float32])
+check_math_func([lgamma][f64][_r],[floattypes__][lgamma_r][_float64])
+check_math_func([lgamma][f128][_r],[floattypes__][lgamma_r][_float128])
+check_math_func([lgamma][d32][_r],[floattypes__][lgamma_r][_decimal32])
+check_math_func([lgamma][d64][_r],[floattypes__][lgamma_r][_decimal64])
+check_math_func([lgamma][d128][_r],[floattypes__][lgamma_r][_decimal128])
+check_math_func([lgamma][f32x][_r],[floattypes__][lgamma_r][_float32x])
+check_math_func([lgamma][f64x][_r],[floattypes__][lgamma_r][_float64x])
+check_math_func([lgamma][f128x][_r],[floattypes__][lgamma_r][_float128x])
+check_math_func([lgamma][d64x][_r],[floattypes__][lgamma_r][_decimal64x])
+check_math_func([lgamma][d128x][_r],[floattypes__][lgamma_r][_decimal128x])
 
 #--------------------------------------------------------------------------
 
