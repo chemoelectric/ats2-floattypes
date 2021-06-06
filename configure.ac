@@ -81,16 +81,17 @@ AC_DEFUN([MY_CHECK_FLOAT_TYPE],
     esac])
 
 AC_DEFUN([MY_CHECK_MATH_FUNC],
-  [AC_CACHE_CHECK([for math function $1],[my_cv_math_func_$1],
+  [AC_CACHE_CHECK([for math function $1],
+                  [AS_TR_SH([my_cv_math_func_$1])],
     [AC_COMPILE_IFELSE([
       AC_LANG_PROGRAM(
         [MY_MATH_HEADERS],
         [[
            void *p = $1;
         ]])],
-        [my_cv_math_func_$1=yes],
-        [my_cv_math_func_$1=no])])
-    case x"${my_cv_math_func_$1}" in
+        [AS_TR_SH([my_cv_math_func_$1])=yes],
+        [AS_TR_SH([my_cv_math_func_$1])=no])])
+    case x"${AS_TR_SH([my_cv_math_func_$1])}" in
       xyes) $2 ;;
       *)    $3 ;;
     esac])
