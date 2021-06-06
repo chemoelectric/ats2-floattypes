@@ -36,8 +36,64 @@ AM_SILENT_RULES
 AM_MAINTAINER_MODE
 LT_INIT
 
+AC_LANG([C])
+
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_BFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_DFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
+
+#--------------------------------------------------------------------------
+
 m4_define([add_def1],[AC_SUBST(DEF_$1,['define HAVE_$1 1'])])
 m4_define([add_def0],[AC_SUBST(DEF_$1,['define HAVE_$1 0'])])
+
+#--------------------------------------------------------------------------
+
+AC_DEFUN([MY_MATH_HEADERS],
+[[
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__	
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+]])
+
+AC_DEFUN([MY_CHECK_FLOAT_TYPE],
+  [AC_CACHE_CHECK([for floating point type $1],
+                  [AS_TR_SH([my_cv_float_type_$1])],
+    [AC_COMPILE_IFELSE([
+      AC_LANG_PROGRAM(
+        [MY_MATH_HEADERS],
+        [[
+           $1 x = -1.1;
+           $1 y = 0.0;
+           $1 z = 1.1;
+        ]])],
+        [AS_TR_SH([my_cv_float_type_$1])=yes],
+        [AS_TR_SH([my_cv_float_type_$1])=no])])
+    case x"${AS_TR_SH([my_cv_float_type_$1])}" in
+      xyes) $2 ;;
+      *)    $3 ;;
+    esac])
+
+AC_DEFUN([MY_CHECK_MATH_FUNC],
+  [AC_CACHE_CHECK([for math function $1],[my_cv_math_func_$1],
+    [AC_COMPILE_IFELSE([
+      AC_LANG_PROGRAM(
+        [MY_MATH_HEADERS],
+        [[
+           void *p = $1;
+        ]])],
+        [my_cv_math_func_$1=yes],
+        [my_cv_math_func_$1=no])])
+    case x"${my_cv_math_func_$1}" in
+      xyes) $2 ;;
+      *)    $3 ;;
+    esac])
 
 #--------------------------------------------------------------------------
 #
@@ -70,7 +126,7 @@ AC_PROG_EGREP
 # Checks for typedefs, structures, and compiler characteristics.
 
 m4_define([check_type],
-          [AC_CHECK_TYPE([$1],[add_def1([$2])],[add_def0([$2])])])
+          [MY_CHECK_FLOAT_TYPE([$1],[add_def1([$2])],[add_def0([$2])])])
 
 check_type([float],[floattypes_float])
 check_type([double],[floattypes_double])
@@ -98,23 +154,23 @@ check_type([_Decimal128x],[floattypes_decimal128x])
 # We will need the math library.
 AC_CHECK_LIB([m],[sin])
 
-m4_define([check_func],
-          [AC_CHECK_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
+m4_define([check_math_func],
+          [MY_CHECK_MATH_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
 
-check_func([fmodf],[floattypes__fmod_float])
-check_func([fmod],[floattypes__fmod_double])
-check_func([fmodl],[floattypes__fmod_ldouble])
-check_func([fmodf32],[floattypes__fmod_float32])
-check_func([fmodf64],[floattypes__fmod_float64])
-check_func([fmodf128],[floattypes__fmod_float128])
-check_func([fmodd32],[floattypes__fmod_decimal32])
-check_func([fmodd64],[floattypes__fmod_decimal64])
-check_func([fmodd128],[floattypes__fmod_decimal128])
-check_func([fmodf32x],[floattypes__fmod_float32x])
-check_func([fmodf64x],[floattypes__fmod_float64x])
-check_func([fmodf128x],[floattypes__fmod_float128x])
-check_func([fmodd64x],[floattypes__fmod_decimal64x])
-check_func([fmodd128x],[floattypes__fmod_decimal128x])
+check_math_func([fmodf],[floattypes__fmod_float])
+check_math_func([fmod],[floattypes__fmod_double])
+check_math_func([fmodl],[floattypes__fmod_ldouble])
+check_math_func([fmodf32],[floattypes__fmod_float32])
+check_math_func([fmodf64],[floattypes__fmod_float64])
+check_math_func([fmodf128],[floattypes__fmod_float128])
+check_math_func([fmodd32],[floattypes__fmod_decimal32])
+check_math_func([fmodd64],[floattypes__fmod_decimal64])
+check_math_func([fmodd128],[floattypes__fmod_decimal128])
+check_math_func([fmodf32x],[floattypes__fmod_float32x])
+check_math_func([fmodf64x],[floattypes__fmod_float64x])
+check_math_func([fmodf128x],[floattypes__fmod_float128x])
+check_math_func([fmodd64x],[floattypes__fmod_decimal64x])
+check_math_func([fmodd128x],[floattypes__fmod_decimal128x])
 
 #--------------------------------------------------------------------------
 

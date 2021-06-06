@@ -21,8 +21,8 @@ along with this program. If not, see
 `#ifndef FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
 `#define FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
 
-`#include <math.h>'
 `#include "floattypes/HATS/config.hats"'
+`#include <math.h>'
 
 _Static_assert(sizeof (atstype_float) == sizeof (float),
                "atstype_float is not the same as float");

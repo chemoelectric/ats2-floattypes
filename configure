@@ -1906,60 +1906,6 @@ $as_echo "$ac_res" >&6; }
   eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
 
 } # ac_fn_c_check_func
-
-# ac_fn_c_check_type LINENO TYPE VAR INCLUDES
-# -------------------------------------------
-# Tests whether TYPE exists after having included INCLUDES, setting cache
-# variable VAR accordingly.
-ac_fn_c_check_type ()
-{
-  as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
-$as_echo_n "checking for $2... " >&6; }
-if eval \${$3+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  eval "$3=no"
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-$4
-int
-main ()
-{
-if (sizeof ($2))
-	 return 0;
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_compile "$LINENO"; then :
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-$4
-int
-main ()
-{
-if (sizeof (($2)))
-	    return 0;
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_compile "$LINENO"; then :
-
-else
-  eval "$3=yes"
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-fi
-eval ac_res=\$$3
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-  eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
-
-} # ac_fn_c_check_type
 cat >config.log <<_ACEOF
 This file contains any messages produced by compilers while
 running configure, to aid debugging if configure makes a mistake.
@@ -12169,6 +12115,29 @@ CC=$lt_save_CC
 
 
 
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_BFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_DFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
+
+#--------------------------------------------------------------------------
+
+
+
+
+#--------------------------------------------------------------------------
+
+
+
+
 
 
 
@@ -13450,136 +13419,626 @@ $as_echo "$ac_cv_path_EGREP" >&6; }
 
 
 
-ac_fn_c_check_type "$LINENO" "float" "ac_cv_type_float" "$ac_includes_default"
-if test "x$ac_cv_type_float" = xyes; then :
-  DEF_floattypes_float='define HAVE_floattypes_float 1'
-
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type float" >&5
+$as_echo_n "checking for floating point type float... " >&6; }
+if ${my_cv_float_type_float+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_float='define HAVE_floattypes_float 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_type "$LINENO" "double" "ac_cv_type_double" "$ac_includes_default"
-if test "x$ac_cv_type_double" = xyes; then :
-  DEF_floattypes_double='define HAVE_floattypes_double 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           float x = -1.1;
+           float y = 0.0;
+           float z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type_float=yes
 else
-  DEF_floattypes_double='define HAVE_floattypes_double 0'
-
+  my_cv_float_type_float=no
 fi
-
-ac_fn_c_check_type "$LINENO" "long double" "ac_cv_type_long_double" "$ac_includes_default"
-if test "x$ac_cv_type_long_double" = xyes; then :
-  DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type_float" >&5
+$as_echo "$my_cv_float_type_float" >&6; }
+    case x"${my_cv_float_type_float}" in
+      xyes) DEF_floattypes_float='define HAVE_floattypes_float 1'
+ ;;
+      *)    DEF_floattypes_float='define HAVE_floattypes_float 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type double" >&5
+$as_echo_n "checking for floating point type double... " >&6; }
+if ${my_cv_float_type_double+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
-ac_fn_c_check_type "$LINENO" "_Float32" "ac_cv_type__Float32" "$ac_includes_default"
-if test "x$ac_cv_type__Float32" = xyes; then :
-  DEF_floattypes_float32='define HAVE_floattypes_float32 1'
+int
+main ()
+{
 
+           double x = -1.1;
+           double y = 0.0;
+           double z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type_double=yes
 else
-  DEF_floattypes_float32='define HAVE_floattypes_float32 0'
-
+  my_cv_float_type_double=no
 fi
-
-ac_fn_c_check_type "$LINENO" "_Float64" "ac_cv_type__Float64" "$ac_includes_default"
-if test "x$ac_cv_type__Float64" = xyes; then :
-  DEF_floattypes_float64='define HAVE_floattypes_float64 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type_double" >&5
+$as_echo "$my_cv_float_type_double" >&6; }
+    case x"${my_cv_float_type_double}" in
+      xyes) DEF_floattypes_double='define HAVE_floattypes_double 1'
+ ;;
+      *)    DEF_floattypes_double='define HAVE_floattypes_double 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type long double" >&5
+$as_echo_n "checking for floating point type long double... " >&6; }
+if ${my_cv_float_type_long_double+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_float64='define HAVE_floattypes_float64 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_type "$LINENO" "_Float128" "ac_cv_type__Float128" "$ac_includes_default"
-if test "x$ac_cv_type__Float128" = xyes; then :
-  DEF_floattypes_float128='define HAVE_floattypes_float128 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           long double x = -1.1;
+           long double y = 0.0;
+           long double z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type_long_double=yes
 else
-  DEF_floattypes_float128='define HAVE_floattypes_float128 0'
-
+  my_cv_float_type_long_double=no
 fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type_long_double" >&5
+$as_echo "$my_cv_float_type_long_double" >&6; }
+    case x"${my_cv_float_type_long_double}" in
+      xyes) DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 1'
+ ;;
+      *)    DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 0'
+ ;;
+    esac
 
-
-ac_fn_c_check_type "$LINENO" "_Decimal32" "ac_cv_type__Decimal32" "$ac_includes_default"
-if test "x$ac_cv_type__Decimal32" = xyes; then :
-  DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 1'
-
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float32" >&5
+$as_echo_n "checking for floating point type _Float32... " >&6; }
+if ${my_cv_float_type__Float32+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_type "$LINENO" "_Decimal64" "ac_cv_type__Decimal64" "$ac_includes_default"
-if test "x$ac_cv_type__Decimal64" = xyes; then :
-  DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           _Float32 x = -1.1;
+           _Float32 y = 0.0;
+           _Float32 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float32=yes
 else
-  DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 0'
-
+  my_cv_float_type__Float32=no
 fi
-
-ac_fn_c_check_type "$LINENO" "_Decimal128" "ac_cv_type__Decimal128" "$ac_includes_default"
-if test "x$ac_cv_type__Decimal128" = xyes; then :
-  DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float32" >&5
+$as_echo "$my_cv_float_type__Float32" >&6; }
+    case x"${my_cv_float_type__Float32}" in
+      xyes) DEF_floattypes_float32='define HAVE_floattypes_float32 1'
+ ;;
+      *)    DEF_floattypes_float32='define HAVE_floattypes_float32 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float64" >&5
+$as_echo_n "checking for floating point type _Float64... " >&6; }
+if ${my_cv_float_type__Float64+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
-ac_fn_c_check_type "$LINENO" "_Float32x" "ac_cv_type__Float32x" "$ac_includes_default"
-if test "x$ac_cv_type__Float32x" = xyes; then :
-  DEF_floattypes_float32x='define HAVE_floattypes_float32x 1'
+int
+main ()
+{
 
+           _Float64 x = -1.1;
+           _Float64 y = 0.0;
+           _Float64 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float64=yes
 else
-  DEF_floattypes_float32x='define HAVE_floattypes_float32x 0'
-
+  my_cv_float_type__Float64=no
 fi
-
-ac_fn_c_check_type "$LINENO" "_Float64x" "ac_cv_type__Float64x" "$ac_includes_default"
-if test "x$ac_cv_type__Float64x" = xyes; then :
-  DEF_floattypes_float64x='define HAVE_floattypes_float64x 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float64" >&5
+$as_echo "$my_cv_float_type__Float64" >&6; }
+    case x"${my_cv_float_type__Float64}" in
+      xyes) DEF_floattypes_float64='define HAVE_floattypes_float64 1'
+ ;;
+      *)    DEF_floattypes_float64='define HAVE_floattypes_float64 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float128" >&5
+$as_echo_n "checking for floating point type _Float128... " >&6; }
+if ${my_cv_float_type__Float128+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_float64x='define HAVE_floattypes_float64x 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_type "$LINENO" "_Float128x" "ac_cv_type__Float128x" "$ac_includes_default"
-if test "x$ac_cv_type__Float128x" = xyes; then :
-  DEF_floattypes_float128x='define HAVE_floattypes_float128x 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           _Float128 x = -1.1;
+           _Float128 y = 0.0;
+           _Float128 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float128=yes
 else
-  DEF_floattypes_float128x='define HAVE_floattypes_float128x 0'
-
+  my_cv_float_type__Float128=no
 fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float128" >&5
+$as_echo "$my_cv_float_type__Float128" >&6; }
+    case x"${my_cv_float_type__Float128}" in
+      xyes) DEF_floattypes_float128='define HAVE_floattypes_float128 1'
+ ;;
+      *)    DEF_floattypes_float128='define HAVE_floattypes_float128 0'
+ ;;
+    esac
 
-
-ac_fn_c_check_type "$LINENO" "_Decimal64x" "ac_cv_type__Decimal64x" "$ac_includes_default"
-if test "x$ac_cv_type__Decimal64x" = xyes; then :
-  DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 1'
-
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Decimal32" >&5
+$as_echo_n "checking for floating point type _Decimal32... " >&6; }
+if ${my_cv_float_type__Decimal32+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_type "$LINENO" "_Decimal128x" "ac_cv_type__Decimal128x" "$ac_includes_default"
-if test "x$ac_cv_type__Decimal128x" = xyes; then :
-  DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           _Decimal32 x = -1.1;
+           _Decimal32 y = 0.0;
+           _Decimal32 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Decimal32=yes
 else
-  DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 0'
-
+  my_cv_float_type__Decimal32=no
 fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Decimal32" >&5
+$as_echo "$my_cv_float_type__Decimal32" >&6; }
+    case x"${my_cv_float_type__Decimal32}" in
+      xyes) DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 1'
+ ;;
+      *)    DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Decimal64" >&5
+$as_echo_n "checking for floating point type _Decimal64... " >&6; }
+if ${my_cv_float_type__Decimal64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Decimal64 x = -1.1;
+           _Decimal64 y = 0.0;
+           _Decimal64 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Decimal64=yes
+else
+  my_cv_float_type__Decimal64=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Decimal64" >&5
+$as_echo "$my_cv_float_type__Decimal64" >&6; }
+    case x"${my_cv_float_type__Decimal64}" in
+      xyes) DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 1'
+ ;;
+      *)    DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Decimal128" >&5
+$as_echo_n "checking for floating point type _Decimal128... " >&6; }
+if ${my_cv_float_type__Decimal128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Decimal128 x = -1.1;
+           _Decimal128 y = 0.0;
+           _Decimal128 z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Decimal128=yes
+else
+  my_cv_float_type__Decimal128=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Decimal128" >&5
+$as_echo "$my_cv_float_type__Decimal128" >&6; }
+    case x"${my_cv_float_type__Decimal128}" in
+      xyes) DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 1'
+ ;;
+      *)    DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 0'
+ ;;
+    esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float32x" >&5
+$as_echo_n "checking for floating point type _Float32x... " >&6; }
+if ${my_cv_float_type__Float32x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Float32x x = -1.1;
+           _Float32x y = 0.0;
+           _Float32x z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float32x=yes
+else
+  my_cv_float_type__Float32x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float32x" >&5
+$as_echo "$my_cv_float_type__Float32x" >&6; }
+    case x"${my_cv_float_type__Float32x}" in
+      xyes) DEF_floattypes_float32x='define HAVE_floattypes_float32x 1'
+ ;;
+      *)    DEF_floattypes_float32x='define HAVE_floattypes_float32x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float64x" >&5
+$as_echo_n "checking for floating point type _Float64x... " >&6; }
+if ${my_cv_float_type__Float64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Float64x x = -1.1;
+           _Float64x y = 0.0;
+           _Float64x z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float64x=yes
+else
+  my_cv_float_type__Float64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float64x" >&5
+$as_echo "$my_cv_float_type__Float64x" >&6; }
+    case x"${my_cv_float_type__Float64x}" in
+      xyes) DEF_floattypes_float64x='define HAVE_floattypes_float64x 1'
+ ;;
+      *)    DEF_floattypes_float64x='define HAVE_floattypes_float64x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Float128x" >&5
+$as_echo_n "checking for floating point type _Float128x... " >&6; }
+if ${my_cv_float_type__Float128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Float128x x = -1.1;
+           _Float128x y = 0.0;
+           _Float128x z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Float128x=yes
+else
+  my_cv_float_type__Float128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Float128x" >&5
+$as_echo "$my_cv_float_type__Float128x" >&6; }
+    case x"${my_cv_float_type__Float128x}" in
+      xyes) DEF_floattypes_float128x='define HAVE_floattypes_float128x 1'
+ ;;
+      *)    DEF_floattypes_float128x='define HAVE_floattypes_float128x 0'
+ ;;
+    esac
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Decimal64x" >&5
+$as_echo_n "checking for floating point type _Decimal64x... " >&6; }
+if ${my_cv_float_type__Decimal64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Decimal64x x = -1.1;
+           _Decimal64x y = 0.0;
+           _Decimal64x z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Decimal64x=yes
+else
+  my_cv_float_type__Decimal64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Decimal64x" >&5
+$as_echo "$my_cv_float_type__Decimal64x" >&6; }
+    case x"${my_cv_float_type__Decimal64x}" in
+      xyes) DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 1'
+ ;;
+      *)    DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for floating point type _Decimal128x" >&5
+$as_echo_n "checking for floating point type _Decimal128x... " >&6; }
+if ${my_cv_float_type__Decimal128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           _Decimal128x x = -1.1;
+           _Decimal128x y = 0.0;
+           _Decimal128x z = 1.1;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_float_type__Decimal128x=yes
+else
+  my_cv_float_type__Decimal128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_float_type__Decimal128x" >&5
+$as_echo "$my_cv_float_type__Decimal128x" >&6; }
+    case x"${my_cv_float_type__Decimal128x}" in
+      xyes) DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 1'
+ ;;
+      *)    DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 0'
+ ;;
+    esac
 
 #--------------------------------------------------------------------------
 #
@@ -13634,132 +14093,594 @@ fi
 
 
 
-ac_fn_c_check_func "$LINENO" "fmodf" "ac_cv_func_fmodf"
-if test "x$ac_cv_func_fmodf" = xyes; then :
-  DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 1'
-
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf" >&5
+$as_echo_n "checking for math function fmodf... " >&6; }
+if ${my_cv_math_func_fmodf+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmod" "ac_cv_func_fmod"
-if test "x$ac_cv_func_fmod" = xyes; then :
-  DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodf;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf=yes
 else
-  DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 0'
-
+  my_cv_math_func_fmodf=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodl" "ac_cv_func_fmodl"
-if test "x$ac_cv_func_fmodl" = xyes; then :
-  DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf" >&5
+$as_echo "$my_cv_math_func_fmodf" >&6; }
+    case x"${my_cv_math_func_fmodf}" in
+      xyes) DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 1'
+ ;;
+      *)    DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmod" >&5
+$as_echo_n "checking for math function fmod... " >&6; }
+if ${my_cv_math_func_fmod+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodf32" "ac_cv_func_fmodf32"
-if test "x$ac_cv_func_fmodf32" = xyes; then :
-  DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmod;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmod=yes
 else
-  DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 0'
-
+  my_cv_math_func_fmod=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodf64" "ac_cv_func_fmodf64"
-if test "x$ac_cv_func_fmodf64" = xyes; then :
-  DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmod" >&5
+$as_echo "$my_cv_math_func_fmod" >&6; }
+    case x"${my_cv_math_func_fmod}" in
+      xyes) DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 1'
+ ;;
+      *)    DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodl" >&5
+$as_echo_n "checking for math function fmodl... " >&6; }
+if ${my_cv_math_func_fmodl+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodf128" "ac_cv_func_fmodf128"
-if test "x$ac_cv_func_fmodf128" = xyes; then :
-  DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodl;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodl=yes
 else
-  DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 0'
-
+  my_cv_math_func_fmodl=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodd32" "ac_cv_func_fmodd32"
-if test "x$ac_cv_func_fmodd32" = xyes; then :
-  DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodl" >&5
+$as_echo "$my_cv_math_func_fmodl" >&6; }
+    case x"${my_cv_math_func_fmodl}" in
+      xyes) DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 1'
+ ;;
+      *)    DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf32" >&5
+$as_echo_n "checking for math function fmodf32... " >&6; }
+if ${my_cv_math_func_fmodf32+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodd64" "ac_cv_func_fmodd64"
-if test "x$ac_cv_func_fmodd64" = xyes; then :
-  DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodf32;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf32=yes
 else
-  DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 0'
-
+  my_cv_math_func_fmodf32=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodd128" "ac_cv_func_fmodd128"
-if test "x$ac_cv_func_fmodd128" = xyes; then :
-  DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf32" >&5
+$as_echo "$my_cv_math_func_fmodf32" >&6; }
+    case x"${my_cv_math_func_fmodf32}" in
+      xyes) DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 1'
+ ;;
+      *)    DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf64" >&5
+$as_echo_n "checking for math function fmodf64... " >&6; }
+if ${my_cv_math_func_fmodf64+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodf32x" "ac_cv_func_fmodf32x"
-if test "x$ac_cv_func_fmodf32x" = xyes; then :
-  DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodf64;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf64=yes
 else
-  DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 0'
-
+  my_cv_math_func_fmodf64=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodf64x" "ac_cv_func_fmodf64x"
-if test "x$ac_cv_func_fmodf64x" = xyes; then :
-  DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf64" >&5
+$as_echo "$my_cv_math_func_fmodf64" >&6; }
+    case x"${my_cv_math_func_fmodf64}" in
+      xyes) DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 1'
+ ;;
+      *)    DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf128" >&5
+$as_echo_n "checking for math function fmodf128... " >&6; }
+if ${my_cv_math_func_fmodf128+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodf128x" "ac_cv_func_fmodf128x"
-if test "x$ac_cv_func_fmodf128x" = xyes; then :
-  DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodf128;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf128=yes
 else
-  DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 0'
-
+  my_cv_math_func_fmodf128=no
 fi
-
-ac_fn_c_check_func "$LINENO" "fmodd64x" "ac_cv_func_fmodd64x"
-if test "x$ac_cv_func_fmodd64x" = xyes; then :
-  DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 1'
-
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf128" >&5
+$as_echo "$my_cv_math_func_fmodf128" >&6; }
+    case x"${my_cv_math_func_fmodf128}" in
+      xyes) DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 1'
+ ;;
+      *)    DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodd32" >&5
+$as_echo_n "checking for math function fmodd32... " >&6; }
+if ${my_cv_math_func_fmodd32+:} false; then :
+  $as_echo_n "(cached) " >&6
 else
-  DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 0'
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
-fi
 
-ac_fn_c_check_func "$LINENO" "fmodd128x" "ac_cv_func_fmodd128x"
-if test "x$ac_cv_func_fmodd128x" = xyes; then :
-  DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 1'
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
 
+int
+main ()
+{
+
+           void *p = fmodd32;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodd32=yes
 else
-  DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 0'
-
+  my_cv_math_func_fmodd32=no
 fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodd32" >&5
+$as_echo "$my_cv_math_func_fmodd32" >&6; }
+    case x"${my_cv_math_func_fmodd32}" in
+      xyes) DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 1'
+ ;;
+      *)    DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodd64" >&5
+$as_echo_n "checking for math function fmodd64... " >&6; }
+if ${my_cv_math_func_fmodd64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
 
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodd64;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodd64=yes
+else
+  my_cv_math_func_fmodd64=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodd64" >&5
+$as_echo "$my_cv_math_func_fmodd64" >&6; }
+    case x"${my_cv_math_func_fmodd64}" in
+      xyes) DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 1'
+ ;;
+      *)    DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodd128" >&5
+$as_echo_n "checking for math function fmodd128... " >&6; }
+if ${my_cv_math_func_fmodd128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodd128;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodd128=yes
+else
+  my_cv_math_func_fmodd128=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodd128" >&5
+$as_echo "$my_cv_math_func_fmodd128" >&6; }
+    case x"${my_cv_math_func_fmodd128}" in
+      xyes) DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 1'
+ ;;
+      *)    DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf32x" >&5
+$as_echo_n "checking for math function fmodf32x... " >&6; }
+if ${my_cv_math_func_fmodf32x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodf32x;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf32x=yes
+else
+  my_cv_math_func_fmodf32x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf32x" >&5
+$as_echo "$my_cv_math_func_fmodf32x" >&6; }
+    case x"${my_cv_math_func_fmodf32x}" in
+      xyes) DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 1'
+ ;;
+      *)    DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf64x" >&5
+$as_echo_n "checking for math function fmodf64x... " >&6; }
+if ${my_cv_math_func_fmodf64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodf64x;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf64x=yes
+else
+  my_cv_math_func_fmodf64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf64x" >&5
+$as_echo "$my_cv_math_func_fmodf64x" >&6; }
+    case x"${my_cv_math_func_fmodf64x}" in
+      xyes) DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 1'
+ ;;
+      *)    DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodf128x" >&5
+$as_echo_n "checking for math function fmodf128x... " >&6; }
+if ${my_cv_math_func_fmodf128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodf128x;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodf128x=yes
+else
+  my_cv_math_func_fmodf128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodf128x" >&5
+$as_echo "$my_cv_math_func_fmodf128x" >&6; }
+    case x"${my_cv_math_func_fmodf128x}" in
+      xyes) DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 1'
+ ;;
+      *)    DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodd64x" >&5
+$as_echo_n "checking for math function fmodd64x... " >&6; }
+if ${my_cv_math_func_fmodd64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodd64x;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodd64x=yes
+else
+  my_cv_math_func_fmodd64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodd64x" >&5
+$as_echo "$my_cv_math_func_fmodd64x" >&6; }
+    case x"${my_cv_math_func_fmodd64x}" in
+      xyes) DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 1'
+ ;;
+      *)    DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 0'
+ ;;
+    esac
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function fmodd128x" >&5
+$as_echo_n "checking for math function fmodd128x... " >&6; }
+if ${my_cv_math_func_fmodd128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <math.h>
+
+int
+main ()
+{
+
+           void *p = fmodd128x;
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  my_cv_math_func_fmodd128x=yes
+else
+  my_cv_math_func_fmodd128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_fmodd128x" >&5
+$as_echo "$my_cv_math_func_fmodd128x" >&6; }
+    case x"${my_cv_math_func_fmodd128x}" in
+      xyes) DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 1'
+ ;;
+      *)    DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 0'
+ ;;
+    esac
 
 #--------------------------------------------------------------------------
 
