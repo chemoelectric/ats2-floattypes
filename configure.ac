@@ -36,8 +36,8 @@ AM_SILENT_RULES
 AM_MAINTAINER_MODE
 LT_INIT
 
-m4_define([add_def],[AC_SUBST(DEF_$1,['define HAVE_$1 1'])])
-m4_define([add_undef],[AC_SUBST(DEF_$1,['undef HAVE_$1'])])
+m4_define([add_def1],[AC_SUBST(DEF_$1,['define HAVE_$1 1'])])
+m4_define([add_def0],[AC_SUBST(DEF_$1,['define HAVE_$1 0'])])
 
 #--------------------------------------------------------------------------
 #
@@ -71,7 +71,7 @@ AC_PROG_EGREP
 # Checks for typedefs, structures, and compiler characteristics.
 
 m4_define([check_type],
-          [AC_CHECK_TYPE([$1],[add_def([$2])],[add_undef([$2])])])
+          [AC_CHECK_TYPE([$1],[add_def1([$2])],[add_def0([$2])])])
 
 check_type([float],[floattypes_float])
 check_type([double],[floattypes_double])
@@ -100,7 +100,7 @@ check_type([_Decimal128x],[floattypes_decimal128x])
 AC_CHECK_LIB([m],[sin])
 
 m4_define([check_func],
-          [AC_CHECK_FUNC([$1],[add_def([$2])],[add_undef([$2])])])
+          [AC_CHECK_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
 
 check_func([fmodf],[floattypes__fmod_float])
 check_func([fmod],[floattypes__fmod_double])

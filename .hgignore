@@ -1,7 +1,7 @@
 syntax: regexp
 
 # Directory for VPATH builds.
-^build/.*$
+^build/
 
 # Backup files.
 ~$

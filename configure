@@ -13498,7 +13498,7 @@ if test "x$ac_cv_type_float" = xyes; then :
   DEF_floattypes_float='define HAVE_floattypes_float 1'
 
 else
-  DEF_floattypes_float='undef HAVE_floattypes_float'
+  DEF_floattypes_float='define HAVE_floattypes_float 0'
 
 fi
 
@@ -13507,7 +13507,7 @@ if test "x$ac_cv_type_double" = xyes; then :
   DEF_floattypes_double='define HAVE_floattypes_double 1'
 
 else
-  DEF_floattypes_double='undef HAVE_floattypes_double'
+  DEF_floattypes_double='define HAVE_floattypes_double 0'
 
 fi
 
@@ -13516,7 +13516,7 @@ if test "x$ac_cv_type_long_double" = xyes; then :
   DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 1'
 
 else
-  DEF_floattypes_ldouble='undef HAVE_floattypes_ldouble'
+  DEF_floattypes_ldouble='define HAVE_floattypes_ldouble 0'
 
 fi
 
@@ -13526,7 +13526,7 @@ if test "x$ac_cv_type__Float32" = xyes; then :
   DEF_floattypes_float32='define HAVE_floattypes_float32 1'
 
 else
-  DEF_floattypes_float32='undef HAVE_floattypes_float32'
+  DEF_floattypes_float32='define HAVE_floattypes_float32 0'
 
 fi
 
@@ -13535,7 +13535,7 @@ if test "x$ac_cv_type__Float64" = xyes; then :
   DEF_floattypes_float64='define HAVE_floattypes_float64 1'
 
 else
-  DEF_floattypes_float64='undef HAVE_floattypes_float64'
+  DEF_floattypes_float64='define HAVE_floattypes_float64 0'
 
 fi
 
@@ -13544,7 +13544,7 @@ if test "x$ac_cv_type__Float128" = xyes; then :
   DEF_floattypes_float128='define HAVE_floattypes_float128 1'
 
 else
-  DEF_floattypes_float128='undef HAVE_floattypes_float128'
+  DEF_floattypes_float128='define HAVE_floattypes_float128 0'
 
 fi
 
@@ -13554,7 +13554,7 @@ if test "x$ac_cv_type__Decimal32" = xyes; then :
   DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 1'
 
 else
-  DEF_floattypes_decimal32='undef HAVE_floattypes_decimal32'
+  DEF_floattypes_decimal32='define HAVE_floattypes_decimal32 0'
 
 fi
 
@@ -13563,7 +13563,7 @@ if test "x$ac_cv_type__Decimal64" = xyes; then :
   DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 1'
 
 else
-  DEF_floattypes_decimal64='undef HAVE_floattypes_decimal64'
+  DEF_floattypes_decimal64='define HAVE_floattypes_decimal64 0'
 
 fi
 
@@ -13572,7 +13572,7 @@ if test "x$ac_cv_type__Decimal128" = xyes; then :
   DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 1'
 
 else
-  DEF_floattypes_decimal128='undef HAVE_floattypes_decimal128'
+  DEF_floattypes_decimal128='define HAVE_floattypes_decimal128 0'
 
 fi
 
@@ -13582,7 +13582,7 @@ if test "x$ac_cv_type__Float32x" = xyes; then :
   DEF_floattypes_float32x='define HAVE_floattypes_float32x 1'
 
 else
-  DEF_floattypes_float32x='undef HAVE_floattypes_float32x'
+  DEF_floattypes_float32x='define HAVE_floattypes_float32x 0'
 
 fi
 
@@ -13591,7 +13591,7 @@ if test "x$ac_cv_type__Float64x" = xyes; then :
   DEF_floattypes_float64x='define HAVE_floattypes_float64x 1'
 
 else
-  DEF_floattypes_float64x='undef HAVE_floattypes_float64x'
+  DEF_floattypes_float64x='define HAVE_floattypes_float64x 0'
 
 fi
 
@@ -13600,7 +13600,7 @@ if test "x$ac_cv_type__Float128x" = xyes; then :
   DEF_floattypes_float128x='define HAVE_floattypes_float128x 1'
 
 else
-  DEF_floattypes_float128x='undef HAVE_floattypes_float128x'
+  DEF_floattypes_float128x='define HAVE_floattypes_float128x 0'
 
 fi
 
@@ -13610,7 +13610,7 @@ if test "x$ac_cv_type__Decimal64x" = xyes; then :
   DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 1'
 
 else
-  DEF_floattypes_decimal64x='undef HAVE_floattypes_decimal64x'
+  DEF_floattypes_decimal64x='define HAVE_floattypes_decimal64x 0'
 
 fi
 
@@ -13619,7 +13619,7 @@ if test "x$ac_cv_type__Decimal128x" = xyes; then :
   DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 1'
 
 else
-  DEF_floattypes_decimal128x='undef HAVE_floattypes_decimal128x'
+  DEF_floattypes_decimal128x='define HAVE_floattypes_decimal128x 0'
 
 fi
 
@@ -13682,7 +13682,7 @@ if test "x$ac_cv_func_fmodf" = xyes; then :
   DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 1'
 
 else
-  DEF_floattypes__fmod_float='undef HAVE_floattypes__fmod_float'
+  DEF_floattypes__fmod_float='define HAVE_floattypes__fmod_float 0'
 
 fi
 
@@ -13691,7 +13691,7 @@ if test "x$ac_cv_func_fmod" = xyes; then :
   DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 1'
 
 else
-  DEF_floattypes__fmod_double='undef HAVE_floattypes__fmod_double'
+  DEF_floattypes__fmod_double='define HAVE_floattypes__fmod_double 0'
 
 fi
 
@@ -13700,7 +13700,7 @@ if test "x$ac_cv_func_fmodl" = xyes; then :
   DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 1'
 
 else
-  DEF_floattypes__fmod_ldouble='undef HAVE_floattypes__fmod_ldouble'
+  DEF_floattypes__fmod_ldouble='define HAVE_floattypes__fmod_ldouble 0'
 
 fi
 
@@ -13709,7 +13709,7 @@ if test "x$ac_cv_func_fmodf32" = xyes; then :
   DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 1'
 
 else
-  DEF_floattypes__fmod_float32='undef HAVE_floattypes__fmod_float32'
+  DEF_floattypes__fmod_float32='define HAVE_floattypes__fmod_float32 0'
 
 fi
 
@@ -13718,7 +13718,7 @@ if test "x$ac_cv_func_fmodf64" = xyes; then :
   DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 1'
 
 else
-  DEF_floattypes__fmod_float64='undef HAVE_floattypes__fmod_float64'
+  DEF_floattypes__fmod_float64='define HAVE_floattypes__fmod_float64 0'
 
 fi
 
@@ -13727,7 +13727,7 @@ if test "x$ac_cv_func_fmodf128" = xyes; then :
   DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 1'
 
 else
-  DEF_floattypes__fmod_float128='undef HAVE_floattypes__fmod_float128'
+  DEF_floattypes__fmod_float128='define HAVE_floattypes__fmod_float128 0'
 
 fi
 
@@ -13736,7 +13736,7 @@ if test "x$ac_cv_func_fmodd32" = xyes; then :
   DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 1'
 
 else
-  DEF_floattypes__fmod_decimal32='undef HAVE_floattypes__fmod_decimal32'
+  DEF_floattypes__fmod_decimal32='define HAVE_floattypes__fmod_decimal32 0'
 
 fi
 
@@ -13745,7 +13745,7 @@ if test "x$ac_cv_func_fmodd64" = xyes; then :
   DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 1'
 
 else
-  DEF_floattypes__fmod_decimal64='undef HAVE_floattypes__fmod_decimal64'
+  DEF_floattypes__fmod_decimal64='define HAVE_floattypes__fmod_decimal64 0'
 
 fi
 
@@ -13754,7 +13754,7 @@ if test "x$ac_cv_func_fmodd128" = xyes; then :
   DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 1'
 
 else
-  DEF_floattypes__fmod_decimal128='undef HAVE_floattypes__fmod_decimal128'
+  DEF_floattypes__fmod_decimal128='define HAVE_floattypes__fmod_decimal128 0'
 
 fi
 
@@ -13763,7 +13763,7 @@ if test "x$ac_cv_func_fmodf32x" = xyes; then :
   DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 1'
 
 else
-  DEF_floattypes__fmod_float32x='undef HAVE_floattypes__fmod_float32x'
+  DEF_floattypes__fmod_float32x='define HAVE_floattypes__fmod_float32x 0'
 
 fi
 
@@ -13772,7 +13772,7 @@ if test "x$ac_cv_func_fmodf64x" = xyes; then :
   DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 1'
 
 else
-  DEF_floattypes__fmod_float64x='undef HAVE_floattypes__fmod_float64x'
+  DEF_floattypes__fmod_float64x='define HAVE_floattypes__fmod_float64x 0'
 
 fi
 
@@ -13781,7 +13781,7 @@ if test "x$ac_cv_func_fmodf128x" = xyes; then :
   DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 1'
 
 else
-  DEF_floattypes__fmod_float128x='undef HAVE_floattypes__fmod_float128x'
+  DEF_floattypes__fmod_float128x='define HAVE_floattypes__fmod_float128x 0'
 
 fi
 
@@ -13790,7 +13790,7 @@ if test "x$ac_cv_func_fmodd64x" = xyes; then :
   DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 1'
 
 else
-  DEF_floattypes__fmod_decimal64x='undef HAVE_floattypes__fmod_decimal64x'
+  DEF_floattypes__fmod_decimal64x='define HAVE_floattypes__fmod_decimal64x 0'
 
 fi
 
@@ -13799,7 +13799,7 @@ if test "x$ac_cv_func_fmodd128x" = xyes; then :
   DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 1'
 
 else
-  DEF_floattypes__fmod_decimal128x='undef HAVE_floattypes__fmod_decimal128x'
+  DEF_floattypes__fmod_decimal128x='define HAVE_floattypes__fmod_decimal128x 0'
 
 fi
 
