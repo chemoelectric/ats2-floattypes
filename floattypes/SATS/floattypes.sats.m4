@@ -32,7 +32,7 @@ staload "prelude/SATS/float.sats"
 
 divert(-1)
 
-include(`floattypes/common-macros.m4')
+include(`common-macros.m4')
 
 define(`declare_kind',dnl
 `dnl

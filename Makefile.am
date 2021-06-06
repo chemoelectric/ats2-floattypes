@@ -20,14 +20,13 @@
 
 EXTRA_DIST =
 BUILT_SOURCES =
+TESTS =
 
 MOSTLYCLEANFILES =
 CLEANFILES =
 DISTCLEANFILES =
 
-ACLOCAL_AMFLAGS =
-ACLOCAL_AMFLAGS += -I m4
-ACLOCAL_AMFLAGS += --install
+ACLOCAL_AMFLAGS = -I m4 --install
 
 AUTOMAKE_OPTIONS =
 AUTOMAKE_OPTIONS += foreign
@@ -81,6 +80,23 @@ floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
 
 ######################################################################
 
+AM_DEFAULT_SOURCE_EXT = _dats.c
+
+TESTS += $(check_PROGRAMS)
+
+check_PROGRAMS =
+check_PROGRAMS += tests/test-neg
+
+EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
+
+BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
+BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
+
+clean-local:
+	-rm -f tests/*{.dats,_dats.{c,$(OBJEXT)}}
+
+######################################################################
+
 AM_CPPFLAGS =
 # It is assumed here that you have PATSHOME set in your environment.
 AM_CPPFLAGS += -I.
@@ -93,6 +109,7 @@ AM_CFLAGS += -g -O2
 AM_M4FLAGS =
 
 AM_PATSOPTFLAGS =
+AM_PATSCCFLAGS =
 
 ######################################################################
 
@@ -102,7 +119,7 @@ TOTAL_M4FLAGS += $(M4FLAGS)
 TOTAL_M4FLAGS += $(XM4FLAGS)
 
 M4_DEPS =
-M4_DEPS += floattypes/common-macros.m4
+M4_DEPS += common-macros.m4
 
 %: %.m4 $(M4_DEPS)
 	@$(MKDIR_P) $(@D)
@@ -112,6 +129,11 @@ TOTAL_PATSOPTFLAGS =
 TOTAL_PATSOPTFLAGS += $(AM_PATSOPTFLAGS)
 TOTAL_PATSOPTFLAGS += $(PATSOPTFLAGS)
 TOTAL_PATSOPTFLAGS += $(XPATSOPTFLAGS)
+
+TOTAL_PATSCCFLAGS =
+TOTAL_PATSCCFLAGS += $(AM_PATSCCFLAGS)
+TOTAL_PATSCCFLAGS += $(PATSCCFLAGS)
+TOTAL_PATSCCFLAGS += $(XPATSCCFLAGS)
 
 PATSOPT_DEPS =
 PATSOPT_DEPS += floattypes/CATS/floattypes.cats
@@ -124,5 +146,9 @@ PATSOPT_DEPS += floattypes/HATS/config.hats
 %_dats.c: %.dats $(PATSOPT_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,PATSOPT)$(PATSOPT) -o $(@) $(TOTAL_PATSOPTFLAGS) -d $(<)
+
+%: %.dats
+	@$(MKDIR_P) $(@D)
+	$(call v,PATSCC)$(PATSCC) -o $(@) $(TOTAL_PATSCCFLAGS) $(<)
 
 ######################################################################

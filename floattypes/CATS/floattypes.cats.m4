@@ -69,7 +69,7 @@ _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
 
 divert(-1)
 
-include(`floattypes/common-macros.m4')
+include(`common-macros.m4')
 
 define(`negation_op',
 `#if HAVE_floattypes_$1

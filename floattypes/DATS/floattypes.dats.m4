@@ -25,13 +25,15 @@ along with this program. If not, see
 `#define' ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
 `#define' ATS_EXTERN_PREFIX "floattypes__"
 
+`#define ATS_DYNLOADFLAG 0'
+
 staload "prelude/basics_sta.sats"
 staload "prelude/SATS/float.sats"
 staload "floattypes/SATS/floattypes.sats"
 
 divert(-1)
 
-include(`floattypes/common-macros.m4')
+include(`common-macros.m4')
 
 define(`implement_float',`implement g0float_$1<$2`'_kind> = g0float_$1_$2
 ')

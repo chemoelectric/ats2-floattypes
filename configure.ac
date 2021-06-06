@@ -47,6 +47,7 @@ AC_PROG_CC
 AC_PROG_CC_C99
 AC_PROG_CC_C_O
 AC_CHECK_PROGS([PATSOPT],[patsopt])
+AC_CHECK_PROGS([PATSCC],[patscc])
 AC_CHECK_PROGS([M4],[m4])
 AC_PROG_INSTALL
 AC_PROG_LN_S
@@ -128,7 +129,7 @@ StM_CONFIG_MAKEFILES
 #StM_CONFIG_MAKEFILES([tests/Makefile],[tests/GNUmakefile])
 
 # We want common-macros.m4 to be where a mere POSIX m4 can find it.
-AC_CONFIG_FILES([floattypes/common-macros.m4])
+AC_CONFIG_FILES([common-macros.m4])
 
 AC_CONFIG_FILES([floattypes/HATS/config.hats])
 AC_CONFIG_FILES([ats2-floattypes.pc])
