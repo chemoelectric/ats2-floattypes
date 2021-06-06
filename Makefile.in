@@ -121,7 +121,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(am__DIST_COMMON)
+	$(am__configure_deps) $(nobase_dist_pkginclude_HEADERS) \
+	$(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -156,7 +157,8 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
-	"$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"
+	"$(DESTDIR)$(pkgincludedir)" "$(DESTDIR)$(pkghostincludedir)" \
+	"$(DESTDIR)$(pkgincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libats2_floattypes_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -215,7 +217,8 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(nodist_pkgconfig_DATA)
-HEADERS = $(nobase_nodist_pkghostinclude_HEADERS) \
+HEADERS = $(nobase_dist_pkginclude_HEADERS) \
+	$(nobase_nodist_pkghostinclude_HEADERS) \
 	$(nobase_nodist_pkginclude_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -537,7 +540,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-PATSCC = @PATSCC@
 PATSOPT = @PATSOPT@
 RANLIB = @RANLIB@
 SED = @SED@
@@ -625,6 +627,7 @@ libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
 nobase_nodist_pkginclude_HEADERS = floattypes/CATS/floattypes.cats \
 	floattypes/SATS/floattypes.sats \
 	floattypes/DATS/floattypes.dats
+nobase_dist_pkginclude_HEADERS = floattypes/HATS/floattypes.hats
 pkghostincludedir = $(pkgincludedir)/$(host_triplet)
 nobase_nodist_pkghostinclude_HEADERS = floattypes/HATS/config.hats
 pkgconfigdir = ${libdir}/pkgconfig
@@ -635,18 +638,17 @@ AM_DEFAULT_SOURCE_EXT = _dats.c
 
 ######################################################################
 # It is assumed here that you have PATSHOME set in your environment.
-AM_CPPFLAGS = -I. -I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime/
+AM_CPPFLAGS = -I$(builddir) -I$(srcdir) -I$(PATSHOME) \
+	-I$(PATSHOME)/ccomp/runtime/
 AM_CFLAGS = -g -O2
 AM_M4FLAGS = 
-AM_PATSOPTFLAGS = 
-AM_PATSCCFLAGS = 
+AM_PATSOPTFLAGS = -IATS $(builddir) -IATS $(srcdir)
 
 ######################################################################
 TOTAL_M4FLAGS = $(AM_M4FLAGS) $(M4FLAGS) $(XM4FLAGS)
 M4_DEPS = common-macros.m4
 TOTAL_PATSOPTFLAGS = $(AM_PATSOPTFLAGS) $(PATSOPTFLAGS) \
 	$(XPATSOPTFLAGS)
-TOTAL_PATSCCFLAGS = $(AM_PATSCCFLAGS) $(PATSCCFLAGS) $(XPATSCCFLAGS)
 PATSOPT_DEPS = floattypes/CATS/floattypes.cats \
 	floattypes/HATS/config.hats
 all: $(BUILT_SOURCES)
@@ -846,6 +848,30 @@ uninstall-nodist_pkgconfigDATA:
 	@list='$(nodist_pkgconfig_DATA)'; test -n "$(pkgconfigdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(pkgconfigdir)'; $(am__uninstall_files_from_dir)
+install-nobase_dist_pkgincludeHEADERS: $(nobase_dist_pkginclude_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(nobase_dist_pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgincludedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(pkgincludedir)" || exit 1; \
+	fi; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo " $(MKDIR_P) '$(DESTDIR)$(pkgincludedir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(pkgincludedir)/$$dir"; }; \
+	    echo " $(INSTALL_HEADER) $$xfiles '$(DESTDIR)$(pkgincludedir)/$$dir'"; \
+	    $(INSTALL_HEADER) $$xfiles "$(DESTDIR)$(pkgincludedir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_dist_pkgincludeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_dist_pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	dir='$(DESTDIR)$(pkgincludedir)'; $(am__uninstall_files_from_dir)
 install-nobase_nodist_pkghostincludeHEADERS: $(nobase_nodist_pkghostinclude_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(nobase_nodist_pkghostinclude_HEADERS)'; test -n "$(pkghostincludedir)" || list=; \
@@ -1296,7 +1322,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: GNUmakefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(pkgincludedir)" "$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1370,7 +1396,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-nobase_nodist_pkghostincludeHEADERS \
+install-data-am: install-nobase_dist_pkgincludeHEADERS \
+	install-nobase_nodist_pkghostincludeHEADERS \
 	install-nobase_nodist_pkgincludeHEADERS \
 	install-nodist_pkgconfigDATA
 
@@ -1423,6 +1450,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-nobase_dist_pkgincludeHEADERS \
 	uninstall-nobase_nodist_pkghostincludeHEADERS \
 	uninstall-nobase_nodist_pkgincludeHEADERS \
 	uninstall-nodist_pkgconfigDATA
@@ -1442,6 +1470,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-libLTLIBRARIES install-man \
+	install-nobase_dist_pkgincludeHEADERS \
 	install-nobase_nodist_pkghostincludeHEADERS \
 	install-nobase_nodist_pkgincludeHEADERS \
 	install-nodist_pkgconfigDATA install-pdf install-pdf-am \
@@ -1451,6 +1480,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	recheck tags tags-am uninstall uninstall-am \
 	uninstall-libLTLIBRARIES \
+	uninstall-nobase_dist_pkgincludeHEADERS \
 	uninstall-nobase_nodist_pkghostincludeHEADERS \
 	uninstall-nobase_nodist_pkgincludeHEADERS \
 	uninstall-nodist_pkgconfigDATA
@@ -1483,10 +1513,6 @@ clean-local:
 %_dats.c: %.dats $(PATSOPT_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,PATSOPT)$(PATSOPT) -o $(@) $(TOTAL_PATSOPTFLAGS) -d $(<)
-
-%: %.dats
-	@$(MKDIR_P) $(@D)
-	$(call v,PATSCC)$(PATSCC) -o $(@) $(TOTAL_PATSCCFLAGS) $(<)
 
 ######################################################################
 

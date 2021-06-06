@@ -52,6 +52,9 @@ nobase_nodist_pkginclude_HEADERS += floattypes/CATS/floattypes.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/SATS/floattypes.sats
 nobase_nodist_pkginclude_HEADERS += floattypes/DATS/floattypes.dats
 
+nobase_dist_pkginclude_HEADERS =
+nobase_dist_pkginclude_HEADERS += floattypes/HATS/floattypes.hats
+
 pkghostincludedir = $(pkgincludedir)/$(host_triplet)
 nobase_nodist_pkghostinclude_HEADERS =
 nobase_nodist_pkghostinclude_HEADERS += floattypes/HATS/config.hats
@@ -99,7 +102,8 @@ clean-local:
 
 AM_CPPFLAGS =
 # It is assumed here that you have PATSHOME set in your environment.
-AM_CPPFLAGS += -I.
+AM_CPPFLAGS += -I$(builddir)
+AM_CPPFLAGS += -I$(srcdir)
 AM_CPPFLAGS += -I$(PATSHOME)
 AM_CPPFLAGS += -I$(PATSHOME)/ccomp/runtime/
 
@@ -109,7 +113,8 @@ AM_CFLAGS += -g -O2
 AM_M4FLAGS =
 
 AM_PATSOPTFLAGS =
-AM_PATSCCFLAGS =
+AM_PATSOPTFLAGS += -IATS $(builddir)
+AM_PATSOPTFLAGS += -IATS $(srcdir)
 
 ######################################################################
 
@@ -130,11 +135,6 @@ TOTAL_PATSOPTFLAGS += $(AM_PATSOPTFLAGS)
 TOTAL_PATSOPTFLAGS += $(PATSOPTFLAGS)
 TOTAL_PATSOPTFLAGS += $(XPATSOPTFLAGS)
 
-TOTAL_PATSCCFLAGS =
-TOTAL_PATSCCFLAGS += $(AM_PATSCCFLAGS)
-TOTAL_PATSCCFLAGS += $(PATSCCFLAGS)
-TOTAL_PATSCCFLAGS += $(XPATSCCFLAGS)
-
 PATSOPT_DEPS =
 PATSOPT_DEPS += floattypes/CATS/floattypes.cats
 PATSOPT_DEPS += floattypes/HATS/config.hats
@@ -146,9 +146,5 @@ PATSOPT_DEPS += floattypes/HATS/config.hats
 %_dats.c: %.dats $(PATSOPT_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,PATSOPT)$(PATSOPT) -o $(@) $(TOTAL_PATSOPTFLAGS) -d $(<)
-
-%: %.dats
-	@$(MKDIR_P) $(@D)
-	$(call v,PATSCC)$(PATSCC) -o $(@) $(TOTAL_PATSCCFLAGS) $(<)
 
 ######################################################################

@@ -25,8 +25,6 @@ along with this program. If not, see
 `#define' ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
 `#define' ATS_EXTERN_PREFIX "floattypes__"
 
-`#include' "floattypes/HATS/config.hats"
-
 staload "prelude/basics_sta.sats"
 staload "prelude/SATS/float.sats"
 

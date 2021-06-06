@@ -18,6 +18,8 @@ along with this program. If not, see
 
 */
 
+/* This file can be read by both C and ATS2 compilers. */
+
 #@DEF_floattypes_float@
 #@DEF_floattypes_double@
 #@DEF_floattypes_ldouble@
