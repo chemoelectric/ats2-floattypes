@@ -159,7 +159,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libats2_floattypes_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libats2_floattypes_la_OBJECTS = floattypes/SATS/floattypes_sats.lo
+am_libats2_floattypes_la_OBJECTS = floattypes/SATS/floattypes_sats.lo \
+	floattypes/DATS/floattypes_dats.lo
 libats2_floattypes_la_OBJECTS = $(am_libats2_floattypes_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -180,7 +181,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
+	floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -417,14 +419,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 EXTRA_DIST = $(srcdir)/silent-rules.mk README \
 	floattypes/CATS/floattypes.cats.m4 \
-	floattypes/SATS/floattypes.sats.m4
-#EXTRA_DIST += floattypes/DATS/floattypes.dats.m4
+	floattypes/SATS/floattypes.sats.m4 \
+	floattypes/DATS/floattypes.dats.m4
 BUILT_SOURCES = floattypes/CATS/floattypes.cats \
 	floattypes/SATS/floattypes.sats \
-	floattypes/SATS/floattypes_sats.c
+	floattypes/SATS/floattypes_sats.c \
+	floattypes/DATS/floattypes.dats \
+	floattypes/DATS/floattypes_dats.c
 MOSTLYCLEANFILES = 
-#BUILT_SOURCES += floattypes/DATS/floattypes.dats
-#BUILT_SOURCES += floattypes/DATS/floattypes_dats.c
 CLEANFILES = $(BUILT_SOURCES)
 DISTCLEANFILES = Makefile
 ACLOCAL_AMFLAGS = -I m4 --install
@@ -432,11 +434,11 @@ AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
 ######################################################################
 lib_LTLIBRARIES = libats2-floattypes.la
-libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c
-#libats2_floattypes_la_SOURCES += floattypes/DATS/floattypes_dats.c
+libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
+	floattypes/DATS/floattypes_dats.c
 nobase_nodist_pkginclude_HEADERS = floattypes/CATS/floattypes.cats \
-	floattypes/SATS/floattypes.sats
-#nobase_nodist_pkginclude_HEADERS += floattypes/DATS/floattypes.dats
+	floattypes/SATS/floattypes.sats \
+	floattypes/DATS/floattypes.dats
 pkghostincludedir = $(pkgincludedir)/$(host_triplet)
 nobase_nodist_pkghostinclude_HEADERS = floattypes/HATS/config.hats
 pkgconfigdir = ${libdir}/pkgconfig
@@ -451,8 +453,11 @@ AM_PATSOPTFLAGS =
 
 ######################################################################
 TOTAL_M4FLAGS = $(AM_M4FLAGS) $(M4FLAGS) $(XM4FLAGS)
+M4_DEPS = floattypes/common-macros.m4
 TOTAL_PATSOPTFLAGS = $(AM_PATSOPTFLAGS) $(PATSOPTFLAGS) \
 	$(XPATSOPTFLAGS)
+PATSOPT_DEPS = floattypes/CATS/floattypes.cats \
+	floattypes/HATS/config.hats
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -540,18 +545,29 @@ floattypes/SATS/$(DEPDIR)/$(am__dirstamp):
 	@: > floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
 floattypes/SATS/floattypes_sats.lo: floattypes/SATS/$(am__dirstamp) \
 	floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
+floattypes/DATS/$(am__dirstamp):
+	@$(MKDIR_P) floattypes/DATS
+	@: > floattypes/DATS/$(am__dirstamp)
+floattypes/DATS/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) floattypes/DATS/$(DEPDIR)
+	@: > floattypes/DATS/$(DEPDIR)/$(am__dirstamp)
+floattypes/DATS/floattypes_dats.lo: floattypes/DATS/$(am__dirstamp) \
+	floattypes/DATS/$(DEPDIR)/$(am__dirstamp)
 
 libats2-floattypes.la: $(libats2_floattypes_la_OBJECTS) $(libats2_floattypes_la_DEPENDENCIES) $(EXTRA_libats2_floattypes_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libats2_floattypes_la_OBJECTS) $(libats2_floattypes_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f floattypes/DATS/*.$(OBJEXT)
+	-rm -f floattypes/DATS/*.lo
 	-rm -f floattypes/SATS/*.$(OBJEXT)
 	-rm -f floattypes/SATS/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -589,6 +605,7 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf floattypes/DATS/.libs floattypes/DATS/_libs
 	-rm -rf floattypes/SATS/.libs floattypes/SATS/_libs
 
 distclean-libtool:
@@ -932,6 +949,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f floattypes/DATS/$(DEPDIR)/$(am__dirstamp)
+	-rm -f floattypes/DATS/$(am__dirstamp)
 	-rm -f floattypes/SATS/$(DEPDIR)/$(am__dirstamp)
 	-rm -f floattypes/SATS/$(am__dirstamp)
 	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
@@ -947,7 +966,8 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
+	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f GNUmakefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-libtool distclean-tags
@@ -997,7 +1017,8 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
+	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f GNUmakefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1051,23 +1072,22 @@ uninstall-am: uninstall-libLTLIBRARIES \
 
 @GNU@ include $(srcdir)/silent-rules.mk
 
-floattypes/CATS/floattype.cats: floattypes/CATS/floattypes.cats.m4
-floattypes/SATS/floattype.sats: floattypes/SATS/floattypes.sats.m4
-#floattypes/DATS/floattype.dats: floattypes/DATS/floattypes.dats.m4
-
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats
-floattypes/SATS/floattype_sats.c: floattypes/common-macros.m4
 
-%: %.m4
+floattypes/DATS/floattype_dats.c: floattypes/DATS/floattypes.dats
+floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
+floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
+
+%: %.m4 $(M4_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,M4)$(M4) $(TOTAL_M4FLAGS) $(<) > $(@)
 
-%_sats.c: %.sats
+%_sats.c: %.sats $(PATSOPT_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,PATSOPT)$(PATSOPT) -o $(@) $(TOTAL_PATSOPTFLAGS) -s $(<)
 
-%_dats.c: %.dats
+%_dats.c: %.dats $(PATSOPT_DEPS)
 	@$(MKDIR_P) $(@D)
 	$(call v,PATSOPT)$(PATSOPT) -o $(@) $(TOTAL_PATSOPTFLAGS) -d $(<)
 
