@@ -1521,6 +1521,8 @@ floattypes/DATS/floattype_dats.c: floattypes/DATS/floattypes.dats
 floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
 
+$(check_PROGRAMS): floattypes/HATS/floattypes.hats
+
 clean-local:
 	-rm -f tests/*{.dats,_dats.{c,$(OBJEXT)}}
 

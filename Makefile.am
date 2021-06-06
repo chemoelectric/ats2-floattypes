@@ -96,6 +96,8 @@ EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
 BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
 
+$(check_PROGRAMS): floattypes/HATS/floattypes.hats
+
 clean-local:
 	-rm -f tests/*{.dats,_dats.{c,$(OBJEXT)}}
 

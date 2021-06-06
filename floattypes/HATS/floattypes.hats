@@ -20,5 +20,8 @@ along with this program. If not, see
 
 #include "floattypes/HATS/config.hats"
 
+staload "prelude/SATS/float.sats"
+staload _ = "prelude/DATS/float.dats"
+
 staload "floattypes/SATS/floattypes.sats"
 staload _ = "floattypes/DATS/floattypes.dats"
