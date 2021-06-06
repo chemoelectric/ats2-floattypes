@@ -108,7 +108,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = tests/test-neg$(EXEEXT)
+check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -169,6 +169,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+tests_test_abs_SOURCES = tests/test-abs_dats.c
+tests_test_abs_OBJECTS = tests/test-abs_dats.$(OBJEXT)
+tests_test_abs_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -189,6 +192,7 @@ depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo \
+	tests/$(DEPDIR)/test-abs_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -209,8 +213,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-neg_dats.c
-DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-neg_dats.c
+SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
+	tests/test-neg_dats.c
+DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
+	tests/test-neg_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -764,6 +770,12 @@ tests/$(am__dirstamp):
 tests/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) tests/$(DEPDIR)
 	@: > tests/$(DEPDIR)/$(am__dirstamp)
+tests/test-abs_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-abs$(EXEEXT): $(tests_test_abs_OBJECTS) $(tests_test_abs_DEPENDENCIES) $(EXTRA_tests_test_abs_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-abs$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_abs_OBJECTS) $(tests_test_abs_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -784,6 +796,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-abs_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -1128,6 +1141,13 @@ tests/test-neg.log: tests/test-neg$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-abs.log: tests/test-abs$(EXEEXT)
+	@p='tests/test-abs$(EXEEXT)'; \
+	b='tests/test-abs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -1379,6 +1399,7 @@ distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f GNUmakefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -1432,6 +1453,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f GNUmakefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
