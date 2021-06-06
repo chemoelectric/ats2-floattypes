@@ -37,7 +37,7 @@ main() =
         val _ = assertloc(abs ($UN.cast{t}(~0.0)) = $UN.cast{t}(0.0))
         val _ = assertloc(abs ($UN.cast{t}(1234.567)) = $UN.cast{t}(1234.567))
       `#endif'
-    ')
+      ')
   in
     0
   end

@@ -90,6 +90,8 @@ TESTS += $(check_PROGRAMS)
 check_PROGRAMS =
 check_PROGRAMS += tests/test-neg
 check_PROGRAMS += tests/test-abs
+check_PROGRAMS += tests/test-succ
+check_PROGRAMS += tests/test-pred
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
