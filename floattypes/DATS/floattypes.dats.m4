@@ -23,7 +23,7 @@ along with this program. If not, see
 %}'
 
 `#define' ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
-`#define' ATS_EXTERN_PREFIX "floattypes__"
+`#define' ATS_EXTERN_PREFIX "floattypes_"
 
 `#define ATS_DYNLOADFLAG 0'
 

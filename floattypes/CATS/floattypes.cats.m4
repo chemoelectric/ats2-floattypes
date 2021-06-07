@@ -18,11 +18,12 @@ along with this program. If not, see
 
 */'
 
-`#ifndef FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
-`#define FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__'
+`#ifndef FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__'
+`#define FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__'
 
 `#include "floattypes/HATS/config.hats"'
 `#include <math.h>'
+`#include <stdlib.h>'
 
 _Static_assert(sizeof (atstype_float) == sizeof (float),
                "atstype_float is not the same as float");
@@ -51,20 +52,20 @@ _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
 #define floattypes_decimal128x _Decimal128x
 'dnl
 
-`#define floattypes__fmod_float fmodf
-#define floattypes__fmod_double fmod
-#define floattypes__fmod_ldouble fmodl
-#define floattypes__fmod_float32 fmodf32
-#define floattypes__fmod_float64 fmodf64
-#define floattypes__fmod_float128 fmodf128
-#define floattypes__fmod_decimal32 fmodd32
-#define floattypes__fmod_decimal64 fmodd64
-#define floattypes__fmod_decimal128 fmodd128
-#define floattypes__fmod_float32x fmodf32x
-#define floattypes__fmod_float64x fmodf64x
-#define floattypes__fmod_float128x fmodf128x
-#define floattypes__fmod_decimal64x fmodd64x
-#define floattypes__fmod_decimal128x fmodd128x
+`#define floattypes_fmod_float fmodf
+#define floattypes_fmod_double fmod
+#define floattypes_fmod_ldouble fmodl
+#define floattypes_fmod_float32 fmodf32
+#define floattypes_fmod_float64 fmodf64
+#define floattypes_fmod_float128 fmodf128
+#define floattypes_fmod_decimal32 fmodd32
+#define floattypes_fmod_decimal64 fmodd64
+#define floattypes_fmod_decimal128 fmodd128
+#define floattypes_fmod_float32x fmodf32x
+#define floattypes_fmod_float64x fmodf64x
+#define floattypes_fmod_float128x fmodf128x
+#define floattypes_fmod_decimal64x fmodd64x
+#define floattypes_fmod_decimal128x fmodd128x
 'dnl
 
 divert(-1)
@@ -75,7 +76,7 @@ define(`negation_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_neg_$1 (floattypes_$1 f) dnl
+floattypes_g0float_neg_$1 (floattypes_$1 f) dnl
 { return (-f); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -84,7 +85,7 @@ define(`abs_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_abs_$1 (floattypes_$1 f) dnl
+floattypes_g0float_abs_$1 (floattypes_$1 f) dnl
 { return ((f < 0) ? (-f) : (f)); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -93,7 +94,7 @@ define(`successor_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_succ_$1 (floattypes_$1 f) dnl
+floattypes_g0float_succ_$1 (floattypes_$1 f) dnl
 { return (f + 1); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -102,7 +103,7 @@ define(`predecessor_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_pred_$1 (floattypes_$1 f) dnl
+floattypes_g0float_pred_$1 (floattypes_$1 f) dnl
 { return (f - 1); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -111,19 +112,19 @@ define(`binary_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (f1 $3 f2); }
 #endif /* HAVE_floattypes_$1 */
 ')
 
 define(`mod_op',
 `#if HAVE_floattypes_$1
-#if HAVE_floattypes__fmod_$1
+#if HAVE_floattypes_fmod_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
-{ return (floattypes__fmod_$1 (f1, f2)); }
-#endif /* HAVE_floattypes__fmod_$1 */
+floattypes_g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+{ return (floattypes_fmod_$1 (f1, f2)); }
+#endif /* HAVE_floattypes_fmod_$1 */
 #endif /* HAVE_floattypes_$1 */
 ')
 
@@ -131,7 +132,7 @@ define(`comparison_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 $3 f2) ? atsbool_true : atsbool_false); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -140,7 +141,7 @@ define(`compare_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_compare_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+floattypes_g0float_compare_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 < f2) ? -1 : ((f2 < f1) ? 1 : 0)); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -149,7 +150,7 @@ define(`min_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_min_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+floattypes_g0float_min_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 <= f2) ? f1 : f2); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -158,7 +159,7 @@ define(`max_op',
 `#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes__g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+floattypes_g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 >= f2) ? f1 : f2); }
 #endif /* HAVE_floattypes_$1 */
 ')
@@ -189,4 +190,4 @@ dnl
 foreach(`t',(extra_floattypes),`min_op(t)')
 foreach(`t',(extra_floattypes),`max_op(t)')
 
-`#endif /* FLOATTYPES_CATS_FLOATTYPES__HEADER_GUARD__ */'
+`#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */'

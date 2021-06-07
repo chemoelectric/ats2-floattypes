@@ -46,8 +46,8 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
 #--------------------------------------------------------------------------
 
-m4_define([add_def1],[AC_SUBST(DEF_$1,['define HAVE_$1 1'])])
-m4_define([add_def0],[AC_SUBST(DEF_$1,['define HAVE_$1 0'])])
+m4_define([add_def1],[AC_SUBST(DEF_$1,['@%:@define HAVE_$1 1'])])
+m4_define([add_def0],[AC_SUBST(DEF_$1,['@%:@define HAVE_$1 0'])])
 
 #--------------------------------------------------------------------------
 
@@ -59,6 +59,7 @@ AC_DEFUN([MY_MATH_HEADERS],
 #define __STDC_WANT_IEC_60559_FUNCS_EXT__
 #define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
 #include <stddef.h>
+#include <stdlib.h>
 #include <math.h>
 ]])
 
@@ -129,6 +130,23 @@ AC_PROG_EGREP
 m4_define([check_type],
           [MY_CHECK_FLOAT_TYPE([$1],[add_def1([$2])],[add_def0([$2])])])
 
+m4_define([the_floattypes],[
+  float
+  double
+  ldouble
+  float32
+  float64
+  float128
+  decimal32
+  decimal64
+  decimal128
+  float32x
+  float64x
+  float128x
+  decimal64x
+  decimal128x
+])
+
 check_type([float],[floattypes_float])
 check_type([double],[floattypes_double])
 check_type([long double],[floattypes_ldouble])
@@ -158,12 +176,13 @@ AC_CHECK_LIB([m],[sin])
 m4_define([check_math_func],
           [MY_CHECK_MATH_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
 
-m4_define([math_functions],[
+m4_define([the_regular_math_functions],[
   nan
   ceil floor trunc
   round lround llround
   rint lrint llrint nearbyint
-  fma fmod
+  fmin fmax
+  fma fdim fmod
   pow
   sqrt hypot cbrt
   exp exp2 exp10 expm1
@@ -182,37 +201,72 @@ m4_define([math_functions],[
   j0 j1 jn y0 y1 yn
 ])
 
-m4_foreach_w([the_func],math_functions,[
-  check_math_func(the_func[f],[floattypes__]the_func[_float])
-  check_math_func(the_func,[floattypes__]the_func[_double])
-  check_math_func(the_func[l],[floattypes__]the_func[_ldouble])
-  check_math_func(the_func[f32],[floattypes__]the_func[_float32])
-  check_math_func(the_func[f64],[floattypes__]the_func[_float64])
-  check_math_func(the_func[f128],[floattypes__]the_func[_float128])
-  check_math_func(the_func[d32],[floattypes__]the_func[_decimal32])
-  check_math_func(the_func[d64],[floattypes__]the_func[_decimal64])
-  check_math_func(the_func[d128],[floattypes__]the_func[_decimal128])
-  check_math_func(the_func[f32x],[floattypes__]the_func[_float32x])
-  check_math_func(the_func[f64x],[floattypes__]the_func[_float64x])
-  check_math_func(the_func[f128x],[floattypes__]the_func[_float128x])
-  check_math_func(the_func[d64x],[floattypes__]the_func[_decimal64x])
-  check_math_func(the_func[d128x],[floattypes__]the_func[_decimal128x])
+m4_define([the_irregular_math_functions],[
+  lgamma_r
+  strfrom strto
 ])
 
-check_math_func([lgamma][f][_r],[floattypes__][lgamma_r][_float])
-check_math_func([lgamma][_r],[floattypes__][lgamma_r][_double])
-check_math_func([lgamma][l][_r],[floattypes__][lgamma_r][_ldouble])
-check_math_func([lgamma][f32][_r],[floattypes__][lgamma_r][_float32])
-check_math_func([lgamma][f64][_r],[floattypes__][lgamma_r][_float64])
-check_math_func([lgamma][f128][_r],[floattypes__][lgamma_r][_float128])
-check_math_func([lgamma][d32][_r],[floattypes__][lgamma_r][_decimal32])
-check_math_func([lgamma][d64][_r],[floattypes__][lgamma_r][_decimal64])
-check_math_func([lgamma][d128][_r],[floattypes__][lgamma_r][_decimal128])
-check_math_func([lgamma][f32x][_r],[floattypes__][lgamma_r][_float32x])
-check_math_func([lgamma][f64x][_r],[floattypes__][lgamma_r][_float64x])
-check_math_func([lgamma][f128x][_r],[floattypes__][lgamma_r][_float128x])
-check_math_func([lgamma][d64x][_r],[floattypes__][lgamma_r][_decimal64x])
-check_math_func([lgamma][d128x][_r],[floattypes__][lgamma_r][_decimal128x])
+m4_foreach_w([the_func],the_regular_math_functions,[
+  check_math_func(the_func[f],[floattypes_]the_func[_float])
+  check_math_func(the_func,[floattypes_]the_func[_double])
+  check_math_func(the_func[l],[floattypes_]the_func[_ldouble])
+  check_math_func(the_func[f32],[floattypes_]the_func[_float32])
+  check_math_func(the_func[f64],[floattypes_]the_func[_float64])
+  check_math_func(the_func[f128],[floattypes_]the_func[_float128])
+  check_math_func(the_func[d32],[floattypes_]the_func[_decimal32])
+  check_math_func(the_func[d64],[floattypes_]the_func[_decimal64])
+  check_math_func(the_func[d128],[floattypes_]the_func[_decimal128])
+  check_math_func(the_func[f32x],[floattypes_]the_func[_float32x])
+  check_math_func(the_func[f64x],[floattypes_]the_func[_float64x])
+  check_math_func(the_func[f128x],[floattypes_]the_func[_float128x])
+  check_math_func(the_func[d64x],[floattypes_]the_func[_decimal64x])
+  check_math_func(the_func[d128x],[floattypes_]the_func[_decimal128x])
+])
+
+check_math_func([lgammaf_r],[floattypes_lgamma_r_float])
+check_math_func([lgamma_r],[floattypes_lgamma_r_double])
+check_math_func([lgammal_r],[floattypes_lgamma_r_ldouble])
+check_math_func([lgammaf32_r],[floattypes_lgamma_r_float32])
+check_math_func([lgammaf64_r],[floattypes_lgamma_r_float64])
+check_math_func([lgammaf128_r],[floattypes_lgamma_r_float128])
+check_math_func([lgammad32_r],[floattypes_lgamma_r_decimal32])
+check_math_func([lgammad64_r],[floattypes_lgamma_r_decimal64])
+check_math_func([lgammad128_r],[floattypes_lgamma_r_decimal128])
+check_math_func([lgammaf32x_r],[floattypes_lgamma_r_float32x])
+check_math_func([lgammaf64x_r],[floattypes_lgamma_r_float64x])
+check_math_func([lgammaf128x_r],[floattypes_lgamma_r_float128x])
+check_math_func([lgammad64x_r],[floattypes_lgamma_r_decimal64x])
+check_math_func([lgammad128x_r],[floattypes_lgamma_r_decimal128x])
+
+check_math_func([strfromf],[floattypes_strfrom_float])
+check_math_func([strfromd],[floattypes_strfrom_double])
+check_math_func([strfroml],[floattypes_strfrom_ldouble])
+check_math_func([strfromf32],[floattypes_strfrom_float32])
+check_math_func([strfromf64],[floattypes_strfrom_float64])
+check_math_func([strfromf128],[floattypes_strfrom_float128])
+check_math_func([strfromd32],[floattypes_strfrom_decimal32])
+check_math_func([strfromd64],[floattypes_strfrom_decimal64])
+check_math_func([strfromd128],[floattypes_strfrom_decimal128])
+check_math_func([strfromf32x],[floattypes_strfrom_float32x])
+check_math_func([strfromf64x],[floattypes_strfrom_float64x])
+check_math_func([strfromf128x],[floattypes_strfrom_float128x])
+check_math_func([strfromd64x],[floattypes_strfrom_decimal64x])
+check_math_func([strfromd128x],[floattypes_strfrom_decimal128x])
+
+check_math_func([strtof],[floattypes_strto_float])
+check_math_func([strtod],[floattypes_strto_double])
+check_math_func([strtol],[floattypes_strto_ldouble])
+check_math_func([strtof32],[floattypes_strto_float32])
+check_math_func([strtof64],[floattypes_strto_float64])
+check_math_func([strtof128],[floattypes_strto_float128])
+check_math_func([strtod32],[floattypes_strto_decimal32])
+check_math_func([strtod64],[floattypes_strto_decimal64])
+check_math_func([strtod128],[floattypes_strto_decimal128])
+check_math_func([strtof32x],[floattypes_strto_float32x])
+check_math_func([strtof64x],[floattypes_strto_float64x])
+check_math_func([strtof128x],[floattypes_strto_float128x])
+check_math_func([strtod64x],[floattypes_strto_decimal64x])
+check_math_func([strtod128x],[floattypes_strto_decimal128x])
 
 #--------------------------------------------------------------------------
 
@@ -228,8 +282,34 @@ StM_CONFIG_MAKEFILES
 # We want common-macros.m4 to be where a mere POSIX m4 can find it.
 AC_CONFIG_FILES([common-macros.m4])
 
-AC_CONFIG_FILES([floattypes/HATS/config.hats])
 AC_CONFIG_FILES([ats2-floattypes.pc])
+
+AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
+  echo '/*' > floattypes/HATS/config.hats
+  echo 'This file is generated by config.status;' >> floattypes/HATS/config.hats
+  echo 'it can be read by both C and ATS2 compilers.' >> floattypes/HATS/config.hats
+  echo '*/' >> floattypes/HATS/config.hats
+  echo '' >> floattypes/HATS/config.hats
+  m4_foreach_w([t],the_floattypes,[
+    echo "${DEF_floattypes_[]t}" >> floattypes/HATS/config.hats
+])
+  m4_foreach_w([f],the_regular_math_functions
+                   the_irregular_math_functions,
+    [echo '' >> floattypes/HATS/config.hats
+     m4_foreach_w([t],the_floattypes,[
+        echo "${DEF_floattypes_[]f[]_[]t}" >> floattypes/HATS/config.hats
+])
+])
+],[
+  m4_foreach_w([t],the_floattypes,[
+    DEF_floattypes_[]t="${DEF_floattypes_[]t}"
+])
+  m4_foreach_w([f],the_regular_math_functions
+                   the_irregular_math_functions,
+    [m4_foreach_w([t],the_floattypes,[
+      DEF_floattypes_[]f[]_[]t="${DEF_floattypes_[]f[]_[]t}"
+])])
+])
 
 AC_OUTPUT
 
