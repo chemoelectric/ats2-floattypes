@@ -159,11 +159,20 @@ m4_define([check_math_func],
           [MY_CHECK_MATH_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
 
 m4_define([math_functions],[
-  fmod
+  nan
+  ceil floor trunc
+  round lround llround
+  rint lrint llrint nearbyint
+  fma fmod
   pow
   sqrt hypot cbrt
   exp exp2 exp10 expm1
   log log2 log10 log1p
+  ilogb logb
+  frexp ldexp modf
+  scalbn scalbln
+  nextafter nexttoward
+  copysign
   sin cos tan
   asin acos atan atan2
   sinh cosh tanh

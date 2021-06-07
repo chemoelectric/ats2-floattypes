@@ -116,24 +116,6 @@ floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ')
 
-define(`binary_op_sometype_float',
-`#if HAVE_floattypes_$1
-ATSinline() dnl
-floattypes_$1 dnl
-floattypes__g0float_$2_$4_$1 ($4 f1, floattypes_$1 f2) dnl
-{ return (((floattypes_$1) f1) $3 f2); }
-#endif /* HAVE_floattypes_$1 */
-')
-
-define(`binary_op_float_sometype',
-`#if HAVE_floattypes_$1
-ATSinline() dnl
-floattypes_$1 dnl
-floattypes__g0float_$2_$1_$4 (floattypes_$1 f1, $4 f2) dnl
-{ return (f1 $3 ((floattypes_$1) f2)); }
-#endif /* HAVE_floattypes_$1 */
-')
-
 define(`mod_op',
 `#if HAVE_floattypes_$1
 #if HAVE_floattypes__fmod_$1
@@ -151,24 +133,6 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes__g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 $3 f2) ? atsbool_true : atsbool_false); }
-#endif /* HAVE_floattypes_$1 */
-')
-
-define(`comparison_op_sometype_float',
-`#if HAVE_floattypes_$1
-ATSinline() dnl
-floattypes_$1 dnl
-floattypes__g0float_$2_$4_$1 ($4 f1, floattypes_$1 f2) dnl
-{ return ((((floattypes_$1) f1) $3 f2) ? atsbool_true : atsbool_false); }
-#endif /* HAVE_floattypes_$1 */
-')
-
-define(`comparison_op_float_sometype',
-`#if HAVE_floattypes_$1
-ATSinline() dnl
-floattypes_$1 dnl
-floattypes__g0float_$2_$1_$4 (floattypes_$1 f1, $4 f2) dnl
-{ return ((f1 $3 ((floattypes_$1) f2)) ? atsbool_true : atsbool_false); }
 #endif /* HAVE_floattypes_$1 */
 ')
 
@@ -211,16 +175,6 @@ foreach(`t',(extra_floattypes),`binary_op(t,`sub',`-')')
 foreach(`t',(extra_floattypes),`binary_op(t,`mul',`*')')
 foreach(`t',(extra_floattypes),`binary_op(t,`div',`/')')
 dnl
-foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`add',`+',`int')')
-foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`sub',`-',`int')')
-foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`mul',`*',`int')')
-foreach(`t',(extra_floattypes),`binary_op_sometype_float(t,`div',`/',`int')')
-dnl
-foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`add',`+',`int')')
-foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`sub',`-',`int')')
-foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`mul',`*',`int')')
-foreach(`t',(extra_floattypes),`binary_op_float_sometype(t,`div',`/',`int')')
-dnl
 foreach(`t',(extra_floattypes),`mod_op(t)')
 dnl
 foreach(`t',(extra_floattypes),`comparison_op(t,`lt',`<')')
@@ -229,13 +183,6 @@ foreach(`t',(extra_floattypes),`comparison_op(t,`gt',`>')')
 foreach(`t',(extra_floattypes),`comparison_op(t,`gte',`>=')')
 foreach(`t',(extra_floattypes),`comparison_op(t,`eq',`==')')
 foreach(`t',(extra_floattypes),`comparison_op(t,`neq',`!=')')
-dnl
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`lt',`<',`int')')
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`lte',`<=',`int')')
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`gt',`>',`int')')
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`gte',`>=',`int')')
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`eq',`==',`int')')
-foreach(`t',(extra_floattypes),`comparison_op_sometype_float(t,`neq',`!=',`int')')
 dnl
 foreach(`t',(extra_floattypes),`compare_op(t)')
 dnl
