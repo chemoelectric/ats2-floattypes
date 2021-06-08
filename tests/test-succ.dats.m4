@@ -32,7 +32,7 @@ staload UN = "prelude/SATS/unsafe.sats"
 implement
 main() =
   let
-    foreach([t],(all_floattypes),
+    foreachq([t],[all_floattypes],
       [[#if] HAVE_floattypes_[]t [#then]
         val _ = assertloc(succ ($UN.cast{t}(~1.0)) = $UN.cast{t}(0.0))
         val _ = assertloc(succ ($UN.cast{t}(~0.0)) = $UN.cast{t}(1.0))

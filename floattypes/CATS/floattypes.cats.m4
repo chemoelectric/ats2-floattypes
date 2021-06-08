@@ -167,28 +167,28 @@ floattypes_g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 
 divert[]dnl
 
-foreach([t],(extra_floattypes),[negation_op(t)])
-foreach([t],(extra_floattypes),[abs_op(t)])
-foreach([t],(extra_floattypes),[successor_op(t)])
-foreach([t],(extra_floattypes),[predecessor_op(t)])
+foreachq([t],[extra_floattypes],[negation_op(t)])
+foreachq([t],[extra_floattypes],[abs_op(t)])
+foreachq([t],[extra_floattypes],[successor_op(t)])
+foreachq([t],[extra_floattypes],[predecessor_op(t)])
 dnl
-foreach([t],(extra_floattypes),[binary_op(t,[add],[+])])
-foreach([t],(extra_floattypes),[binary_op(t,[sub],[-])])
-foreach([t],(extra_floattypes),[binary_op(t,[mul],[*])])
-foreach([t],(extra_floattypes),[binary_op(t,[div],[/])])
+foreachq([t],[extra_floattypes],[binary_op(t,[add],[+])])
+foreachq([t],[extra_floattypes],[binary_op(t,[sub],[-])])
+foreachq([t],[extra_floattypes],[binary_op(t,[mul],[*])])
+foreachq([t],[extra_floattypes],[binary_op(t,[div],[/])])
 dnl
-foreach([t],(extra_floattypes),[mod_op(t)])
+foreachq([t],[extra_floattypes],[mod_op(t)])
 dnl
-foreach([t],(extra_floattypes),[comparison_op(t,[lt],[<])])
-foreach([t],(extra_floattypes),[comparison_op(t,[lte],[<=])])
-foreach([t],(extra_floattypes),[comparison_op(t,[gt],[>])])
-foreach([t],(extra_floattypes),[comparison_op(t,[gte],[>=])])
-foreach([t],(extra_floattypes),[comparison_op(t,[eq],[==])])
-foreach([t],(extra_floattypes),[comparison_op(t,[neq],[!=])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[lt],[<])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[lte],[<=])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[gt],[>])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[gte],[>=])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[eq],[==])])
+foreachq([t],[extra_floattypes],[comparison_op(t,[neq],[!=])])
 dnl
-foreach([t],(extra_floattypes),[compare_op(t)])
+foreachq([t],[extra_floattypes],[compare_op(t)])
 dnl
-foreach([t],(extra_floattypes),[min_op(t)])
-foreach([t],(extra_floattypes),[max_op(t)])
+foreachq([t],[extra_floattypes],[min_op(t)])
+foreachq([t],[extra_floattypes],[max_op(t)])
 
 [#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]

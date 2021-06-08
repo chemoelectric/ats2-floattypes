@@ -54,27 +54,27 @@ define([declare_compare],[fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = 
 
 divert[]
 
-foreach([t],(extra_floattypes),[declare_kind(t)])
+foreachq([t],[extra_floattypes],[declare_kind(t)])
 
-foreach([t],(extra_floattypes),[declare_uop([neg],t)])
-foreach([t],(extra_floattypes),[declare_uop([abs],t)])
-foreach([t],(extra_floattypes),[declare_uop([succ],t)])
-foreach([t],(extra_floattypes),[declare_uop([pred],t)])
+foreachq([t],[extra_floattypes],[declare_uop([neg],t)])
+foreachq([t],[extra_floattypes],[declare_uop([abs],t)])
+foreachq([t],[extra_floattypes],[declare_uop([succ],t)])
+foreachq([t],[extra_floattypes],[declare_uop([pred],t)])
 dnl
-foreach([t],(extra_floattypes),[declare_aop([add],t)])
-foreach([t],(extra_floattypes),[declare_aop([sub],t)])
-foreach([t],(extra_floattypes),[declare_aop([mul],t)])
-foreach([t],(extra_floattypes),[declare_aop([div],t)])
-foreach([t],(extra_floattypes),[declare_aop([mod],t)])
+foreachq([t],[extra_floattypes],[declare_aop([add],t)])
+foreachq([t],[extra_floattypes],[declare_aop([sub],t)])
+foreachq([t],[extra_floattypes],[declare_aop([mul],t)])
+foreachq([t],[extra_floattypes],[declare_aop([div],t)])
+foreachq([t],[extra_floattypes],[declare_aop([mod],t)])
 dnl
-foreach([t],(extra_floattypes),[declare_cmp([lt],t)])
-foreach([t],(extra_floattypes),[declare_cmp([lte],t)])
-foreach([t],(extra_floattypes),[declare_cmp([gt],t)])
-foreach([t],(extra_floattypes),[declare_cmp([gte],t)])
-foreach([t],(extra_floattypes),[declare_cmp([eq],t)])
-foreach([t],(extra_floattypes),[declare_cmp([neq],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([lt],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([lte],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([gt],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([gte],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([eq],t)])
+foreachq([t],[extra_floattypes],[declare_cmp([neq],t)])
 dnl
-foreach([t],(extra_floattypes),[declare_compare([compare],t)])
+foreachq([t],[extra_floattypes],[declare_compare([compare],t)])
 dnl
-foreach([t],(extra_floattypes),[declare_aop([max],t)])
-foreach([t],(extra_floattypes),[declare_aop([min],t)])
+foreachq([t],[extra_floattypes],[declare_aop([max],t)])
+foreachq([t],[extra_floattypes],[declare_aop([min],t)])
