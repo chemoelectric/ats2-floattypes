@@ -46,8 +46,19 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
 #--------------------------------------------------------------------------
 
-m4_define([add_def1],[AC_SUBST(DEF_$1,['@%:@define HAVE_$1 1'])])
-m4_define([add_def0],[AC_SUBST(DEF_$1,['@%:@define HAVE_$1 0'])])
+m4_define([add_def1],[
+  if :; then
+    AC_SUBST(DEF_$1,['@%:@define HAVE_$1 1'])
+    AC_SUBST(HAVE_$1,['1'])
+  fi
+])
+
+m4_define([add_def0],[
+  if :; then
+    AC_SUBST(DEF_$1,['@%:@define HAVE_$1 0'])
+    AC_SUBST(HAVE_$1,['0'])
+  fi
+])
 
 #--------------------------------------------------------------------------
 
@@ -96,6 +107,33 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
       xyes) $2 ;;
       *)    $3 ;;
     esac])
+
+AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
+  [AC_CACHE_CHECK([suffix for $1 literals],
+                  [AS_TR_SH([my_cv_float_suffix_$1])],
+    [AS_TR_SH([my_cv_float_suffix_$1])=
+     if test "[$]{AS_TR_SH([HAVE_floattypes_$1])}" = 1; then
+       m4_foreach_w([suffix],$3,
+         [if test -z "[$]{AS_TR_SH([my_cv_float_suffix_$1])}"; then
+            AC_COMPILE_IFELSE([
+             AC_LANG_PROGRAM(
+               [MY_MATH_HEADERS],
+               [[
+                 _Static_assert(sizeof (1234.5e-6]]suffix[[ +
+                                           345.7]]suffix[[ +
+                                           0.]]suffix[[ +
+                                           1.]]suffix[[)
+                                  == sizeof ($2));
+               ]])],
+               [AS_TR_SH([my_cv_float_suffix_$1])='suffix'])
+          fi
+         ])
+     else
+        AS_ECHO_N(["(type not supported)"])
+     fi
+    ])
+   AC_SUBST(AS_TR_SH([FLOAT_SUFFIX_$1],dnl
+           AS_TR_SH([${my_cv_float_suffix_$1}])))])
 
 #--------------------------------------------------------------------------
 #
@@ -165,6 +203,30 @@ check_type([_Float128x],[floattypes_float128x])
 
 check_type([_Decimal64x],[floattypes_decimal64x])
 check_type([_Decimal128x],[floattypes_decimal128x])
+
+#--------------------------------------------------------------------------
+#
+# Check how to write literal constants of the different types.
+#
+# (We know already to append "f" or "F" for float, nothing for double,
+# and "l" or "L" for ldouble. Furthermore, these suffixes are
+# supported in ATS2.)
+#
+
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float32],[_Float32],[F32 f32 F f])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float64],[_Float64],[F64 f64])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float128],[_Float128],[F128 f128 Q q])
+
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal32],[_Decimal32],[D32 d32 DF df])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal64],[_Decimal64],[D64 d64 DD dd])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128],[_Decimal128],[D128 d128 DL dl])
+
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float32x],[_Float32x],[F32x f32x Fx fx])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float64x],[_Float64x],[F64x f64x W w])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([float128x],[_Float128x],[F128x f128x])
+
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal64x],[_Decimal64x],[D64x d64x])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128x],[_Decimal128x],[D128x d128x])
 
 #--------------------------------------------------------------------------
 #
@@ -298,8 +360,7 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
     [echo '' >> floattypes/HATS/config.hats
      m4_foreach_w([t],the_floattypes,[
         echo "${DEF_floattypes_[]f[]_[]t}" >> floattypes/HATS/config.hats
-])
-])
+])])
 ],[
   m4_foreach_w([t],the_floattypes,[
     DEF_floattypes_[]t="${DEF_floattypes_[]t}"
