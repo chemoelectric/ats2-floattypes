@@ -1,4 +1,4 @@
-changequote([,])
+changequote([,])dnl
 [(*
 
 Copyright © 2021 Barry Schwartz
