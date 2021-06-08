@@ -76184,8 +76184,7 @@ else
 int
 main ()
 {
-floattypes_float x = nanf ("");
-                    nexttowardlike
+floattypes_float x = nanf ((const char *) "");
 
   ;
   return 0;
@@ -76256,8 +76255,7 @@ else
 int
 main ()
 {
-floattypes_double x = nan ("");
-                    nexttowardlike
+floattypes_double x = nan ((const char *) "");
 
   ;
   return 0;
@@ -76328,8 +76326,7 @@ else
 int
 main ()
 {
-floattypes_ldouble x = nanl ("");
-                    nexttowardlike
+floattypes_ldouble x = nanl ((const char *) "");
 
   ;
   return 0;
@@ -76400,8 +76397,7 @@ else
 int
 main ()
 {
-floattypes_float32 x = nanf32 ("");
-                    nexttowardlike
+floattypes_float32 x = nanf32 ((const char *) "");
 
   ;
   return 0;
@@ -76472,8 +76468,7 @@ else
 int
 main ()
 {
-floattypes_float64 x = nanf64 ("");
-                    nexttowardlike
+floattypes_float64 x = nanf64 ((const char *) "");
 
   ;
   return 0;
@@ -76544,8 +76539,7 @@ else
 int
 main ()
 {
-floattypes_float128 x = nanf128 ("");
-                    nexttowardlike
+floattypes_float128 x = nanf128 ((const char *) "");
 
   ;
   return 0;
@@ -76616,8 +76610,7 @@ else
 int
 main ()
 {
-floattypes_decimal32 x = nand32 ("");
-                    nexttowardlike
+floattypes_decimal32 x = nand32 ((const char *) "");
 
   ;
   return 0;
@@ -76688,8 +76681,7 @@ else
 int
 main ()
 {
-floattypes_decimal64 x = nand64 ("");
-                    nexttowardlike
+floattypes_decimal64 x = nand64 ((const char *) "");
 
   ;
   return 0;
@@ -76760,8 +76752,7 @@ else
 int
 main ()
 {
-floattypes_decimal128 x = nand128 ("");
-                    nexttowardlike
+floattypes_decimal128 x = nand128 ((const char *) "");
 
   ;
   return 0;
@@ -76832,8 +76823,7 @@ else
 int
 main ()
 {
-floattypes_float32x x = nanf32x ("");
-                    nexttowardlike
+floattypes_float32x x = nanf32x ((const char *) "");
 
   ;
   return 0;
@@ -76904,8 +76894,7 @@ else
 int
 main ()
 {
-floattypes_float64x x = nanf64x ("");
-                    nexttowardlike
+floattypes_float64x x = nanf64x ((const char *) "");
 
   ;
   return 0;
@@ -76976,8 +76965,7 @@ else
 int
 main ()
 {
-floattypes_float128x x = nanf128x ("");
-                    nexttowardlike
+floattypes_float128x x = nanf128x ((const char *) "");
 
   ;
   return 0;
@@ -77048,8 +77036,7 @@ else
 int
 main ()
 {
-floattypes_decimal64x x = nand64x ("");
-                    nexttowardlike
+floattypes_decimal64x x = nand64x ((const char *) "");
 
   ;
   return 0;
@@ -77120,8 +77107,7 @@ else
 int
 main ()
 {
-floattypes_decimal128x x = nand128x ("");
-                    nexttowardlike
+floattypes_decimal128x x = nand128x ((const char *) "");
 
   ;
   return 0;
@@ -77195,7 +77181,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float x = nexttowardf ((floattypes_float) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77266,7 +77253,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_double x = nexttoward ((floattypes_double) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77337,7 +77325,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_ldouble x = nexttowardl ((floattypes_ldouble) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77408,7 +77397,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float32 x = nexttowardf32 ((floattypes_float32) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77479,7 +77469,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float64 x = nexttowardf64 ((floattypes_float64) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77550,7 +77541,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float128 x = nexttowardf128 ((floattypes_float128) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77621,7 +77613,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_decimal32 x = nexttowardd32 ((floattypes_decimal32) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77692,7 +77685,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_decimal64 x = nexttowardd64 ((floattypes_decimal64) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77763,7 +77757,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_decimal128 x = nexttowardd128 ((floattypes_decimal128) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77834,7 +77829,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float32x x = nexttowardf32x ((floattypes_float32x) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77905,7 +77901,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float64x x = nexttowardf64x ((floattypes_float64x) 1.2, 3.4L)
 
   ;
   return 0;
@@ -77976,7 +77973,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_float128x x = nexttowardf128x ((floattypes_float128x) 1.2, 3.4L)
 
   ;
   return 0;
@@ -78047,7 +78045,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_decimal64x x = nexttowardd64x ((floattypes_decimal64x) 1.2, 3.4L)
 
   ;
   return 0;
@@ -78118,7 +78117,8 @@ else
 int
 main ()
 {
-
+/* This may fail on types like _Float128. */
+                                      floattypes_decimal128x x = nexttowardd128x ((floattypes_decimal128x) 1.2, 3.4L)
 
   ;
   return 0;
@@ -79201,7 +79201,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf (s, 1000, "%g", (floattypes_float) 1.2);
 
   ;
   return 0;
@@ -79272,7 +79273,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd (s, 1000, "%g", (floattypes_double) 1.2);
 
   ;
   return 0;
@@ -79343,7 +79345,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfroml (s, 1000, "%g", (floattypes_ldouble) 1.2);
 
   ;
   return 0;
@@ -79414,7 +79417,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf32 (s, 1000, "%g", (floattypes_float32) 1.2);
 
   ;
   return 0;
@@ -79485,7 +79489,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf64 (s, 1000, "%g", (floattypes_float64) 1.2);
 
   ;
   return 0;
@@ -79556,7 +79561,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf128 (s, 1000, "%g", (floattypes_float128) 1.2);
 
   ;
   return 0;
@@ -79627,7 +79633,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd32 (s, 1000, "%g", (floattypes_decimal32) 1.2);
 
   ;
   return 0;
@@ -79698,7 +79705,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd64 (s, 1000, "%g", (floattypes_decimal64) 1.2);
 
   ;
   return 0;
@@ -79769,7 +79777,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd128 (s, 1000, "%g", (floattypes_decimal128) 1.2);
 
   ;
   return 0;
@@ -79840,7 +79849,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf32x (s, 1000, "%g", (floattypes_float32x) 1.2);
 
   ;
   return 0;
@@ -79911,7 +79921,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf64x (s, 1000, "%g", (floattypes_float64x) 1.2);
 
   ;
   return 0;
@@ -79982,7 +79993,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromf128x (s, 1000, "%g", (floattypes_float128x) 1.2);
 
   ;
   return 0;
@@ -80053,7 +80065,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd64x (s, 1000, "%g", (floattypes_decimal64x) 1.2);
 
   ;
   return 0;
@@ -80124,7 +80137,8 @@ else
 int
 main ()
 {
-
+char *s = malloc(1001);
+                                    int n = strfromd128x (s, 1000, "%g", (floattypes_decimal128x) 1.2);
 
   ;
   return 0;
@@ -80196,7 +80210,7 @@ else
 int
 main ()
 {
-
+floattypes_float x = strtof ("1.2", NULL);
 
   ;
   return 0;
@@ -80267,7 +80281,7 @@ else
 int
 main ()
 {
-
+floattypes_double x = strtod ("1.2", NULL);
 
   ;
   return 0;
@@ -80338,7 +80352,7 @@ else
 int
 main ()
 {
-
+floattypes_ldouble x = strtol ("1.2", NULL);
 
   ;
   return 0;
@@ -80409,7 +80423,7 @@ else
 int
 main ()
 {
-
+floattypes_float32 x = strtof32 ("1.2", NULL);
 
   ;
   return 0;
@@ -80480,7 +80494,7 @@ else
 int
 main ()
 {
-
+floattypes_float64 x = strtof64 ("1.2", NULL);
 
   ;
   return 0;
@@ -80551,7 +80565,7 @@ else
 int
 main ()
 {
-
+floattypes_float128 x = strtof128 ("1.2", NULL);
 
   ;
   return 0;
@@ -80622,7 +80636,7 @@ else
 int
 main ()
 {
-
+floattypes_decimal32 x = strtod32 ("1.2", NULL);
 
   ;
   return 0;
@@ -80693,7 +80707,7 @@ else
 int
 main ()
 {
-
+floattypes_decimal64 x = strtod64 ("1.2", NULL);
 
   ;
   return 0;
@@ -80764,7 +80778,7 @@ else
 int
 main ()
 {
-
+floattypes_decimal128 x = strtod128 ("1.2", NULL);
 
   ;
   return 0;
@@ -80835,7 +80849,7 @@ else
 int
 main ()
 {
-
+floattypes_float32x x = strtof32x ("1.2", NULL);
 
   ;
   return 0;
@@ -80906,7 +80920,7 @@ else
 int
 main ()
 {
-
+floattypes_float64x x = strtof64x ("1.2", NULL);
 
   ;
   return 0;
@@ -80977,7 +80991,7 @@ else
 int
 main ()
 {
-
+floattypes_float128x x = strtof128x ("1.2", NULL);
 
   ;
   return 0;
@@ -81048,7 +81062,7 @@ else
 int
 main ()
 {
-
+floattypes_decimal64x x = strtod64x ("1.2", NULL);
 
   ;
   return 0;
@@ -81119,7 +81133,7 @@ else
 int
 main ()
 {
-
+floattypes_decimal128x x = strtod128x ("1.2", NULL);
 
   ;
   return 0;

@@ -156,7 +156,7 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
                                 floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
                     [frexplike],[int y = 1;
                                  floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
-                    [nanlike],[floattypes_$2 x = $1 ("");]
+                    [nanlike],[floattypes_$2 x = $1 ((const char *) "");],
                     [nexttowardlike],[/* This may fail on types like _Float128. */
                                       floattypes_$2 x = $1 ((floattypes_$2) 1.2, 3.4L)],
                     [strtodlike],[floattypes_$2 x = $1 ("1.2", NULL);],
