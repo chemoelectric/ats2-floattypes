@@ -693,6 +693,20 @@ HAVE_floattypes_nexttoward_float32
 HAVE_floattypes_nexttoward_ldouble
 HAVE_floattypes_nexttoward_double
 HAVE_floattypes_nexttoward_float
+HAVE_floattypes_nan_decimal128x
+HAVE_floattypes_nan_decimal64x
+HAVE_floattypes_nan_float128x
+HAVE_floattypes_nan_float64x
+HAVE_floattypes_nan_float32x
+HAVE_floattypes_nan_decimal128
+HAVE_floattypes_nan_decimal64
+HAVE_floattypes_nan_decimal32
+HAVE_floattypes_nan_float128
+HAVE_floattypes_nan_float64
+HAVE_floattypes_nan_float32
+HAVE_floattypes_nan_ldouble
+HAVE_floattypes_nan_double
+HAVE_floattypes_nan_float
 HAVE_floattypes_frexp_decimal128x
 HAVE_floattypes_frexp_decimal64x
 HAVE_floattypes_frexp_float128x
@@ -17176,6 +17190,8 @@ _ACEOF
   LIBS="-lm $LIBS"
 
 fi
+
+
 
 
 
@@ -76131,6 +76147,1017 @@ $as_echo "$my_cv_math_func_frexpd128x" >&6; }
 
 
 
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf" >&5
+$as_echo_n "checking for math function nanf... " >&6; }
+if ${my_cv_math_func_nanf+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float x = nanf ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf=yes
+else
+  my_cv_math_func_nanf=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf" >&5
+$as_echo "$my_cv_math_func_nanf" >&6; }
+   case x"${my_cv_math_func_nanf}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nan" >&5
+$as_echo_n "checking for math function nan... " >&6; }
+if ${my_cv_math_func_nan+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_double}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_double x = nan ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nan=yes
+else
+  my_cv_math_func_nan=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nan=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nan" >&5
+$as_echo "$my_cv_math_func_nan" >&6; }
+   case x"${my_cv_math_func_nan}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_double='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_double='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanl" >&5
+$as_echo_n "checking for math function nanl... " >&6; }
+if ${my_cv_math_func_nanl+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_ldouble}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_ldouble x = nanl ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanl=yes
+else
+  my_cv_math_func_nanl=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanl=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanl" >&5
+$as_echo "$my_cv_math_func_nanl" >&6; }
+   case x"${my_cv_math_func_nanl}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_ldouble='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_ldouble='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf32" >&5
+$as_echo_n "checking for math function nanf32... " >&6; }
+if ${my_cv_math_func_nanf32+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float32}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float32 x = nanf32 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf32=yes
+else
+  my_cv_math_func_nanf32=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf32=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf32" >&5
+$as_echo "$my_cv_math_func_nanf32" >&6; }
+   case x"${my_cv_math_func_nanf32}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float32='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float32='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf64" >&5
+$as_echo_n "checking for math function nanf64... " >&6; }
+if ${my_cv_math_func_nanf64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float64}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float64 x = nanf64 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf64=yes
+else
+  my_cv_math_func_nanf64=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf64=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf64" >&5
+$as_echo "$my_cv_math_func_nanf64" >&6; }
+   case x"${my_cv_math_func_nanf64}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float64='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float64='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf128" >&5
+$as_echo_n "checking for math function nanf128... " >&6; }
+if ${my_cv_math_func_nanf128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float128}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float128 x = nanf128 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf128=yes
+else
+  my_cv_math_func_nanf128=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf128=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf128" >&5
+$as_echo "$my_cv_math_func_nanf128" >&6; }
+   case x"${my_cv_math_func_nanf128}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float128='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float128='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nand32" >&5
+$as_echo_n "checking for math function nand32... " >&6; }
+if ${my_cv_math_func_nand32+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal32}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal32 x = nand32 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nand32=yes
+else
+  my_cv_math_func_nand32=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nand32=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nand32" >&5
+$as_echo "$my_cv_math_func_nand32" >&6; }
+   case x"${my_cv_math_func_nand32}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_decimal32='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_decimal32='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nand64" >&5
+$as_echo_n "checking for math function nand64... " >&6; }
+if ${my_cv_math_func_nand64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal64}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal64 x = nand64 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nand64=yes
+else
+  my_cv_math_func_nand64=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nand64=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nand64" >&5
+$as_echo "$my_cv_math_func_nand64" >&6; }
+   case x"${my_cv_math_func_nand64}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_decimal64='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_decimal64='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nand128" >&5
+$as_echo_n "checking for math function nand128... " >&6; }
+if ${my_cv_math_func_nand128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal128}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal128 x = nand128 ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nand128=yes
+else
+  my_cv_math_func_nand128=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nand128=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nand128" >&5
+$as_echo "$my_cv_math_func_nand128" >&6; }
+   case x"${my_cv_math_func_nand128}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_decimal128='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_decimal128='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf32x" >&5
+$as_echo_n "checking for math function nanf32x... " >&6; }
+if ${my_cv_math_func_nanf32x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float32x}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float32x x = nanf32x ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf32x=yes
+else
+  my_cv_math_func_nanf32x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf32x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf32x" >&5
+$as_echo "$my_cv_math_func_nanf32x" >&6; }
+   case x"${my_cv_math_func_nanf32x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float32x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float32x='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf64x" >&5
+$as_echo_n "checking for math function nanf64x... " >&6; }
+if ${my_cv_math_func_nanf64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float64x}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float64x x = nanf64x ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf64x=yes
+else
+  my_cv_math_func_nanf64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf64x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf64x" >&5
+$as_echo "$my_cv_math_func_nanf64x" >&6; }
+   case x"${my_cv_math_func_nanf64x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float64x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float64x='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nanf128x" >&5
+$as_echo_n "checking for math function nanf128x... " >&6; }
+if ${my_cv_math_func_nanf128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float128x}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float128x x = nanf128x ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nanf128x=yes
+else
+  my_cv_math_func_nanf128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nanf128x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nanf128x" >&5
+$as_echo "$my_cv_math_func_nanf128x" >&6; }
+   case x"${my_cv_math_func_nanf128x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_float128x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_float128x='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nand64x" >&5
+$as_echo_n "checking for math function nand64x... " >&6; }
+if ${my_cv_math_func_nand64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal64x}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal64x x = nand64x ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nand64x=yes
+else
+  my_cv_math_func_nand64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nand64x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nand64x" >&5
+$as_echo "$my_cv_math_func_nand64x" >&6; }
+   case x"${my_cv_math_func_nand64x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_decimal64x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_decimal64x='0'
+
+  fi
+ ;;
+   esac
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nand128x" >&5
+$as_echo_n "checking for math function nand128x... " >&6; }
+if ${my_cv_math_func_nand128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal128x}" = 1; then
+       $as_echo_n "(nanlike) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal128x x = nand128x ("");
+                    nexttowardlike
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func_nand128x=yes
+else
+  my_cv_math_func_nand128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func_nand128x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func_nand128x" >&5
+$as_echo "$my_cv_math_func_nand128x" >&6; }
+   case x"${my_cv_math_func_nand128x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes_nan_decimal128x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes_nan_decimal128x='0'
+
+  fi
+ ;;
+   esac
+
+
+
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function nexttowardf" >&5
 $as_echo_n "checking for math function nexttowardf... " >&6; }
 if ${my_cv_math_func_nexttowardf+:} false; then :
@@ -76168,8 +77195,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float x = nexttowardf ((floattypes_float) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76240,8 +77266,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_double x = nexttoward ((floattypes_double) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76312,8 +77337,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_ldouble x = nexttowardl ((floattypes_ldouble) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76384,8 +77408,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float32 x = nexttowardf32 ((floattypes_float32) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76456,8 +77479,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float64 x = nexttowardf64 ((floattypes_float64) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76528,8 +77550,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float128 x = nexttowardf128 ((floattypes_float128) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76600,8 +77621,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_decimal32 x = nexttowardd32 ((floattypes_decimal32) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76672,8 +77692,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_decimal64 x = nexttowardd64 ((floattypes_decimal64) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76744,8 +77763,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_decimal128 x = nexttowardd128 ((floattypes_decimal128) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76816,8 +77834,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float32x x = nexttowardf32x ((floattypes_float32x) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76888,8 +77905,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float64x x = nexttowardf64x ((floattypes_float64x) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -76960,8 +77976,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_float128x x = nexttowardf128x ((floattypes_float128x) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -77032,8 +78047,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_decimal64x x = nexttowardd64x ((floattypes_decimal64x) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -77104,8 +78118,7 @@ else
 int
 main ()
 {
-/* This may fail on types like _Float128. */
-                                      floattypes_decimal128x x = nexttowardd128x ((floattypes_decimal128x) 1.2, 3.4L)
+
 
   ;
   return 0;
@@ -78188,8 +79201,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf (s, 1000, "%g", (floattypes_float) 1.2);
+
 
   ;
   return 0;
@@ -78260,8 +79272,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd (s, 1000, "%g", (floattypes_double) 1.2);
+
 
   ;
   return 0;
@@ -78332,8 +79343,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfroml (s, 1000, "%g", (floattypes_ldouble) 1.2);
+
 
   ;
   return 0;
@@ -78404,8 +79414,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf32 (s, 1000, "%g", (floattypes_float32) 1.2);
+
 
   ;
   return 0;
@@ -78476,8 +79485,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf64 (s, 1000, "%g", (floattypes_float64) 1.2);
+
 
   ;
   return 0;
@@ -78548,8 +79556,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf128 (s, 1000, "%g", (floattypes_float128) 1.2);
+
 
   ;
   return 0;
@@ -78620,8 +79627,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd32 (s, 1000, "%g", (floattypes_decimal32) 1.2);
+
 
   ;
   return 0;
@@ -78692,8 +79698,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd64 (s, 1000, "%g", (floattypes_decimal64) 1.2);
+
 
   ;
   return 0;
@@ -78764,8 +79769,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd128 (s, 1000, "%g", (floattypes_decimal128) 1.2);
+
 
   ;
   return 0;
@@ -78836,8 +79840,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf32x (s, 1000, "%g", (floattypes_float32x) 1.2);
+
 
   ;
   return 0;
@@ -78908,8 +79911,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf64x (s, 1000, "%g", (floattypes_float64x) 1.2);
+
 
   ;
   return 0;
@@ -78980,8 +79982,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromf128x (s, 1000, "%g", (floattypes_float128x) 1.2);
+
 
   ;
   return 0;
@@ -79052,8 +80053,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd64x (s, 1000, "%g", (floattypes_decimal64x) 1.2);
+
 
   ;
   return 0;
@@ -79124,8 +80124,7 @@ else
 int
 main ()
 {
-char *s = malloc(1001);
-                                    int n = strfromd128x (s, 1000, "%g", (floattypes_decimal128x) 1.2);
+
 
   ;
   return 0;
@@ -79197,7 +80196,7 @@ else
 int
 main ()
 {
-floattypes_float x = strtof ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79268,7 +80267,7 @@ else
 int
 main ()
 {
-floattypes_double x = strtod ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79339,7 +80338,7 @@ else
 int
 main ()
 {
-floattypes_ldouble x = strtol ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79410,7 +80409,7 @@ else
 int
 main ()
 {
-floattypes_float32 x = strtof32 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79481,7 +80480,7 @@ else
 int
 main ()
 {
-floattypes_float64 x = strtof64 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79552,7 +80551,7 @@ else
 int
 main ()
 {
-floattypes_float128 x = strtof128 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79623,7 +80622,7 @@ else
 int
 main ()
 {
-floattypes_decimal32 x = strtod32 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79694,7 +80693,7 @@ else
 int
 main ()
 {
-floattypes_decimal64 x = strtod64 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79765,7 +80764,7 @@ else
 int
 main ()
 {
-floattypes_decimal128 x = strtod128 ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79836,7 +80835,7 @@ else
 int
 main ()
 {
-floattypes_float32x x = strtof32x ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79907,7 +80906,7 @@ else
 int
 main ()
 {
-floattypes_float64x x = strtof64x ("1.2", NULL);
+
 
   ;
   return 0;
@@ -79978,7 +80977,7 @@ else
 int
 main ()
 {
-floattypes_float128x x = strtof128x ("1.2", NULL);
+
 
   ;
   return 0;
@@ -80049,7 +81048,7 @@ else
 int
 main ()
 {
-floattypes_decimal64x x = strtod64x ("1.2", NULL);
+
 
   ;
   return 0;
@@ -80120,7 +81119,7 @@ else
 int
 main ()
 {
-floattypes_decimal128x x = strtod128x ("1.2", NULL);
+
 
   ;
   return 0;
@@ -82994,6 +83993,34 @@ fi
       DEF_floattypes_frexp_decimal64x="#define HAVE_floattypes_frexp_decimal64x ${HAVE_floattypes_frexp_decimal64x}"
 
       DEF_floattypes_frexp_decimal128x="#define HAVE_floattypes_frexp_decimal128x ${HAVE_floattypes_frexp_decimal128x}"
+
+      DEF_floattypes_nan_float="#define HAVE_floattypes_nan_float ${HAVE_floattypes_nan_float}"
+
+      DEF_floattypes_nan_double="#define HAVE_floattypes_nan_double ${HAVE_floattypes_nan_double}"
+
+      DEF_floattypes_nan_ldouble="#define HAVE_floattypes_nan_ldouble ${HAVE_floattypes_nan_ldouble}"
+
+      DEF_floattypes_nan_float32="#define HAVE_floattypes_nan_float32 ${HAVE_floattypes_nan_float32}"
+
+      DEF_floattypes_nan_float64="#define HAVE_floattypes_nan_float64 ${HAVE_floattypes_nan_float64}"
+
+      DEF_floattypes_nan_float128="#define HAVE_floattypes_nan_float128 ${HAVE_floattypes_nan_float128}"
+
+      DEF_floattypes_nan_decimal32="#define HAVE_floattypes_nan_decimal32 ${HAVE_floattypes_nan_decimal32}"
+
+      DEF_floattypes_nan_decimal64="#define HAVE_floattypes_nan_decimal64 ${HAVE_floattypes_nan_decimal64}"
+
+      DEF_floattypes_nan_decimal128="#define HAVE_floattypes_nan_decimal128 ${HAVE_floattypes_nan_decimal128}"
+
+      DEF_floattypes_nan_float32x="#define HAVE_floattypes_nan_float32x ${HAVE_floattypes_nan_float32x}"
+
+      DEF_floattypes_nan_float64x="#define HAVE_floattypes_nan_float64x ${HAVE_floattypes_nan_float64x}"
+
+      DEF_floattypes_nan_float128x="#define HAVE_floattypes_nan_float128x ${HAVE_floattypes_nan_float128x}"
+
+      DEF_floattypes_nan_decimal64x="#define HAVE_floattypes_nan_decimal64x ${HAVE_floattypes_nan_decimal64x}"
+
+      DEF_floattypes_nan_decimal128x="#define HAVE_floattypes_nan_decimal128x ${HAVE_floattypes_nan_decimal128x}"
 
       DEF_floattypes_nexttoward_float="#define HAVE_floattypes_nexttoward_float ${HAVE_floattypes_nexttoward_float}"
 
@@ -85952,6 +86979,35 @@ echo '' >> floattypes/HATS/config.hats
         echo "${DEF_floattypes_frexp_decimal64x}" >> floattypes/HATS/config.hats
 
         echo "${DEF_floattypes_frexp_decimal128x}" >> floattypes/HATS/config.hats
+echo '' >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_double}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_ldouble}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_decimal32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_decimal64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_decimal128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float32x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_float128x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_decimal64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_nan_decimal128x}" >> floattypes/HATS/config.hats
 echo '' >> floattypes/HATS/config.hats
 
         echo "${DEF_floattypes_nexttoward_float}" >> floattypes/HATS/config.hats

@@ -156,6 +156,7 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
                                 floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
                     [frexplike],[int y = 1;
                                  floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
+                    [nanlike],[floattypes_$2 x = $1 ("");]
                     [nexttowardlike],[/* This may fail on types like _Float128. */
                                       floattypes_$2 x = $1 ((floattypes_$2) 1.2, 3.4L)],
                     [strtodlike],[floattypes_$2 x = $1 ("1.2", NULL);],
@@ -298,7 +299,7 @@ m4_define([the_regular_math_function_prototypes],[
   unary binary ternary
   lroundlike llroundlike
   ilogblike scalbnlike scalblnlike
-  jnlike modflike frexplike
+  jnlike modflike frexplike nanlike
   nexttowardlike
 ])
 
@@ -361,6 +362,10 @@ m4_define([the_modflike_math_functions],[
 
 m4_define([the_frexplike_math_functions],[
   frexp
+])
+
+m4_define([the_nanlike_math_functions],[
+  nan
 ])
 
 m4_define([the_nexttowardlike_math_functions],[
