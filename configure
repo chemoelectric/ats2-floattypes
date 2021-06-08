@@ -83672,118 +83672,6 @@ fi
 
       DEF_floattypes_fma_decimal128x="#define HAVE_floattypes_fma_decimal128x ${HAVE_floattypes_fma_decimal128x}"
 
-      DEF_floattypes_ilogb_float="#define HAVE_floattypes_ilogb_float ${HAVE_floattypes_ilogb_float}"
-
-      DEF_floattypes_ilogb_double="#define HAVE_floattypes_ilogb_double ${HAVE_floattypes_ilogb_double}"
-
-      DEF_floattypes_ilogb_ldouble="#define HAVE_floattypes_ilogb_ldouble ${HAVE_floattypes_ilogb_ldouble}"
-
-      DEF_floattypes_ilogb_float32="#define HAVE_floattypes_ilogb_float32 ${HAVE_floattypes_ilogb_float32}"
-
-      DEF_floattypes_ilogb_float64="#define HAVE_floattypes_ilogb_float64 ${HAVE_floattypes_ilogb_float64}"
-
-      DEF_floattypes_ilogb_float128="#define HAVE_floattypes_ilogb_float128 ${HAVE_floattypes_ilogb_float128}"
-
-      DEF_floattypes_ilogb_decimal32="#define HAVE_floattypes_ilogb_decimal32 ${HAVE_floattypes_ilogb_decimal32}"
-
-      DEF_floattypes_ilogb_decimal64="#define HAVE_floattypes_ilogb_decimal64 ${HAVE_floattypes_ilogb_decimal64}"
-
-      DEF_floattypes_ilogb_decimal128="#define HAVE_floattypes_ilogb_decimal128 ${HAVE_floattypes_ilogb_decimal128}"
-
-      DEF_floattypes_ilogb_float32x="#define HAVE_floattypes_ilogb_float32x ${HAVE_floattypes_ilogb_float32x}"
-
-      DEF_floattypes_ilogb_float64x="#define HAVE_floattypes_ilogb_float64x ${HAVE_floattypes_ilogb_float64x}"
-
-      DEF_floattypes_ilogb_float128x="#define HAVE_floattypes_ilogb_float128x ${HAVE_floattypes_ilogb_float128x}"
-
-      DEF_floattypes_ilogb_decimal64x="#define HAVE_floattypes_ilogb_decimal64x ${HAVE_floattypes_ilogb_decimal64x}"
-
-      DEF_floattypes_ilogb_decimal128x="#define HAVE_floattypes_ilogb_decimal128x ${HAVE_floattypes_ilogb_decimal128x}"
-
-      DEF_floattypes_scalbn_float="#define HAVE_floattypes_scalbn_float ${HAVE_floattypes_scalbn_float}"
-
-      DEF_floattypes_scalbn_double="#define HAVE_floattypes_scalbn_double ${HAVE_floattypes_scalbn_double}"
-
-      DEF_floattypes_scalbn_ldouble="#define HAVE_floattypes_scalbn_ldouble ${HAVE_floattypes_scalbn_ldouble}"
-
-      DEF_floattypes_scalbn_float32="#define HAVE_floattypes_scalbn_float32 ${HAVE_floattypes_scalbn_float32}"
-
-      DEF_floattypes_scalbn_float64="#define HAVE_floattypes_scalbn_float64 ${HAVE_floattypes_scalbn_float64}"
-
-      DEF_floattypes_scalbn_float128="#define HAVE_floattypes_scalbn_float128 ${HAVE_floattypes_scalbn_float128}"
-
-      DEF_floattypes_scalbn_decimal32="#define HAVE_floattypes_scalbn_decimal32 ${HAVE_floattypes_scalbn_decimal32}"
-
-      DEF_floattypes_scalbn_decimal64="#define HAVE_floattypes_scalbn_decimal64 ${HAVE_floattypes_scalbn_decimal64}"
-
-      DEF_floattypes_scalbn_decimal128="#define HAVE_floattypes_scalbn_decimal128 ${HAVE_floattypes_scalbn_decimal128}"
-
-      DEF_floattypes_scalbn_float32x="#define HAVE_floattypes_scalbn_float32x ${HAVE_floattypes_scalbn_float32x}"
-
-      DEF_floattypes_scalbn_float64x="#define HAVE_floattypes_scalbn_float64x ${HAVE_floattypes_scalbn_float64x}"
-
-      DEF_floattypes_scalbn_float128x="#define HAVE_floattypes_scalbn_float128x ${HAVE_floattypes_scalbn_float128x}"
-
-      DEF_floattypes_scalbn_decimal64x="#define HAVE_floattypes_scalbn_decimal64x ${HAVE_floattypes_scalbn_decimal64x}"
-
-      DEF_floattypes_scalbn_decimal128x="#define HAVE_floattypes_scalbn_decimal128x ${HAVE_floattypes_scalbn_decimal128x}"
-
-      DEF_floattypes_ldexp_float="#define HAVE_floattypes_ldexp_float ${HAVE_floattypes_ldexp_float}"
-
-      DEF_floattypes_ldexp_double="#define HAVE_floattypes_ldexp_double ${HAVE_floattypes_ldexp_double}"
-
-      DEF_floattypes_ldexp_ldouble="#define HAVE_floattypes_ldexp_ldouble ${HAVE_floattypes_ldexp_ldouble}"
-
-      DEF_floattypes_ldexp_float32="#define HAVE_floattypes_ldexp_float32 ${HAVE_floattypes_ldexp_float32}"
-
-      DEF_floattypes_ldexp_float64="#define HAVE_floattypes_ldexp_float64 ${HAVE_floattypes_ldexp_float64}"
-
-      DEF_floattypes_ldexp_float128="#define HAVE_floattypes_ldexp_float128 ${HAVE_floattypes_ldexp_float128}"
-
-      DEF_floattypes_ldexp_decimal32="#define HAVE_floattypes_ldexp_decimal32 ${HAVE_floattypes_ldexp_decimal32}"
-
-      DEF_floattypes_ldexp_decimal64="#define HAVE_floattypes_ldexp_decimal64 ${HAVE_floattypes_ldexp_decimal64}"
-
-      DEF_floattypes_ldexp_decimal128="#define HAVE_floattypes_ldexp_decimal128 ${HAVE_floattypes_ldexp_decimal128}"
-
-      DEF_floattypes_ldexp_float32x="#define HAVE_floattypes_ldexp_float32x ${HAVE_floattypes_ldexp_float32x}"
-
-      DEF_floattypes_ldexp_float64x="#define HAVE_floattypes_ldexp_float64x ${HAVE_floattypes_ldexp_float64x}"
-
-      DEF_floattypes_ldexp_float128x="#define HAVE_floattypes_ldexp_float128x ${HAVE_floattypes_ldexp_float128x}"
-
-      DEF_floattypes_ldexp_decimal64x="#define HAVE_floattypes_ldexp_decimal64x ${HAVE_floattypes_ldexp_decimal64x}"
-
-      DEF_floattypes_ldexp_decimal128x="#define HAVE_floattypes_ldexp_decimal128x ${HAVE_floattypes_ldexp_decimal128x}"
-
-      DEF_floattypes_scalbln_float="#define HAVE_floattypes_scalbln_float ${HAVE_floattypes_scalbln_float}"
-
-      DEF_floattypes_scalbln_double="#define HAVE_floattypes_scalbln_double ${HAVE_floattypes_scalbln_double}"
-
-      DEF_floattypes_scalbln_ldouble="#define HAVE_floattypes_scalbln_ldouble ${HAVE_floattypes_scalbln_ldouble}"
-
-      DEF_floattypes_scalbln_float32="#define HAVE_floattypes_scalbln_float32 ${HAVE_floattypes_scalbln_float32}"
-
-      DEF_floattypes_scalbln_float64="#define HAVE_floattypes_scalbln_float64 ${HAVE_floattypes_scalbln_float64}"
-
-      DEF_floattypes_scalbln_float128="#define HAVE_floattypes_scalbln_float128 ${HAVE_floattypes_scalbln_float128}"
-
-      DEF_floattypes_scalbln_decimal32="#define HAVE_floattypes_scalbln_decimal32 ${HAVE_floattypes_scalbln_decimal32}"
-
-      DEF_floattypes_scalbln_decimal64="#define HAVE_floattypes_scalbln_decimal64 ${HAVE_floattypes_scalbln_decimal64}"
-
-      DEF_floattypes_scalbln_decimal128="#define HAVE_floattypes_scalbln_decimal128 ${HAVE_floattypes_scalbln_decimal128}"
-
-      DEF_floattypes_scalbln_float32x="#define HAVE_floattypes_scalbln_float32x ${HAVE_floattypes_scalbln_float32x}"
-
-      DEF_floattypes_scalbln_float64x="#define HAVE_floattypes_scalbln_float64x ${HAVE_floattypes_scalbln_float64x}"
-
-      DEF_floattypes_scalbln_float128x="#define HAVE_floattypes_scalbln_float128x ${HAVE_floattypes_scalbln_float128x}"
-
-      DEF_floattypes_scalbln_decimal64x="#define HAVE_floattypes_scalbln_decimal64x ${HAVE_floattypes_scalbln_decimal64x}"
-
-      DEF_floattypes_scalbln_decimal128x="#define HAVE_floattypes_scalbln_decimal128x ${HAVE_floattypes_scalbln_decimal128x}"
-
       DEF_floattypes_lround_float="#define HAVE_floattypes_lround_float ${HAVE_floattypes_lround_float}"
 
       DEF_floattypes_lround_double="#define HAVE_floattypes_lround_double ${HAVE_floattypes_lround_double}"
@@ -83895,6 +83783,118 @@ fi
       DEF_floattypes_llrint_decimal64x="#define HAVE_floattypes_llrint_decimal64x ${HAVE_floattypes_llrint_decimal64x}"
 
       DEF_floattypes_llrint_decimal128x="#define HAVE_floattypes_llrint_decimal128x ${HAVE_floattypes_llrint_decimal128x}"
+
+      DEF_floattypes_ilogb_float="#define HAVE_floattypes_ilogb_float ${HAVE_floattypes_ilogb_float}"
+
+      DEF_floattypes_ilogb_double="#define HAVE_floattypes_ilogb_double ${HAVE_floattypes_ilogb_double}"
+
+      DEF_floattypes_ilogb_ldouble="#define HAVE_floattypes_ilogb_ldouble ${HAVE_floattypes_ilogb_ldouble}"
+
+      DEF_floattypes_ilogb_float32="#define HAVE_floattypes_ilogb_float32 ${HAVE_floattypes_ilogb_float32}"
+
+      DEF_floattypes_ilogb_float64="#define HAVE_floattypes_ilogb_float64 ${HAVE_floattypes_ilogb_float64}"
+
+      DEF_floattypes_ilogb_float128="#define HAVE_floattypes_ilogb_float128 ${HAVE_floattypes_ilogb_float128}"
+
+      DEF_floattypes_ilogb_decimal32="#define HAVE_floattypes_ilogb_decimal32 ${HAVE_floattypes_ilogb_decimal32}"
+
+      DEF_floattypes_ilogb_decimal64="#define HAVE_floattypes_ilogb_decimal64 ${HAVE_floattypes_ilogb_decimal64}"
+
+      DEF_floattypes_ilogb_decimal128="#define HAVE_floattypes_ilogb_decimal128 ${HAVE_floattypes_ilogb_decimal128}"
+
+      DEF_floattypes_ilogb_float32x="#define HAVE_floattypes_ilogb_float32x ${HAVE_floattypes_ilogb_float32x}"
+
+      DEF_floattypes_ilogb_float64x="#define HAVE_floattypes_ilogb_float64x ${HAVE_floattypes_ilogb_float64x}"
+
+      DEF_floattypes_ilogb_float128x="#define HAVE_floattypes_ilogb_float128x ${HAVE_floattypes_ilogb_float128x}"
+
+      DEF_floattypes_ilogb_decimal64x="#define HAVE_floattypes_ilogb_decimal64x ${HAVE_floattypes_ilogb_decimal64x}"
+
+      DEF_floattypes_ilogb_decimal128x="#define HAVE_floattypes_ilogb_decimal128x ${HAVE_floattypes_ilogb_decimal128x}"
+
+      DEF_floattypes_scalbn_float="#define HAVE_floattypes_scalbn_float ${HAVE_floattypes_scalbn_float}"
+
+      DEF_floattypes_scalbn_double="#define HAVE_floattypes_scalbn_double ${HAVE_floattypes_scalbn_double}"
+
+      DEF_floattypes_scalbn_ldouble="#define HAVE_floattypes_scalbn_ldouble ${HAVE_floattypes_scalbn_ldouble}"
+
+      DEF_floattypes_scalbn_float32="#define HAVE_floattypes_scalbn_float32 ${HAVE_floattypes_scalbn_float32}"
+
+      DEF_floattypes_scalbn_float64="#define HAVE_floattypes_scalbn_float64 ${HAVE_floattypes_scalbn_float64}"
+
+      DEF_floattypes_scalbn_float128="#define HAVE_floattypes_scalbn_float128 ${HAVE_floattypes_scalbn_float128}"
+
+      DEF_floattypes_scalbn_decimal32="#define HAVE_floattypes_scalbn_decimal32 ${HAVE_floattypes_scalbn_decimal32}"
+
+      DEF_floattypes_scalbn_decimal64="#define HAVE_floattypes_scalbn_decimal64 ${HAVE_floattypes_scalbn_decimal64}"
+
+      DEF_floattypes_scalbn_decimal128="#define HAVE_floattypes_scalbn_decimal128 ${HAVE_floattypes_scalbn_decimal128}"
+
+      DEF_floattypes_scalbn_float32x="#define HAVE_floattypes_scalbn_float32x ${HAVE_floattypes_scalbn_float32x}"
+
+      DEF_floattypes_scalbn_float64x="#define HAVE_floattypes_scalbn_float64x ${HAVE_floattypes_scalbn_float64x}"
+
+      DEF_floattypes_scalbn_float128x="#define HAVE_floattypes_scalbn_float128x ${HAVE_floattypes_scalbn_float128x}"
+
+      DEF_floattypes_scalbn_decimal64x="#define HAVE_floattypes_scalbn_decimal64x ${HAVE_floattypes_scalbn_decimal64x}"
+
+      DEF_floattypes_scalbn_decimal128x="#define HAVE_floattypes_scalbn_decimal128x ${HAVE_floattypes_scalbn_decimal128x}"
+
+      DEF_floattypes_ldexp_float="#define HAVE_floattypes_ldexp_float ${HAVE_floattypes_ldexp_float}"
+
+      DEF_floattypes_ldexp_double="#define HAVE_floattypes_ldexp_double ${HAVE_floattypes_ldexp_double}"
+
+      DEF_floattypes_ldexp_ldouble="#define HAVE_floattypes_ldexp_ldouble ${HAVE_floattypes_ldexp_ldouble}"
+
+      DEF_floattypes_ldexp_float32="#define HAVE_floattypes_ldexp_float32 ${HAVE_floattypes_ldexp_float32}"
+
+      DEF_floattypes_ldexp_float64="#define HAVE_floattypes_ldexp_float64 ${HAVE_floattypes_ldexp_float64}"
+
+      DEF_floattypes_ldexp_float128="#define HAVE_floattypes_ldexp_float128 ${HAVE_floattypes_ldexp_float128}"
+
+      DEF_floattypes_ldexp_decimal32="#define HAVE_floattypes_ldexp_decimal32 ${HAVE_floattypes_ldexp_decimal32}"
+
+      DEF_floattypes_ldexp_decimal64="#define HAVE_floattypes_ldexp_decimal64 ${HAVE_floattypes_ldexp_decimal64}"
+
+      DEF_floattypes_ldexp_decimal128="#define HAVE_floattypes_ldexp_decimal128 ${HAVE_floattypes_ldexp_decimal128}"
+
+      DEF_floattypes_ldexp_float32x="#define HAVE_floattypes_ldexp_float32x ${HAVE_floattypes_ldexp_float32x}"
+
+      DEF_floattypes_ldexp_float64x="#define HAVE_floattypes_ldexp_float64x ${HAVE_floattypes_ldexp_float64x}"
+
+      DEF_floattypes_ldexp_float128x="#define HAVE_floattypes_ldexp_float128x ${HAVE_floattypes_ldexp_float128x}"
+
+      DEF_floattypes_ldexp_decimal64x="#define HAVE_floattypes_ldexp_decimal64x ${HAVE_floattypes_ldexp_decimal64x}"
+
+      DEF_floattypes_ldexp_decimal128x="#define HAVE_floattypes_ldexp_decimal128x ${HAVE_floattypes_ldexp_decimal128x}"
+
+      DEF_floattypes_scalbln_float="#define HAVE_floattypes_scalbln_float ${HAVE_floattypes_scalbln_float}"
+
+      DEF_floattypes_scalbln_double="#define HAVE_floattypes_scalbln_double ${HAVE_floattypes_scalbln_double}"
+
+      DEF_floattypes_scalbln_ldouble="#define HAVE_floattypes_scalbln_ldouble ${HAVE_floattypes_scalbln_ldouble}"
+
+      DEF_floattypes_scalbln_float32="#define HAVE_floattypes_scalbln_float32 ${HAVE_floattypes_scalbln_float32}"
+
+      DEF_floattypes_scalbln_float64="#define HAVE_floattypes_scalbln_float64 ${HAVE_floattypes_scalbln_float64}"
+
+      DEF_floattypes_scalbln_float128="#define HAVE_floattypes_scalbln_float128 ${HAVE_floattypes_scalbln_float128}"
+
+      DEF_floattypes_scalbln_decimal32="#define HAVE_floattypes_scalbln_decimal32 ${HAVE_floattypes_scalbln_decimal32}"
+
+      DEF_floattypes_scalbln_decimal64="#define HAVE_floattypes_scalbln_decimal64 ${HAVE_floattypes_scalbln_decimal64}"
+
+      DEF_floattypes_scalbln_decimal128="#define HAVE_floattypes_scalbln_decimal128 ${HAVE_floattypes_scalbln_decimal128}"
+
+      DEF_floattypes_scalbln_float32x="#define HAVE_floattypes_scalbln_float32x ${HAVE_floattypes_scalbln_float32x}"
+
+      DEF_floattypes_scalbln_float64x="#define HAVE_floattypes_scalbln_float64x ${HAVE_floattypes_scalbln_float64x}"
+
+      DEF_floattypes_scalbln_float128x="#define HAVE_floattypes_scalbln_float128x ${HAVE_floattypes_scalbln_float128x}"
+
+      DEF_floattypes_scalbln_decimal64x="#define HAVE_floattypes_scalbln_decimal64x ${HAVE_floattypes_scalbln_decimal64x}"
+
+      DEF_floattypes_scalbln_decimal128x="#define HAVE_floattypes_scalbln_decimal128x ${HAVE_floattypes_scalbln_decimal128x}"
 
       DEF_floattypes_jn_float="#define HAVE_floattypes_jn_float ${HAVE_floattypes_jn_float}"
 
@@ -86647,122 +86647,6 @@ echo '' >> floattypes/HATS/config.hats
         echo "${DEF_floattypes_fma_decimal128x}" >> floattypes/HATS/config.hats
 echo '' >> floattypes/HATS/config.hats
 
-        echo "${DEF_floattypes_ilogb_float}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_double}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_ldouble}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_decimal32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_decimal64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_decimal128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float32x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_float128x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_decimal64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ilogb_decimal128x}" >> floattypes/HATS/config.hats
-echo '' >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_double}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_ldouble}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_decimal32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_decimal64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_decimal128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float32x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_float128x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_decimal64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbn_decimal128x}" >> floattypes/HATS/config.hats
-echo '' >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_double}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_ldouble}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_decimal32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_decimal64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_decimal128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float32x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_float128x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_decimal64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_ldexp_decimal128x}" >> floattypes/HATS/config.hats
-echo '' >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_double}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_ldouble}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_decimal32}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_decimal64}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_decimal128}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float32x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_float128x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_decimal64x}" >> floattypes/HATS/config.hats
-
-        echo "${DEF_floattypes_scalbln_decimal128x}" >> floattypes/HATS/config.hats
-echo '' >> floattypes/HATS/config.hats
-
         echo "${DEF_floattypes_lround_float}" >> floattypes/HATS/config.hats
 
         echo "${DEF_floattypes_lround_double}" >> floattypes/HATS/config.hats
@@ -86877,6 +86761,122 @@ echo '' >> floattypes/HATS/config.hats
         echo "${DEF_floattypes_llrint_decimal64x}" >> floattypes/HATS/config.hats
 
         echo "${DEF_floattypes_llrint_decimal128x}" >> floattypes/HATS/config.hats
+echo '' >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_double}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_ldouble}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_decimal32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_decimal64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_decimal128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float32x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_float128x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_decimal64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ilogb_decimal128x}" >> floattypes/HATS/config.hats
+echo '' >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_double}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_ldouble}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_decimal32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_decimal64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_decimal128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float32x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_float128x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_decimal64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbn_decimal128x}" >> floattypes/HATS/config.hats
+echo '' >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_double}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_ldouble}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_decimal32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_decimal64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_decimal128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float32x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_float128x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_decimal64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_ldexp_decimal128x}" >> floattypes/HATS/config.hats
+echo '' >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_double}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_ldouble}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_decimal32}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_decimal64}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_decimal128}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float32x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_float128x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_decimal64x}" >> floattypes/HATS/config.hats
+
+        echo "${DEF_floattypes_scalbln_decimal128x}" >> floattypes/HATS/config.hats
 echo '' >> floattypes/HATS/config.hats
 
         echo "${DEF_floattypes_jn_float}" >> floattypes/HATS/config.hats

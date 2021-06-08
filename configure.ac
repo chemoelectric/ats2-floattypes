@@ -387,19 +387,10 @@ m4_define([the_strfromdlike_math_functions],[
 ])
 
 m4_define([the_regular_math_functions],
-  the_unary_math_functions
-  the_binary_math_functions
-  the_ternary_math_functions
-  the_ilogblike_math_functions
-  the_scalbnlike_math_functions
-  the_scalblnlike_math_functions
-  the_lroundlike_math_functions
-  the_llroundlike_math_functions
-  the_jnlike_math_functions
-  the_modflike_math_functions
-  the_frexplike_math_functions
-  the_nanlike_math_functions
-  the_nexttowardlike_math_functions
+  m4_foreach_w([prototype],the_regular_math_function_prototypes,
+    [m4_pushdef([the_functions],[the_]prototype[_math_functions])
+     the_functions
+     m4_popdef([the_functions])])
 )
 
 m4_define([the_irregular_math_functions],
