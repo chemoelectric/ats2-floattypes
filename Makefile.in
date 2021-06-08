@@ -505,6 +505,7 @@ FLOAT_SUFFIX_float64x = @FLOAT_SUFFIX_float64x@
 GNU = @GNU@
 GNU_MAKE = @GNU_MAKE@
 GREP = @GREP@
+HAVE_ = @HAVE_@
 HAVE_floattypes_acos_decimal128 = @HAVE_floattypes_acos_decimal128@
 HAVE_floattypes_acos_decimal128x = @HAVE_floattypes_acos_decimal128x@
 HAVE_floattypes_acos_decimal32 = @HAVE_floattypes_acos_decimal32@

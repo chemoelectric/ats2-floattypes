@@ -93,17 +93,22 @@ AC_DEFUN([MY_CHECK_FLOAT_TYPE],
 AC_DEFUN([MY_CHECK_MATH_FUNC],
   [AC_CACHE_CHECK([for math function $1],
                   [AS_TR_SH([my_cv_math_func_$1])],
-    [AC_COMPILE_IFELSE([
-      AC_LANG_PROGRAM(
-        [MY_MATH_HEADERS],
-        [[
-           void *p = $1;
-        ]])],
-        [AS_TR_SH([my_cv_math_func_$1])=yes],
-        [AS_TR_SH([my_cv_math_func_$1])=no])])
+    [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
+      AC_COMPILE_IFELSE([
+        AC_LANG_PROGRAM(
+          [MY_MATH_HEADERS],
+          [[
+             void *p = $1;
+          ]])],
+          [AS_TR_SH([my_cv_math_func_$1])=yes],
+          [AS_TR_SH([my_cv_math_func_$1])=no])
+      else
+        AS_TR_SH([my_cv_math_func_$1])=no
+        AS_ECHO_N(["(type not supported) "])
+      fi])
     case x"${AS_TR_SH([my_cv_math_func_$1])}" in
-      xyes) $2 ;;
-      *)    $3 ;;
+      xyes) $3 ;;
+      *)    $4 ;;
     esac])
 
 AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
@@ -234,7 +239,7 @@ MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128x],[_Decimal128x],[D128x d128x])
 AC_CHECK_LIB([m],[sin])
 
 m4_define([check_math_func],
-          [MY_CHECK_MATH_FUNC([$1],[def1([$2])],[def0([$2])])])
+          [MY_CHECK_MATH_FUNC([$1],[$2],[def1([$3])],[def0([$4])])])
 
 m4_define([the_regular_math_functions],[
   nan
@@ -267,66 +272,66 @@ m4_define([the_irregular_math_functions],[
 ])
 
 m4_foreach_w([the_func],the_regular_math_functions,[
-  check_math_func(the_func[f],[floattypes_]the_func[_float])
-  check_math_func(the_func,[floattypes_]the_func[_double])
-  check_math_func(the_func[l],[floattypes_]the_func[_ldouble])
-  check_math_func(the_func[f32],[floattypes_]the_func[_float32])
-  check_math_func(the_func[f64],[floattypes_]the_func[_float64])
-  check_math_func(the_func[f128],[floattypes_]the_func[_float128])
-  check_math_func(the_func[d32],[floattypes_]the_func[_decimal32])
-  check_math_func(the_func[d64],[floattypes_]the_func[_decimal64])
-  check_math_func(the_func[d128],[floattypes_]the_func[_decimal128])
-  check_math_func(the_func[f32x],[floattypes_]the_func[_float32x])
-  check_math_func(the_func[f64x],[floattypes_]the_func[_float64x])
-  check_math_func(the_func[f128x],[floattypes_]the_func[_float128x])
-  check_math_func(the_func[d64x],[floattypes_]the_func[_decimal64x])
-  check_math_func(the_func[d128x],[floattypes_]the_func[_decimal128x])
+  check_math_func(the_func[f],[float],[floattypes_]the_func[_float])
+  check_math_func(the_func,[double],[floattypes_]the_func[_double])
+  check_math_func(the_func[l],[ldouble],[floattypes_]the_func[_ldouble])
+  check_math_func(the_func[f32],[float32],[floattypes_]the_func[_float32])
+  check_math_func(the_func[f64],[float64],[floattypes_]the_func[_float64])
+  check_math_func(the_func[f128],[float128],[floattypes_]the_func[_float128])
+  check_math_func(the_func[d32],[decimal32],[floattypes_]the_func[_decimal32])
+  check_math_func(the_func[d64],[decimal64],[floattypes_]the_func[_decimal64])
+  check_math_func(the_func[d128],[decimal128],[floattypes_]the_func[_decimal128])
+  check_math_func(the_func[f32x],[float32x],[floattypes_]the_func[_float32x])
+  check_math_func(the_func[f64x],[float64x],[floattypes_]the_func[_float64x])
+  check_math_func(the_func[f128x],[float128x],[floattypes_]the_func[_float128x])
+  check_math_func(the_func[d64x],[decimal64x],[floattypes_]the_func[_decimal64x])
+  check_math_func(the_func[d128x],[decimal128x],[floattypes_]the_func[_decimal128x])
 ])
 
-check_math_func([lgammaf_r],[floattypes_lgamma_r_float])
-check_math_func([lgamma_r],[floattypes_lgamma_r_double])
-check_math_func([lgammal_r],[floattypes_lgamma_r_ldouble])
-check_math_func([lgammaf32_r],[floattypes_lgamma_r_float32])
-check_math_func([lgammaf64_r],[floattypes_lgamma_r_float64])
-check_math_func([lgammaf128_r],[floattypes_lgamma_r_float128])
-check_math_func([lgammad32_r],[floattypes_lgamma_r_decimal32])
-check_math_func([lgammad64_r],[floattypes_lgamma_r_decimal64])
-check_math_func([lgammad128_r],[floattypes_lgamma_r_decimal128])
-check_math_func([lgammaf32x_r],[floattypes_lgamma_r_float32x])
-check_math_func([lgammaf64x_r],[floattypes_lgamma_r_float64x])
-check_math_func([lgammaf128x_r],[floattypes_lgamma_r_float128x])
-check_math_func([lgammad64x_r],[floattypes_lgamma_r_decimal64x])
-check_math_func([lgammad128x_r],[floattypes_lgamma_r_decimal128x])
+check_math_func([lgammaf_r],[float],[floattypes_lgamma_r_float])
+check_math_func([lgamma_r],[double],[floattypes_lgamma_r_double])
+check_math_func([lgammal_r],[ldouble],[floattypes_lgamma_r_ldouble])
+check_math_func([lgammaf32_r],[float32],[floattypes_lgamma_r_float32])
+check_math_func([lgammaf64_r],[float64],[floattypes_lgamma_r_float64])
+check_math_func([lgammaf128_r],[float128],[floattypes_lgamma_r_float128])
+check_math_func([lgammad32_r],[decimal32],[floattypes_lgamma_r_decimal32])
+check_math_func([lgammad64_r],[decimal64],[floattypes_lgamma_r_decimal64])
+check_math_func([lgammad128_r],[decimal128],[floattypes_lgamma_r_decimal128])
+check_math_func([lgammaf32x_r],[float32x],[floattypes_lgamma_r_float32x])
+check_math_func([lgammaf64x_r],[float64x],[floattypes_lgamma_r_float64x])
+check_math_func([lgammaf128x_r],[float128x],[floattypes_lgamma_r_float128x])
+check_math_func([lgammad64x_r],[decimal64x],[floattypes_lgamma_r_decimal64x])
+check_math_func([lgammad128x_r],[decimal128x],[floattypes_lgamma_r_decimal128x])
 
-check_math_func([strfromf],[floattypes_strfrom_float])
-check_math_func([strfromd],[floattypes_strfrom_double])
-check_math_func([strfroml],[floattypes_strfrom_ldouble])
-check_math_func([strfromf32],[floattypes_strfrom_float32])
-check_math_func([strfromf64],[floattypes_strfrom_float64])
-check_math_func([strfromf128],[floattypes_strfrom_float128])
-check_math_func([strfromd32],[floattypes_strfrom_decimal32])
-check_math_func([strfromd64],[floattypes_strfrom_decimal64])
-check_math_func([strfromd128],[floattypes_strfrom_decimal128])
-check_math_func([strfromf32x],[floattypes_strfrom_float32x])
-check_math_func([strfromf64x],[floattypes_strfrom_float64x])
-check_math_func([strfromf128x],[floattypes_strfrom_float128x])
-check_math_func([strfromd64x],[floattypes_strfrom_decimal64x])
-check_math_func([strfromd128x],[floattypes_strfrom_decimal128x])
+check_math_func([strfromf],[float],[floattypes_strfrom_float])
+check_math_func([strfromd],[double],[floattypes_strfrom_double])
+check_math_func([strfroml],[ldouble],[floattypes_strfrom_ldouble])
+check_math_func([strfromf32],[float32],[floattypes_strfrom_float32])
+check_math_func([strfromf64],[float64],[floattypes_strfrom_float64])
+check_math_func([strfromf128],[float128],[floattypes_strfrom_float128])
+check_math_func([strfromd32],[decimal32],[floattypes_strfrom_decimal32])
+check_math_func([strfromd64],[decimal64],[floattypes_strfrom_decimal64])
+check_math_func([strfromd128],[decimal128],[floattypes_strfrom_decimal128])
+check_math_func([strfromf32x],[float32x],[floattypes_strfrom_float32x])
+check_math_func([strfromf64x],[float64x],[floattypes_strfrom_float64x])
+check_math_func([strfromf128x],[float128x],[floattypes_strfrom_float128x])
+check_math_func([strfromd64x],[decimal64x],[floattypes_strfrom_decimal64x])
+check_math_func([strfromd128x],[decimal128x],[floattypes_strfrom_decimal128x])
 
-check_math_func([strtof],[floattypes_strto_float])
-check_math_func([strtod],[floattypes_strto_double])
-check_math_func([strtol],[floattypes_strto_ldouble])
-check_math_func([strtof32],[floattypes_strto_float32])
-check_math_func([strtof64],[floattypes_strto_float64])
-check_math_func([strtof128],[floattypes_strto_float128])
-check_math_func([strtod32],[floattypes_strto_decimal32])
-check_math_func([strtod64],[floattypes_strto_decimal64])
-check_math_func([strtod128],[floattypes_strto_decimal128])
-check_math_func([strtof32x],[floattypes_strto_float32x])
-check_math_func([strtof64x],[floattypes_strto_float64x])
-check_math_func([strtof128x],[floattypes_strto_float128x])
-check_math_func([strtod64x],[floattypes_strto_decimal64x])
-check_math_func([strtod128x],[floattypes_strto_decimal128x])
+check_math_func([strtof],[float],[floattypes_strto_float])
+check_math_func([strtod],[double],[floattypes_strto_double])
+check_math_func([strtol],[ldouble],[floattypes_strto_ldouble])
+check_math_func([strtof32],[float32],[floattypes_strto_float32])
+check_math_func([strtof64],[float64],[floattypes_strto_float64])
+check_math_func([strtof128],[float128],[floattypes_strto_float128])
+check_math_func([strtod32],[decimal32],[floattypes_strto_decimal32])
+check_math_func([strtod64],[decimal64],[floattypes_strto_decimal64])
+check_math_func([strtod128],[decimal128],[floattypes_strto_decimal128])
+check_math_func([strtof32x],[float32x],[floattypes_strto_float32x])
+check_math_func([strtof64x],[float64x],[floattypes_strto_float64x])
+check_math_func([strtof128x],[float128x],[floattypes_strto_float128x])
+check_math_func([strtod64x],[decimal64x],[floattypes_strto_decimal64x])
+check_math_func([strtod128x],[decimal128x],[floattypes_strto_decimal128x])
 
 #--------------------------------------------------------------------------
 
