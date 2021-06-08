@@ -14,8 +14,8 @@
 # along with this program. If not, see
 # <https://www.gnu.org/licenses/>.
 
-define(`extra_floattypes',dnl
-`float32,
+define([extra_floattypes],dnl
+[float32,
 float64,
 float128,
 decimal32,
@@ -25,15 +25,15 @@ float32x,
 float64x,
 float128x,
 decimal64x,
-decimal128x')
+decimal128x])
 
-define(`all_floattypes',`float,double,ldouble,extra_floattypes')
+define([all_floattypes],[float,double,ldouble,extra_floattypes])
 
-define(`lowercase',`abcdefghijklmnopqrstuvwxyz')
-define(`uppercase',`ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-define(`tolower',`translit($1,uppercase,lowercase)')
-define(`toupper',`translit($1,lowercase,uppercase)')
+define([lowercase],[abcdefghijklmnopqrstuvwxyz])
+define([uppercase],[ABCDEFGHIJKLMNOPQRSTUVWXYZ])
+define([tolower],[translit($1,uppercase,lowercase)])
+define([toupper],[translit($1,lowercase,uppercase)])
 
-define(`foreach',`pushdef(`$1',`')foreach_(`$1',`$2',`$3')popdef(`$1')')
-define(`foreach_arg1__',`$1')
-define(`foreach_',`ifelse(`$2',`()',,`define(`$1',foreach_arg1__$2)$3`'foreach_(`$1',(shift$2),`$3')')')
+define([foreach],[pushdef([$1],[])foreach_([$1],[$2],[$3])popdef([$1])])
+define([foreach_arg1__],[$1])
+define([foreach_],[ifelse([$2],[()],,[define([$1],foreach_arg1__$2)$3[]foreach_([$1],(shift$2),[$3])])])
