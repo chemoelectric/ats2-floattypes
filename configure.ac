@@ -46,16 +46,14 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
 #--------------------------------------------------------------------------
 
-m4_define([add_def1],[
+m4_define([def1],[
   if :; then
-    AC_SUBST(DEF_$1,['@%:@define HAVE_$1 1'])
     AC_SUBST(HAVE_$1,['1'])
   fi
 ])
 
-m4_define([add_def0],[
+m4_define([def0],[
   if :; then
-    AC_SUBST(DEF_$1,['@%:@define HAVE_$1 0'])
     AC_SUBST(HAVE_$1,['0'])
   fi
 ])
@@ -166,7 +164,7 @@ AC_PROG_EGREP
 # Checks for typedefs, structures, and compiler characteristics.
 
 m4_define([check_type],
-          [MY_CHECK_FLOAT_TYPE([$1],[add_def1([$2])],[add_def0([$2])])])
+          [MY_CHECK_FLOAT_TYPE([$1],[def1([$2])],[def0([$2])])])
 
 m4_define([the_floattypes],[
   float
@@ -236,7 +234,7 @@ MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128x],[_Decimal128x],[D128x d128x])
 AC_CHECK_LIB([m],[sin])
 
 m4_define([check_math_func],
-          [MY_CHECK_MATH_FUNC([$1],[add_def1([$2])],[add_def0([$2])])])
+          [MY_CHECK_MATH_FUNC([$1],[def1([$2])],[def0([$2])])])
 
 m4_define([the_regular_math_functions],[
   nan
@@ -363,12 +361,12 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
 ])])
 ],[
   m4_foreach_w([t],the_floattypes,[
-    DEF_floattypes_[]t="${DEF_floattypes_[]t}"
+    DEF_floattypes_[]t="@%:@define floattypes_[]t ${HAVE_floattypes_[]t}"
 ])
   m4_foreach_w([f],the_regular_math_functions
                    the_irregular_math_functions,
     [m4_foreach_w([t],the_floattypes,[
-      DEF_floattypes_[]f[]_[]t="${DEF_floattypes_[]f[]_[]t}"
+      DEF_floattypes_[]f[]_[]t="@%:@define floattypes_[]f[]_[]t ${HAVE_floattypes_[]f[]_[]t}"
 ])])
 ])
 
