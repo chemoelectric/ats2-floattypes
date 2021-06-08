@@ -70,6 +70,20 @@ AC_DEFUN([MY_MATH_HEADERS],
 #include <stddef.h>
 #include <stdlib.h>
 #include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
 ]])
 
 AC_DEFUN([MY_CHECK_FLOAT_TYPE],
@@ -93,23 +107,22 @@ AC_DEFUN([MY_CHECK_FLOAT_TYPE],
 AC_DEFUN([MY_CHECK_MATH_FUNC],
   [AC_CACHE_CHECK([for math function $1],
                   [AS_TR_SH([my_cv_math_func_$1])],
-    [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
-      AC_COMPILE_IFELSE([
-        AC_LANG_PROGRAM(
-          [MY_MATH_HEADERS],
-          [[
-             void *p = $1;
-          ]])],
-          [AS_TR_SH([my_cv_math_func_$1])=yes],
-          [AS_TR_SH([my_cv_math_func_$1])=no])
-      else
-        AS_TR_SH([my_cv_math_func_$1])=no
+    [AS_TR_SH([my_cv_math_func_$1])=no
+     if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
+       AC_COMPILE_IFELSE([
+         AC_LANG_PROGRAM(
+           [MY_MATH_HEADERS],
+           [[
+              void *p = $1;
+           ]])],
+           [AS_TR_SH([my_cv_math_func_$1])=yes])
+     else
         AS_ECHO_N(["(type not supported) "])
-      fi])
-    case x"${AS_TR_SH([my_cv_math_func_$1])}" in
-      xyes) $3 ;;
-      *)    $4 ;;
-    esac])
+     fi])
+   case x"${AS_TR_SH([my_cv_math_func_$1])}" in
+     xyes) $3 ;;
+     *)    $4 ;;
+   esac])
 
 AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
   [AC_CACHE_CHECK([suffix for $1 literals],
@@ -239,7 +252,7 @@ MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128x],[_Decimal128x],[D128x d128x])
 AC_CHECK_LIB([m],[sin])
 
 m4_define([check_math_func],
-          [MY_CHECK_MATH_FUNC([$1],[$2],[def1([$3])],[def0([$4])])])
+          [MY_CHECK_MATH_FUNC([$1],[$2],[def1([$3])],[def0([$3])])])
 
 m4_define([the_regular_math_functions],[
   nan
@@ -366,12 +379,12 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
 ])])
 ],[
   m4_foreach_w([t],the_floattypes,[
-    DEF_floattypes_[]t="@%:@define floattypes_[]t ${HAVE_floattypes_[]t}"
+    DEF_floattypes_[]t="@%:@define HAVE_floattypes_[]t ${HAVE_floattypes_[]t}"
 ])
   m4_foreach_w([f],the_regular_math_functions
                    the_irregular_math_functions,
     [m4_foreach_w([t],the_floattypes,[
-      DEF_floattypes_[]f[]_[]t="@%:@define floattypes_[]f[]_[]t ${HAVE_floattypes_[]f[]_[]t}"
+      DEF_floattypes_[]f[]_[]t="@%:@define HAVE_floattypes_[]f[]_[]t ${HAVE_floattypes_[]f[]_[]t}"
 ])])
 ])
 

@@ -39,6 +39,7 @@ EXTRA_DIST += $(srcdir)/silent-rules.mk
 EXTRA_DIST += README
 
 DISTCLEANFILES += Makefile
+DISTCLEANFILES += floattypes/HATS/config.hats
 
 ######################################################################
 

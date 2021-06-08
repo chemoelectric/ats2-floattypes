@@ -505,7 +505,6 @@ FLOAT_SUFFIX_float64x = @FLOAT_SUFFIX_float64x@
 GNU = @GNU@
 GNU_MAKE = @GNU_MAKE@
 GREP = @GREP@
-HAVE_ = @HAVE_@
 HAVE_floattypes_acos_decimal128 = @HAVE_floattypes_acos_decimal128@
 HAVE_floattypes_acos_decimal128x = @HAVE_floattypes_acos_decimal128x@
 HAVE_floattypes_acos_decimal32 = @HAVE_floattypes_acos_decimal32@
@@ -1525,7 +1524,7 @@ BUILT_SOURCES = floattypes/CATS/floattypes.cats \
 TESTS = $(check_PROGRAMS)
 MOSTLYCLEANFILES = 
 CLEANFILES = $(BUILT_SOURCES)
-DISTCLEANFILES = Makefile
+DISTCLEANFILES = Makefile floattypes/HATS/config.hats
 ACLOCAL_AMFLAGS = -I m4 --install
 AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
