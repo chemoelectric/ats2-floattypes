@@ -114,7 +114,7 @@ m4_define([the_ilogblike_math_functions],
   [remove_commas([ilogblike_math_functions])])
 
 m4_define([scalbnlike_math_functions],
-  [scalbn, ldexp, __builtin_powi])
+  [scalbn, ldexp])
 m4_define([the_scalbnlike_math_functions],
   [remove_commas([scalbnlike_math_functions])])
 
