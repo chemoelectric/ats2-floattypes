@@ -13021,6 +13021,99 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__"
 CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__"
 CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
+# Copyright © 2021 Barry Schwartz
+#
+# This program is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License, as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received copies of the GNU General Public License
+# along with this program. If not, see
+# <https://www.gnu.org/licenses/>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #--------------------------------------------------------------------------
 
 
@@ -14312,8 +14405,6 @@ $as_echo "$ac_cv_path_EGREP" >&6; }
 #--------------------------------------------------------------------------
 #
 # Checks for typedefs, structures, and compiler characteristics.
-
-
 
 
 
@@ -17190,46 +17281,6 @@ _ACEOF
   LIBS="-lm $LIBS"
 
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -81293,7 +81344,9 @@ $as_echo "$as_me: WARNING: Please consider installing and using GNU Make:
 }
 #StM_CONFIG_MAKEFILES([tests/Makefile],[tests/GNUmakefile])
 
-# We want common-macros.m4 to be where a mere POSIX m4 can find it.
+# We want include files to be where a mere POSIX m4 can find it.
+ac_config_files="$ac_config_files common-definitions.m4"
+
 ac_config_files="$ac_config_files common-macros.m4"
 
 
@@ -84162,6 +84215,7 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "GNUmakefile") CONFIG_FILES="$CONFIG_FILES GNUmakefile:Makefile.in" ;;
+    "common-definitions.m4") CONFIG_FILES="$CONFIG_FILES common-definitions.m4" ;;
     "common-macros.m4") CONFIG_FILES="$CONFIG_FILES common-macros.m4" ;;
     "ats2-floattypes.pc") CONFIG_FILES="$CONFIG_FILES ats2-floattypes.pc" ;;
     "floattypes/HATS/config.hats") CONFIG_COMMANDS="$CONFIG_COMMANDS floattypes/HATS/config.hats" ;;

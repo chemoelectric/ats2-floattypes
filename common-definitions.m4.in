@@ -1,0 +1,176 @@
+# Copyright © 2021 Barry Schwartz
+#
+# This program is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License, as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received copies of the GNU General Public License
+# along with this program. If not, see
+# <https://www.gnu.org/licenses/>.
+
+dnl  foreachq(x, [item_1, item_2, ..., item_n], stmt)
+m4_define([foreachq],
+  [m4_if([$2],[],[],
+    [m4_pushdef([$1])_$0([$1],[$3],[],$2)m4_popdef([$1])])])
+m4_define([_foreachq],
+  [m4_if([$#],[3],[],
+    [m4_define([$1],[$4])$2[]$0([$1],[$2],m4_shift(m4_shift(m4_shift($@))))])])
+
+dnl  join_lists([partial-list-name1, partial-list-name2, ...], prefix, suffix)
+m4_define([join_lists],dnl
+[m4_pushdef([_separator],[])dnl
+foreachq([prototype],[$1],dnl
+[m4_pushdef([_the_functions],[$2]prototype[$3])dnl
+_separator[]_the_functions[]m4_define([_separator],[,])dnl
+m4_popdef([_the_functions])])dnl
+m4_popdef([_separator])])
+
+dnl  remove_commas([list]) -- Replace commas with spaces.
+dnl
+dnl  Use this to convert a comma-separated list to a
+dnl  whitespace-separated list.
+dnl
+m4_define([remove_commas],[foreachq([x],[$1],[x ])])
+
+m4_define([extra_floattypes],
+  [float32,
+   float64,
+   float128,
+   decimal32,
+   decimal64,
+   decimal128,
+   float32x,
+   float64x,
+   float128x,
+   decimal64x,
+   decimal128x])
+
+m4_define([all_floattypes],
+  [float,
+   double,
+   ldouble,
+   extra_floattypes])
+
+m4_define([the_floattypes],
+  [remove_commas([all_floattypes])])
+
+m4_define([regular_math_function_prototypes],
+  [unary, binary, ternary,
+   lroundlike, llroundlike,
+   ilogblike, scalbnlike, scalblnlike,
+   jnlike, modflike, frexplike, nanlike,
+   nexttowardlike])
+m4_define([the_regular_math_function_prototypes],
+  [remove_commas([regular_math_function_prototypes])])
+
+m4_define([irregular_math_function_prototypes],
+  [lgamma_rlike, strtodlike, strfromdlike])
+m4_define([the_irregular_math_function_prototypes],
+  [remove_commas([irregular_math_function_prototypes])])
+
+m4_define([unary_math_functions],
+  [ceil, floor, trunc, round, rint, nearbyint,
+   sqrt, cbrt,
+   exp, exp2, exp10, expm1,
+   log, log2, log10, log1p,
+   logb,
+   sin, cos, tan,
+   asin, acos, atan,
+   sinh, cosh, tanh,
+   asinh, acosh, atanh,
+   erf, erfc,
+   lgamma, tgamma,
+   j0, j1, y0, y1])
+m4_define([the_unary_math_functions],
+  [remove_commas([unary_math_functions])])
+
+m4_define([binary_math_functions],
+  [fmin, fmax,
+   fdim, fmod,
+   pow, hypot,
+   nextafter,
+   copysign,
+   atan2])
+m4_define([the_binary_math_functions],
+  [remove_commas([binary_math_functions])])
+
+m4_define([ternary_math_functions],[fma])
+m4_define([the_ternary_math_functions],
+  [remove_commas([ternary_math_functions])])
+
+m4_define([ilogblike_math_functions],[ilogb])
+m4_define([the_ilogblike_math_functions],
+  [remove_commas([ilogblike_math_functions])])
+
+m4_define([scalbnlike_math_functions],[scalbn,ldexp])
+m4_define([the_scalbnlike_math_functions],
+  [remove_commas([scalbnlike_math_functions])])
+
+m4_define([scalblnlike_math_functions],[scalbln])
+m4_define([the_scalblnlike_math_functions],
+  [remove_commas([scalblnlike_math_functions])])
+
+m4_define([lroundlike_math_functions],[lround,lrint])
+m4_define([the_lroundlike_math_functions],
+  [remove_commas([lroundlike_math_functions])])
+
+m4_define([llroundlike_math_functions],[llround,llrint])
+m4_define([the_llroundlike_math_functions],
+  [remove_commas([llroundlike_math_functions])])
+
+m4_define([jnlike_math_functions],[jn,yn])
+m4_define([the_jnlike_math_functions],
+  [remove_commas([jnlike_math_functions])])
+
+m4_define([modflike_math_functions],[modf])
+m4_define([the_modflike_math_functions],
+  [remove_commas([modflike_math_functions])])
+
+m4_define([frexplike_math_functions],[frexp])
+m4_define([the_frexplike_math_functions],
+  [remove_commas([frexplike_math_functions])])
+
+m4_define([nanlike_math_functions],[nan])
+m4_define([the_nanlike_math_functions],
+  [remove_commas([nanlike_math_functions])])
+
+m4_define([nexttowardlike_math_functions],[nexttoward])
+m4_define([the_nexttowardlike_math_functions],
+  [remove_commas([nexttowardlike_math_functions])])
+
+m4_define([strtodlike_math_functions],[strtod])
+m4_define([the_strtodlike_math_functions],
+  [remove_commas([strtodlike_math_functions])])
+
+m4_define([strfromdlike_math_functions],[strfromd])
+m4_define([the_strfromdlike_math_functions],
+  [remove_commas([strfromdlike_math_functions])])
+
+dnl The next one is frexplike but irregular in function name
+dnl construction.
+m4_define([lgamma_rlike_math_functions],[lgamma_r])
+m4_define([the_lgamma_rlike_math_functions],
+  [remove_commas([lgamma_rlike_math_functions])])
+
+m4_define([regular_math_functions],
+          [join_lists([regular_math_function_prototypes],
+                      [],[_math_functions])])
+m4_define([the_regular_math_functions],
+  [remove_commas([regular_math_functions])])
+
+m4_define([irregular_math_functions],
+          [join_lists([irregular_math_function_prototypes],
+                      [],[_math_functions])])
+m4_define([the_irregular_math_functions],
+  [remove_commas([irregular_math_functions])])
+
+m4_define([math_functions],
+  [join_lists([regular_math_functions,irregular_math_functions])])
+m4_define([the_math_functions],
+  [remove_commas([math_functions])])

@@ -14,33 +14,11 @@
 # along with this program. If not, see
 # <https://www.gnu.org/licenses/>.
 
-define([extra_floattypes],dnl
-[float32,
-float64,
-float128,
-decimal32,
-decimal64,
-decimal128,
-float32x,
-float64x,
-float128x,
-decimal64x,
-decimal128x])
+define([m4_define],defn([define]))
+define([m4_pushdef],defn([pushdef]))
+define([m4_popdef],defn([popdef]))
+define([m4_shift],defn([shift]))
+define([m4_if],defn([ifelse]))
+define([m4_translit],defn([translit]))
 
-define([all_floattypes],[float,double,ldouble,extra_floattypes])
-
-define([lowercase],[abcdefghijklmnopqrstuvwxyz])
-define([uppercase],[ABCDEFGHIJKLMNOPQRSTUVWXYZ])
-define([tolower],[translit($1,uppercase,lowercase)])
-define([toupper],[translit($1,lowercase,uppercase)])
-
-dnl define([foreach],[pushdef([$1],[])foreach_([$1],[$2],[$3])popdef([$1])])
-dnl define([foreach_arg1__],[$1])
-dnl define([foreach_],[ifelse([$2],[()],,[define([$1],foreach_arg1__$2)$3[]foreach_([$1],(shift$2),[$3])])])
-
-define([foreachq],
-       [ifelse([$2],[],[],
-               [pushdef([$1])_$0([$1],[$3],[],$2)popdef([$1])])])
-define([_foreachq],
-       [ifelse([$#],[3],[],
-               [define([$1],[$4])$2[]$0([$1],[$2],shift(shift(shift($@))))])])
+include([common-definitions.m4])

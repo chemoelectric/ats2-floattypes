@@ -118,6 +118,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 \
 	$(top_srcdir)/m4/stm_config_makefiles.m4 \
 	$(top_srcdir)/m4/stm_prog_gnu_make.m4 \
+	$(top_srcdir)/common-definitions.m4.in \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
@@ -127,7 +128,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = common-macros.m4 ats2-floattypes.pc
+CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
+	ats2-floattypes.pc
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -435,8 +437,9 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 am__DIST_COMMON = $(srcdir)/Makefile.in \
-	$(srcdir)/ats2-floattypes.pc.in $(srcdir)/common-macros.m4.in \
-	$(top_srcdir)/build-aux/compile \
+	$(srcdir)/ats2-floattypes.pc.in \
+	$(srcdir)/common-definitions.m4.in \
+	$(srcdir)/common-macros.m4.in $(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
 	$(top_srcdir)/build-aux/depcomp \
@@ -1554,7 +1557,7 @@ AM_PATSOPTFLAGS = -IATS $(builddir) -IATS $(srcdir)
 
 ######################################################################
 TOTAL_M4FLAGS = $(AM_M4FLAGS) $(M4FLAGS) $(XM4FLAGS)
-M4_DEPS = common-macros.m4
+M4_DEPS = common-definitions.m4 common-macros.m4
 TOTAL_PATSOPTFLAGS = $(AM_PATSOPTFLAGS) $(PATSOPTFLAGS) \
 	$(XPATSOPTFLAGS)
 PATSOPT_DEPS = floattypes/CATS/floattypes.cats \
@@ -1597,6 +1600,8 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
+common-definitions.m4: $(top_builddir)/config.status $(srcdir)/common-definitions.m4.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 common-macros.m4: $(top_builddir)/config.status $(srcdir)/common-macros.m4.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.in

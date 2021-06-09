@@ -130,6 +130,7 @@ TOTAL_M4FLAGS += $(M4FLAGS)
 TOTAL_M4FLAGS += $(XM4FLAGS)
 
 M4_DEPS =
+M4_DEPS += common-definitions.m4
 M4_DEPS += common-macros.m4
 
 %: %.m4 $(M4_DEPS)

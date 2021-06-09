@@ -44,6 +44,8 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__"
 CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__"
 CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
+m4_include([common-definitions.m4.in])
+
 #--------------------------------------------------------------------------
 
 m4_define([def1],[
@@ -208,23 +210,6 @@ AC_PROG_EGREP
 m4_define([check_type],
           [MY_CHECK_FLOAT_TYPE([$1],[def1([$2])],[def0([$2])])])
 
-m4_define([the_floattypes],[
-  float
-  double
-  ldouble
-  float32
-  float64
-  float128
-  decimal32
-  decimal64
-  decimal128
-  float32x
-  float64x
-  float128x
-  decimal64x
-  decimal128x
-])
-
 check_type([float],[floattypes_float])
 check_type([double],[floattypes_double])
 check_type([long double],[floattypes_ldouble])
@@ -295,115 +280,6 @@ m4_define([check_regular_math_func],[
   check_math_func($1[d128x],[decimal128x],[floattypes_]$1[_decimal128x],[$2])
 ])
 
-m4_define([the_regular_math_function_prototypes],[
-  unary binary ternary
-  lroundlike llroundlike
-  ilogblike scalbnlike scalblnlike
-  jnlike modflike frexplike nanlike
-  nexttowardlike
-])
-
-m4_define([the_unary_math_functions],[
-  ceil floor trunc round rint nearbyint
-  sqrt cbrt
-  exp exp2 exp10 expm1
-  log log2 log10 log1p
-  logb
-  sin cos tan
-  asin acos atan
-  sinh cosh tanh
-  asinh acosh atanh
-  erf erfc
-  lgamma tgamma
-  j0 j1 y0 y1
-])
-
-m4_define([the_binary_math_functions],[
-  fmin fmax
-  fdim fmod
-  pow hypot
-  nextafter
-  copysign
-  atan2
-])
-
-m4_define([the_ternary_math_functions],[
-  fma
-])
-
-m4_define([the_ilogblike_math_functions],[
-  ilogb
-])
-
-m4_define([the_scalbnlike_math_functions],[
-  scalbn
-  ldexp
-])
-
-m4_define([the_scalblnlike_math_functions],[
-  scalbln
-])
-
-m4_define([the_lroundlike_math_functions],[
-  lround lrint
-])
-
-m4_define([the_llroundlike_math_functions],[
-  llround llrint
-])
-
-m4_define([the_jnlike_math_functions],[
-  jn yn
-])
-
-m4_define([the_modflike_math_functions],[
-  modf
-])
-
-m4_define([the_frexplike_math_functions],[
-  frexp
-])
-
-m4_define([the_nanlike_math_functions],[
-  nan
-])
-
-m4_define([the_nexttowardlike_math_functions],[
-  nexttoward
-])
-
-dnl The next one is frexplike but irregular in function name
-dnl construction.
-m4_define([the_lgamma_rlike_math_functions],
-  lgamma_r
-)
-
-m4_define([the_strtodlike_math_functions],[
-  strtod
-])
-
-m4_define([the_strfromdlike_math_functions],[
-  strfromd
-])
-
-m4_define([the_regular_math_functions],
-  m4_foreach_w([prototype],the_regular_math_function_prototypes,
-    [m4_pushdef([the_functions],[the_]prototype[_math_functions])
-     the_functions
-     m4_popdef([the_functions])])
-)
-
-m4_define([the_irregular_math_functions],
-  the_lgamma_rlike_math_functions
-  the_strtodlike_math_functions
-  the_strfromdlike_math_functions
-)
-
-m4_define([the_math_functions],
-  the_regular_math_functions
-  the_irregular_math_functions
-)
-
 m4_foreach_w([prototype],the_regular_math_function_prototypes,
   [m4_pushdef([the_functions],[the_]prototype[_math_functions])
    m4_foreach_w([the_func],the_functions,
@@ -466,7 +342,8 @@ StM_REQUIRE_GNU_MAKE_IN_PATH
 StM_CONFIG_MAKEFILES
 #StM_CONFIG_MAKEFILES([tests/Makefile],[tests/GNUmakefile])
 
-# We want common-macros.m4 to be where a mere POSIX m4 can find it.
+# We want include files to be where a mere POSIX m4 can find it.
+AC_CONFIG_FILES([common-definitions.m4])
 AC_CONFIG_FILES([common-macros.m4])
 
 AC_CONFIG_FILES([ats2-floattypes.pc])
