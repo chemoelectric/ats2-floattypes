@@ -109,7 +109,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
-	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT)
+	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
+	tests/test-sin$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -180,6 +181,9 @@ tests_test_neg_LDADD = $(LDADD)
 tests_test_pred_SOURCES = tests/test-pred_dats.c
 tests_test_pred_OBJECTS = tests/test-pred_dats.$(OBJEXT)
 tests_test_pred_LDADD = $(LDADD)
+tests_test_sin_SOURCES = tests/test-sin_dats.c
+tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
+tests_test_sin_LDADD = $(LDADD)
 tests_test_succ_SOURCES = tests/test-succ_dats.c
 tests_test_succ_OBJECTS = tests/test-succ_dats.$(OBJEXT)
 tests_test_succ_LDADD = $(LDADD)
@@ -203,6 +207,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-abs_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
+	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-succ_dats.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -225,10 +230,10 @@ am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-neg_dats.c tests/test-pred_dats.c \
-	tests/test-succ_dats.c
+	tests/test-sin_dats.c tests/test-succ_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-neg_dats.c tests/test-pred_dats.c \
-	tests/test-succ_dats.c
+	tests/test-sin_dats.c tests/test-succ_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -1819,6 +1824,12 @@ tests/test-pred_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-pred$(EXEEXT): $(tests_test_pred_OBJECTS) $(tests_test_pred_DEPENDENCIES) $(EXTRA_tests_test_pred_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-pred$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_pred_OBJECTS) $(tests_test_pred_LDADD) $(LIBS)
+tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sin$(EXEEXT): $(tests_test_sin_OBJECTS) $(tests_test_sin_DEPENDENCIES) $(EXTRA_tests_test_sin_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sin_OBJECTS) $(tests_test_sin_LDADD) $(LIBS)
 tests/test-succ_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1842,6 +1853,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-abs_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -2207,6 +2219,13 @@ tests/test-pred.log: tests/test-pred$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sin.log: tests/test-sin$(EXEEXT)
+	@p='tests/test-sin$(EXEEXT)'; \
+	b='tests/test-sin'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -2461,6 +2480,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f GNUmakefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -2517,6 +2537,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f GNUmakefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

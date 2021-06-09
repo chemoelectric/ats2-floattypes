@@ -33,6 +33,8 @@ divert(-1)
 
 include([common-macros.m4])
 
+define([default_overload_precedence],[0])
+
 define([declare_kind],dnl
 [dnl
 tkindef $1_kind = "floattypes_$1"
@@ -78,3 +80,9 @@ foreachq([t],[extra_floattypes],[declare_compare([compare],t)])
 dnl
 foreachq([t],[extra_floattypes],[declare_aop([max],t)])
 foreachq([t],[extra_floattypes],[declare_aop([min],t)])
+dnl
+foreachq([func],[unary_math_functions],
+[foreachq([t],[all_floattypes],[declare_uop(func,t)])
+fun {tk : tk} g0float_[]func : g0float_uop_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])

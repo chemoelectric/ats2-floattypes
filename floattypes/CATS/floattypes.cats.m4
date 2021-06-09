@@ -17,6 +17,11 @@ You should have received copies of the GNU General Public License
 along with this program. If not, see
 <https://www.gnu.org/licenses/>.
 
+dnl
+dnl  FIXME: Move all the many #defines to a separate ‘.h’ file,
+dnl         so a person can substitute their own values.
+dnl
+
 */]
 
 [#ifndef FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__]
@@ -51,22 +56,6 @@ _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
 #define floattypes_float128x _Float128x
 #define floattypes_decimal64x _Decimal64x
 #define floattypes_decimal128x _Decimal128x
-]dnl
-
-[#define floattypes_fmod_float fmodf
-#define floattypes_fmod_double fmod
-#define floattypes_fmod_ldouble fmodl
-#define floattypes_fmod_float32 fmodf32
-#define floattypes_fmod_float64 fmodf64
-#define floattypes_fmod_float128 fmodf128
-#define floattypes_fmod_decimal32 fmodd32
-#define floattypes_fmod_decimal64 fmodd64
-#define floattypes_fmod_decimal128 fmodd128
-#define floattypes_fmod_float32x fmodf32x
-#define floattypes_fmod_float64x fmodf64x
-#define floattypes_fmod_float128x fmodf128x
-#define floattypes_fmod_decimal64x fmodd64x
-#define floattypes_fmod_decimal128x fmodd128x
 ]dnl
 
 divert(-1)
@@ -119,14 +108,12 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 ])
 
 define([mod_op],
-[#if HAVE_floattypes_$1
-#if HAVE_floattypes_fmod_$1
+[#if HAVE_floattypes_fmod_$1
 ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (floattypes_fmod_$1 (f1, f2)); }
 #endif /* HAVE_floattypes_fmod_$1 */
-#endif /* HAVE_floattypes_$1 */
 ])
 
 define([comparison_op],
@@ -165,7 +152,62 @@ floattypes_g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
+define([nullary_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (void) dnl
+{ return (floattypes_$2_$1 ()); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
+define([unary_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
+define([binary_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+{ return (floattypes_$2_$1 (f1, f2)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
+define([ternary_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, dnl
+floattypes_$1 f2, dnl
+floattypes_$1 f3) dnl
+{ return (floattypes_$2_$1 (f1, f2, f3)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 divert[]dnl
+
+foreachq([func],[regular_math_functions],
+[[#define] floattypes_[]func[]_float func[]f
+[#define] floattypes_[]func[]_double func
+[#define] floattypes_[]func[]_ldouble func[]l
+[#define] floattypes_[]func[]_float32 func[]f32
+[#define] floattypes_[]func[]_float64 func[]f64
+[#define] floattypes_[]func[]_float128 func[]f128
+[#define] floattypes_[]func[]_decimal32 func[]d32
+[#define] floattypes_[]func[]_decimal64 func[]d64
+[#define] floattypes_[]func[]_decimal128 func[]d128
+[#define] floattypes_[]func[]_float32x func[]f32x
+[#define] floattypes_[]func[]_float64x func[]f64x
+[#define] floattypes_[]func[]_float128x func[]f128x
+[#define] floattypes_[]func[]_decimal64x func[]d64x
+[#define] floattypes_[]func[]_decimal128x func[]d128x
+])
 
 foreachq([t],[extra_floattypes],[negation_op(t)])
 foreachq([t],[extra_floattypes],[abs_op(t)])
@@ -190,5 +232,21 @@ foreachq([t],[extra_floattypes],[compare_op(t)])
 dnl
 foreachq([t],[extra_floattypes],[min_op(t)])
 foreachq([t],[extra_floattypes],[max_op(t)])
+dnl
+foreachq([func],[nullary_math_functions],
+  [foreachq([t],[all_floattypes],
+    [nullary_fn(t,func)])])
+dnl
+foreachq([func],[unary_math_functions],
+  [foreachq([t],[all_floattypes],
+    [unary_fn(t,func)])])
+dnl
+foreachq([func],[binary_math_functions],
+  [foreachq([t],[all_floattypes],
+    [binary_fn(t,func)])])
+dnl
+foreachq([func],[ternary_math_functions],
+  [foreachq([t],[all_floattypes],
+    [ternary_fn(t,func)])])
 
 [#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]

@@ -94,6 +94,8 @@ check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
+check_PROGRAMS += tests/test-sin
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
