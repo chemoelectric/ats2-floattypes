@@ -142,6 +142,7 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
          AC_LANG_PROGRAM(
            [MY_MATH_HEADERS],
            [m4_case($5,
+                    [nullary],[floattypes_$2 x = $1 ();],
                     [unary],[floattypes_$2 x = $1 ((floattypes_$2) 1.2);],
                     [binary],[floattypes_$2 x = $1 ((floattypes_$2) 1.2,
                                                     (floattypes_$2) 3.4);],
@@ -157,7 +158,10 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
                     [modflike],[floattypes_$2 y = (floattypes_$2) 1.2;
                                 floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
                     [frexplike],[int y = 1;
-                                 floattypes_$2 x = $1 ((floattypes_$2) 3.4, &y);],
+                                 floattypes_$2 x = $1 ((floattypes_$2) 1.2, &y);],
+                    [remquolike],[int y = 1;
+                                  floattypes_$2 x = $1 ((floattypes_$2) 1.2,
+                                                        (floattypes_$2) 3.4, &y);],
                     [nanlike],[floattypes_$2 x = $1 ((const char *) "");],
                     [nexttowardlike],[/* This may fail on types like _Float128. */
                                       floattypes_$2 x = $1 ((floattypes_$2) 1.2, 3.4L)],
@@ -173,6 +177,28 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
         AS_ECHO_N(["(type not supported) "])
      fi])
    case x"${AS_TR_SH([my_cv_math_func_$1])}" in
+     xyes) $3 ;;
+     *)    $4 ;;
+   esac])
+
+AC_DEFUN([MY_CHECK_FLOAT_CONSTANT],
+  [AC_CACHE_CHECK([for math constant $1],
+                  [AS_TR_SH([my_cv_float_const_$1])],
+    [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
+       AS_ECHO_N(["($5) "])
+       AC_LINK_IFELSE(
+         [AC_LANG_PROGRAM([MY_MATH_HEADERS],
+           [m4_case($5,
+                    [floattype],[floattypes_$2 x = $1;],
+                    [int],[int x = $1;],
+                    [_Static_assert(false, "This branch should not be reached.");])])],
+         [AS_TR_SH([my_cv_float_const_$1])=yes],
+         [AS_TR_SH([my_cv_float_const_$1])=no])
+     else
+        AS_TR_SH([my_cv_float_const_$1])=no
+        AS_ECHO_N(["(type not supported) "])
+     fi])
+   case x"${AS_TR_SH([my_cv_float_const_$1])}" in
      xyes) $3 ;;
      *)    $4 ;;
    esac])
@@ -330,6 +356,49 @@ check_math_func([strtof64x],[float64x],[floattypes_strtod_float64x],[strtodlike]
 check_math_func([strtof128x],[float128x],[floattypes_strtod_float128x],[strtodlike])
 check_math_func([strtod64x],[decimal64x],[floattypes_strtod_decimal64x],[strtodlike])
 check_math_func([strtod128x],[decimal128x],[floattypes_strtod_decimal128x],[strtodlike])
+
+#--------------------------------------------------------------------------
+
+m4_define([check_float_const],
+          [MY_CHECK_FLOAT_CONSTANT([$1],[$2],[def1([$3])],[def0([$3])],[$4])])
+
+m4_define([check_regular_float_const],[
+  check_float_const($1[F],[float],[floattypes_]$1[_float],[$2])
+  check_float_const($1,[double],[floattypes_]$1[_double],[$2])
+  check_float_const($1[L],[ldouble],[floattypes_]$1[_ldouble],[$2])
+  check_float_const($1[F32],[float32],[floattypes_]$1[_float32],[$2])
+  check_float_const($1[F64],[float64],[floattypes_]$1[_float64],[$2])
+  check_float_const($1[F128],[float128],[floattypes_]$1[_float128],[$2])
+  check_float_const($1[D32],[decimal32],[floattypes_]$1[_decimal32],[$2])
+  check_float_const($1[D64],[decimal64],[floattypes_]$1[_decimal64],[$2])
+  check_float_const($1[D128],[decimal128],[floattypes_]$1[_decimal128],[$2])
+  check_float_const($1[F32X],[float32x],[floattypes_]$1[_float32x],[$2])
+  check_float_const($1[F64X],[float64x],[floattypes_]$1[_float64x],[$2])
+  check_float_const($1[F128X],[float128x],[floattypes_]$1[_float128x],[$2])
+  check_float_const($1[D64X],[decimal64x],[floattypes_]$1[_decimal64x],[$2])
+  check_float_const($1[D128X],[decimal128x],[floattypes_]$1[_decimal128x],[$2])
+])
+
+m4_define([check_HUGE_VALlike_float_const],[
+  check_float_const($1[F],[float],[floattypes_]$1[_float],[$2])
+  check_float_const($1,[double],[floattypes_]$1[_double],[$2])
+  check_float_const($1[L],[ldouble],[floattypes_]$1[_ldouble],[$2])
+  check_float_const($1[_F32],[float32],[floattypes_]$1[_float32],[$2])
+  check_float_const($1[_F64],[float64],[floattypes_]$1[_float64],[$2])
+  check_float_const($1[_F128],[float128],[floattypes_]$1[_float128],[$2])
+  check_float_const($1[_D32],[decimal32],[floattypes_]$1[_decimal32],[$2])
+  check_float_const($1[_D64],[decimal64],[floattypes_]$1[_decimal64],[$2])
+  check_float_const($1[_D128],[decimal128],[floattypes_]$1[_decimal128],[$2])
+  check_float_const($1[_F32X],[float32x],[floattypes_]$1[_float32x],[$2])
+  check_float_const($1[_F64X],[float64x],[floattypes_]$1[_float64x],[$2])
+  check_float_const($1[_F128X],[float128x],[floattypes_]$1[_float128x],[$2])
+  check_float_const($1[_D64X],[decimal64x],[floattypes_]$1[_decimal64x],[$2])
+  check_float_const($1[_D128X],[decimal128x],[floattypes_]$1[_decimal128x],[$2])
+])
+
+check_regular_float_const([SNAN],[floattype])
+check_regular_float_const([FP_FAST_FMA],[int])
+check_HUGE_VALlike_float_const([HUGE_VAL],[floattype])
 
 #--------------------------------------------------------------------------
 

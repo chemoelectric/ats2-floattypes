@@ -61,11 +61,11 @@ m4_define([the_floattypes],
   [remove_commas([all_floattypes])])
 
 m4_define([regular_math_function_prototypes],
-  [unary, binary, ternary,
+  [nullary, unary, binary, ternary,
    lroundlike, llroundlike,
    ilogblike, scalbnlike, scalblnlike,
-   jnlike, modflike, frexplike, nanlike,
-   nexttowardlike])
+   jnlike, modflike, frexplike, remquolike,
+   nanlike, nexttowardlike])
 m4_define([the_regular_math_function_prototypes],
   [remove_commas([regular_math_function_prototypes])])
 
@@ -73,6 +73,11 @@ m4_define([irregular_math_function_prototypes],
   [lgamma_rlike, strtodlike, strfromdlike])
 m4_define([the_irregular_math_function_prototypes],
   [remove_commas([irregular_math_function_prototypes])])
+
+m4_define([nullary_math_functions],
+  [__builtin_huge_val, __builtin_inf])
+m4_define([the_nullary_math_functions],
+  [remove_commas([nullary_math_functions])])
 
 m4_define([unary_math_functions],
   [ceil, floor, trunc, round, rint, nearbyint,
@@ -92,7 +97,7 @@ m4_define([the_unary_math_functions],
 
 m4_define([binary_math_functions],
   [fmin, fmax,
-   fdim, fmod,
+   fdim, fmod, remainder,
    pow, hypot,
    nextafter,
    copysign,
@@ -108,7 +113,8 @@ m4_define([ilogblike_math_functions],[ilogb])
 m4_define([the_ilogblike_math_functions],
   [remove_commas([ilogblike_math_functions])])
 
-m4_define([scalbnlike_math_functions],[scalbn,ldexp])
+m4_define([scalbnlike_math_functions],
+  [scalbn, ldexp, __builtin_powi])
 m4_define([the_scalbnlike_math_functions],
   [remove_commas([scalbnlike_math_functions])])
 
@@ -136,7 +142,12 @@ m4_define([frexplike_math_functions],[frexp])
 m4_define([the_frexplike_math_functions],
   [remove_commas([frexplike_math_functions])])
 
-m4_define([nanlike_math_functions],[nan])
+m4_define([remquolike_math_functions],[remquo])
+m4_define([the_remquolike_math_functions],
+  [remove_commas([remquolike_math_functions])])
+
+m4_define([nanlike_math_functions],
+  [nan, __builtin_nan, __builtin_nans])
 m4_define([the_nanlike_math_functions],
   [remove_commas([nanlike_math_functions])])
 
