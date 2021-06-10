@@ -63,8 +63,6 @@ define([declare_jnlike],[fun g0float_$1_$2 : (int, g0float($2[]_kind)) -<fun0> g
 
 divert[]
 
-vtypedef floattypes_int_ptr (p : addr) = (int @ p | ptr p) //////////////////////// FIXME /////////////////////////////////
-
 foreachq([t],[extra_floattypes],[declare_kind(t)])
 
 foreachq([t],[extra_floattypes],[declare_uop([neg],t)])

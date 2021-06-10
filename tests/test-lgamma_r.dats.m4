@@ -35,6 +35,9 @@ main() =
     foreachq([t],[all_floattypes],
       [[#if] HAVE_floattypes_lgamma_r_[]t [#then]
         macdef f2f = $UN.cast{t}
+        //
+        // The 'sign' argument is passed by reference.
+        //
         var sign : int
         val _ = sign := 99
         val _ = assertloc(abs(lgamma_r(f2f(0.5), sign) - f2f(0.5723649429247)) < f2f(0.00001))
