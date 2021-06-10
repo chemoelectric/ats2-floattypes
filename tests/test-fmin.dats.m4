@@ -32,12 +32,14 @@ staload UN = "prelude/SATS/unsafe.sats"
 implement
 main() =
   let
-    foreachq([t],[all_floattypes],
-      [[#if] HAVE_floattypes_neg_[]t [#then]
-        val _ = assertloc(neg ($UN.cast{t}(~1.0)) = $UN.cast{t}(1.0))
-        val _ = assertloc(neg ($UN.cast{t}(~0.0)) = $UN.cast{t}(0.0))
-        val _ = assertloc(neg ($UN.cast{t}(1234.567)) = $UN.cast{t}(~1234.567))
-      [#endif]
+    macdef c = $UN.cast
+    foreachq([t],[all_floattypes],      
+      [[#if] HAVE_floattypes_fmin_[]t [#then]
+       val _ = assertloc(fmin(c{t}0.0, c{t}0.0) = c{t}(0.0))
+       val _ = assertloc(fmin(c{t}1.0, c{t}0.0) = c{t}(0.0))
+       val _ = assertloc(fmin(c{t}~3.0, c{t}4.0) = c{t}(~3.0))
+       val _ = assertloc(fmin(c{t}50.0, c{t}~50.0) = c{t}(~50.0))
+       [#endif]
       ])
   in
     0

@@ -95,6 +95,11 @@ check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
+check_PROGRAMS += tests/test-min
+check_PROGRAMS += tests/test-max
+check_PROGRAMS += tests/test-fmin
+check_PROGRAMS += tests/test-fmax
+
 check_PROGRAMS += tests/test-sqrt
 check_PROGRAMS += tests/test-cbrt
 check_PROGRAMS += tests/test-hypot

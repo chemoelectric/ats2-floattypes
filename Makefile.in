@@ -110,6 +110,8 @@ build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
+	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
+	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
 	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
 	tests/test-hypot$(EXEEXT) tests/test-pow$(EXEEXT) \
 	tests/test-sin$(EXEEXT) tests/test-cos$(EXEEXT) \
@@ -220,9 +222,21 @@ tests_test_erf_LDADD = $(LDADD)
 tests_test_erfc_SOURCES = tests/test-erfc_dats.c
 tests_test_erfc_OBJECTS = tests/test-erfc_dats.$(OBJEXT)
 tests_test_erfc_LDADD = $(LDADD)
+tests_test_fmax_SOURCES = tests/test-fmax_dats.c
+tests_test_fmax_OBJECTS = tests/test-fmax_dats.$(OBJEXT)
+tests_test_fmax_LDADD = $(LDADD)
+tests_test_fmin_SOURCES = tests/test-fmin_dats.c
+tests_test_fmin_OBJECTS = tests/test-fmin_dats.$(OBJEXT)
+tests_test_fmin_LDADD = $(LDADD)
 tests_test_hypot_SOURCES = tests/test-hypot_dats.c
 tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
 tests_test_hypot_LDADD = $(LDADD)
+tests_test_max_SOURCES = tests/test-max_dats.c
+tests_test_max_OBJECTS = tests/test-max_dats.$(OBJEXT)
+tests_test_max_LDADD = $(LDADD)
+tests_test_min_SOURCES = tests/test-min_dats.c
+tests_test_min_OBJECTS = tests/test-min_dats.$(OBJEXT)
+tests_test_min_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -280,7 +294,11 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-cosh_dats.Po \
 	tests/$(DEPDIR)/test-erf_dats.Po \
 	tests/$(DEPDIR)/test-erfc_dats.Po \
+	tests/$(DEPDIR)/test-fmax_dats.Po \
+	tests/$(DEPDIR)/test-fmin_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
+	tests/$(DEPDIR)/test-max_dats.Po \
+	tests/$(DEPDIR)/test-min_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pow_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
@@ -316,7 +334,9 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-hypot_dats.c tests/test-neg_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-hypot_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
 	tests/test-sqrt_dats.c tests/test-succ_dats.c \
@@ -328,7 +348,9 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-hypot_dats.c tests/test-neg_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-hypot_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
 	tests/test-sqrt_dats.c tests/test-succ_dats.c \
@@ -1983,12 +2005,36 @@ tests/test-erfc_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-erfc$(EXEEXT): $(tests_test_erfc_OBJECTS) $(tests_test_erfc_DEPENDENCIES) $(EXTRA_tests_test_erfc_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-erfc$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_erfc_OBJECTS) $(tests_test_erfc_LDADD) $(LIBS)
+tests/test-fmax_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmax$(EXEEXT): $(tests_test_fmax_OBJECTS) $(tests_test_fmax_DEPENDENCIES) $(EXTRA_tests_test_fmax_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmax$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmax_OBJECTS) $(tests_test_fmax_LDADD) $(LIBS)
+tests/test-fmin_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmin$(EXEEXT): $(tests_test_fmin_OBJECTS) $(tests_test_fmin_DEPENDENCIES) $(EXTRA_tests_test_fmin_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmin_OBJECTS) $(tests_test_fmin_LDADD) $(LIBS)
 tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
 tests/test-hypot$(EXEEXT): $(tests_test_hypot_OBJECTS) $(tests_test_hypot_DEPENDENCIES) $(EXTRA_tests_test_hypot_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-hypot$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_hypot_OBJECTS) $(tests_test_hypot_LDADD) $(LIBS)
+tests/test-max_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-max$(EXEEXT): $(tests_test_max_OBJECTS) $(tests_test_max_DEPENDENCIES) $(EXTRA_tests_test_max_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-max$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_max_OBJECTS) $(tests_test_max_LDADD) $(LIBS)
+tests/test-min_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-min$(EXEEXT): $(tests_test_min_OBJECTS) $(tests_test_min_DEPENDENCIES) $(EXTRA_tests_test_min_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-min$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_min_OBJECTS) $(tests_test_min_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2070,7 +2116,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
@@ -2440,6 +2490,34 @@ tests/test-succ.log: tests/test-succ$(EXEEXT)
 tests/test-pred.log: tests/test-pred$(EXEEXT)
 	@p='tests/test-pred$(EXEEXT)'; \
 	b='tests/test-pred'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-min.log: tests/test-min$(EXEEXT)
+	@p='tests/test-min$(EXEEXT)'; \
+	b='tests/test-min'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-max.log: tests/test-max$(EXEEXT)
+	@p='tests/test-max$(EXEEXT)'; \
+	b='tests/test-max'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmin.log: tests/test-fmin$(EXEEXT)
+	@p='tests/test-fmin$(EXEEXT)'; \
+	b='tests/test-fmin'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmax.log: tests/test-fmax$(EXEEXT)
+	@p='tests/test-fmax$(EXEEXT)'; \
+	b='tests/test-fmax'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -2841,7 +2919,11 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-max_dats.Po
+	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
@@ -2916,7 +2998,11 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-max_dats.Po
+	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po

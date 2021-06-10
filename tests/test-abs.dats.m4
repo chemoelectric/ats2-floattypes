@@ -33,7 +33,7 @@ implement
 main() =
   let
     foreachq([t],[all_floattypes],
-      [[#if] HAVE_floattypes_[]t [#then]
+      [[#if] HAVE_floattypes_abs_[]t [#then]
         val _ = assertloc(abs ($UN.cast{t}(~1.0)) = $UN.cast{t}(1.0))
         val _ = assertloc(abs ($UN.cast{t}(~0.0)) = $UN.cast{t}(0.0))
         val _ = assertloc(abs ($UN.cast{t}(1234.567)) = $UN.cast{t}(1234.567))
