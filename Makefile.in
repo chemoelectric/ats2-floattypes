@@ -125,7 +125,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-lgamma_r$(EXEEXT) tests/test-tgamma$(EXEEXT) \
 	tests/test-j0$(EXEEXT) tests/test-j1$(EXEEXT) \
 	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
-	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT)
+	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
+	tests/test-frexp$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -232,6 +233,9 @@ tests_test_fmax_LDADD = $(LDADD)
 tests_test_fmin_SOURCES = tests/test-fmin_dats.c
 tests_test_fmin_OBJECTS = tests/test-fmin_dats.$(OBJEXT)
 tests_test_fmin_LDADD = $(LDADD)
+tests_test_frexp_SOURCES = tests/test-frexp_dats.c
+tests_test_frexp_OBJECTS = tests/test-frexp_dats.$(OBJEXT)
+tests_test_frexp_LDADD = $(LDADD)
 tests_test_hypot_SOURCES = tests/test-hypot_dats.c
 tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
 tests_test_hypot_LDADD = $(LDADD)
@@ -327,6 +331,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-erfc_dats.Po \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
+	tests/$(DEPDIR)/test-frexp_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
 	tests/$(DEPDIR)/test-j0_dats.Po \
 	tests/$(DEPDIR)/test-j1_dats.Po \
@@ -375,8 +380,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-hypot_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-frexp_dats.c tests/test-hypot_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-max_dats.c tests/test-min_dats.c \
 	tests/test-neg_dats.c tests/test-pow_dats.c \
@@ -393,8 +398,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-hypot_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-frexp_dats.c tests/test-hypot_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-max_dats.c tests/test-min_dats.c \
 	tests/test-neg_dats.c tests/test-pow_dats.c \
@@ -2065,6 +2070,12 @@ tests/test-fmin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-fmin$(EXEEXT): $(tests_test_fmin_OBJECTS) $(tests_test_fmin_DEPENDENCIES) $(EXTRA_tests_test_fmin_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-fmin$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_fmin_OBJECTS) $(tests_test_fmin_LDADD) $(LIBS)
+tests/test-frexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-frexp$(EXEEXT): $(tests_test_frexp_OBJECTS) $(tests_test_frexp_DEPENDENCIES) $(EXTRA_tests_test_frexp_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-frexp$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_frexp_OBJECTS) $(tests_test_frexp_LDADD) $(LIBS)
 tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2220,6 +2231,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j1_dats.Po@am__quote@ # am--include-marker
@@ -2829,6 +2841,13 @@ tests/test-yn.log: tests/test-yn$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-frexp.log: tests/test-frexp$(EXEEXT)
+	@p='tests/test-frexp$(EXEEXT)'; \
+	b='tests/test-frexp'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -3095,6 +3114,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
@@ -3183,6 +3203,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po

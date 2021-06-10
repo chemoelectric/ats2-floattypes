@@ -134,6 +134,8 @@ check_PROGRAMS += tests/test-y0
 check_PROGRAMS += tests/test-y1
 check_PROGRAMS += tests/test-yn
 
+check_PROGRAMS += tests/test-frexp
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
