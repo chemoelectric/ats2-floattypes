@@ -103,6 +103,10 @@ check_PROGRAMS += tests/test-acos
 check_PROGRAMS += tests/test-atan
 check_PROGRAMS += tests/test-atan2
 
+check_PROGRAMS += tests/test-sinh
+check_PROGRAMS += tests/test-cosh
+check_PROGRAMS += tests/test-tanh
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)

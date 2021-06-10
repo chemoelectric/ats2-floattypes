@@ -113,7 +113,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-sin$(EXEEXT) tests/test-cos$(EXEEXT) \
 	tests/test-tan$(EXEEXT) tests/test-asin$(EXEEXT) \
 	tests/test-acos$(EXEEXT) tests/test-atan$(EXEEXT) \
-	tests/test-atan2$(EXEEXT)
+	tests/test-atan2$(EXEEXT) tests/test-sinh$(EXEEXT) \
+	tests/test-cosh$(EXEEXT) tests/test-tanh$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -193,6 +194,9 @@ tests_test_atan2_LDADD = $(LDADD)
 tests_test_cos_SOURCES = tests/test-cos_dats.c
 tests_test_cos_OBJECTS = tests/test-cos_dats.$(OBJEXT)
 tests_test_cos_LDADD = $(LDADD)
+tests_test_cosh_SOURCES = tests/test-cosh_dats.c
+tests_test_cosh_OBJECTS = tests/test-cosh_dats.$(OBJEXT)
+tests_test_cosh_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -202,12 +206,18 @@ tests_test_pred_LDADD = $(LDADD)
 tests_test_sin_SOURCES = tests/test-sin_dats.c
 tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
 tests_test_sin_LDADD = $(LDADD)
+tests_test_sinh_SOURCES = tests/test-sinh_dats.c
+tests_test_sinh_OBJECTS = tests/test-sinh_dats.$(OBJEXT)
+tests_test_sinh_LDADD = $(LDADD)
 tests_test_succ_SOURCES = tests/test-succ_dats.c
 tests_test_succ_OBJECTS = tests/test-succ_dats.$(OBJEXT)
 tests_test_succ_LDADD = $(LDADD)
 tests_test_tan_SOURCES = tests/test-tan_dats.c
 tests_test_tan_OBJECTS = tests/test-tan_dats.$(OBJEXT)
 tests_test_tan_LDADD = $(LDADD)
+tests_test_tanh_SOURCES = tests/test-tanh_dats.c
+tests_test_tanh_OBJECTS = tests/test-tanh_dats.$(OBJEXT)
+tests_test_tanh_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -231,11 +241,14 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-atan2_dats.Po \
 	tests/$(DEPDIR)/test-atan_dats.Po \
 	tests/$(DEPDIR)/test-cos_dats.Po \
+	tests/$(DEPDIR)/test-cosh_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
+	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-succ_dats.Po \
-	tests/$(DEPDIR)/test-tan_dats.Po
+	tests/$(DEPDIR)/test-tan_dats.Po \
+	tests/$(DEPDIR)/test-tanh_dats.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -258,15 +271,19 @@ am__v_CCLD_1 =
 SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-asin_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-cos_dats.c tests/test-neg_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-neg_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-asin_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-cos_dats.c tests/test-neg_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-neg_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -1875,6 +1892,12 @@ tests/test-cos_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-cos$(EXEEXT): $(tests_test_cos_OBJECTS) $(tests_test_cos_DEPENDENCIES) $(EXTRA_tests_test_cos_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-cos$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_cos_OBJECTS) $(tests_test_cos_LDADD) $(LIBS)
+tests/test-cosh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-cosh$(EXEEXT): $(tests_test_cosh_OBJECTS) $(tests_test_cosh_DEPENDENCIES) $(EXTRA_tests_test_cosh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-cosh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_cosh_OBJECTS) $(tests_test_cosh_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1893,6 +1916,12 @@ tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-sin$(EXEEXT): $(tests_test_sin_OBJECTS) $(tests_test_sin_DEPENDENCIES) $(EXTRA_tests_test_sin_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-sin$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_sin_OBJECTS) $(tests_test_sin_LDADD) $(LIBS)
+tests/test-sinh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sinh$(EXEEXT): $(tests_test_sinh_OBJECTS) $(tests_test_sinh_DEPENDENCIES) $(EXTRA_tests_test_sinh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sinh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sinh_OBJECTS) $(tests_test_sinh_LDADD) $(LIBS)
 tests/test-succ_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1905,6 +1934,12 @@ tests/test-tan_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-tan$(EXEEXT): $(tests_test_tan_OBJECTS) $(tests_test_tan_DEPENDENCIES) $(EXTRA_tests_test_tan_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-tan$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_tan_OBJECTS) $(tests_test_tan_LDADD) $(LIBS)
+tests/test-tanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-tanh$(EXEEXT): $(tests_test_tanh_OBJECTS) $(tests_test_tanh_DEPENDENCIES) $(EXTRA_tests_test_tanh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-tanh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_tanh_OBJECTS) $(tests_test_tanh_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1925,11 +1960,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cos_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tanh_dats.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -2343,6 +2381,27 @@ tests/test-atan2.log: tests/test-atan2$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sinh.log: tests/test-sinh$(EXEEXT)
+	@p='tests/test-sinh$(EXEEXT)'; \
+	b='tests/test-sinh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-cosh.log: tests/test-cosh$(EXEEXT)
+	@p='tests/test-cosh$(EXEEXT)'; \
+	b='tests/test-cosh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-tanh.log: tests/test-tanh$(EXEEXT)
+	@p='tests/test-tanh$(EXEEXT)'; \
+	b='tests/test-tanh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -2600,11 +2659,14 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
 	-rm -f GNUmakefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-libtool distclean-tags
@@ -2663,11 +2725,14 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
 	-rm -f GNUmakefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
