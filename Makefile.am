@@ -98,6 +98,10 @@ check_PROGRAMS += tests/test-pred
 check_PROGRAMS += tests/test-sin
 check_PROGRAMS += tests/test-cos
 check_PROGRAMS += tests/test-tan
+check_PROGRAMS += tests/test-asin
+check_PROGRAMS += tests/test-acos
+check_PROGRAMS += tests/test-atan
+check_PROGRAMS += tests/test-atan2
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 

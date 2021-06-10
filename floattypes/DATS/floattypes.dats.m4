@@ -66,3 +66,6 @@ foreachq([t],[extra_floattypes],[implement_float([min],t)])
 dnl
 foreachq([func],[unary_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
+foreachq([func],[binary_math_functions],
+  [foreachq([t],[all_floattypes],[implement_float(func,t)])])
