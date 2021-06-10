@@ -40,12 +40,15 @@ main() =
         //
         var sign : int
         val _ = sign := 99
+        val _ = assertloc(sign = 99)
         val _ = assertloc(abs(lgamma_r(f2f(0.5), sign) - f2f(0.5723649429247)) < f2f(0.00001))
         val _ = assertloc(sign = 1)
         val _ = sign := 99
+        val _ = assertloc(sign = 99)
         val _ = assertloc(abs(lgamma_r(f2f(1.0), sign) - f2f(0.0)) < f2f(0.00001))
         val _ = assertloc(sign = 1)
         val _ = sign := 99
+        val _ = assertloc(sign = 99)
         val _ = assertloc(abs(lgamma_r(f2f(5.0), sign) - f2f(3.17805383034795)) < f2f(0.00001))
         val _ = assertloc(sign = 1)
       [#endif]
