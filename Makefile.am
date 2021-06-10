@@ -106,6 +106,9 @@ check_PROGRAMS += tests/test-atan2
 check_PROGRAMS += tests/test-sinh
 check_PROGRAMS += tests/test-cosh
 check_PROGRAMS += tests/test-tanh
+check_PROGRAMS += tests/test-asinh
+check_PROGRAMS += tests/test-acosh
+check_PROGRAMS += tests/test-atanh
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
