@@ -190,11 +190,20 @@ floattypes_$1 f3) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+define([frexplike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int *p) dnl
+{ return (floattypes_$2_$1 (f, p)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 define([jnlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
-floattypes_g0float_$2_$1 (int n, floattypes_$1 f) dnl
+floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (n, f)); }
 #endif /* HAVE_floattypes_$2_$1 */
 ])
@@ -217,6 +226,21 @@ foreachq([func],[regular_math_functions],
 [#define] floattypes_[]func[]_decimal64x func[]d64x
 [#define] floattypes_[]func[]_decimal128x func[]d128x
 ])
+
+[#define] floattypes_lgamma_r_float lgammaf_r
+[#define] floattypes_lgamma_r_double lgamma_r
+[#define] floattypes_lgamma_r_ldouble lgammal_r
+[#define] floattypes_lgamma_r_float32 lgammaf32_r
+[#define] floattypes_lgamma_r_float64 lgammaf64_r
+[#define] floattypes_lgamma_r_float128 lgammaf128_r
+[#define] floattypes_lgamma_r_decimal32 lgammad32_r
+[#define] floattypes_lgamma_r_decimal64 lgammad64_r
+[#define] floattypes_lgamma_r_decimal128 lgammad128_r
+[#define] floattypes_lgamma_r_float32x lgammaf32x_r
+[#define] floattypes_lgamma_r_float64x lgammaf64x_r
+[#define] floattypes_lgamma_r_float128x lgammaf128x_r
+[#define] floattypes_lgamma_r_decimal64x lgammad64x_r
+[#define] floattypes_lgamma_r_decimal128x lgammad128x_r
 
 foreachq([t],[extra_floattypes],[negation_op(t)])
 foreachq([t],[extra_floattypes],[abs_op(t)])
@@ -257,7 +281,14 @@ dnl
 foreachq([func],[ternary_math_functions],
   [foreachq([t],[all_floattypes],
     [ternary_fn(t,func)])])
-
+dnl
+foreachq([func],[frexplike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [frexplike_fn(t,func)])])
+dnl
+foreachq([func],[lgamma_rlike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [frexplike_fn(t,func)])])
 dnl
 foreachq([func],[jnlike_math_functions],
   [foreachq([t],[all_floattypes],

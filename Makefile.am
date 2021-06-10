@@ -124,6 +124,7 @@ check_PROGRAMS += tests/test-erf
 check_PROGRAMS += tests/test-erfc
 
 check_PROGRAMS += tests/test-lgamma
+check_PROGRAMS += tests/test-lgamma_r
 check_PROGRAMS += tests/test-tgamma
 
 check_PROGRAMS += tests/test-j0

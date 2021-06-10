@@ -70,5 +70,11 @@ dnl
 foreachq([func],[binary_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
+foreachq([func],[frexplike_math_functions],
+  [foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
+foreachq([func],[lgamma_rlike_math_functions],
+  [foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
 foreachq([func],[jnlike_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
