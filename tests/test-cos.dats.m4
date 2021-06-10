@@ -34,12 +34,12 @@ main() =
   let
     macdef c = $UN.cast
     foreachq([t],[all_floattypes],      
-      [[#if] HAVE_floattypes_sin_[]t [#then]
-       val _ = assertloc(sin(c{t}(0.0)) = c{t}(0.0))
-       val _ = assertloc(abs(sin(c{t}(1.0)) - c{t}(0.841471)) < c{t}(0.00001))
-       val _ = assertloc(abs(sin(c{t}(~1.0)) - c{t}(~0.841471)) < c{t}(0.00001))
-       val _ = assertloc(abs(sin(c{t}(5.0)) - c{t}(~0.958924)) < c{t}(0.00001))
-       val _ = assertloc(abs(sin(c{t}(~5.0)) - c{t}(0.958924)) < c{t}(0.00001))
+      [[#if] HAVE_floattypes_cos_[]t [#then]
+       val _ = assertloc(cos(c{t}(0.0)) = c{t}(1.0))
+       val _ = assertloc(abs(cos(c{t}(1.0)) - c{t}(0.540302)) < c{t}(0.00001))
+       val _ = assertloc(abs(cos(c{t}(~1.0)) - c{t}(0.540302)) < c{t}(0.00001))
+       val _ = assertloc(abs(cos(c{t}(5.0)) - c{t}(0.283662)) < c{t}(0.00001))
+       val _ = assertloc(abs(cos(c{t}(~5.0)) - c{t}(0.283662)) < c{t}(0.00001))
        [#endif]
       ])
   in

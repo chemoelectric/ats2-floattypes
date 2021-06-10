@@ -89,12 +89,15 @@ AM_DEFAULT_SOURCE_EXT = _dats.c
 TESTS += $(check_PROGRAMS)
 
 check_PROGRAMS =
+
 check_PROGRAMS += tests/test-neg
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
 check_PROGRAMS += tests/test-sin
+check_PROGRAMS += tests/test-cos
+check_PROGRAMS += tests/test-tan
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
