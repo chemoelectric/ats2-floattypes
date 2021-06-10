@@ -116,7 +116,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-atan2$(EXEEXT) tests/test-sinh$(EXEEXT) \
 	tests/test-cosh$(EXEEXT) tests/test-tanh$(EXEEXT) \
 	tests/test-asinh$(EXEEXT) tests/test-acosh$(EXEEXT) \
-	tests/test-atanh$(EXEEXT)
+	tests/test-atanh$(EXEEXT) tests/test-erf$(EXEEXT) \
+	tests/test-erfc$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -208,6 +209,12 @@ tests_test_cos_LDADD = $(LDADD)
 tests_test_cosh_SOURCES = tests/test-cosh_dats.c
 tests_test_cosh_OBJECTS = tests/test-cosh_dats.$(OBJEXT)
 tests_test_cosh_LDADD = $(LDADD)
+tests_test_erf_SOURCES = tests/test-erf_dats.c
+tests_test_erf_OBJECTS = tests/test-erf_dats.$(OBJEXT)
+tests_test_erf_LDADD = $(LDADD)
+tests_test_erfc_SOURCES = tests/test-erfc_dats.c
+tests_test_erfc_OBJECTS = tests/test-erfc_dats.$(OBJEXT)
+tests_test_erfc_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -256,6 +263,8 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-atanh_dats.Po \
 	tests/$(DEPDIR)/test-cos_dats.Po \
 	tests/$(DEPDIR)/test-cosh_dats.Po \
+	tests/$(DEPDIR)/test-erf_dats.Po \
+	tests/$(DEPDIR)/test-erfc_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
@@ -287,7 +296,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
 	tests/test-atanh_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-neg_dats.c \
+	tests/test-cosh_dats.c tests/test-erf_dats.c \
+	tests/test-erfc_dats.c tests/test-neg_dats.c \
 	tests/test-pred_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c
@@ -296,7 +306,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
 	tests/test-atanh_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-neg_dats.c \
+	tests/test-cosh_dats.c tests/test-erf_dats.c \
+	tests/test-erfc_dats.c tests/test-neg_dats.c \
 	tests/test-pred_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c
@@ -1932,6 +1943,18 @@ tests/test-cosh_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-cosh$(EXEEXT): $(tests_test_cosh_OBJECTS) $(tests_test_cosh_DEPENDENCIES) $(EXTRA_tests_test_cosh_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-cosh$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_cosh_OBJECTS) $(tests_test_cosh_LDADD) $(LIBS)
+tests/test-erf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-erf$(EXEEXT): $(tests_test_erf_OBJECTS) $(tests_test_erf_DEPENDENCIES) $(EXTRA_tests_test_erf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-erf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_erf_OBJECTS) $(tests_test_erf_LDADD) $(LIBS)
+tests/test-erfc_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-erfc$(EXEEXT): $(tests_test_erfc_OBJECTS) $(tests_test_erfc_DEPENDENCIES) $(EXTRA_tests_test_erfc_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-erfc$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_erfc_OBJECTS) $(tests_test_erfc_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1998,6 +2021,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atanh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cos_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
@@ -2460,6 +2485,20 @@ tests/test-atanh.log: tests/test-atanh$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-erf.log: tests/test-erf$(EXEEXT)
+	@p='tests/test-erf$(EXEEXT)'; \
+	b='tests/test-erf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-erfc.log: tests/test-erfc$(EXEEXT)
+	@p='tests/test-erfc$(EXEEXT)'; \
+	b='tests/test-erfc'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -2721,6 +2760,8 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
@@ -2790,6 +2831,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po

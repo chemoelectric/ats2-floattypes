@@ -110,6 +110,9 @@ check_PROGRAMS += tests/test-asinh
 check_PROGRAMS += tests/test-acosh
 check_PROGRAMS += tests/test-atanh
 
+check_PROGRAMS += tests/test-erf
+check_PROGRAMS += tests/test-erfc
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
