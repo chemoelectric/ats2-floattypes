@@ -190,6 +190,15 @@ floattypes_$1 f3) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+define([jnlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (int n, floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (n, f)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 divert[]dnl
 
 foreachq([func],[regular_math_functions],
@@ -248,5 +257,10 @@ dnl
 foreachq([func],[ternary_math_functions],
   [foreachq([t],[all_floattypes],
     [ternary_fn(t,func)])])
+
+dnl
+foreachq([func],[jnlike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [jnlike_fn(t,func)])])
 
 [#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]

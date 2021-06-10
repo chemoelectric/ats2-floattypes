@@ -54,6 +54,9 @@ define([declare_cmp],[fun g0float_$1_$2 : g0float_cmp_type($2[]_kind) = "mac#%"
 define([declare_compare],[fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = "mac#%"
 ])
 
+define([declare_jnlike],[fun g0float_$1_$2 : (int, g0float($2[]_kind)) -<fun0> g0float($2[]_kind) = "mac#%"
+])
+
 divert[]
 
 foreachq([t],[extra_floattypes],[declare_kind(t)])
@@ -82,11 +85,19 @@ foreachq([t],[extra_floattypes],[declare_aop([max],t)])
 foreachq([t],[extra_floattypes],[declare_aop([min],t)])
 dnl
 foreachq([func],[unary_math_functions],
-[foreachq([t],[all_floattypes],[declare_uop(func,t)])
+[foreachq([t],[all_floattypes],[declare_uop(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_uop_type(tk)
-overload func with g0float_[]func of default_overload_precedence])
+overload func with g0float_[]func of default_overload_precedence
+])
 dnl
 foreachq([func],[binary_math_functions],
-[foreachq([t],[all_floattypes],[declare_aop(func,t)])
+[foreachq([t],[all_floattypes],[declare_aop(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_aop_type(tk)
-overload func with g0float_[]func of default_overload_precedence])
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+foreachq([func],[jnlike_math_functions],
+[foreachq([t],[all_floattypes],[declare_jnlike(func,t)])dnl
+fun {tk : tk} g0float_[]func : (int, g0float(tk)) -<fun0> g0float(tk)
+overload func with g0float_[]func of default_overload_precedence
+])

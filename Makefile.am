@@ -123,6 +123,13 @@ check_PROGRAMS += tests/test-atanh
 check_PROGRAMS += tests/test-erf
 check_PROGRAMS += tests/test-erfc
 
+check_PROGRAMS += tests/test-j0
+check_PROGRAMS += tests/test-j1
+check_PROGRAMS += tests/test-jn
+check_PROGRAMS += tests/test-y0
+check_PROGRAMS += tests/test-y1
+check_PROGRAMS += tests/test-yn
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
