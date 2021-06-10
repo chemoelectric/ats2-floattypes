@@ -110,6 +110,8 @@ build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
+	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
+	tests/test-hypot$(EXEEXT) tests/test-pow$(EXEEXT) \
 	tests/test-sin$(EXEEXT) tests/test-cos$(EXEEXT) \
 	tests/test-tan$(EXEEXT) tests/test-asin$(EXEEXT) \
 	tests/test-acos$(EXEEXT) tests/test-atan$(EXEEXT) \
@@ -203,6 +205,9 @@ tests_test_atan2_LDADD = $(LDADD)
 tests_test_atanh_SOURCES = tests/test-atanh_dats.c
 tests_test_atanh_OBJECTS = tests/test-atanh_dats.$(OBJEXT)
 tests_test_atanh_LDADD = $(LDADD)
+tests_test_cbrt_SOURCES = tests/test-cbrt_dats.c
+tests_test_cbrt_OBJECTS = tests/test-cbrt_dats.$(OBJEXT)
+tests_test_cbrt_LDADD = $(LDADD)
 tests_test_cos_SOURCES = tests/test-cos_dats.c
 tests_test_cos_OBJECTS = tests/test-cos_dats.$(OBJEXT)
 tests_test_cos_LDADD = $(LDADD)
@@ -215,9 +220,15 @@ tests_test_erf_LDADD = $(LDADD)
 tests_test_erfc_SOURCES = tests/test-erfc_dats.c
 tests_test_erfc_OBJECTS = tests/test-erfc_dats.$(OBJEXT)
 tests_test_erfc_LDADD = $(LDADD)
+tests_test_hypot_SOURCES = tests/test-hypot_dats.c
+tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
+tests_test_hypot_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
+tests_test_pow_SOURCES = tests/test-pow_dats.c
+tests_test_pow_OBJECTS = tests/test-pow_dats.$(OBJEXT)
+tests_test_pow_LDADD = $(LDADD)
 tests_test_pred_SOURCES = tests/test-pred_dats.c
 tests_test_pred_OBJECTS = tests/test-pred_dats.$(OBJEXT)
 tests_test_pred_LDADD = $(LDADD)
@@ -227,6 +238,9 @@ tests_test_sin_LDADD = $(LDADD)
 tests_test_sinh_SOURCES = tests/test-sinh_dats.c
 tests_test_sinh_OBJECTS = tests/test-sinh_dats.$(OBJEXT)
 tests_test_sinh_LDADD = $(LDADD)
+tests_test_sqrt_SOURCES = tests/test-sqrt_dats.c
+tests_test_sqrt_OBJECTS = tests/test-sqrt_dats.$(OBJEXT)
+tests_test_sqrt_LDADD = $(LDADD)
 tests_test_succ_SOURCES = tests/test-succ_dats.c
 tests_test_succ_OBJECTS = tests/test-succ_dats.$(OBJEXT)
 tests_test_succ_LDADD = $(LDADD)
@@ -261,14 +275,18 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-atan2_dats.Po \
 	tests/$(DEPDIR)/test-atan_dats.Po \
 	tests/$(DEPDIR)/test-atanh_dats.Po \
+	tests/$(DEPDIR)/test-cbrt_dats.Po \
 	tests/$(DEPDIR)/test-cos_dats.Po \
 	tests/$(DEPDIR)/test-cosh_dats.Po \
 	tests/$(DEPDIR)/test-erf_dats.Po \
 	tests/$(DEPDIR)/test-erfc_dats.Po \
+	tests/$(DEPDIR)/test-hypot_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
+	tests/$(DEPDIR)/test-pow_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
+	tests/$(DEPDIR)/test-sqrt_dats.Po \
 	tests/$(DEPDIR)/test-succ_dats.Po \
 	tests/$(DEPDIR)/test-tan_dats.Po \
 	tests/$(DEPDIR)/test-tanh_dats.Po
@@ -295,21 +313,25 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-atanh_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-erf_dats.c \
-	tests/test-erfc_dats.c tests/test-neg_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-succ_dats.c \
+	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-erf_dats.c tests/test-erfc_dats.c \
+	tests/test-hypot_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-atanh_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-erf_dats.c \
-	tests/test-erfc_dats.c tests/test-neg_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-succ_dats.c \
+	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-erf_dats.c tests/test-erfc_dats.c \
+	tests/test-hypot_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -1931,6 +1953,12 @@ tests/test-atanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-atanh$(EXEEXT): $(tests_test_atanh_OBJECTS) $(tests_test_atanh_DEPENDENCIES) $(EXTRA_tests_test_atanh_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-atanh$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_atanh_OBJECTS) $(tests_test_atanh_LDADD) $(LIBS)
+tests/test-cbrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-cbrt$(EXEEXT): $(tests_test_cbrt_OBJECTS) $(tests_test_cbrt_DEPENDENCIES) $(EXTRA_tests_test_cbrt_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-cbrt$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_cbrt_OBJECTS) $(tests_test_cbrt_LDADD) $(LIBS)
 tests/test-cos_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1955,12 +1983,24 @@ tests/test-erfc_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-erfc$(EXEEXT): $(tests_test_erfc_OBJECTS) $(tests_test_erfc_DEPENDENCIES) $(EXTRA_tests_test_erfc_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-erfc$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_erfc_OBJECTS) $(tests_test_erfc_LDADD) $(LIBS)
+tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-hypot$(EXEEXT): $(tests_test_hypot_OBJECTS) $(tests_test_hypot_DEPENDENCIES) $(EXTRA_tests_test_hypot_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-hypot$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_hypot_OBJECTS) $(tests_test_hypot_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
 tests/test-neg$(EXEEXT): $(tests_test_neg_OBJECTS) $(tests_test_neg_DEPENDENCIES) $(EXTRA_tests_test_neg_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-neg$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_neg_OBJECTS) $(tests_test_neg_LDADD) $(LIBS)
+tests/test-pow_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-pow$(EXEEXT): $(tests_test_pow_OBJECTS) $(tests_test_pow_DEPENDENCIES) $(EXTRA_tests_test_pow_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-pow$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_pow_OBJECTS) $(tests_test_pow_LDADD) $(LIBS)
 tests/test-pred_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -1979,6 +2019,12 @@ tests/test-sinh_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-sinh$(EXEEXT): $(tests_test_sinh_OBJECTS) $(tests_test_sinh_DEPENDENCIES) $(EXTRA_tests_test_sinh_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-sinh$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_sinh_OBJECTS) $(tests_test_sinh_LDADD) $(LIBS)
+tests/test-sqrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sqrt$(EXEEXT): $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_DEPENDENCIES) $(EXTRA_tests_test_sqrt_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sqrt$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_LDADD) $(LIBS)
 tests/test-succ_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2019,14 +2065,18 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atanh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cbrt_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cos_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tanh_dats.Po@am__quote@ # am--include-marker
@@ -2390,6 +2440,34 @@ tests/test-succ.log: tests/test-succ$(EXEEXT)
 tests/test-pred.log: tests/test-pred$(EXEEXT)
 	@p='tests/test-pred$(EXEEXT)'; \
 	b='tests/test-pred'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sqrt.log: tests/test-sqrt$(EXEEXT)
+	@p='tests/test-sqrt$(EXEEXT)'; \
+	b='tests/test-sqrt'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-cbrt.log: tests/test-cbrt$(EXEEXT)
+	@p='tests/test-cbrt$(EXEEXT)'; \
+	b='tests/test-cbrt'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-hypot.log: tests/test-hypot$(EXEEXT)
+	@p='tests/test-hypot$(EXEEXT)'; \
+	b='tests/test-hypot'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-pow.log: tests/test-pow$(EXEEXT)
+	@p='tests/test-pow$(EXEEXT)'; \
+	b='tests/test-pow'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -2758,14 +2836,18 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
@@ -2829,14 +2911,18 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po

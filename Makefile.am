@@ -95,6 +95,11 @@ check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
+check_PROGRAMS += tests/test-sqrt
+check_PROGRAMS += tests/test-cbrt
+check_PROGRAMS += tests/test-hypot
+check_PROGRAMS += tests/test-pow
+
 check_PROGRAMS += tests/test-sin
 check_PROGRAMS += tests/test-cos
 check_PROGRAMS += tests/test-tan
