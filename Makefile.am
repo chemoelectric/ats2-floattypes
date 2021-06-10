@@ -123,6 +123,9 @@ check_PROGRAMS += tests/test-atanh
 check_PROGRAMS += tests/test-erf
 check_PROGRAMS += tests/test-erfc
 
+check_PROGRAMS += tests/test-lgamma
+check_PROGRAMS += tests/test-tgamma
+
 check_PROGRAMS += tests/test-j0
 check_PROGRAMS += tests/test-j1
 check_PROGRAMS += tests/test-jn

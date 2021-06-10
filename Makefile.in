@@ -121,7 +121,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
 	tests/test-cosh$(EXEEXT) tests/test-tanh$(EXEEXT) \
 	tests/test-asinh$(EXEEXT) tests/test-acosh$(EXEEXT) \
 	tests/test-atanh$(EXEEXT) tests/test-erf$(EXEEXT) \
-	tests/test-erfc$(EXEEXT) tests/test-j0$(EXEEXT) \
+	tests/test-erfc$(EXEEXT) tests/test-lgamma$(EXEEXT) \
+	tests/test-tgamma$(EXEEXT) tests/test-j0$(EXEEXT) \
 	tests/test-j1$(EXEEXT) tests/test-jn$(EXEEXT) \
 	tests/test-y0$(EXEEXT) tests/test-y1$(EXEEXT) \
 	tests/test-yn$(EXEEXT)
@@ -243,6 +244,9 @@ tests_test_j1_LDADD = $(LDADD)
 tests_test_jn_SOURCES = tests/test-jn_dats.c
 tests_test_jn_OBJECTS = tests/test-jn_dats.$(OBJEXT)
 tests_test_jn_LDADD = $(LDADD)
+tests_test_lgamma_SOURCES = tests/test-lgamma_dats.c
+tests_test_lgamma_OBJECTS = tests/test-lgamma_dats.$(OBJEXT)
+tests_test_lgamma_LDADD = $(LDADD)
 tests_test_max_SOURCES = tests/test-max_dats.c
 tests_test_max_OBJECTS = tests/test-max_dats.$(OBJEXT)
 tests_test_max_LDADD = $(LDADD)
@@ -276,6 +280,9 @@ tests_test_tan_LDADD = $(LDADD)
 tests_test_tanh_SOURCES = tests/test-tanh_dats.c
 tests_test_tanh_OBJECTS = tests/test-tanh_dats.$(OBJEXT)
 tests_test_tanh_LDADD = $(LDADD)
+tests_test_tgamma_SOURCES = tests/test-tgamma_dats.c
+tests_test_tgamma_OBJECTS = tests/test-tgamma_dats.$(OBJEXT)
+tests_test_tgamma_LDADD = $(LDADD)
 tests_test_y0_SOURCES = tests/test-y0_dats.c
 tests_test_y0_OBJECTS = tests/test-y0_dats.$(OBJEXT)
 tests_test_y0_LDADD = $(LDADD)
@@ -321,6 +328,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-j0_dats.Po \
 	tests/$(DEPDIR)/test-j1_dats.Po \
 	tests/$(DEPDIR)/test-jn_dats.Po \
+	tests/$(DEPDIR)/test-lgamma_dats.Po \
 	tests/$(DEPDIR)/test-max_dats.Po \
 	tests/$(DEPDIR)/test-min_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
@@ -332,6 +340,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-succ_dats.Po \
 	tests/$(DEPDIR)/test-tan_dats.Po \
 	tests/$(DEPDIR)/test-tanh_dats.Po \
+	tests/$(DEPDIR)/test-tgamma_dats.Po \
 	tests/$(DEPDIR)/test-y0_dats.Po \
 	tests/$(DEPDIR)/test-y1_dats.Po \
 	tests/$(DEPDIR)/test-yn_dats.Po
@@ -364,12 +373,13 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-hypot_dats.c tests/test-j0_dats.c \
 	tests/test-j1_dats.c tests/test-jn_dats.c \
-	tests/test-max_dats.c tests/test-min_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-y0_dats.c \
+	tests/test-lgamma_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-y0_dats.c \
 	tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
@@ -381,12 +391,13 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-hypot_dats.c tests/test-j0_dats.c \
 	tests/test-j1_dats.c tests/test-jn_dats.c \
-	tests/test-max_dats.c tests/test-min_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-y0_dats.c \
+	tests/test-lgamma_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-y0_dats.c \
 	tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -2074,6 +2085,12 @@ tests/test-jn_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-jn$(EXEEXT): $(tests_test_jn_OBJECTS) $(tests_test_jn_DEPENDENCIES) $(EXTRA_tests_test_jn_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-jn$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_jn_OBJECTS) $(tests_test_jn_LDADD) $(LIBS)
+tests/test-lgamma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lgamma$(EXEEXT): $(tests_test_lgamma_OBJECTS) $(tests_test_lgamma_DEPENDENCIES) $(EXTRA_tests_test_lgamma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lgamma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lgamma_OBJECTS) $(tests_test_lgamma_LDADD) $(LIBS)
 tests/test-max_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2140,6 +2157,12 @@ tests/test-tanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-tanh$(EXEEXT): $(tests_test_tanh_OBJECTS) $(tests_test_tanh_DEPENDENCIES) $(EXTRA_tests_test_tanh_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-tanh$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_tanh_OBJECTS) $(tests_test_tanh_LDADD) $(LIBS)
+tests/test-tgamma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-tgamma$(EXEEXT): $(tests_test_tgamma_OBJECTS) $(tests_test_tgamma_DEPENDENCIES) $(EXTRA_tests_test_tgamma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-tgamma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_tgamma_OBJECTS) $(tests_test_tgamma_LDADD) $(LIBS)
 tests/test-y0_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2191,6 +2214,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
@@ -2202,6 +2226,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tanh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tgamma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-yn_dats.Po@am__quote@ # am--include-marker
@@ -2730,6 +2755,20 @@ tests/test-erfc.log: tests/test-erfc$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lgamma.log: tests/test-lgamma$(EXEEXT)
+	@p='tests/test-lgamma$(EXEEXT)'; \
+	b='tests/test-lgamma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-tgamma.log: tests/test-tgamma$(EXEEXT)
+	@p='tests/test-tgamma$(EXEEXT)'; \
+	b='tests/test-tgamma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-j0.log: tests/test-j0$(EXEEXT)
 	@p='tests/test-j0$(EXEEXT)'; \
 	b='tests/test-j0'; \
@@ -3042,6 +3081,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
@@ -3053,6 +3093,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
@@ -3127,6 +3168,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
@@ -3138,6 +3180,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
