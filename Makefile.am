@@ -137,6 +137,7 @@ check_PROGRAMS += tests/test-y1
 check_PROGRAMS += tests/test-yn
 
 check_PROGRAMS += tests/test-frexp
+check_PROGRAMS += tests/test-logb
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 

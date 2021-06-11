@@ -126,7 +126,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-tgamma$(EXEEXT) tests/test-j0$(EXEEXT) \
 	tests/test-j1$(EXEEXT) tests/test-jn$(EXEEXT) \
 	tests/test-y0$(EXEEXT) tests/test-y1$(EXEEXT) \
-	tests/test-yn$(EXEEXT) tests/test-frexp$(EXEEXT)
+	tests/test-yn$(EXEEXT) tests/test-frexp$(EXEEXT) \
+	tests/test-logb$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -257,6 +258,9 @@ tests_test_lgamma_LDADD = $(LDADD)
 tests_test_lgamma_r_SOURCES = tests/test-lgamma_r_dats.c
 tests_test_lgamma_r_OBJECTS = tests/test-lgamma_r_dats.$(OBJEXT)
 tests_test_lgamma_r_LDADD = $(LDADD)
+tests_test_logb_SOURCES = tests/test-logb_dats.c
+tests_test_logb_OBJECTS = tests/test-logb_dats.$(OBJEXT)
+tests_test_logb_LDADD = $(LDADD)
 tests_test_max_SOURCES = tests/test-max_dats.c
 tests_test_max_OBJECTS = tests/test-max_dats.$(OBJEXT)
 tests_test_max_LDADD = $(LDADD)
@@ -342,6 +346,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-jn_dats.Po \
 	tests/$(DEPDIR)/test-lgamma_dats.Po \
 	tests/$(DEPDIR)/test-lgamma_r_dats.Po \
+	tests/$(DEPDIR)/test-logb_dats.Po \
 	tests/$(DEPDIR)/test-max_dats.Po \
 	tests/$(DEPDIR)/test-min_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
@@ -388,13 +393,14 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-hypot_dats.c tests/test-j0_dats.c \
 	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
-	tests/test-max_dats.c tests/test-min_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-logb_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
@@ -407,13 +413,14 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-hypot_dats.c tests/test-j0_dats.c \
 	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
-	tests/test-max_dats.c tests/test-min_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-logb_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -2138,6 +2145,12 @@ tests/test-lgamma_r_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-lgamma_r$(EXEEXT): $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_DEPENDENCIES) $(EXTRA_tests_test_lgamma_r_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-lgamma_r$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_LDADD) $(LIBS)
+tests/test-logb_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-logb$(EXEEXT): $(tests_test_logb_OBJECTS) $(tests_test_logb_DEPENDENCIES) $(EXTRA_tests_test_logb_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-logb$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_logb_OBJECTS) $(tests_test_logb_LDADD) $(LIBS)
 tests/test-max_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2265,6 +2278,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_r_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-logb_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
@@ -2882,6 +2896,13 @@ tests/test-frexp.log: tests/test-frexp$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-logb.log: tests/test-logb$(EXEEXT)
+	@p='tests/test-logb$(EXEEXT)'; \
+	b='tests/test-logb'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -3156,6 +3177,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
@@ -3246,6 +3268,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
