@@ -143,6 +143,9 @@ check_PROGRAMS += tests/test-frexp
 check_PROGRAMS += tests/test-logb
 
 check_PROGRAMS += tests/test-nan
+check_PROGRAMS += tests/test-__builtin_nans
+check_PROGRAMS += tests/test-__builtin_huge_val
+check_PROGRAMS += tests/test-__builtin_inf
 
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 

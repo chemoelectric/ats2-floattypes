@@ -29,16 +29,18 @@ divert
 
 staload UN = "prelude/SATS/unsafe.sats"
 
+macdef nans = __builtin_nans
+
 implement
 main() =
   let
     foreachq([t],[all_floattypes],      
-      [[#if] HAVE_floattypes_nan_[]t [#then]
-       val nan1 : t = nan("") (* Return type is necessary
-                                 for the overload to work. *)
-       val _ = assertloc($extfcall(bool, "isnan", nan1))
-       val nan2 = nan("") : t
-       val _ = assertloc($extfcall(bool, "isnan", nan2))
+      [[#if] HAVE_floattypes___builtin_nans_[]t [#then]
+       val nans1 : t = nans("") (* Return type is necessary
+                                   for the overload to work. *)
+       val _ = assertloc($extfcall(bool, "isnan", nans1))
+       val nans2 = nans("") : t
+       val _ = assertloc($extfcall(bool, "isnan", nans2))
        [#endif]
       ])
   in

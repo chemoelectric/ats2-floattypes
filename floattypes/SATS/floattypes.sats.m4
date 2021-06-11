@@ -42,6 +42,9 @@ typedef $1 = g0float($1_kind)
 
 ])
 
+define([declare_nullop],[fun g0float_$1_$2 : g0float_nullop_type($2[]_kind) = "mac#%"
+])
+
 define([declare_uop],[fun g0float_$1_$2 : g0float_uop_type($2[]_kind) = "mac#%"
 ])
 
@@ -67,6 +70,10 @@ define([declare_nanlike],[fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind) = 
 ])
 
 divert[]dnl
+
+(* Nullary operations. *)
+typedef g0float_nullop_type (tk : tkind) =
+  () -<fun0> g0float(tk)
 
 (* Ternary operations similar to fused-multiply-add. *)
 typedef g0float_fmaop_type (tk : tkind) =
@@ -110,6 +117,12 @@ foreachq([t],[extra_floattypes],[declare_compare([compare],t)])
 dnl
 foreachq([t],[extra_floattypes],[declare_aop([max],t)])
 foreachq([t],[extra_floattypes],[declare_aop([min],t)])
+dnl
+foreachq([func],[nullary_math_functions],
+[foreachq([t],[all_floattypes],[declare_nullop(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_nullop_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
 dnl
 foreachq([func],[unary_math_functions],
 [foreachq([t],[all_floattypes],[declare_uop(func,t)])dnl

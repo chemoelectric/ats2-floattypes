@@ -128,7 +128,9 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
 	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
 	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
-	tests/test-nan$(EXEEXT)
+	tests/test-nan$(EXEEXT) tests/test-__builtin_nans$(EXEEXT) \
+	tests/test-__builtin_huge_val$(EXEEXT) \
+	tests/test-__builtin_inf$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -190,6 +192,19 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+tests_test___builtin_huge_val_SOURCES =  \
+	tests/test-__builtin_huge_val_dats.c
+tests_test___builtin_huge_val_OBJECTS =  \
+	tests/test-__builtin_huge_val_dats.$(OBJEXT)
+tests_test___builtin_huge_val_LDADD = $(LDADD)
+tests_test___builtin_inf_SOURCES = tests/test-__builtin_inf_dats.c
+tests_test___builtin_inf_OBJECTS =  \
+	tests/test-__builtin_inf_dats.$(OBJEXT)
+tests_test___builtin_inf_LDADD = $(LDADD)
+tests_test___builtin_nans_SOURCES = tests/test-__builtin_nans_dats.c
+tests_test___builtin_nans_OBJECTS =  \
+	tests/test-__builtin_nans_dats.$(OBJEXT)
+tests_test___builtin_nans_LDADD = $(LDADD)
 tests_test_abs_SOURCES = tests/test-abs_dats.c
 tests_test_abs_OBJECTS = tests/test-abs_dats.$(OBJEXT)
 tests_test_abs_LDADD = $(LDADD)
@@ -330,6 +345,9 @@ depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo \
+	tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_inf_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_nans_dats.Po \
 	tests/$(DEPDIR)/test-abs_dats.Po \
 	tests/$(DEPDIR)/test-acos_dats.Po \
 	tests/$(DEPDIR)/test-acosh_dats.Po \
@@ -390,7 +408,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
+SOURCES = $(libats2_floattypes_la_SOURCES) \
+	tests/test-__builtin_huge_val_dats.c \
+	tests/test-__builtin_inf_dats.c \
+	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
@@ -410,7 +431,10 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
 	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
 	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
-DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
+DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
+	tests/test-__builtin_huge_val_dats.c \
+	tests/test-__builtin_inf_dats.c \
+	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
@@ -2002,6 +2026,24 @@ tests/$(am__dirstamp):
 tests/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) tests/$(DEPDIR)
 	@: > tests/$(DEPDIR)/$(am__dirstamp)
+tests/test-__builtin_huge_val_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_huge_val$(EXEEXT): $(tests_test___builtin_huge_val_OBJECTS) $(tests_test___builtin_huge_val_DEPENDENCIES) $(EXTRA_tests_test___builtin_huge_val_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_huge_val$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_huge_val_OBJECTS) $(tests_test___builtin_huge_val_LDADD) $(LIBS)
+tests/test-__builtin_inf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_inf$(EXEEXT): $(tests_test___builtin_inf_OBJECTS) $(tests_test___builtin_inf_DEPENDENCIES) $(EXTRA_tests_test___builtin_inf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_inf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_inf_OBJECTS) $(tests_test___builtin_inf_LDADD) $(LIBS)
+tests/test-__builtin_nans_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_nans$(EXEEXT): $(tests_test___builtin_nans_OBJECTS) $(tests_test___builtin_nans_DEPENDENCIES) $(EXTRA_tests_test___builtin_nans_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_nans$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_nans_OBJECTS) $(tests_test___builtin_nans_LDADD) $(LIBS)
 tests/test-abs_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2262,6 +2304,9 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_inf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_nans_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-abs_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-acos_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-acosh_dats.Po@am__quote@ # am--include-marker
@@ -2926,6 +2971,27 @@ tests/test-nan.log: tests/test-nan$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_nans.log: tests/test-__builtin_nans$(EXEEXT)
+	@p='tests/test-__builtin_nans$(EXEEXT)'; \
+	b='tests/test-__builtin_nans'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_huge_val.log: tests/test-__builtin_huge_val$(EXEEXT)
+	@p='tests/test-__builtin_huge_val$(EXEEXT)'; \
+	b='tests/test-__builtin_huge_val'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_inf.log: tests/test-__builtin_inf$(EXEEXT)
+	@p='tests/test-__builtin_inf$(EXEEXT)'; \
+	b='tests/test-__builtin_inf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -3177,6 +3243,9 @@ distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po
 	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-acos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-acosh_dats.Po
@@ -3270,6 +3339,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
+	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po
 	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-acos_dats.Po
 	-rm -f tests/$(DEPDIR)/test-acosh_dats.Po

@@ -29,16 +29,19 @@ divert
 
 staload UN = "prelude/SATS/unsafe.sats"
 
+macdef huge_val = __builtin_huge_val
+
 implement
 main() =
   let
     foreachq([t],[all_floattypes],      
-      [[#if] HAVE_floattypes_nan_[]t [#then]
-       val nan1 : t = nan("") (* Return type is necessary
-                                 for the overload to work. *)
-       val _ = assertloc($extfcall(bool, "isnan", nan1))
-       val nan2 = nan("") : t
-       val _ = assertloc($extfcall(bool, "isnan", nan2))
+      [[#if] HAVE_floattypes___builtin_huge_val_[]t [#then]
+       macdef f2f = $UN.cast{t}
+       val huge_val1 : t = huge_val() (* Return type is necessary
+                                         for the overload to work. *)
+       val _ = assertloc(f2f(1e20) < huge_val1)
+       val huge_val2 = huge_val() : t
+       val _ = assertloc(f2f(1e20) < huge_val2)
        [#endif]
       ])
   in
