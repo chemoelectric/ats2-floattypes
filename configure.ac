@@ -89,7 +89,8 @@ AC_DEFUN([MY_MATH_HEADERS],
 ]])
 
 AC_DEFUN([MY_CHECK_FLOAT_TYPE],
-  [AC_CACHE_CHECK([for floating point type $1],
+  [if :;then
+   AC_CACHE_CHECK([for floating point type $1],
                   [AS_TR_SH([my_cv_float_type_$1])],
     [AC_COMPILE_IFELSE([
       AC_LANG_PROGRAM(
@@ -101,13 +102,16 @@ AC_DEFUN([MY_CHECK_FLOAT_TYPE],
         ]])],
         [AS_TR_SH([my_cv_float_type_$1])=yes],
         [AS_TR_SH([my_cv_float_type_$1])=no])])
-    case x"${AS_TR_SH([my_cv_float_type_$1])}" in
-      xyes) $2 ;;
-      *)    $3 ;;
-    esac])
+   case x"${AS_TR_SH([my_cv_float_type_$1])}" in
+     xyes) $2 ;;
+     *)    $3 ;;
+   esac
+   fi
+])
 
 AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
-  [AC_CACHE_CHECK([suffix for $1 literals],
+  [if :; then
+   AC_CACHE_CHECK([suffix for $1 literals],
                   [AS_TR_SH([my_cv_float_suffix_$1])],
     [AS_TR_SH([my_cv_float_suffix_$1])=
      if test "[$]{AS_TR_SH([HAVE_floattypes_$1])}" = 1; then
@@ -131,10 +135,13 @@ AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
      fi
     ])
    AC_SUBST(AS_TR_SH([FLOAT_SUFFIX_$1],dnl
-           AS_TR_SH([${my_cv_float_suffix_$1}])))])
+           AS_TR_SH([${my_cv_float_suffix_$1}])))
+   fi
+])
 
 AC_DEFUN([MY_CHECK_MATH_FUNC],
-  [AC_CACHE_CHECK([for math function $1],
+  [if :; then
+   AC_CACHE_CHECK([for math function $1],
                   [AS_TR_SH([my_cv_math_func_$1])],
     [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
        AS_ECHO_N(["($5) "])
@@ -179,10 +186,13 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
    case x"${AS_TR_SH([my_cv_math_func_$1])}" in
      xyes) $3 ;;
      *)    $4 ;;
-   esac])
+   esac
+   fi
+])
 
 AC_DEFUN([MY_CHECK_FLOAT_CONSTANT],
-  [AC_CACHE_CHECK([for math constant $1],
+  [if :; then
+   AC_CACHE_CHECK([for math constant $1],
                   [AS_TR_SH([my_cv_float_const_$1])],
     [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
        AS_ECHO_N(["($5) "])
@@ -201,7 +211,9 @@ AC_DEFUN([MY_CHECK_FLOAT_CONSTANT],
    case x"${AS_TR_SH([my_cv_float_const_$1])}" in
      xyes) $3 ;;
      *)    $4 ;;
-   esac])
+   esac
+   fi
+])
 
 #--------------------------------------------------------------------------
 #

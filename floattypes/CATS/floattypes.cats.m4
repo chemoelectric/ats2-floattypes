@@ -210,6 +210,19 @@ floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 
 divert[]dnl
 
+[#ifdef __GLIBC__]
+
+/* A workaround for GNU systems that do not declare
+   prototypes for fabsd32, fabsd64, etc. */
+
+foreachq([size],[32,64,128,64x,128x],dnl
+[[#if HAVE_floattypes_fabs_decimal]size
+[_Decimal]size[ fabsd]size[ (_Decimal]size[);]
+[#endif]
+])
+dnl
+[#endif]
+
 foreachq([func],[regular_math_functions],
 [[#define] floattypes_[]func[]_float func[]f
 [#define] floattypes_[]func[]_double func

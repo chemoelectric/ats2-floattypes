@@ -34,9 +34,9 @@ main() =
   let
     foreachq([t],[all_floattypes],
       [[#if] HAVE_floattypes_succ_[]t [#then]
-        val _ = assertloc(succ ($UN.cast{t}(~1.0)) = $UN.cast{t}(0.0))
-        val _ = assertloc(succ ($UN.cast{t}(~0.0)) = $UN.cast{t}(1.0))
-        val _ = assertloc(succ ($UN.cast{t}(1234.567E+3)) = $UN.cast{t}(1234.568E+3))
+        val _ = assertloc(succ($UN.cast{t}(~1.0)) = $UN.cast{t}(0.0))
+        val _ = assertloc(succ($UN.cast{t}(~0.0)) = $UN.cast{t}(1.0))
+        val _ = assertloc(succ($UN.cast{t}(1234.567E+3)) = $UN.cast{t}(1234.568E+3))
       [#endif]
       ])
   in

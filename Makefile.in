@@ -108,25 +108,25 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-abs$(EXEEXT) \
-	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
-	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
-	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
-	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
-	tests/test-hypot$(EXEEXT) tests/test-pow$(EXEEXT) \
-	tests/test-sin$(EXEEXT) tests/test-cos$(EXEEXT) \
-	tests/test-tan$(EXEEXT) tests/test-asin$(EXEEXT) \
-	tests/test-acos$(EXEEXT) tests/test-atan$(EXEEXT) \
-	tests/test-atan2$(EXEEXT) tests/test-sinh$(EXEEXT) \
-	tests/test-cosh$(EXEEXT) tests/test-tanh$(EXEEXT) \
-	tests/test-asinh$(EXEEXT) tests/test-acosh$(EXEEXT) \
-	tests/test-atanh$(EXEEXT) tests/test-erf$(EXEEXT) \
-	tests/test-erfc$(EXEEXT) tests/test-lgamma$(EXEEXT) \
-	tests/test-lgamma_r$(EXEEXT) tests/test-tgamma$(EXEEXT) \
-	tests/test-j0$(EXEEXT) tests/test-j1$(EXEEXT) \
-	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
-	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
-	tests/test-frexp$(EXEEXT)
+check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
+	tests/test-pred$(EXEEXT) tests/test-abs$(EXEEXT) \
+	tests/test-fabs$(EXEEXT) tests/test-min$(EXEEXT) \
+	tests/test-max$(EXEEXT) tests/test-fmin$(EXEEXT) \
+	tests/test-fmax$(EXEEXT) tests/test-sqrt$(EXEEXT) \
+	tests/test-cbrt$(EXEEXT) tests/test-hypot$(EXEEXT) \
+	tests/test-pow$(EXEEXT) tests/test-sin$(EXEEXT) \
+	tests/test-cos$(EXEEXT) tests/test-tan$(EXEEXT) \
+	tests/test-asin$(EXEEXT) tests/test-acos$(EXEEXT) \
+	tests/test-atan$(EXEEXT) tests/test-atan2$(EXEEXT) \
+	tests/test-sinh$(EXEEXT) tests/test-cosh$(EXEEXT) \
+	tests/test-tanh$(EXEEXT) tests/test-asinh$(EXEEXT) \
+	tests/test-acosh$(EXEEXT) tests/test-atanh$(EXEEXT) \
+	tests/test-erf$(EXEEXT) tests/test-erfc$(EXEEXT) \
+	tests/test-lgamma$(EXEEXT) tests/test-lgamma_r$(EXEEXT) \
+	tests/test-tgamma$(EXEEXT) tests/test-j0$(EXEEXT) \
+	tests/test-j1$(EXEEXT) tests/test-jn$(EXEEXT) \
+	tests/test-y0$(EXEEXT) tests/test-y1$(EXEEXT) \
+	tests/test-yn$(EXEEXT) tests/test-frexp$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -227,6 +227,9 @@ tests_test_erf_LDADD = $(LDADD)
 tests_test_erfc_SOURCES = tests/test-erfc_dats.c
 tests_test_erfc_OBJECTS = tests/test-erfc_dats.$(OBJEXT)
 tests_test_erfc_LDADD = $(LDADD)
+tests_test_fabs_SOURCES = tests/test-fabs_dats.c
+tests_test_fabs_OBJECTS = tests/test-fabs_dats.$(OBJEXT)
+tests_test_fabs_LDADD = $(LDADD)
 tests_test_fmax_SOURCES = tests/test-fmax_dats.c
 tests_test_fmax_OBJECTS = tests/test-fmax_dats.$(OBJEXT)
 tests_test_fmax_LDADD = $(LDADD)
@@ -329,6 +332,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-cosh_dats.Po \
 	tests/$(DEPDIR)/test-erf_dats.Po \
 	tests/$(DEPDIR)/test-erfc_dats.Po \
+	tests/$(DEPDIR)/test-fabs_dats.Po \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
 	tests/$(DEPDIR)/test-frexp_dats.Po \
@@ -379,9 +383,10 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fabs_dats.c tests/test-fmax_dats.c \
+	tests/test-fmin_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-max_dats.c tests/test-min_dats.c \
 	tests/test-neg_dats.c tests/test-pow_dats.c \
@@ -397,9 +402,10 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fabs_dats.c tests/test-fmax_dats.c \
+	tests/test-fmin_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-max_dats.c tests/test-min_dats.c \
 	tests/test-neg_dats.c tests/test-pow_dats.c \
@@ -1043,6 +1049,20 @@ HAVE_floattypes_expm1_float32x = @HAVE_floattypes_expm1_float32x@
 HAVE_floattypes_expm1_float64 = @HAVE_floattypes_expm1_float64@
 HAVE_floattypes_expm1_float64x = @HAVE_floattypes_expm1_float64x@
 HAVE_floattypes_expm1_ldouble = @HAVE_floattypes_expm1_ldouble@
+HAVE_floattypes_fabs_decimal128 = @HAVE_floattypes_fabs_decimal128@
+HAVE_floattypes_fabs_decimal128x = @HAVE_floattypes_fabs_decimal128x@
+HAVE_floattypes_fabs_decimal32 = @HAVE_floattypes_fabs_decimal32@
+HAVE_floattypes_fabs_decimal64 = @HAVE_floattypes_fabs_decimal64@
+HAVE_floattypes_fabs_decimal64x = @HAVE_floattypes_fabs_decimal64x@
+HAVE_floattypes_fabs_double = @HAVE_floattypes_fabs_double@
+HAVE_floattypes_fabs_float = @HAVE_floattypes_fabs_float@
+HAVE_floattypes_fabs_float128 = @HAVE_floattypes_fabs_float128@
+HAVE_floattypes_fabs_float128x = @HAVE_floattypes_fabs_float128x@
+HAVE_floattypes_fabs_float32 = @HAVE_floattypes_fabs_float32@
+HAVE_floattypes_fabs_float32x = @HAVE_floattypes_fabs_float32x@
+HAVE_floattypes_fabs_float64 = @HAVE_floattypes_fabs_float64@
+HAVE_floattypes_fabs_float64x = @HAVE_floattypes_fabs_float64x@
+HAVE_floattypes_fabs_ldouble = @HAVE_floattypes_fabs_ldouble@
 HAVE_floattypes_fdim_decimal128 = @HAVE_floattypes_fdim_decimal128@
 HAVE_floattypes_fdim_decimal128x = @HAVE_floattypes_fdim_decimal128x@
 HAVE_floattypes_fdim_decimal32 = @HAVE_floattypes_fdim_decimal32@
@@ -2058,6 +2078,12 @@ tests/test-erfc_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-erfc$(EXEEXT): $(tests_test_erfc_OBJECTS) $(tests_test_erfc_DEPENDENCIES) $(EXTRA_tests_test_erfc_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-erfc$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_erfc_OBJECTS) $(tests_test_erfc_LDADD) $(LIBS)
+tests/test-fabs_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fabs$(EXEEXT): $(tests_test_fabs_OBJECTS) $(tests_test_fabs_DEPENDENCIES) $(EXTRA_tests_test_fabs_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fabs$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fabs_OBJECTS) $(tests_test_fabs_LDADD) $(LIBS)
 tests/test-fmax_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2229,6 +2255,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fabs_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
@@ -2596,13 +2623,6 @@ tests/test-neg.log: tests/test-neg$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-tests/test-abs.log: tests/test-abs$(EXEEXT)
-	@p='tests/test-abs$(EXEEXT)'; \
-	b='tests/test-abs'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-succ.log: tests/test-succ$(EXEEXT)
 	@p='tests/test-succ$(EXEEXT)'; \
 	b='tests/test-succ'; \
@@ -2613,6 +2633,20 @@ tests/test-succ.log: tests/test-succ$(EXEEXT)
 tests/test-pred.log: tests/test-pred$(EXEEXT)
 	@p='tests/test-pred$(EXEEXT)'; \
 	b='tests/test-pred'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-abs.log: tests/test-abs$(EXEEXT)
+	@p='tests/test-abs$(EXEEXT)'; \
+	b='tests/test-abs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fabs.log: tests/test-fabs$(EXEEXT)
+	@p='tests/test-fabs$(EXEEXT)'; \
+	b='tests/test-fabs'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3112,6 +3146,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
@@ -3201,6 +3236,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po

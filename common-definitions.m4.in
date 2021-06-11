@@ -80,7 +80,8 @@ m4_define([the_nullary_math_functions],
   [remove_commas([nullary_math_functions])])
 
 m4_define([unary_math_functions],
-  [ceil, floor, trunc, round, rint, nearbyint,
+  [fabs,
+   ceil, floor, trunc, round, rint, nearbyint,
    sqrt, cbrt,
    exp, exp2, exp10, expm1,
    log, log2, log10, log1p,
