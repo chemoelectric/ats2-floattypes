@@ -29,6 +29,7 @@ dnl
 
 [#include "floattypes/HATS/config.hats"]
 [#include <math.h>]
+[#include <fenv.h>]
 [#include <stdlib.h>]
 
 _Static_assert(sizeof (atstype_float) == sizeof (float),
@@ -190,6 +191,24 @@ floattypes_$1 f3) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+define([lroundlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_lint dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
+define([llroundlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_llint dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 define([frexplike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -310,6 +329,14 @@ dnl
 foreachq([func],[ternary_math_functions],
   [foreachq([t],[all_floattypes],
     [ternary_fn(t,func)])])
+dnl
+foreachq([func],[lroundlike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [lroundlike_fn(t,func)])])
+dnl
+foreachq([func],[llroundlike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [llroundlike_fn(t,func)])])
 dnl
 foreachq([func],[frexplike_math_functions],
   [foreachq([t],[all_floattypes],

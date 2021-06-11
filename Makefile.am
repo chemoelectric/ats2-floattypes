@@ -100,6 +100,11 @@ check_PROGRAMS += tests/test-fma
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-fabs
 
+check_PROGRAMS += tests/test-nearbyint
+check_PROGRAMS += tests/test-rint
+check_PROGRAMS += tests/test-lrint
+check_PROGRAMS += tests/test-llrint
+
 check_PROGRAMS += tests/test-min
 check_PROGRAMS += tests/test-max
 check_PROGRAMS += tests/test-fmin

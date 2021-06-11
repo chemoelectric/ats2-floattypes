@@ -60,6 +60,12 @@ define([declare_cmp],[fun g0float_$1_$2 : g0float_cmp_type($2[]_kind) = "mac#%"
 define([declare_compare],[fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = "mac#%"
 ])
 
+define([declare_lroundlike],[fun g0float_$1_$2 : g0float_lroundlike_type($2[]_kind) = "mac#%"
+])
+
+define([declare_llroundlike],[fun g0float_$1_$2 : g0float_llroundlike_type($2[]_kind) = "mac#%"
+])
+
 define([declare_frexplike],[fun g0float_$1_$2 : g0float_frexplike_type($2[]_kind) = "mac#%"
 ])
 
@@ -78,6 +84,16 @@ typedef g0float_nullop_type (tk : tkind) =
 (* Ternary operations similar to fused-multiply-add. *)
 typedef g0float_fmaop_type (tk : tkind) =
   (g0float(tk), g0float(tk), g0float(tk)) -<fun0> g0float(tk)
+
+(* Operations taking a floating-point value and returning
+   a lint. *)
+typedef g0float_lroundlike_type (tk : tkind) =
+  (g0float(tk)) -<fun0> lint
+
+(* Operations taking a floating-point value and returning
+   a llint. *)
+typedef g0float_llroundlike_type (tk : tkind) =
+  (g0float(tk)) -<fun0> llint
 
 (* Unary operations returning a floating-point value, but also
    an integer as side effect by reference. *)
@@ -139,6 +155,20 @@ dnl
 foreachq([func],[ternary_math_functions],
 [foreachq([t],[all_floattypes],[declare_fmaop(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_fmaop_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+foreachq([func],[lroundlike_math_functions],
+[foreachq([t],[all_floattypes],[declare_lroundlike(func,t)])dnl
+fun {tk : tk} dnl
+g0float_[]func : g0float_lroundlike_type(tk) = "mac#%"
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+foreachq([func],[llroundlike_math_functions],
+[foreachq([t],[all_floattypes],[declare_llroundlike(func,t)])dnl
+fun {tk : tk} dnl
+g0float_[]func : g0float_llroundlike_type(tk) = "mac#%"
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl

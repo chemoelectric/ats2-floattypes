@@ -111,6 +111,8 @@ host_triplet = @host@
 check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-pred$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-abs$(EXEEXT) tests/test-fabs$(EXEEXT) \
+	tests/test-nearbyint$(EXEEXT) tests/test-rint$(EXEEXT) \
+	tests/test-lrint$(EXEEXT) tests/test-llrint$(EXEEXT) \
 	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
 	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
 	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
@@ -277,9 +279,15 @@ tests_test_lgamma_LDADD = $(LDADD)
 tests_test_lgamma_r_SOURCES = tests/test-lgamma_r_dats.c
 tests_test_lgamma_r_OBJECTS = tests/test-lgamma_r_dats.$(OBJEXT)
 tests_test_lgamma_r_LDADD = $(LDADD)
+tests_test_llrint_SOURCES = tests/test-llrint_dats.c
+tests_test_llrint_OBJECTS = tests/test-llrint_dats.$(OBJEXT)
+tests_test_llrint_LDADD = $(LDADD)
 tests_test_logb_SOURCES = tests/test-logb_dats.c
 tests_test_logb_OBJECTS = tests/test-logb_dats.$(OBJEXT)
 tests_test_logb_LDADD = $(LDADD)
+tests_test_lrint_SOURCES = tests/test-lrint_dats.c
+tests_test_lrint_OBJECTS = tests/test-lrint_dats.$(OBJEXT)
+tests_test_lrint_LDADD = $(LDADD)
 tests_test_max_SOURCES = tests/test-max_dats.c
 tests_test_max_OBJECTS = tests/test-max_dats.$(OBJEXT)
 tests_test_max_LDADD = $(LDADD)
@@ -289,6 +297,9 @@ tests_test_min_LDADD = $(LDADD)
 tests_test_nan_SOURCES = tests/test-nan_dats.c
 tests_test_nan_OBJECTS = tests/test-nan_dats.$(OBJEXT)
 tests_test_nan_LDADD = $(LDADD)
+tests_test_nearbyint_SOURCES = tests/test-nearbyint_dats.c
+tests_test_nearbyint_OBJECTS = tests/test-nearbyint_dats.$(OBJEXT)
+tests_test_nearbyint_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -298,6 +309,9 @@ tests_test_pow_LDADD = $(LDADD)
 tests_test_pred_SOURCES = tests/test-pred_dats.c
 tests_test_pred_OBJECTS = tests/test-pred_dats.$(OBJEXT)
 tests_test_pred_LDADD = $(LDADD)
+tests_test_rint_SOURCES = tests/test-rint_dats.c
+tests_test_rint_OBJECTS = tests/test-rint_dats.$(OBJEXT)
+tests_test_rint_LDADD = $(LDADD)
 tests_test_sin_SOURCES = tests/test-sin_dats.c
 tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
 tests_test_sin_LDADD = $(LDADD)
@@ -372,13 +386,17 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-jn_dats.Po \
 	tests/$(DEPDIR)/test-lgamma_dats.Po \
 	tests/$(DEPDIR)/test-lgamma_r_dats.Po \
+	tests/$(DEPDIR)/test-llrint_dats.Po \
 	tests/$(DEPDIR)/test-logb_dats.Po \
+	tests/$(DEPDIR)/test-lrint_dats.Po \
 	tests/$(DEPDIR)/test-max_dats.Po \
 	tests/$(DEPDIR)/test-min_dats.Po \
 	tests/$(DEPDIR)/test-nan_dats.Po \
+	tests/$(DEPDIR)/test-nearbyint_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pow_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
+	tests/$(DEPDIR)/test-rint_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-sqrt_dats.Po \
@@ -423,10 +441,12 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-frexp_dats.c tests/test-hypot_dats.c \
 	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
-	tests/test-logb_dats.c tests/test-max_dats.c \
+	tests/test-llrint_dats.c tests/test-logb_dats.c \
+	tests/test-lrint_dats.c tests/test-max_dats.c \
 	tests/test-min_dats.c tests/test-nan_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-rint_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
 	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
@@ -446,10 +466,12 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-frexp_dats.c tests/test-hypot_dats.c \
 	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
-	tests/test-logb_dats.c tests/test-max_dats.c \
+	tests/test-llrint_dats.c tests/test-logb_dats.c \
+	tests/test-lrint_dats.c tests/test-max_dats.c \
 	tests/test-min_dats.c tests/test-nan_dats.c \
-	tests/test-neg_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-sin_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-rint_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
 	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
@@ -2188,12 +2210,24 @@ tests/test-lgamma_r_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-lgamma_r$(EXEEXT): $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_DEPENDENCIES) $(EXTRA_tests_test_lgamma_r_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-lgamma_r$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_LDADD) $(LIBS)
+tests/test-llrint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-llrint$(EXEEXT): $(tests_test_llrint_OBJECTS) $(tests_test_llrint_DEPENDENCIES) $(EXTRA_tests_test_llrint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-llrint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_llrint_OBJECTS) $(tests_test_llrint_LDADD) $(LIBS)
 tests/test-logb_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
 tests/test-logb$(EXEEXT): $(tests_test_logb_OBJECTS) $(tests_test_logb_DEPENDENCIES) $(EXTRA_tests_test_logb_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-logb$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_logb_OBJECTS) $(tests_test_logb_LDADD) $(LIBS)
+tests/test-lrint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lrint$(EXEEXT): $(tests_test_lrint_OBJECTS) $(tests_test_lrint_DEPENDENCIES) $(EXTRA_tests_test_lrint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lrint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lrint_OBJECTS) $(tests_test_lrint_LDADD) $(LIBS)
 tests/test-max_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2212,6 +2246,12 @@ tests/test-nan_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-nan$(EXEEXT): $(tests_test_nan_OBJECTS) $(tests_test_nan_DEPENDENCIES) $(EXTRA_tests_test_nan_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-nan$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_nan_OBJECTS) $(tests_test_nan_LDADD) $(LIBS)
+tests/test-nearbyint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nearbyint$(EXEEXT): $(tests_test_nearbyint_OBJECTS) $(tests_test_nearbyint_DEPENDENCIES) $(EXTRA_tests_test_nearbyint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nearbyint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nearbyint_OBJECTS) $(tests_test_nearbyint_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2230,6 +2270,12 @@ tests/test-pred_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-pred$(EXEEXT): $(tests_test_pred_OBJECTS) $(tests_test_pred_DEPENDENCIES) $(EXTRA_tests_test_pred_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-pred$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_pred_OBJECTS) $(tests_test_pred_LDADD) $(LIBS)
+tests/test-rint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-rint$(EXEEXT): $(tests_test_rint_OBJECTS) $(tests_test_rint_DEPENDENCIES) $(EXTRA_tests_test_rint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-rint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_rint_OBJECTS) $(tests_test_rint_LDADD) $(LIBS)
 tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2331,13 +2377,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_r_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-llrint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-logb_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lrint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nearbyint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-rint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
@@ -2722,6 +2772,34 @@ tests/test-abs.log: tests/test-abs$(EXEEXT)
 tests/test-fabs.log: tests/test-fabs$(EXEEXT)
 	@p='tests/test-fabs$(EXEEXT)'; \
 	b='tests/test-fabs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nearbyint.log: tests/test-nearbyint$(EXEEXT)
+	@p='tests/test-nearbyint$(EXEEXT)'; \
+	b='tests/test-nearbyint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-rint.log: tests/test-rint$(EXEEXT)
+	@p='tests/test-rint$(EXEEXT)'; \
+	b='tests/test-rint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lrint.log: tests/test-lrint$(EXEEXT)
+	@p='tests/test-lrint$(EXEEXT)'; \
+	b='tests/test-lrint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-llrint.log: tests/test-llrint$(EXEEXT)
+	@p='tests/test-llrint$(EXEEXT)'; \
+	b='tests/test-llrint'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3270,13 +3348,17 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llrint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lrint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
@@ -3366,13 +3448,17 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llrint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lrint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
