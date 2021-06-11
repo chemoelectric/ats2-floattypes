@@ -208,16 +208,32 @@ floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+define([nanlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (atstype_string s) dnl
+{ return (floattypes_$2_$1 ((const char *) s)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 divert[]dnl
 
 [#ifdef __GLIBC__]
 
-/* A workaround for GNU systems that do not declare
-   prototypes for fabsd32, fabsd64, etc. */
+/* A workaround for glibc systems that do not declare
+   prototypes for GCC’s builtin decimal floating-point
+   functions. */
 
 foreachq([size],[32,64,128,64x,128x],dnl
 [[#if HAVE_floattypes_fabs_decimal]size
 [_Decimal]size[ fabsd]size[ (_Decimal]size[);]
+[#endif]
+])
+dnl
+foreachq([size],[32,64,128,64x,128x],dnl
+[[#if HAVE_floattypes_nan_decimal]size
+[_Decimal]size[ nand]size[ (const char *);]
 [#endif]
 ])
 dnl
@@ -306,5 +322,9 @@ dnl
 foreachq([func],[jnlike_math_functions],
   [foreachq([t],[all_floattypes],
     [jnlike_fn(t,func)])])
+dnl
+foreachq([func],[nanlike_math_functions],
+  [foreachq([t],[all_floattypes],
+    [nanlike_fn(t,func)])])
 
 [#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]

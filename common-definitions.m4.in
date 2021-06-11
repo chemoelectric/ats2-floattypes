@@ -148,7 +148,7 @@ m4_define([the_remquolike_math_functions],
   [remove_commas([remquolike_math_functions])])
 
 m4_define([nanlike_math_functions],
-  [nan, __builtin_nan, __builtin_nans])
+  [nan, __builtin_nans])
 m4_define([the_nanlike_math_functions],
   [remove_commas([nanlike_math_functions])])
 

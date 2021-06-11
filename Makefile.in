@@ -127,7 +127,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-j0$(EXEEXT) tests/test-j1$(EXEEXT) \
 	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
 	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
-	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT)
+	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
+	tests/test-nan$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -270,6 +271,9 @@ tests_test_max_LDADD = $(LDADD)
 tests_test_min_SOURCES = tests/test-min_dats.c
 tests_test_min_OBJECTS = tests/test-min_dats.$(OBJEXT)
 tests_test_min_LDADD = $(LDADD)
+tests_test_nan_SOURCES = tests/test-nan_dats.c
+tests_test_nan_OBJECTS = tests/test-nan_dats.$(OBJEXT)
+tests_test_nan_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
@@ -353,6 +357,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-logb_dats.Po \
 	tests/$(DEPDIR)/test-max_dats.Po \
 	tests/$(DEPDIR)/test-min_dats.Po \
+	tests/$(DEPDIR)/test-nan_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
 	tests/$(DEPDIR)/test-pow_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
@@ -398,13 +403,13 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-logb_dats.c tests/test-max_dats.c \
-	tests/test-min_dats.c tests/test-neg_dats.c \
-	tests/test-pow_dats.c tests/test-pred_dats.c \
-	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-sqrt_dats.c tests/test-succ_dats.c \
-	tests/test-tan_dats.c tests/test-tanh_dats.c \
-	tests/test-tgamma_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-min_dats.c tests/test-nan_dats.c \
+	tests/test-neg_dats.c tests/test-pow_dats.c \
+	tests/test-pred_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
@@ -418,13 +423,13 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-abs_dats.c \
 	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-logb_dats.c tests/test-max_dats.c \
-	tests/test-min_dats.c tests/test-neg_dats.c \
-	tests/test-pow_dats.c tests/test-pred_dats.c \
-	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-sqrt_dats.c tests/test-succ_dats.c \
-	tests/test-tan_dats.c tests/test-tanh_dats.c \
-	tests/test-tgamma_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-min_dats.c tests/test-nan_dats.c \
+	tests/test-neg_dats.c tests/test-pow_dats.c \
+	tests/test-pred_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -774,20 +779,6 @@ HAVE_floattypes___builtin_inf_float32x = @HAVE_floattypes___builtin_inf_float32x
 HAVE_floattypes___builtin_inf_float64 = @HAVE_floattypes___builtin_inf_float64@
 HAVE_floattypes___builtin_inf_float64x = @HAVE_floattypes___builtin_inf_float64x@
 HAVE_floattypes___builtin_inf_ldouble = @HAVE_floattypes___builtin_inf_ldouble@
-HAVE_floattypes___builtin_nan_decimal128 = @HAVE_floattypes___builtin_nan_decimal128@
-HAVE_floattypes___builtin_nan_decimal128x = @HAVE_floattypes___builtin_nan_decimal128x@
-HAVE_floattypes___builtin_nan_decimal32 = @HAVE_floattypes___builtin_nan_decimal32@
-HAVE_floattypes___builtin_nan_decimal64 = @HAVE_floattypes___builtin_nan_decimal64@
-HAVE_floattypes___builtin_nan_decimal64x = @HAVE_floattypes___builtin_nan_decimal64x@
-HAVE_floattypes___builtin_nan_double = @HAVE_floattypes___builtin_nan_double@
-HAVE_floattypes___builtin_nan_float = @HAVE_floattypes___builtin_nan_float@
-HAVE_floattypes___builtin_nan_float128 = @HAVE_floattypes___builtin_nan_float128@
-HAVE_floattypes___builtin_nan_float128x = @HAVE_floattypes___builtin_nan_float128x@
-HAVE_floattypes___builtin_nan_float32 = @HAVE_floattypes___builtin_nan_float32@
-HAVE_floattypes___builtin_nan_float32x = @HAVE_floattypes___builtin_nan_float32x@
-HAVE_floattypes___builtin_nan_float64 = @HAVE_floattypes___builtin_nan_float64@
-HAVE_floattypes___builtin_nan_float64x = @HAVE_floattypes___builtin_nan_float64x@
-HAVE_floattypes___builtin_nan_ldouble = @HAVE_floattypes___builtin_nan_ldouble@
 HAVE_floattypes___builtin_nans_decimal128 = @HAVE_floattypes___builtin_nans_decimal128@
 HAVE_floattypes___builtin_nans_decimal128x = @HAVE_floattypes___builtin_nans_decimal128x@
 HAVE_floattypes___builtin_nans_decimal32 = @HAVE_floattypes___builtin_nans_decimal32@
@@ -2173,6 +2164,12 @@ tests/test-min_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-min$(EXEEXT): $(tests_test_min_OBJECTS) $(tests_test_min_DEPENDENCIES) $(EXTRA_tests_test_min_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-min$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_min_OBJECTS) $(tests_test_min_LDADD) $(LIBS)
+tests/test-nan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nan$(EXEEXT): $(tests_test_nan_OBJECTS) $(tests_test_nan_DEPENDENCIES) $(EXTRA_tests_test_nan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nan_OBJECTS) $(tests_test_nan_LDADD) $(LIBS)
 tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2292,6 +2289,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-logb_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
@@ -2921,6 +2919,13 @@ tests/test-logb.log: tests/test-logb$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nan.log: tests/test-nan$(EXEEXT)
+	@p='tests/test-nan$(EXEEXT)'; \
+	b='tests/test-nan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -3199,6 +3204,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
@@ -3291,6 +3297,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po

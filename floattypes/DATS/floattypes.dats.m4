@@ -81,3 +81,6 @@ foreachq([func],[lgamma_rlike_math_functions],
 dnl
 foreachq([func],[jnlike_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
+foreachq([func],[nanlike_math_functions],
+  [foreachq([t],[all_floattypes],[implement_float(func,t)])])

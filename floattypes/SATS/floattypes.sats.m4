@@ -63,6 +63,9 @@ define([declare_frexplike],[fun g0float_$1_$2 : g0float_frexplike_type($2[]_kind
 define([declare_jnlike],[fun g0float_$1_$2 : g0float_jnlike_type($2[]_kind) = "mac#%"
 ])
 
+define([declare_nanlike],[fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind) = "mac#%"
+])
+
 divert[]dnl
 
 (* Ternary operations similar to fused-multiply-add. *)
@@ -74,9 +77,13 @@ typedef g0float_fmaop_type (tk : tkind) =
 typedef g0float_frexplike_type (tk : tkind) =
   (g0float(tk), &int? >> int) -<fun0> g0float(tk)
 
-(* An operation similar to C’s ‘jn’ and ‘yn’ functions. *)
+(* An operation similar to C's 'jn' and 'yn' functions. *)
 typedef g0float_jnlike_type (tk : tkind) =
   (int, g0float(tk)) -<fun0> g0float(tk)
+
+(* An operation similar to C's 'nan' function. *)
+typedef g0float_nanlike_type (tk : tkind) =
+  (String0) -<fun0> g0float(tk)
 
 
 foreachq([t],[extra_floattypes],[declare_kind(t)])
@@ -139,5 +146,11 @@ dnl
 foreachq([func],[jnlike_math_functions],
 [foreachq([t],[all_floattypes],[declare_jnlike(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_jnlike_type(tk) = "mac#%"
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+foreachq([func],[nanlike_math_functions],
+[foreachq([t],[all_floattypes],[declare_nanlike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_nanlike_type(tk) = "mac#%"
 overload func with g0float_[]func of default_overload_precedence
 ])
