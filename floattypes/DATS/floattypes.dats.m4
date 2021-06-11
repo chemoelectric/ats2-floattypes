@@ -70,6 +70,9 @@ dnl
 foreachq([func],[binary_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
+foreachq([func],[ternary_math_functions],
+  [foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
 foreachq([func],[frexplike_math_functions],
   [foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl

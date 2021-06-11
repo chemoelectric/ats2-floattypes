@@ -91,8 +91,11 @@ TESTS += $(check_PROGRAMS)
 check_PROGRAMS =
 
 check_PROGRAMS += tests/test-neg
+
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
+
+check_PROGRAMS += tests/test-fma
 
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-fabs
