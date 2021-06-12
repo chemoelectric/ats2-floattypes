@@ -34,8 +34,8 @@ main() =
   let
     m4_foreachq([t],[all_floattypes],      
       [#if HAVE_floattypes___builtin_nans_[]t #then
-       val nans1 : t = nans("") (* Return type is necessary
-                                   for the overload to work. *)
+       val nans1 : t = nans("") /* Return type is necessary
+                                   for the overload to work. */
        val _ = assertloc($extfcall(bool, "isnan", nans1))
        val nans2 = nans("") : t
        val _ = assertloc($extfcall(bool, "isnan", nans2))

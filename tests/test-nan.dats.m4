@@ -32,8 +32,8 @@ main() =
   let
     m4_foreachq([t],[all_floattypes],      
       [#if HAVE_floattypes_nan_[]t #then
-       val nan1 : t = nan("") (* Return type is necessary
-                                 for the overload to work. *)
+       val nan1 : t = nan("") /* Return type is necessary
+                                 for the overload to work. */
        val _ = assertloc($extfcall(bool, "isnan", nan1))
        val nan2 = nan("") : t
        val _ = assertloc($extfcall(bool, "isnan", nan2))

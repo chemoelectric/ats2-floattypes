@@ -34,8 +34,8 @@ main() =
   let
     m4_foreachq([t],[all_floattypes],      
       [#if HAVE_floattypes___builtin_inf_[]t #then
-       val inf1 : t = inf() (* Return type is necessary
-                               for the overload to work. *)
+       val inf1 : t = inf() /* Return type is necessary
+                               for the overload to work. */
        val _ = assertloc($extfcall(bool, "isinf", inf1))
        val inf2 = inf() : t
        val _ = assertloc($extfcall(bool, "isinf", inf2))

@@ -35,8 +35,8 @@ main() =
     m4_foreachq([t],[all_floattypes],      
       [#if HAVE_floattypes___builtin_huge_val_[]t #then
        macdef f2f = $UN.cast{t}
-       val huge_val1 : t = huge_val() (* Return type is necessary
-                                         for the overload to work. *)
+       val huge_val1 : t = huge_val() /* Return type is necessary
+                                         for the overload to work. */
        val _ = assertloc(f2f(1e20) < huge_val1)
        val huge_val2 = huge_val() : t
        val _ = assertloc(f2f(1e20) < huge_val2)
