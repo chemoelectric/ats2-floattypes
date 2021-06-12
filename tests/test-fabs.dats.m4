@@ -1,5 +1,6 @@
-changequote([,])dnl
-[(*
+changequote([,])changecom([/*],[*/])dnl
+include([common-macros.m4])dnl
+/*
 
 Copyright © 2021 Barry Schwartz
 
@@ -17,27 +18,23 @@ You should have received copies of the GNU General Public License
 along with this program. If not, see
 <https://www.gnu.org/licenses/>.
 
-*)]
+*/
 
-divert(-1)
-include([common-macros.m4])
-divert
-
-[#include "share/atspre_define.hats"]
-[#include "share/atspre_staload.hats"]
-[#include "floattypes/HATS/floattypes.hats"]
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
 
 staload UN = "prelude/SATS/unsafe.sats"
 
 implement
 main() =
   let
-    foreachq([t],[all_floattypes],
-      [[#if] HAVE_floattypes_fabs_[]t [#then]
+    m4_foreachq([t],[all_floattypes],
+      [#if HAVE_floattypes_fabs_[]t #then
         val _ = assertloc(fabs($UN.cast{t}(~1.0)) = $UN.cast{t}(1.0))
         val _ = assertloc(fabs($UN.cast{t}(~0.0)) = $UN.cast{t}(0.0))
         val _ = assertloc(fabs($UN.cast{t}(1234.567)) = $UN.cast{t}(1234.567))
-      [#endif]
+      #endif
       ])
   in
     0

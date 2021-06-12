@@ -1,5 +1,6 @@
-changequote([,])dnl
-[/*
+changequote([,])changecom([/*],[*/])dnl
+include([common-macros.m4])dnl
+/*
 
 Copyright © 2021 Barry Schwartz
 
@@ -22,15 +23,15 @@ dnl  FIXME: Move all the many #defines to a separate ‘.h’ file,
 dnl         so a person can substitute their own values.
 dnl
 
-*/]
+*/
 
-[#ifndef FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__]
-[#define FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__]
+#ifndef FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__
+#define FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__
 
-[#include "floattypes/HATS/config.hats"]
-[#include <math.h>]
-[#include <fenv.h>]
-[#include <stdlib.h>]
+#include "floattypes/HATS/config.hats"
+#include <math.h>
+#include <fenv.h>
+#include <stdlib.h>
 
 _Static_assert(sizeof (atstype_float) == sizeof (float),
                "atstype_float is not the same as float");
@@ -39,9 +40,9 @@ _Static_assert(sizeof (atstype_double) == sizeof (double),
 _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
                "atstype_ldouble is not the same as long double");
 
-[/*
- * The following statements are #define instead of typedef,
- * so they will succeed even if the type is not supported.
+/*
+   The following statements are #define instead of typedef,
+   so they will succeed even if the type is not supported.
  */
 #define floattypes_float atstype_float
 #define floattypes_double atstype_double
@@ -57,13 +58,10 @@ _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
 #define floattypes_float128x _Float128x
 #define floattypes_decimal64x _Decimal64x
 #define floattypes_decimal128x _Decimal128x
-]dnl
 
 divert(-1)
 
-include([common-macros.m4])
-
-define([negation_op],
+m4_define([negation_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -72,7 +70,7 @@ floattypes_g0float_neg_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([abs_op],
+m4_define([abs_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -81,7 +79,7 @@ floattypes_g0float_abs_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([successor_op],
+m4_define([successor_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -90,7 +88,7 @@ floattypes_g0float_succ_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([predecessor_op],
+m4_define([predecessor_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -99,7 +97,7 @@ floattypes_g0float_pred_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([binary_op],
+m4_define([binary_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -108,7 +106,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([mod_op],
+m4_define([mod_op],
 [#if HAVE_floattypes_fmod_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -117,7 +115,7 @@ floattypes_g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_fmod_$1 */
 ])
 
-define([comparison_op],
+m4_define([comparison_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -126,7 +124,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([compare_op],
+m4_define([compare_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -135,7 +133,7 @@ floattypes_g0float_compare_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([min_op],
+m4_define([min_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -144,7 +142,7 @@ floattypes_g0float_min_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([max_op],
+m4_define([max_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -153,7 +151,7 @@ floattypes_g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$1 */
 ])
 
-define([nullary_fn],
+m4_define([nullary_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -162,7 +160,7 @@ floattypes_g0float_$2_$1 (void) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([unary_fn],
+m4_define([unary_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -171,7 +169,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([binary_fn],
+m4_define([binary_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -180,7 +178,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([ternary_fn],
+m4_define([ternary_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -191,7 +189,7 @@ floattypes_$1 f3) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([lroundlike_fn],
+m4_define([lroundlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 atstype_lint dnl
@@ -200,7 +198,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([llroundlike_fn],
+m4_define([llroundlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 atstype_llint dnl
@@ -209,7 +207,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([frexplike_fn],
+m4_define([frexplike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -218,7 +216,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int *p) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([jnlike_fn],
+m4_define([jnlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -227,7 +225,7 @@ floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
-define([nanlike_fn],
+m4_define([nanlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
 floattypes_$1 dnl
@@ -244,114 +242,114 @@ divert[]dnl
    prototypes for GCC’s builtin decimal floating-point
    functions. */
 
-foreachq([size],[32,64,128,64x,128x],dnl
-[[#if HAVE_floattypes_fabs_decimal]size
-[_Decimal]size[ fabsd]size[ (_Decimal]size[);]
+m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
+[[#if HAVE_floattypes_fabs_decimal]m4_size
+[_Decimal]m4_size[ fabsd]m4_size[ (_Decimal]m4_size[);]
 [#endif]
 ])
 dnl
-foreachq([size],[32,64,128,64x,128x],dnl
-[[#if HAVE_floattypes_nan_decimal]size
-[_Decimal]size[ nand]size[ (const char *);]
+m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
+[[#if HAVE_floattypes_nan_decimal]m4_size
+[_Decimal]m4_size[ nand]m4_size[ (const char *);]
 [#endif]
 ])
 dnl
 [#endif]
 
-foreachq([func],[regular_math_functions],
-[[#define] floattypes_[]func[]_float func[]f
-[#define] floattypes_[]func[]_double func
-[#define] floattypes_[]func[]_ldouble func[]l
-[#define] floattypes_[]func[]_float32 func[]f32
-[#define] floattypes_[]func[]_float64 func[]f64
-[#define] floattypes_[]func[]_float128 func[]f128
-[#define] floattypes_[]func[]_decimal32 func[]d32
-[#define] floattypes_[]func[]_decimal64 func[]d64
-[#define] floattypes_[]func[]_decimal128 func[]d128
-[#define] floattypes_[]func[]_float32x func[]f32x
-[#define] floattypes_[]func[]_float64x func[]f64x
-[#define] floattypes_[]func[]_float128x func[]f128x
-[#define] floattypes_[]func[]_decimal64x func[]d64x
-[#define] floattypes_[]func[]_decimal128x func[]d128x
+m4_foreachq([func],[regular_math_functions],
+[#define floattypes_[]func[]_float func[]f
+#define floattypes_[]func[]_double func
+#define floattypes_[]func[]_ldouble func[]l
+#define floattypes_[]func[]_float32 func[]f32
+#define floattypes_[]func[]_float64 func[]f64
+#define floattypes_[]func[]_float128 func[]f128
+#define floattypes_[]func[]_decimal32 func[]d32
+#define floattypes_[]func[]_decimal64 func[]d64
+#define floattypes_[]func[]_decimal128 func[]d128
+#define floattypes_[]func[]_float32x func[]f32x
+#define floattypes_[]func[]_float64x func[]f64x
+#define floattypes_[]func[]_float128x func[]f128x
+#define floattypes_[]func[]_decimal64x func[]d64x
+#define floattypes_[]func[]_decimal128x func[]d128x
 ])
 
-[#define] floattypes_lgamma_r_float lgammaf_r
-[#define] floattypes_lgamma_r_double lgamma_r
-[#define] floattypes_lgamma_r_ldouble lgammal_r
-[#define] floattypes_lgamma_r_float32 lgammaf32_r
-[#define] floattypes_lgamma_r_float64 lgammaf64_r
-[#define] floattypes_lgamma_r_float128 lgammaf128_r
-[#define] floattypes_lgamma_r_decimal32 lgammad32_r
-[#define] floattypes_lgamma_r_decimal64 lgammad64_r
-[#define] floattypes_lgamma_r_decimal128 lgammad128_r
-[#define] floattypes_lgamma_r_float32x lgammaf32x_r
-[#define] floattypes_lgamma_r_float64x lgammaf64x_r
-[#define] floattypes_lgamma_r_float128x lgammaf128x_r
-[#define] floattypes_lgamma_r_decimal64x lgammad64x_r
-[#define] floattypes_lgamma_r_decimal128x lgammad128x_r
+#define floattypes_lgamma_r_float lgammaf_r
+#define floattypes_lgamma_r_double lgamma_r
+#define floattypes_lgamma_r_ldouble lgammal_r
+#define floattypes_lgamma_r_float32 lgammaf32_r
+#define floattypes_lgamma_r_float64 lgammaf64_r
+#define floattypes_lgamma_r_float128 lgammaf128_r
+#define floattypes_lgamma_r_decimal32 lgammad32_r
+#define floattypes_lgamma_r_decimal64 lgammad64_r
+#define floattypes_lgamma_r_decimal128 lgammad128_r
+#define floattypes_lgamma_r_float32x lgammaf32x_r
+#define floattypes_lgamma_r_float64x lgammaf64x_r
+#define floattypes_lgamma_r_float128x lgammaf128x_r
+#define floattypes_lgamma_r_decimal64x lgammad64x_r
+#define floattypes_lgamma_r_decimal128x lgammad128x_r
 
-foreachq([t],[extra_floattypes],[negation_op(t)])
-foreachq([t],[extra_floattypes],[abs_op(t)])
-foreachq([t],[extra_floattypes],[successor_op(t)])
-foreachq([t],[extra_floattypes],[predecessor_op(t)])
+m4_foreachq([t],[extra_floattypes],[negation_op(t)])
+m4_foreachq([t],[extra_floattypes],[abs_op(t)])
+m4_foreachq([t],[extra_floattypes],[successor_op(t)])
+m4_foreachq([t],[extra_floattypes],[predecessor_op(t)])
 dnl
-foreachq([t],[extra_floattypes],[binary_op(t,[add],[+])])
-foreachq([t],[extra_floattypes],[binary_op(t,[sub],[-])])
-foreachq([t],[extra_floattypes],[binary_op(t,[mul],[*])])
-foreachq([t],[extra_floattypes],[binary_op(t,[div],[/])])
+m4_foreachq([t],[extra_floattypes],[binary_op(t,[add],[+])])
+m4_foreachq([t],[extra_floattypes],[binary_op(t,[sub],[-])])
+m4_foreachq([t],[extra_floattypes],[binary_op(t,[mul],[*])])
+m4_foreachq([t],[extra_floattypes],[binary_op(t,[div],[/])])
 dnl
-foreachq([t],[extra_floattypes],[mod_op(t)])
+m4_foreachq([t],[extra_floattypes],[mod_op(t)])
 dnl
-foreachq([t],[extra_floattypes],[comparison_op(t,[lt],[<])])
-foreachq([t],[extra_floattypes],[comparison_op(t,[lte],[<=])])
-foreachq([t],[extra_floattypes],[comparison_op(t,[gt],[>])])
-foreachq([t],[extra_floattypes],[comparison_op(t,[gte],[>=])])
-foreachq([t],[extra_floattypes],[comparison_op(t,[eq],[==])])
-foreachq([t],[extra_floattypes],[comparison_op(t,[neq],[!=])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[lt],[<])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[lte],[<=])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[gt],[>])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[gte],[>=])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[eq],[==])])
+m4_foreachq([t],[extra_floattypes],[comparison_op(t,[neq],[!=])])
 dnl
-foreachq([t],[extra_floattypes],[compare_op(t)])
+m4_foreachq([t],[extra_floattypes],[compare_op(t)])
 dnl
-foreachq([t],[extra_floattypes],[min_op(t)])
-foreachq([t],[extra_floattypes],[max_op(t)])
+m4_foreachq([t],[extra_floattypes],[min_op(t)])
+m4_foreachq([t],[extra_floattypes],[max_op(t)])
 dnl
-foreachq([func],[nullary_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[nullary_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [nullary_fn(t,func)])])
 dnl
-foreachq([func],[unary_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[unary_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [unary_fn(t,func)])])
 dnl
-foreachq([func],[binary_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[binary_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [binary_fn(t,func)])])
 dnl
-foreachq([func],[ternary_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[ternary_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [ternary_fn(t,func)])])
 dnl
-foreachq([func],[lroundlike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[lroundlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [lroundlike_fn(t,func)])])
 dnl
-foreachq([func],[llroundlike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[llroundlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [llroundlike_fn(t,func)])])
 dnl
-foreachq([func],[frexplike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[frexplike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [frexplike_fn(t,func)])])
 dnl
-foreachq([func],[lgamma_rlike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[lgamma_rlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [frexplike_fn(t,func)])])
 dnl
-foreachq([func],[jnlike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[jnlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [jnlike_fn(t,func)])])
 dnl
-foreachq([func],[nanlike_math_functions],
-  [foreachq([t],[all_floattypes],
+m4_foreachq([func],[nanlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
     [nanlike_fn(t,func)])])
 
 [#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]

@@ -1,5 +1,6 @@
-changequote([,])dnl
-[(*
+changequote([,])changecom([/*],[*/])dnl
+include([common-macros.m4])dnl
+/*
 
 Copyright © 2021 Barry Schwartz
 
@@ -17,23 +18,20 @@ You should have received copies of the GNU General Public License
 along with this program. If not, see
 <https://www.gnu.org/licenses/>.
 
-*)]
+*/
 
-divert(-1)
-include([common-macros.m4])
-divert
 
-[#include "share/atspre_define.hats"]
-[#include "share/atspre_staload.hats"]
-[#include "floattypes/HATS/floattypes.hats"]
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
 
 staload UN = "prelude/SATS/unsafe.sats"
 
 implement
 main() =
   let
-    foreachq([t],[all_floattypes],
-      [[#if] HAVE_floattypes_frexp_[]t [#then]
+    m4_foreachq([t],[all_floattypes],
+      [#if HAVE_floattypes_frexp_[]t #then
         macdef f2f = $UN.cast{t}
         //
         // The 'exponent' argument is passed by reference.
@@ -44,7 +42,7 @@ main() =
         // 0.005 = 0.64 * 2**(~7)
         val _ = assertloc(abs(frexp(f2f(0.005), exponent) - f2f(0.64)) < f2f(0.00001))
         val _ = assertloc(exponent = ~7)
-      [#endif]
+      #endif
       ])
   in
     0

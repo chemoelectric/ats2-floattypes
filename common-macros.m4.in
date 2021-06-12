@@ -1,24 +1,30 @@
-# Copyright © 2021 Barry Schwartz
-#
-# This program is free software: you can redistribute it and/or
-# modify it under the terms of the GNU General Public License, as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-#
-# You should have received copies of the GNU General Public License
-# along with this program. If not, see
-# <https://www.gnu.org/licenses/>.
+divert(-1)
 
-define([m4_define],defn([define]))
-define([m4_pushdef],defn([pushdef]))
-define([m4_popdef],defn([popdef]))
-define([m4_shift],defn([shift]))
-define([m4_if],defn([ifelse]))
-define([m4_translit],defn([translit]))
+Copyright © 2021 Barry Schwartz
 
-include([common-definitions.m4])
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+define([m4_undefine],defn([undefine]))     m4_undefine([undefine])
+define([m4_define],defn([define]))         m4_undefine([define])
+m4_define([m4_include],defn([include]))    m4_undefine([include])
+m4_define([m4_pushdef],defn([pushdef]))    m4_undefine([pushdef])
+m4_define([m4_popdef],defn([popdef]))      m4_undefine([popdef])
+m4_define([m4_shift],defn([shift]))        m4_undefine([shift])
+m4_define([m4_if],defn([ifelse]))          m4_undefine([ifelse])
+m4_define([m4_translit],defn([translit]))  m4_undefine([translit])
+
+m4_include([common-definitions.m4])
+
+divert[]dnl

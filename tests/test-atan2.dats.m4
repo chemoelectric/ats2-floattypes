@@ -1,6 +1,7 @@
 
-changequote([,])dnl
-[(*
+changequote([,])changecom([/*],[*/])dnl
+include([common-macros.m4])dnl
+/*
 
 Copyright © 2021 Barry Schwartz
 
@@ -18,15 +19,12 @@ You should have received copies of the GNU General Public License
 along with this program. If not, see
 <https://www.gnu.org/licenses/>.
 
-*)]
+*/
 
-divert(-1)
-include([common-macros.m4])
-divert
 
-[#include "share/atspre_define.hats"]
-[#include "share/atspre_staload.hats"]
-[#include "floattypes/HATS/floattypes.hats"]
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
 
 staload UN = "prelude/SATS/unsafe.sats"
 
@@ -34,14 +32,14 @@ implement
 main() =
   let
     macdef c = $UN.cast
-    foreachq([t],[all_floattypes],      
-      [[#if] HAVE_floattypes_atan2_[]t [#then]
+    m4_foreachq([t],[all_floattypes],      
+      [#if HAVE_floattypes_atan2_[]t #then
        val _ = assertloc(atan2(c{t}0.0, c{t}1.0) = c{t}(0.0))
        val _ = assertloc(abs(atan2(c{t}1.0, c{t}1.0) - c{t}(0.785398163397448)) < c{t}(0.00001))
        val _ = assertloc(abs(atan2(c{t}~2.0, c{t}2.0) - c{t}(~0.785398163397448)) < c{t}(0.00001))
        val _ = assertloc(abs(atan2(c{t}1.0, c{t}2.0) - c{t}(0.463647609000806)) < c{t}(0.00001))
        val _ = assertloc(abs(atan2(c{t}~0.5, c{t}1.0) - c{t}(~0.463647609000806)) < c{t}(0.00001))
-       [#endif]
+       #endif
       ])
   in
     0
