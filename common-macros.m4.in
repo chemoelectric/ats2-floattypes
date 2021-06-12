@@ -23,6 +23,7 @@ m4_define([m4_pushdef],defn([pushdef]))    m4_undefine([pushdef])
 m4_define([m4_popdef],defn([popdef]))      m4_undefine([popdef])
 m4_define([m4_shift],defn([shift]))        m4_undefine([shift])
 m4_define([m4_if],defn([ifelse]))          m4_undefine([ifelse])
+m4_define([m4_ifdef],defn([ifdef]))        m4_undefine([ifdef])
 m4_define([m4_translit],defn([translit]))  m4_undefine([translit])
 
 m4_include([common-definitions.m4])

@@ -77,6 +77,9 @@ m4_define([declare_ilogblike],[fun g0float_$1_$2 : g0float_ilogblike_type($2[]_k
 m4_define([declare_nanlike],[fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_strtodlike],[fun g0float_$1_$2 : g0float_strtodlike_type($2[]_kind) = "mac#%"
+])
+
 divert[]dnl
 
 /* Nullary operations. */
@@ -114,6 +117,12 @@ typedef g0float_jnlike_type (tk : tkind) =
 /* An operation similar to C's 'nan' function. */
 typedef g0float_nanlike_type (tk : tkind) =
   (String0) -<fun0> g0float(tk)
+
+/* An operation similar to C's 'strtod' function,
+   though returning a size_t offset value instead of
+   an 'end pointer'. */
+typedef g0float_strtodlike_type (tk : tkind) =
+  (String0, &size_t? >> size_t) -<fun0> g0float(tk)
 
 
 m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
@@ -168,45 +177,51 @@ dnl
 m4_foreachq([func],[lroundlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_lroundlike(func,t)])dnl
 fun {tk : tk} dnl
-g0float_[]func : g0float_lroundlike_type(tk) = "mac#%"
+g0float_[]func : g0float_lroundlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[llroundlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_llroundlike(func,t)])dnl
 fun {tk : tk} dnl
-g0float_[]func : g0float_llroundlike_type(tk) = "mac#%"
+g0float_[]func : g0float_llroundlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[frexplike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_frexplike(func,t)])dnl
 fun {tk : tk} dnl
-g0float_[]func : g0float_frexplike_type(tk) = "mac#%"
+g0float_[]func : g0float_frexplike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[lgamma_rlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_frexplike(func,t)])dnl
 fun {tk : tk} dnl
-g0float_[]func : g0float_frexplike_type(tk) = "mac#%"
+g0float_[]func : g0float_frexplike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[jnlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_jnlike(func,t)])dnl
-fun {tk : tk} g0float_[]func : g0float_jnlike_type(tk) = "mac#%"
+fun {tk : tk} g0float_[]func : g0float_jnlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[ilogblike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_ilogblike(func,t)])dnl
-fun {tk : tk} g0float_[]func : g0float_ilogblike_type(tk) = "mac#%"
+fun {tk : tk} g0float_[]func : g0float_ilogblike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
 m4_foreachq([func],[nanlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_nanlike(func,t)])dnl
-fun {tk : tk} g0float_[]func : g0float_nanlike_type(tk) = "mac#%"
+fun {tk : tk} g0float_[]func : g0float_nanlike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[strtodlike_math_functions],
+[m4_foreachq([t],[all_floattypes],[declare_strtodlike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_strtodlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])

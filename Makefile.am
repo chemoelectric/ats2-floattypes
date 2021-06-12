@@ -37,6 +37,7 @@ AUTOMAKE_OPTIONS += -Wno-portability
 EXTRA_DIST += $(srcdir)/silent-rules.mk
 
 EXTRA_DIST += README
+EXTRA_DIST += AUTHORS
 
 DISTCLEANFILES += Makefile
 DISTCLEANFILES += floattypes/HATS/config.hats
@@ -153,12 +154,15 @@ check_PROGRAMS += tests/test-__builtin_nans
 check_PROGRAMS += tests/test-__builtin_huge_val
 check_PROGRAMS += tests/test-__builtin_inf
 
+check_PROGRAMS += tests/test-strtod
+
 EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
 
 BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
 BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
 
-$(check_PROGRAMS): floattypes/HATS/floattypes.hats
+$(check_PROGRAMS): floattypes/HATS/floattypes.hats \
+					$(lib_LTLIBRARIES)
 
 clean-local:
 	-rm -f tests/*{.dats,_dats.{c,$(OBJEXT)}}

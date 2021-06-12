@@ -243,6 +243,26 @@ floattypes_g0float_$2_$1 (atstype_string s) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+dnl
+dnl  strtod:
+dnl
+dnl  For the second argument, instead of a char pointer,
+dnl  a ssize_t is returned; the person writing this code
+dnl  does not have a high opinion of using pointers much.
+dnl
+dnl  There is no provision for passing a NULL.
+dnl
+m4_define([strtodlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (atstype_string s, atstype_size *end) dnl
+{ char *endptr; floattypes_$1 retval = dnl
+(floattypes_$2_$1 ((const char *) s, &endptr)); dnl
+*end = endptr - s; return retval; }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 divert[]dnl
 
 #ifdef __GLIBC__
@@ -251,15 +271,15 @@ divert[]dnl
    prototypes for GCC’s builtin decimal floating-point
    functions. */
 
-m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
-[#if HAVE_floattypes_fabs_decimal[]m4_size
-[_Decimal]m4_size[ fabsd]m4_size[ (_Decimal]m4_size[);]
+m4_foreachq([_size],[32,64,128,64x,128x],dnl
+[#if HAVE_floattypes_fabs_decimal[]_size
+[_Decimal]_size[ fabsd]_size[ (_Decimal]_size[);]
 #endif
 ])
 dnl
-m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
-[#if HAVE_floattypes_nan_decimal[]m4_size
-[_Decimal]m4_size[ nand]m4_size[ (const char *);]
+m4_foreachq([_size],[32,64,128,64x,128x],dnl
+[#if HAVE_floattypes_nan_decimal[]_size
+[_Decimal]_size[ nand]_size[ (const char *);]
 #endif
 ])
 dnl
@@ -296,6 +316,23 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_lgamma_r_float128x lgammaf128x_r
 #define floattypes_lgamma_r_decimal64x lgammad64x_r
 #define floattypes_lgamma_r_decimal128x lgammad128x_r
+
+m4_foreachq([func],[strto, strfrom],
+[#define floattypes_[]func[]d_float func[]f
+#define floattypes_[]func[]d_double func[]d
+#define floattypes_[]func[]d_ldouble func[]l
+#define floattypes_[]func[]d_float32 func[]f32
+#define floattypes_[]func[]d_float64 func[]f64
+#define floattypes_[]func[]d_float128 func[]f128
+#define floattypes_[]func[]d_decimal32 func[]d32
+#define floattypes_[]func[]d_decimal64 func[]d64
+#define floattypes_[]func[]d_decimal128 func[]d128
+#define floattypes_[]func[]d_float32x func[]f32x
+#define floattypes_[]func[]d_float64x func[]f64x
+#define floattypes_[]func[]d_float128x func[]f128x
+#define floattypes_[]func[]d_decimal64x func[]d64x
+#define floattypes_[]func[]d_decimal128x func[]d128x
+])
 
 m4_foreachq([t],[extra_floattypes],[negation_op(t)])
 m4_foreachq([t],[extra_floattypes],[abs_op(t)])
@@ -364,5 +401,9 @@ dnl
 m4_foreachq([func],[nanlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [nanlike_fn(t,func)])])
+dnl
+m4_foreachq([func],[strtodlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [strtodlike_fn(t,func)])])
 
 #endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */
