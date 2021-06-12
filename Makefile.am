@@ -146,6 +146,7 @@ check_PROGRAMS += tests/test-yn
 
 check_PROGRAMS += tests/test-frexp
 check_PROGRAMS += tests/test-logb
+check_PROGRAMS += tests/test-ilogb
 
 check_PROGRAMS += tests/test-nan
 check_PROGRAMS += tests/test-__builtin_nans

@@ -130,7 +130,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
 	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
 	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
-	tests/test-nan$(EXEEXT) tests/test-__builtin_nans$(EXEEXT) \
+	tests/test-ilogb$(EXEEXT) tests/test-nan$(EXEEXT) \
+	tests/test-__builtin_nans$(EXEEXT) \
 	tests/test-__builtin_huge_val$(EXEEXT) \
 	tests/test-__builtin_inf$(EXEEXT)
 subdir = .
@@ -264,6 +265,9 @@ tests_test_frexp_LDADD = $(LDADD)
 tests_test_hypot_SOURCES = tests/test-hypot_dats.c
 tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
 tests_test_hypot_LDADD = $(LDADD)
+tests_test_ilogb_SOURCES = tests/test-ilogb_dats.c
+tests_test_ilogb_OBJECTS = tests/test-ilogb_dats.$(OBJEXT)
+tests_test_ilogb_LDADD = $(LDADD)
 tests_test_j0_SOURCES = tests/test-j0_dats.c
 tests_test_j0_OBJECTS = tests/test-j0_dats.$(OBJEXT)
 tests_test_j0_LDADD = $(LDADD)
@@ -381,6 +385,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
 	tests/$(DEPDIR)/test-frexp_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
+	tests/$(DEPDIR)/test-ilogb_dats.Po \
 	tests/$(DEPDIR)/test-j0_dats.Po \
 	tests/$(DEPDIR)/test-j1_dats.Po \
 	tests/$(DEPDIR)/test-jn_dats.Po \
@@ -439,7 +444,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-fabs_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-ilogb_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-logb_dats.c \
 	tests/test-lrint_dats.c tests/test-max_dats.c \
@@ -464,7 +470,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-fabs_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-ilogb_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-logb_dats.c \
 	tests/test-lrint_dats.c tests/test-max_dats.c \
@@ -2180,6 +2187,12 @@ tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-hypot$(EXEEXT): $(tests_test_hypot_OBJECTS) $(tests_test_hypot_DEPENDENCIES) $(EXTRA_tests_test_hypot_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-hypot$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_hypot_OBJECTS) $(tests_test_hypot_LDADD) $(LIBS)
+tests/test-ilogb_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-ilogb$(EXEEXT): $(tests_test_ilogb_OBJECTS) $(tests_test_ilogb_DEPENDENCIES) $(EXTRA_tests_test_ilogb_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-ilogb$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_ilogb_OBJECTS) $(tests_test_ilogb_LDADD) $(LIBS)
 tests/test-j0_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2372,6 +2385,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ilogb_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
@@ -3042,6 +3056,13 @@ tests/test-logb.log: tests/test-logb$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-ilogb.log: tests/test-ilogb$(EXEEXT)
+	@p='tests/test-ilogb$(EXEEXT)'; \
+	b='tests/test-ilogb'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-nan.log: tests/test-nan$(EXEEXT)
 	@p='tests/test-nan$(EXEEXT)'; \
 	b='tests/test-nan'; \
@@ -3343,6 +3364,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
@@ -3443,6 +3465,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po

@@ -34,9 +34,11 @@ staload "prelude/SATS/float.sats"
 staload "floattypes/SATS/floattypes.sats"
 
 divert(-1)
+
 m4_define([implement_float],[implement g0float_$1<$2[]_kind> = g0float_$1_$2
 ])
-divert[]
+
+divert[]dnl
 
 m4_foreachq([t],[extra_floattypes],[implement_float([neg],t)])
 m4_foreachq([t],[extra_floattypes],[implement_float([abs],t)])
@@ -86,6 +88,9 @@ m4_foreachq([func],[lgamma_rlike_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
 m4_foreachq([func],[jnlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
+m4_foreachq([func],[ilogblike_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
 m4_foreachq([func],[nanlike_math_functions],

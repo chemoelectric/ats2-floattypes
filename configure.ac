@@ -27,9 +27,6 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CANONICAL_BUILD                 dnl On what platform are we compiling?
 AC_CANONICAL_HOST                  dnl For what platform are we compiling?
-#AC_USE_SYSTEM_EXTENSIONS           dnl Define such macros as _GNU_SOURCE.
-
-#AC_CONFIG_TESTDIR([tests])
 
 AM_INIT_AUTOMAKE
 AM_SILENT_RULES
@@ -422,7 +419,6 @@ AC_SUBST([GNU],[])
 
 StM_REQUIRE_GNU_MAKE_IN_PATH
 StM_CONFIG_MAKEFILES
-#StM_CONFIG_MAKEFILES([tests/Makefile],[tests/GNUmakefile])
 
 # We want include files to be where a mere POSIX m4 can find it.
 AC_CONFIG_FILES([common-definitions.m4])

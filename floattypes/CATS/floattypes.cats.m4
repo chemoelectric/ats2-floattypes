@@ -225,6 +225,15 @@ floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+m4_define([ilogblike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_int dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 m4_define([nanlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -236,25 +245,25 @@ floattypes_g0float_$2_$1 (atstype_string s) dnl
 
 divert[]dnl
 
-[#ifdef __GLIBC__]
+#ifdef __GLIBC__
 
 /* A workaround for glibc systems that do not declare
    prototypes for GCC’s builtin decimal floating-point
    functions. */
 
 m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
-[[#if HAVE_floattypes_fabs_decimal]m4_size
+[#if HAVE_floattypes_fabs_decimal[]m4_size
 [_Decimal]m4_size[ fabsd]m4_size[ (_Decimal]m4_size[);]
-[#endif]
+#endif
 ])
 dnl
 m4_foreachq([m4_size],[32,64,128,64x,128x],dnl
-[[#if HAVE_floattypes_nan_decimal]m4_size
+[#if HAVE_floattypes_nan_decimal[]m4_size
 [_Decimal]m4_size[ nand]m4_size[ (const char *);]
-[#endif]
+#endif
 ])
 dnl
-[#endif]
+#endif
 
 m4_foreachq([func],[regular_math_functions],
 [#define floattypes_[]func[]_float func[]f
@@ -348,8 +357,12 @@ m4_foreachq([func],[jnlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [jnlike_fn(t,func)])])
 dnl
+m4_foreachq([func],[ilogblike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [ilogblike_fn(t,func)])])
+dnl
 m4_foreachq([func],[nanlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [nanlike_fn(t,func)])])
 
-[#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */]
+#endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */
