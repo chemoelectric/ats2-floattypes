@@ -92,19 +92,24 @@ TESTS += $(check_PROGRAMS)
 check_PROGRAMS =
 
 check_PROGRAMS += tests/test-neg
+check_PROGRAMS += tests/test-fma
 
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
-check_PROGRAMS += tests/test-fma
-
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-fabs
 
+check_PROGRAMS += tests/test-ceil
+check_PROGRAMS += tests/test-floor
+check_PROGRAMS += tests/test-trunc
 check_PROGRAMS += tests/test-nearbyint
 check_PROGRAMS += tests/test-rint
 check_PROGRAMS += tests/test-lrint
 check_PROGRAMS += tests/test-llrint
+check_PROGRAMS += tests/test-round
+check_PROGRAMS += tests/test-lround
+check_PROGRAMS += tests/test-llround
 
 check_PROGRAMS += tests/test-min
 check_PROGRAMS += tests/test-max
