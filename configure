@@ -1659,6 +1659,20 @@ HAVE_floattypes___builtin_huge_val_float32
 HAVE_floattypes___builtin_huge_val_ldouble
 HAVE_floattypes___builtin_huge_val_double
 HAVE_floattypes___builtin_huge_val_float
+DECIMAL128X_SUFFIX
+DECIMAL64X_SUFFIX
+FLOAT128X_SUFFIX
+FLOAT64X_SUFFIX
+FLOAT32X_SUFFIX
+DECIMAL128_SUFFIX
+DECIMAL64_SUFFIX
+DECIMAL32_SUFFIX
+FLOAT128_SUFFIX
+FLOAT64_SUFFIX
+FLOAT32_SUFFIX
+LDOUBLE_SUFFIX
+DOUBLE_SUFFIX
+FLOAT_SUFFIX
 FLOAT_SUFFIX_decimal128x
 FLOAT_SUFFIX_decimal64x
 FLOAT_SUFFIX_float128x
@@ -13082,6 +13096,23 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #--------------------------------------------------------------------------
 
 
@@ -15698,7 +15729,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float32='(type not supported)'
      fi
 
 fi
@@ -15811,7 +15842,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float64='(type not supported)'
      fi
 
 fi
@@ -16018,7 +16049,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float128='(type not supported)'
      fi
 
 fi
@@ -16226,7 +16257,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_decimal32='(type not supported)'
      fi
 
 fi
@@ -16433,7 +16464,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_decimal64='(type not supported)'
      fi
 
 fi
@@ -16640,7 +16671,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_decimal128='(type not supported)'
      fi
 
 fi
@@ -16848,7 +16879,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float32x='(type not supported)'
      fi
 
 fi
@@ -17055,7 +17086,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float64x='(type not supported)'
      fi
 
 fi
@@ -17168,7 +17199,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_float128x='(type not supported)'
      fi
 
 fi
@@ -17282,7 +17313,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_decimal64x='(type not supported)'
      fi
 
 fi
@@ -17395,7 +17426,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
           fi
 
      else
-        $as_echo_n "(type not supported)"
+        my_cv_float_suffix_decimal128x='(type not supported)'
      fi
 
 fi
@@ -17403,6 +17434,34 @@ fi
 $as_echo "$my_cv_float_suffix_decimal128x" >&6; }
 
    fi
+
+
+FLOAT_SUFFIX=F
+
+
+LDOUBLE_SUFFIX=L
+
+FLOAT32_SUFFIX=${my_cv_float_suffix_float32}
+
+FLOAT64_SUFFIX=${my_cv_float_suffix_float64}
+
+FLOAT128_SUFFIX=${my_cv_float_suffix_float128}
+
+DECIMAL32_SUFFIX=${my_cv_float_suffix_decimal32}
+
+DECIMAL64_SUFFIX=${my_cv_float_suffix_decimal64}
+
+DECIMAL128_SUFFIX=${my_cv_float_suffix_decimal128}
+
+FLOAT32X_SUFFIX=${my_cv_float_suffix_float32x}
+
+FLOAT64X_SUFFIX=${my_cv_float_suffix_float64x}
+
+FLOAT128X_SUFFIX=${my_cv_float_suffix_float128x}
+
+DECIMAL64X_SUFFIX=${my_cv_float_suffix_decimal64x}
+
+DECIMAL128X_SUFFIX=${my_cv_float_suffix_decimal128x}
 
 
 #--------------------------------------------------------------------------
@@ -93512,6 +93571,7 @@ $as_echo "$as_me: WARNING: Please consider installing and using GNU Make:
 }
 
 # We want include files to be where a mere POSIX m4 can find it.
+# Also common-definitions.m4 needs some things filled in.
 ac_config_files="$ac_config_files common-definitions.m4"
 
 ac_config_files="$ac_config_files common-macros.m4"

@@ -38,6 +38,21 @@ dnl  whitespace-separated list.
 dnl
 m4_define([m4_remove_commas],[m4_foreachq([x],[$1],[x ])])
 
+m4_define([m4_float_suffix],[@FLOAT_SUFFIX@])
+m4_define([m4_double_suffix],[@DOUBLE_SUFFIX@])
+m4_define([m4_ldouble_suffix],[@LDOUBLE_SUFFIX@])
+m4_define([m4_float32_suffix],[@FLOAT32_SUFFIX@])
+m4_define([m4_float64_suffix],[@FLOAT64_SUFFIX@])
+m4_define([m4_float128_suffix],[@FLOAT128_SUFFIX@])
+m4_define([m4_decimal32_suffix],[@DECIMAL32_SUFFIX@])
+m4_define([m4_decimal64_suffix],[@DECIMAL64_SUFFIX@])
+m4_define([m4_decimal128_suffix],[@DECIMAL128_SUFFIX@])
+m4_define([m4_float32x_suffix],[@FLOAT32X_SUFFIX@])
+m4_define([m4_float64x_suffix],[@FLOAT64X_SUFFIX@])
+m4_define([m4_float128x_suffix],[@FLOAT128X_SUFFIX@])
+m4_define([m4_decimal64x_suffix],[@DECIMAL64X_SUFFIX@])
+m4_define([m4_decimal128x_suffix],[@DECIMAL128X_SUFFIX@])
+
 m4_define([extra_floattypes],
   [float32,
    float64,
@@ -185,3 +200,18 @@ m4_define([math_functions],
   [m4_join_lists([regular_math_functions,irregular_math_functions])])
 m4_define([the_math_functions],
   [m4_remove_commas([math_functions])])
+
+m4_define([math_constants_names],
+  [M_E,
+   M_LOG2E,
+   M_LOG10E,
+   M_LN2,
+   M_LN10,
+   M_PI,
+   M_PI_2,
+   M_PI_4,
+   M_1_PI,
+   M_2_PI,
+   M_2_SQRTPI,
+   M_SQRT2,
+   M_SQRT1_2])

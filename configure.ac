@@ -128,7 +128,7 @@ AC_DEFUN([MY_CHECK_FLOAT_LITERAL_SUFFIXES],
           fi
          ])
      else
-        AS_ECHO_N(["(type not supported)"])
+        AS_TR_SH([my_cv_float_suffix_$1])='(type not supported)'
      fi
     ])
    AC_SUBST(AS_TR_SH([FLOAT_SUFFIX_$1],dnl
@@ -289,6 +289,21 @@ MY_CHECK_FLOAT_LITERAL_SUFFIXES([float128x],[_Float128x],[F128x f128x])
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal64x],[_Decimal64x],[D64x d64x])
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128x],[_Decimal128x],[D128x d128x])
 
+AC_SUBST([FLOAT_SUFFIX],[F])
+AC_SUBST([DOUBLE_SUFFIX],[])
+AC_SUBST([LDOUBLE_SUFFIX],[L])
+AC_SUBST([FLOAT32_SUFFIX],[${my_cv_float_suffix_float32}])
+AC_SUBST([FLOAT64_SUFFIX],[${my_cv_float_suffix_float64}])
+AC_SUBST([FLOAT128_SUFFIX],[${my_cv_float_suffix_float128}])
+AC_SUBST([DECIMAL32_SUFFIX],[${my_cv_float_suffix_decimal32}])
+AC_SUBST([DECIMAL64_SUFFIX],[${my_cv_float_suffix_decimal64}])
+AC_SUBST([DECIMAL128_SUFFIX],[${my_cv_float_suffix_decimal128}])
+AC_SUBST([FLOAT32X_SUFFIX],[${my_cv_float_suffix_float32x}])
+AC_SUBST([FLOAT64X_SUFFIX],[${my_cv_float_suffix_float64x}])
+AC_SUBST([FLOAT128X_SUFFIX],[${my_cv_float_suffix_float128x}])
+AC_SUBST([DECIMAL64X_SUFFIX],[${my_cv_float_suffix_decimal64x}])
+AC_SUBST([DECIMAL128X_SUFFIX],[${my_cv_float_suffix_decimal128x}])
+
 #--------------------------------------------------------------------------
 #
 # Checks for library functions.
@@ -421,6 +436,7 @@ StM_REQUIRE_GNU_MAKE_IN_PATH
 StM_CONFIG_MAKEFILES
 
 # We want include files to be where a mere POSIX m4 can find it.
+# Also common-definitions.m4 needs some things filled in.
 AC_CONFIG_FILES([common-definitions.m4])
 AC_CONFIG_FILES([common-macros.m4])
 

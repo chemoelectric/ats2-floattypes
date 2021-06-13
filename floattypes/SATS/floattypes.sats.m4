@@ -22,6 +22,7 @@ along with this program. If not, see
 
 %{#
 #include "floattypes/CATS/floattypes.cats"
+#include "floattypes/CATS/constants.cats"
 %}
 
 #define ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
@@ -190,7 +191,13 @@ typedef g0float_strfromdlike_unsafe_type (tk : tkind) =
 
 
 m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
-
+dnl
+m4_foreachq([const],[math_constants_names],
+  [m4_foreachq([t],[all_floattypes],
+    [macdef const[_]t = $extval(g0float(t[_kind]), "[floattypes_]const[_]t")
+])
+])
+dnl
 m4_foreachq([t],[extra_floattypes],[declare_uop([neg],t)])
 m4_foreachq([t],[extra_floattypes],[declare_uop([abs],t)])
 m4_foreachq([t],[extra_floattypes],[declare_uop([succ],t)])

@@ -328,6 +328,7 @@ atstype_string fmt, floattypes_$1 fp) dnl
 
 divert[]dnl
 
+
 #ifdef __GLIBC__
 
 /* A workaround for glibc systems that do not declare

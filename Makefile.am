@@ -60,15 +60,18 @@ nobase_dist_pkginclude_HEADERS += floattypes/HATS/floattypes.hats
 pkghostincludedir = $(pkgincludedir)/$(host_triplet)
 nobase_nodist_pkghostinclude_HEADERS =
 nobase_nodist_pkghostinclude_HEADERS += floattypes/HATS/config.hats
+nobase_nodist_pkghostinclude_HEADERS += floattypes/CATS/constants.cats
 
 pkgconfigdir = ${libdir}/pkgconfig
 nodist_pkgconfig_DATA = ats2-floattypes.pc
 
 EXTRA_DIST += floattypes/CATS/floattypes.cats.m4
+EXTRA_DIST += floattypes/CATS/constants.cats.m4
 EXTRA_DIST += floattypes/SATS/floattypes.sats.m4
 EXTRA_DIST += floattypes/DATS/floattypes.dats.m4
 
 BUILT_SOURCES += floattypes/CATS/floattypes.cats
+BUILT_SOURCES += floattypes/CATS/constants.cats
 BUILT_SOURCES += floattypes/SATS/floattypes.sats
 BUILT_SOURCES += floattypes/SATS/floattypes_sats.c
 BUILT_SOURCES += floattypes/DATS/floattypes.dats
@@ -78,10 +81,12 @@ CLEANFILES += $(BUILT_SOURCES)
 
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats
+floattypes/SATS/floattype_sats.c: floattypes/CATS/constants.cats
 
 floattypes/DATS/floattype_dats.c: floattypes/DATS/floattypes.dats
 floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
+floattypes/DATS/floattype_dats.c: floattypes/CATS/constants.cats
 
 ######################################################################
 
@@ -90,6 +95,8 @@ AM_DEFAULT_SOURCE_EXT = _dats.c
 TESTS += $(check_PROGRAMS)
 
 check_PROGRAMS =
+
+check_PROGRAMS += tests/test-stdc-constants
 
 check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg
@@ -232,6 +239,7 @@ TOTAL_PATSOPTFLAGS += $(XPATSOPTFLAGS)
 
 PATSOPT_DEPS =
 PATSOPT_DEPS += floattypes/CATS/floattypes.cats
+PATSOPT_DEPS += floattypes/CATS/constants.cats
 PATSOPT_DEPS += floattypes/HATS/config.hats
 
 %_sats.c: %.sats $(PATSOPT_DEPS)
