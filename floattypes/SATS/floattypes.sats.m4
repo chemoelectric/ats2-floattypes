@@ -29,6 +29,7 @@ along with this program. If not, see
 
 staload "prelude/basics_sta.sats"
 staload "prelude/SATS/float.sats"
+staload "prelude/SATS/pointer.sats"
 
 divert(-1)
 
@@ -80,6 +81,10 @@ m4_define([declare_nanlike],[fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind)
 m4_define([declare_strtodlike],[fun g0float_$1_$2 : g0float_strtodlike_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_strfromdlike_unsafe],
+  [fun g0float_$1_$2 : g0float_strfromdlike_unsafe_type($2[]_kind) = "mac#%"
+])
+
 divert[]dnl
 
 /* Nullary operations. */
@@ -108,7 +113,7 @@ typedef g0float_llroundlike_type (tk : tkind) =
 /* Unary operations returning a floating-point value, but also
    an integer as side effect by reference. */
 typedef g0float_frexplike_type (tk : tkind) =
-  (g0float(tk), &int? >> int) -<fun0> g0float(tk)
+  (g0float(tk), &int? >> int) -<fun,!refwrt> g0float(tk)
 
 /* An operation similar to C's 'jn' and 'yn' functions. */
 typedef g0float_jnlike_type (tk : tkind) =
@@ -122,7 +127,11 @@ typedef g0float_nanlike_type (tk : tkind) =
    though returning a size_t offset value instead of
    an 'end pointer'. */
 typedef g0float_strtodlike_type (tk : tkind) =
-  (String0, &size_t? >> size_t) -<fun0> g0float(tk)
+  (String0, &size_t? >> size_t) -<fun,!refwrt> g0float(tk)
+
+/* An operation similar to C's 'strfromd' function. */
+typedef g0float_strfromdlike_unsafe_type (tk : tkind) =
+  (charptr1, size_t, String0, g0float(tk)) -<fun,!refwrt> int
 
 
 m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
@@ -223,5 +232,11 @@ dnl
 m4_foreachq([func],[strtodlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_strtodlike(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_strtodlike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[strfromd_unsafe],
+[m4_foreachq([t],[all_floattypes],[declare_strfromdlike_unsafe(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_strfromdlike_unsafe_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])

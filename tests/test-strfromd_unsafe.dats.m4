@@ -31,19 +31,15 @@ implement
 main() =
   let
     m4_foreachq([t],[all_floattypes],      
-      [#if HAVE_floattypes_strtod_[]t #then
+      [#if HAVE_floattypes_strfromd_[]t #then
 
        macdef f2f = $UN.cast{t}
-
-       var i1 : size_t
-       val x1 : t = strtod("123.0  ", i1)
-       val _ = assertloc(x1 = f2f 123.0)
-       val _ = assertloc(i1 = i2sz 5)
-
-       var i2 : size_t
-       val x2 = strtod("123.0  ", i2) : t
-       val _ = assertloc(x2 = f2f 123.0)
-       val _ = assertloc(i2 = i2sz 5)
+       
+       var buf = @[[char]][[100]]('\0')
+       val graphic_char_count =
+         strfromd_unsafe($UN.cast{charptr1} buf, i2sz 99, "%.1f", f2f 123.0)
+       val _ = assertloc(graphic_char_count = 5)
+       val _ = assertloc($extfcall(int, "strcmp", buf, "123.0") = 0)
 
        #endif
       ])

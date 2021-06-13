@@ -263,6 +263,23 @@ floattypes_g0float_$2_$1 (atstype_string s, atstype_size *end) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+dnl
+dnl  strfromd:
+dnl
+dnl  This is an unsafe function, and I cannot think of any way
+dnl  to make it safe. This is because the behavior is undefined
+dnl  if the format string is malformed.
+dnl
+m4_define([strfromdlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_int dnl
+floattypes_g0float_$2_unsafe_$1 (atstype_ptr s, atstype_size n, dnl
+atstype_string fmt, floattypes_$1 fp) dnl
+{ return (floattypes_$2_$1 ((char *) s, n, (const char *) fmt, fp)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 divert[]dnl
 
 #ifdef __GLIBC__
@@ -317,22 +334,35 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_lgamma_r_decimal64x lgammad64x_r
 #define floattypes_lgamma_r_decimal128x lgammad128x_r
 
-m4_foreachq([func],[strto, strfrom],
-[#define floattypes_[]func[]d_float func[]f
-#define floattypes_[]func[]d_double func[]d
-#define floattypes_[]func[]d_ldouble func[]l
-#define floattypes_[]func[]d_float32 func[]f32
-#define floattypes_[]func[]d_float64 func[]f64
-#define floattypes_[]func[]d_float128 func[]f128
-#define floattypes_[]func[]d_decimal32 func[]d32
-#define floattypes_[]func[]d_decimal64 func[]d64
-#define floattypes_[]func[]d_decimal128 func[]d128
-#define floattypes_[]func[]d_float32x func[]f32x
-#define floattypes_[]func[]d_float64x func[]f64x
-#define floattypes_[]func[]d_float128x func[]f128x
-#define floattypes_[]func[]d_decimal64x func[]d64x
-#define floattypes_[]func[]d_decimal128x func[]d128x
-])
+#define floattypes_strtod_float strtof
+#define floattypes_strtod_double strtod
+#define floattypes_strtod_ldouble strtol
+#define floattypes_strtod_float32 strtof32
+#define floattypes_strtod_float64 strtof64
+#define floattypes_strtod_float128 strtof128
+#define floattypes_strtod_decimal32 strtod32
+#define floattypes_strtod_decimal64 strtod64
+#define floattypes_strtod_decimal128 strtod128
+#define floattypes_strtod_float32x strtof32x
+#define floattypes_strtod_float64x strtof64x
+#define floattypes_strtod_float128x strtof128x
+#define floattypes_strtod_decimal64x strtod64x
+#define floattypes_strtod_decimal128x strtod128x
+
+#define floattypes_strfromd_float strfromf
+#define floattypes_strfromd_double strfromd
+#define floattypes_strfromd_ldouble strfroml
+#define floattypes_strfromd_float32 strfromf32
+#define floattypes_strfromd_float64 strfromf64
+#define floattypes_strfromd_float128 strfromf128
+#define floattypes_strfromd_decimal32 strfromd32
+#define floattypes_strfromd_decimal64 strfromd64
+#define floattypes_strfromd_decimal128 strfromd128
+#define floattypes_strfromd_float32x strfromf32x
+#define floattypes_strfromd_float64x strfromf64x
+#define floattypes_strfromd_float128x strfromf128x
+#define floattypes_strfromd_decimal64x strfromd64x
+#define floattypes_strfromd_decimal128x strfromd128x
 
 m4_foreachq([t],[extra_floattypes],[negation_op(t)])
 m4_foreachq([t],[extra_floattypes],[abs_op(t)])
@@ -405,5 +435,9 @@ dnl
 m4_foreachq([func],[strtodlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [strtodlike_fn(t,func)])])
+dnl
+m4_foreachq([func],[strfromdlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [strfromdlike_fn(t,func)])])
 
 #endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */

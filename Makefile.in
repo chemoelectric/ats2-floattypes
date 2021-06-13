@@ -133,7 +133,8 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-succ$(EXEEXT) \
 	tests/test-ilogb$(EXEEXT) tests/test-nan$(EXEEXT) \
 	tests/test-__builtin_nans$(EXEEXT) \
 	tests/test-__builtin_huge_val$(EXEEXT) \
-	tests/test-__builtin_inf$(EXEEXT) tests/test-strtod$(EXEEXT)
+	tests/test-__builtin_inf$(EXEEXT) tests/test-strtod$(EXEEXT) \
+	tests/test-strfromd_unsafe$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -325,6 +326,11 @@ tests_test_sinh_LDADD = $(LDADD)
 tests_test_sqrt_SOURCES = tests/test-sqrt_dats.c
 tests_test_sqrt_OBJECTS = tests/test-sqrt_dats.$(OBJEXT)
 tests_test_sqrt_LDADD = $(LDADD)
+tests_test_strfromd_unsafe_SOURCES =  \
+	tests/test-strfromd_unsafe_dats.c
+tests_test_strfromd_unsafe_OBJECTS =  \
+	tests/test-strfromd_unsafe_dats.$(OBJEXT)
+tests_test_strfromd_unsafe_LDADD = $(LDADD)
 tests_test_strtod_SOURCES = tests/test-strtod_dats.c
 tests_test_strtod_OBJECTS = tests/test-strtod_dats.$(OBJEXT)
 tests_test_strtod_LDADD = $(LDADD)
@@ -408,6 +414,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-sqrt_dats.Po \
+	tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po \
 	tests/$(DEPDIR)/test-strtod_dats.Po \
 	tests/$(DEPDIR)/test-succ_dats.Po \
 	tests/$(DEPDIR)/test-tan_dats.Po \
@@ -458,10 +465,10 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-rint_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-strtod_dats.c tests/test-succ_dats.c \
-	tests/test-tan_dats.c tests/test-tanh_dats.c \
-	tests/test-tgamma_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-__builtin_huge_val_dats.c \
 	tests/test-__builtin_inf_dats.c \
@@ -485,10 +492,10 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-rint_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-strtod_dats.c tests/test-succ_dats.c \
-	tests/test-tan_dats.c tests/test-tanh_dats.c \
-	tests/test-tgamma_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
+	tests/test-succ_dats.c tests/test-tan_dats.c \
+	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -2313,6 +2320,12 @@ tests/test-sqrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-sqrt$(EXEEXT): $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_DEPENDENCIES) $(EXTRA_tests_test_sqrt_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-sqrt$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_LDADD) $(LIBS)
+tests/test-strfromd_unsafe_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-strfromd_unsafe$(EXEEXT): $(tests_test_strfromd_unsafe_OBJECTS) $(tests_test_strfromd_unsafe_DEPENDENCIES) $(EXTRA_tests_test_strfromd_unsafe_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-strfromd_unsafe$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_strfromd_unsafe_OBJECTS) $(tests_test_strfromd_unsafe_LDADD) $(LIBS)
 tests/test-strtod_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2417,6 +2430,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strtod_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tan_dats.Po@am__quote@ # am--include-marker
@@ -3111,6 +3125,13 @@ tests/test-strtod.log: tests/test-strtod$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-strfromd_unsafe.log: tests/test-strfromd_unsafe$(EXEEXT)
+	@p='tests/test-strfromd_unsafe$(EXEEXT)'; \
+	b='tests/test-strfromd_unsafe'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -3404,6 +3425,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
@@ -3506,6 +3528,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
