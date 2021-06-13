@@ -110,6 +110,7 @@ build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-binary-arith$(EXEEXT) \
 	tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
+	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
 	tests/test-remainder$(EXEEXT) tests/test-remquo$(EXEEXT) \
 	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
 	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
@@ -285,6 +286,9 @@ tests_test_fmax_LDADD = $(LDADD)
 tests_test_fmin_SOURCES = tests/test-fmin_dats.c
 tests_test_fmin_OBJECTS = tests/test-fmin_dats.$(OBJEXT)
 tests_test_fmin_LDADD = $(LDADD)
+tests_test_fmod_SOURCES = tests/test-fmod_dats.c
+tests_test_fmod_OBJECTS = tests/test-fmod_dats.$(OBJEXT)
+tests_test_fmod_LDADD = $(LDADD)
 tests_test_frexp_SOURCES = tests/test-frexp_dats.c
 tests_test_frexp_OBJECTS = tests/test-frexp_dats.$(OBJEXT)
 tests_test_frexp_LDADD = $(LDADD)
@@ -330,6 +334,9 @@ tests_test_max_LDADD = $(LDADD)
 tests_test_min_SOURCES = tests/test-min_dats.c
 tests_test_min_OBJECTS = tests/test-min_dats.$(OBJEXT)
 tests_test_min_LDADD = $(LDADD)
+tests_test_mod_SOURCES = tests/test-mod_dats.c
+tests_test_mod_OBJECTS = tests/test-mod_dats.$(OBJEXT)
+tests_test_mod_LDADD = $(LDADD)
 tests_test_modf_SOURCES = tests/test-modf_dats.c
 tests_test_modf_OBJECTS = tests/test-modf_dats.$(OBJEXT)
 tests_test_modf_LDADD = $(LDADD)
@@ -455,6 +462,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-fma_dats.Po \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
+	tests/$(DEPDIR)/test-fmod_dats.Po \
 	tests/$(DEPDIR)/test-frexp_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
 	tests/$(DEPDIR)/test-ilogb_dats.Po \
@@ -470,6 +478,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-lround_dats.Po \
 	tests/$(DEPDIR)/test-max_dats.Po \
 	tests/$(DEPDIR)/test-min_dats.Po \
+	tests/$(DEPDIR)/test-mod_dats.Po \
 	tests/$(DEPDIR)/test-modf_dats.Po \
 	tests/$(DEPDIR)/test-nan_dats.Po \
 	tests/$(DEPDIR)/test-nearbyint_dats.Po \
@@ -530,27 +539,28 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
 	tests/test-fabs_dats.c tests/test-floor_dats.c \
 	tests/test-fma_dats.c tests/test-fmax_dats.c \
-	tests/test-fmin_dats.c tests/test-frexp_dats.c \
-	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fmin_dats.c tests/test-fmod_dats.c \
+	tests/test-frexp_dats.c tests/test-hypot_dats.c \
+	tests/test-ilogb_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
 	tests/test-lround_dats.c tests/test-max_dats.c \
-	tests/test-min_dats.c tests/test-modf_dats.c \
-	tests/test-nan_dats.c tests/test-nearbyint_dats.c \
-	tests/test-neg_dats.c tests/test-nextafter_dats.c \
-	tests/test-nexttoward_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-remainder_dats.c \
-	tests/test-remquo_dats.c tests/test-rint_dats.c \
-	tests/test-round_dats.c tests/test-scalbln_dats.c \
-	tests/test-scalbn_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-trunc_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-min_dats.c tests/test-mod_dats.c \
+	tests/test-modf_dats.c tests/test-nan_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-remainder_dats.c tests/test-remquo_dats.c \
+	tests/test-rint_dats.c tests/test-round_dats.c \
+	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-__builtin_huge_val_dats.c \
 	tests/test-__builtin_inf_dats.c \
@@ -565,27 +575,28 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
 	tests/test-fabs_dats.c tests/test-floor_dats.c \
 	tests/test-fma_dats.c tests/test-fmax_dats.c \
-	tests/test-fmin_dats.c tests/test-frexp_dats.c \
-	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fmin_dats.c tests/test-fmod_dats.c \
+	tests/test-frexp_dats.c tests/test-hypot_dats.c \
+	tests/test-ilogb_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
 	tests/test-lround_dats.c tests/test-max_dats.c \
-	tests/test-min_dats.c tests/test-modf_dats.c \
-	tests/test-nan_dats.c tests/test-nearbyint_dats.c \
-	tests/test-neg_dats.c tests/test-nextafter_dats.c \
-	tests/test-nexttoward_dats.c tests/test-pow_dats.c \
-	tests/test-pred_dats.c tests/test-remainder_dats.c \
-	tests/test-remquo_dats.c tests/test-rint_dats.c \
-	tests/test-round_dats.c tests/test-scalbln_dats.c \
-	tests/test-scalbn_dats.c tests/test-sin_dats.c \
-	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
-	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-trunc_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-min_dats.c tests/test-mod_dats.c \
+	tests/test-modf_dats.c tests/test-nan_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-remainder_dats.c tests/test-remquo_dats.c \
+	tests/test-rint_dats.c tests/test-round_dats.c \
+	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
+	tests/test-sin_dats.c tests/test-sinh_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -2308,6 +2319,12 @@ tests/test-fmin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-fmin$(EXEEXT): $(tests_test_fmin_OBJECTS) $(tests_test_fmin_DEPENDENCIES) $(EXTRA_tests_test_fmin_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-fmin$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_fmin_OBJECTS) $(tests_test_fmin_LDADD) $(LIBS)
+tests/test-fmod_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmod$(EXEEXT): $(tests_test_fmod_OBJECTS) $(tests_test_fmod_DEPENDENCIES) $(EXTRA_tests_test_fmod_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmod$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmod_OBJECTS) $(tests_test_fmod_LDADD) $(LIBS)
 tests/test-frexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2398,6 +2415,12 @@ tests/test-min_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-min$(EXEEXT): $(tests_test_min_OBJECTS) $(tests_test_min_DEPENDENCIES) $(EXTRA_tests_test_min_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-min$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_min_OBJECTS) $(tests_test_min_LDADD) $(LIBS)
+tests/test-mod_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-mod$(EXEEXT): $(tests_test_mod_OBJECTS) $(tests_test_mod_DEPENDENCIES) $(EXTRA_tests_test_mod_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-mod$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_mod_OBJECTS) $(tests_test_mod_LDADD) $(LIBS)
 tests/test-modf_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2599,6 +2622,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmod_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ilogb_dats.Po@am__quote@ # am--include-marker
@@ -2614,6 +2638,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lround_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-mod_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-modf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nearbyint_dats.Po@am__quote@ # am--include-marker
@@ -2994,6 +3019,20 @@ tests/test-neg.log: tests/test-neg$(EXEEXT)
 tests/test-fma.log: tests/test-fma$(EXEEXT)
 	@p='tests/test-fma$(EXEEXT)'; \
 	b='tests/test-fma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmod.log: tests/test-fmod$(EXEEXT)
+	@p='tests/test-fmod$(EXEEXT)'; \
+	b='tests/test-fmod'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-mod.log: tests/test-mod$(EXEEXT)
+	@p='tests/test-mod$(EXEEXT)'; \
+	b='tests/test-mod'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3722,6 +3761,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
@@ -3737,6 +3777,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-lround_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-mod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-modf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
@@ -3841,6 +3882,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
@@ -3856,6 +3898,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-lround_dats.Po
 	-rm -f tests/$(DEPDIR)/test-max_dats.Po
 	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-mod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-modf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
