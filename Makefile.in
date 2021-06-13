@@ -108,7 +108,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
+check_PROGRAMS = tests/test-binary-arith$(EXEEXT) \
+	tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-remainder$(EXEEXT) tests/test-remquo$(EXEEXT) \
 	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
 	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
@@ -240,6 +241,10 @@ tests_test_atan2_LDADD = $(LDADD)
 tests_test_atanh_SOURCES = tests/test-atanh_dats.c
 tests_test_atanh_OBJECTS = tests/test-atanh_dats.$(OBJEXT)
 tests_test_atanh_LDADD = $(LDADD)
+tests_test_binary_arith_SOURCES = tests/test-binary-arith_dats.c
+tests_test_binary_arith_OBJECTS =  \
+	tests/test-binary-arith_dats.$(OBJEXT)
+tests_test_binary_arith_LDADD = $(LDADD)
 tests_test_cbrt_SOURCES = tests/test-cbrt_dats.c
 tests_test_cbrt_OBJECTS = tests/test-cbrt_dats.$(OBJEXT)
 tests_test_cbrt_LDADD = $(LDADD)
@@ -436,6 +441,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-atan2_dats.Po \
 	tests/$(DEPDIR)/test-atan_dats.Po \
 	tests/$(DEPDIR)/test-atanh_dats.Po \
+	tests/$(DEPDIR)/test-binary-arith_dats.Po \
 	tests/$(DEPDIR)/test-cbrt_dats.Po \
 	tests/$(DEPDIR)/test-ceil_dats.Po \
 	tests/$(DEPDIR)/test-compare_dats.Po \
@@ -517,16 +523,16 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
-	tests/test-ceil_dats.c tests/test-compare_dats.c \
-	tests/test-comparison-ops_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-erf_dats.c \
-	tests/test-erfc_dats.c tests/test-fabs_dats.c \
-	tests/test-floor_dats.c tests/test-fma_dats.c \
-	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-atanh_dats.c tests/test-binary-arith_dats.c \
+	tests/test-cbrt_dats.c tests/test-ceil_dats.c \
+	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-erf_dats.c tests/test-erfc_dats.c \
+	tests/test-fabs_dats.c tests/test-floor_dats.c \
+	tests/test-fma_dats.c tests/test-fmax_dats.c \
+	tests/test-fmin_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
@@ -552,16 +558,16 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-acos_dats.c tests/test-acosh_dats.c \
 	tests/test-asin_dats.c tests/test-asinh_dats.c \
 	tests/test-atan_dats.c tests/test-atan2_dats.c \
-	tests/test-atanh_dats.c tests/test-cbrt_dats.c \
-	tests/test-ceil_dats.c tests/test-compare_dats.c \
-	tests/test-comparison-ops_dats.c tests/test-cos_dats.c \
-	tests/test-cosh_dats.c tests/test-erf_dats.c \
-	tests/test-erfc_dats.c tests/test-fabs_dats.c \
-	tests/test-floor_dats.c tests/test-fma_dats.c \
-	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-atanh_dats.c tests/test-binary-arith_dats.c \
+	tests/test-cbrt_dats.c tests/test-ceil_dats.c \
+	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
+	tests/test-cos_dats.c tests/test-cosh_dats.c \
+	tests/test-erf_dats.c tests/test-erfc_dats.c \
+	tests/test-fabs_dats.c tests/test-floor_dats.c \
+	tests/test-fma_dats.c tests/test-fmax_dats.c \
+	tests/test-fmin_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
@@ -2218,6 +2224,12 @@ tests/test-atanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-atanh$(EXEEXT): $(tests_test_atanh_OBJECTS) $(tests_test_atanh_DEPENDENCIES) $(EXTRA_tests_test_atanh_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-atanh$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_atanh_OBJECTS) $(tests_test_atanh_LDADD) $(LIBS)
+tests/test-binary-arith_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-binary-arith$(EXEEXT): $(tests_test_binary_arith_OBJECTS) $(tests_test_binary_arith_DEPENDENCIES) $(EXTRA_tests_test_binary_arith_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-binary-arith$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_binary_arith_OBJECTS) $(tests_test_binary_arith_LDADD) $(LIBS)
 tests/test-cbrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2573,6 +2585,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atanh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-binary-arith_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cbrt_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ceil_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-compare_dats.Po@am__quote@ # am--include-marker
@@ -2964,6 +2977,13 @@ recheck: all $(check_PROGRAMS)
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
+tests/test-binary-arith.log: tests/test-binary-arith$(EXEEXT)
+	@p='tests/test-binary-arith$(EXEEXT)'; \
+	b='tests/test-binary-arith'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-neg.log: tests/test-neg$(EXEEXT)
 	@p='tests/test-neg$(EXEEXT)'; \
 	b='tests/test-neg'; \
@@ -3688,6 +3708,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-binary-arith_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ceil_dats.Po
 	-rm -f tests/$(DEPDIR)/test-compare_dats.Po
@@ -3806,6 +3827,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-binary-arith_dats.Po
 	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ceil_dats.Po
 	-rm -f tests/$(DEPDIR)/test-compare_dats.Po

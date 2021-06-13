@@ -91,6 +91,7 @@ TESTS += $(check_PROGRAMS)
 
 check_PROGRAMS =
 
+check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg
 check_PROGRAMS += tests/test-fma
 check_PROGRAMS += tests/test-remainder
