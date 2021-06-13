@@ -155,6 +155,7 @@ check_PROGRAMS += tests/test-y0
 check_PROGRAMS += tests/test-y1
 check_PROGRAMS += tests/test-yn
 
+check_PROGRAMS += tests/test-modf
 check_PROGRAMS += tests/test-frexp
 check_PROGRAMS += tests/test-logb
 check_PROGRAMS += tests/test-ilogb
