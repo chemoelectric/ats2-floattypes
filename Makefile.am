@@ -96,7 +96,7 @@ TESTS += $(check_PROGRAMS)
 
 check_PROGRAMS =
 
-check_PROGRAMS += tests/test-stdc-constants
+check_PROGRAMS += tests/test-std-constants
 
 check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg

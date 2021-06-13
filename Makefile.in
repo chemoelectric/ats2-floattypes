@@ -108,7 +108,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = tests/test-stdc-constants$(EXEEXT) \
+check_PROGRAMS = tests/test-std-constants$(EXEEXT) \
 	tests/test-binary-arith$(EXEEXT) tests/test-neg$(EXEEXT) \
 	tests/test-fdim$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
@@ -408,10 +408,10 @@ tests_test_sinh_LDADD = $(LDADD)
 tests_test_sqrt_SOURCES = tests/test-sqrt_dats.c
 tests_test_sqrt_OBJECTS = tests/test-sqrt_dats.$(OBJEXT)
 tests_test_sqrt_LDADD = $(LDADD)
-tests_test_stdc_constants_SOURCES = tests/test-stdc-constants_dats.c
-tests_test_stdc_constants_OBJECTS =  \
-	tests/test-stdc-constants_dats.$(OBJEXT)
-tests_test_stdc_constants_LDADD = $(LDADD)
+tests_test_std_constants_SOURCES = tests/test-std-constants_dats.c
+tests_test_std_constants_OBJECTS =  \
+	tests/test-std-constants_dats.$(OBJEXT)
+tests_test_std_constants_LDADD = $(LDADD)
 tests_test_strfromd_unsafe_SOURCES =  \
 	tests/test-strfromd_unsafe_dats.c
 tests_test_strfromd_unsafe_OBJECTS =  \
@@ -525,7 +525,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-sqrt_dats.Po \
-	tests/$(DEPDIR)/test-stdc-constants_dats.Po \
+	tests/$(DEPDIR)/test-std-constants_dats.Po \
 	tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po \
 	tests/$(DEPDIR)/test-strtod_dats.Po \
 	tests/$(DEPDIR)/test-succ_dats.Po \
@@ -588,7 +588,7 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-sqrt_dats.c tests/test-stdc-constants_dats.c \
+	tests/test-sqrt_dats.c tests/test-std-constants_dats.c \
 	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
 	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
@@ -627,7 +627,7 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-sqrt_dats.c tests/test-stdc-constants_dats.c \
+	tests/test-sqrt_dats.c tests/test-std-constants_dats.c \
 	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
 	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
@@ -2605,12 +2605,12 @@ tests/test-sqrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-sqrt$(EXEEXT): $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_DEPENDENCIES) $(EXTRA_tests_test_sqrt_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-sqrt$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_LDADD) $(LIBS)
-tests/test-stdc-constants_dats.$(OBJEXT): tests/$(am__dirstamp) \
+tests/test-std-constants_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
-tests/test-stdc-constants$(EXEEXT): $(tests_test_stdc_constants_OBJECTS) $(tests_test_stdc_constants_DEPENDENCIES) $(EXTRA_tests_test_stdc_constants_DEPENDENCIES) tests/$(am__dirstamp)
-	@rm -f tests/test-stdc-constants$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(tests_test_stdc_constants_OBJECTS) $(tests_test_stdc_constants_LDADD) $(LIBS)
+tests/test-std-constants$(EXEEXT): $(tests_test_std_constants_OBJECTS) $(tests_test_std_constants_DEPENDENCIES) $(EXTRA_tests_test_std_constants_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-std-constants$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_std_constants_OBJECTS) $(tests_test_std_constants_LDADD) $(LIBS)
 tests/test-strfromd_unsafe_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2749,7 +2749,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-stdc-constants_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-std-constants_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strtod_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
@@ -3096,9 +3096,9 @@ recheck: all $(check_PROGRAMS)
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
-tests/test-stdc-constants.log: tests/test-stdc-constants$(EXEEXT)
-	@p='tests/test-stdc-constants$(EXEEXT)'; \
-	b='tests/test-stdc-constants'; \
+tests/test-std-constants.log: tests/test-std-constants$(EXEEXT)
+	@p='tests/test-std-constants$(EXEEXT)'; \
+	b='tests/test-std-constants'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3936,7 +3936,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
-	-rm -f tests/$(DEPDIR)/test-stdc-constants_dats.Po
+	-rm -f tests/$(DEPDIR)/test-std-constants_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
@@ -4063,7 +4063,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
-	-rm -f tests/$(DEPDIR)/test-stdc-constants_dats.Po
+	-rm -f tests/$(DEPDIR)/test-std-constants_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
 	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
