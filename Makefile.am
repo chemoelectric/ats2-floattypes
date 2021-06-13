@@ -105,11 +105,12 @@ check_PROGRAMS += tests/test-scalbln
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
-check_PROGRAMS += tests/test-comparison-ops
-check_PROGRAMS += tests/test-compare
-
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-fabs
+check_PROGRAMS += tests/test-copysign
+
+check_PROGRAMS += tests/test-comparison-ops
+check_PROGRAMS += tests/test-compare
 
 check_PROGRAMS += tests/test-ceil
 check_PROGRAMS += tests/test-floor
