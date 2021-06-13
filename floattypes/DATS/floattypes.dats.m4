@@ -87,6 +87,9 @@ dnl
 m4_foreachq([func],[frexplike_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
+m4_foreachq([func],[remquolike_math_functions],
+  [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
 m4_foreachq([func],[lgamma_rlike_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl

@@ -225,6 +225,16 @@ floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int *p) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+m4_define([remquolike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2, dnl
+atstype_int *quo) dnl
+{ return (floattypes_$2_$1 (f1, f2, quo)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 m4_define([jnlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -428,6 +438,10 @@ dnl
 m4_foreachq([func],[frexplike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [frexplike_fn(t,func)])])
+dnl
+m4_foreachq([func],[remquolike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [remquolike_fn(t,func)])])
 dnl
 m4_foreachq([func],[lgamma_rlike_math_functions],
   [m4_foreachq([t],[all_floattypes],

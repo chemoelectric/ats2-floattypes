@@ -82,6 +82,10 @@ m4_define([declare_frexplike],
   [fun g0float_$1_$2 : g0float_frexplike_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_remquolike],
+  [fun g0float_$1_$2 : g0float_remquolike_type($2[]_kind) = "mac#%"
+])
+
 m4_define([declare_jnlike],
   [fun g0float_$1_$2 : g0float_jnlike_type($2[]_kind) = "mac#%"
 ])
@@ -135,6 +139,11 @@ typedef g0float_llroundlike_type (tk : tkind) =
    an integer as side effect by reference. */
 typedef g0float_frexplike_type (tk : tkind) =
   (g0float(tk), &int? >> int) -<fun,!refwrt> g0float(tk)
+
+/* Binary operations returning a floating-point value, but also
+   an integer as side effect by reference. */
+typedef g0float_remquolike_type (tk : tkind) =
+  (g0float(tk), g0float(tk), &int? >> int) -<fun,!refwrt> g0float(tk)
 
 /* An operation similar to C's 'jn' and 'yn' functions. */
 typedef g0float_jnlike_type (tk : tkind) =
@@ -228,6 +237,13 @@ m4_foreachq([func],[frexplike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_frexplike(func,t)])dnl
 fun {tk : tk} dnl
 g0float_[]func : g0float_frexplike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[remquolike_math_functions],
+[m4_foreachq([t],[all_floattypes],[declare_remquolike(func,t)])dnl
+fun {tk : tk} dnl
+g0float_[]func : g0float_remquolike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl
