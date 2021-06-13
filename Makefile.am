@@ -95,6 +95,8 @@ check_PROGRAMS += tests/test-neg
 check_PROGRAMS += tests/test-fma
 check_PROGRAMS += tests/test-remainder
 check_PROGRAMS += tests/test-remquo
+check_PROGRAMS += tests/test-scalbn
+check_PROGRAMS += tests/test-scalbln
 
 check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred

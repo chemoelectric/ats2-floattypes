@@ -70,6 +70,14 @@ m4_define([declare_compare],
   [fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_scalbnlike],
+  [fun g0float_$1_$2 : g0float_scalbnlike_type($2[]_kind) = "mac#%"
+])
+
+m4_define([declare_scalblnlike],
+  [fun g0float_$1_$2 : g0float_scalblnlike_type($2[]_kind) = "mac#%"
+])
+
 m4_define([declare_lroundlike],
   [fun g0float_$1_$2 : g0float_lroundlike_type($2[]_kind) = "mac#%"
 ])
@@ -128,6 +136,14 @@ typedef g0float_nexttowardlike_type (tk : tkind) =
    an int. */
 typedef g0float_ilogblike_type (tk : tkind) =
   (g0float(tk)) -<fun0> int
+
+/* Binary operations where the second argument is an int. */
+typedef g0float_scalbnlike_type (tk : tkind) =
+  (g0float(tk), int) -<fun0> g0float(tk)
+
+/* Binary operations where the second argument is a lint. */
+typedef g0float_scalblnlike_type (tk : tkind) =
+  (g0float(tk), lint) -<fun0> g0float(tk)
 
 /* Operations taking a floating-point value and returning
    a lint. */
@@ -225,6 +241,20 @@ dnl
 m4_foreachq([func],[nexttowardlike_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_nexttowardlike(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_nexttowardlike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[scalbnlike_math_functions],
+[m4_foreachq([t],[all_floattypes],[declare_scalbnlike(func,t)])dnl
+fun {tk : tk} dnl
+g0float_[]func : g0float_scalbnlike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[scalblnlike_math_functions],
+[m4_foreachq([t],[all_floattypes],[declare_scalblnlike(func,t)])dnl
+fun {tk : tk} dnl
+g0float_[]func : g0float_scalblnlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl

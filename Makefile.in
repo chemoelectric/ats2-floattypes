@@ -110,6 +110,7 @@ build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-remainder$(EXEEXT) tests/test-remquo$(EXEEXT) \
+	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
 	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
 	tests/test-abs$(EXEEXT) tests/test-fabs$(EXEEXT) \
 	tests/test-ceil$(EXEEXT) tests/test-floor$(EXEEXT) \
@@ -352,6 +353,12 @@ tests_test_rint_LDADD = $(LDADD)
 tests_test_round_SOURCES = tests/test-round_dats.c
 tests_test_round_OBJECTS = tests/test-round_dats.$(OBJEXT)
 tests_test_round_LDADD = $(LDADD)
+tests_test_scalbln_SOURCES = tests/test-scalbln_dats.c
+tests_test_scalbln_OBJECTS = tests/test-scalbln_dats.$(OBJEXT)
+tests_test_scalbln_LDADD = $(LDADD)
+tests_test_scalbn_SOURCES = tests/test-scalbn_dats.c
+tests_test_scalbn_OBJECTS = tests/test-scalbn_dats.$(OBJEXT)
+tests_test_scalbn_LDADD = $(LDADD)
 tests_test_sin_SOURCES = tests/test-sin_dats.c
 tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
 tests_test_sin_LDADD = $(LDADD)
@@ -459,6 +466,8 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-remquo_dats.Po \
 	tests/$(DEPDIR)/test-rint_dats.Po \
 	tests/$(DEPDIR)/test-round_dats.Po \
+	tests/$(DEPDIR)/test-scalbln_dats.Po \
+	tests/$(DEPDIR)/test-scalbn_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-sqrt_dats.Po \
@@ -517,7 +526,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-nexttoward_dats.c tests/test-pow_dats.c \
 	tests/test-pred_dats.c tests/test-remainder_dats.c \
 	tests/test-remquo_dats.c tests/test-rint_dats.c \
-	tests/test-round_dats.c tests/test-sin_dats.c \
+	tests/test-round_dats.c tests/test-scalbln_dats.c \
+	tests/test-scalbn_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
 	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
@@ -550,7 +560,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-nexttoward_dats.c tests/test-pow_dats.c \
 	tests/test-pred_dats.c tests/test-remainder_dats.c \
 	tests/test-remquo_dats.c tests/test-rint_dats.c \
-	tests/test-round_dats.c tests/test-sin_dats.c \
+	tests/test-round_dats.c tests/test-scalbln_dats.c \
+	tests/test-scalbn_dats.c tests/test-sin_dats.c \
 	tests/test-sinh_dats.c tests/test-sqrt_dats.c \
 	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
 	tests/test-succ_dats.c tests/test-tan_dats.c \
@@ -2423,6 +2434,18 @@ tests/test-round_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-round$(EXEEXT): $(tests_test_round_OBJECTS) $(tests_test_round_DEPENDENCIES) $(EXTRA_tests_test_round_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-round$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_round_OBJECTS) $(tests_test_round_LDADD) $(LIBS)
+tests/test-scalbln_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-scalbln$(EXEEXT): $(tests_test_scalbln_OBJECTS) $(tests_test_scalbln_DEPENDENCIES) $(EXTRA_tests_test_scalbln_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-scalbln$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_scalbln_OBJECTS) $(tests_test_scalbln_LDADD) $(LIBS)
+tests/test-scalbn_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-scalbn$(EXEEXT): $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_DEPENDENCIES) $(EXTRA_tests_test_scalbn_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-scalbn$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_LDADD) $(LIBS)
 tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2564,6 +2587,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-remquo_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-rint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-round_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbln_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbn_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
@@ -2937,6 +2962,20 @@ tests/test-remainder.log: tests/test-remainder$(EXEEXT)
 tests/test-remquo.log: tests/test-remquo$(EXEEXT)
 	@p='tests/test-remquo$(EXEEXT)'; \
 	b='tests/test-remquo'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-scalbn.log: tests/test-scalbn$(EXEEXT)
+	@p='tests/test-scalbn$(EXEEXT)'; \
+	b='tests/test-scalbn'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-scalbln.log: tests/test-scalbln$(EXEEXT)
+	@p='tests/test-scalbln$(EXEEXT)'; \
+	b='tests/test-scalbln'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3647,6 +3686,8 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-remquo_dats.Po
 	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-round_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
@@ -3761,6 +3802,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-remquo_dats.Po
 	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-round_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po

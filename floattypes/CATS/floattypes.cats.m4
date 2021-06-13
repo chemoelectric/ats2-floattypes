@@ -198,6 +198,24 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, atstype_ldouble f2) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+m4_define([scalbnlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int i) dnl
+{ return (floattypes_$2_$1 (f, i)); }
+#endif /* HAVE_floattypes_$1 */
+])
+
+m4_define([scalblnlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_lint i) dnl
+{ return (floattypes_$2_$1 (f, i)); }
+#endif /* HAVE_floattypes_$1 */
+])
+
 m4_define([lroundlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -435,6 +453,14 @@ dnl
 m4_foreachq([func],[nexttowardlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [nexttowardlike_fn(t,func)])])
+dnl
+m4_foreachq([func],[scalbnlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [scalbnlike_fn(t,func)])])
+dnl
+m4_foreachq([func],[scalblnlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [scalblnlike_fn(t,func)])])
 dnl
 m4_foreachq([func],[lroundlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
