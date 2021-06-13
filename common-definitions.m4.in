@@ -114,8 +114,7 @@ m4_define([ilogblike_math_functions],[ilogb])
 m4_define([the_ilogblike_math_functions],
   [m4_remove_commas([ilogblike_math_functions])])
 
-m4_define([scalbnlike_math_functions],
-  [scalbn, ldexp])
+m4_define([scalbnlike_math_functions],[scalbn, ldexp])
 m4_define([the_scalbnlike_math_functions],
   [m4_remove_commas([scalbnlike_math_functions])])
 
@@ -123,15 +122,15 @@ m4_define([scalblnlike_math_functions],[scalbln])
 m4_define([the_scalblnlike_math_functions],
   [m4_remove_commas([scalblnlike_math_functions])])
 
-m4_define([lroundlike_math_functions],[lround,lrint])
+m4_define([lroundlike_math_functions],[lround, lrint])
 m4_define([the_lroundlike_math_functions],
   [m4_remove_commas([lroundlike_math_functions])])
 
-m4_define([llroundlike_math_functions],[llround,llrint])
+m4_define([llroundlike_math_functions],[llround, llrint])
 m4_define([the_llroundlike_math_functions],
   [m4_remove_commas([llroundlike_math_functions])])
 
-m4_define([jnlike_math_functions],[jn,yn])
+m4_define([jnlike_math_functions],[jn, yn])
 m4_define([the_jnlike_math_functions],
   [m4_remove_commas([jnlike_math_functions])])
 
