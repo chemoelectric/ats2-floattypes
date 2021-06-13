@@ -109,38 +109,39 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = tests/test-binary-arith$(EXEEXT) \
-	tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
-	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
-	tests/test-remainder$(EXEEXT) tests/test-remquo$(EXEEXT) \
-	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
-	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
-	tests/test-comparison-ops$(EXEEXT) tests/test-compare$(EXEEXT) \
-	tests/test-abs$(EXEEXT) tests/test-fabs$(EXEEXT) \
-	tests/test-ceil$(EXEEXT) tests/test-floor$(EXEEXT) \
-	tests/test-trunc$(EXEEXT) tests/test-nearbyint$(EXEEXT) \
-	tests/test-rint$(EXEEXT) tests/test-lrint$(EXEEXT) \
-	tests/test-llrint$(EXEEXT) tests/test-round$(EXEEXT) \
-	tests/test-lround$(EXEEXT) tests/test-llround$(EXEEXT) \
-	tests/test-nextafter$(EXEEXT) tests/test-nexttoward$(EXEEXT) \
-	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
-	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
-	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
-	tests/test-hypot$(EXEEXT) tests/test-pow$(EXEEXT) \
-	tests/test-sin$(EXEEXT) tests/test-cos$(EXEEXT) \
-	tests/test-tan$(EXEEXT) tests/test-asin$(EXEEXT) \
-	tests/test-acos$(EXEEXT) tests/test-atan$(EXEEXT) \
-	tests/test-atan2$(EXEEXT) tests/test-sinh$(EXEEXT) \
-	tests/test-cosh$(EXEEXT) tests/test-tanh$(EXEEXT) \
-	tests/test-asinh$(EXEEXT) tests/test-acosh$(EXEEXT) \
-	tests/test-atanh$(EXEEXT) tests/test-erf$(EXEEXT) \
-	tests/test-erfc$(EXEEXT) tests/test-lgamma$(EXEEXT) \
-	tests/test-lgamma_r$(EXEEXT) tests/test-tgamma$(EXEEXT) \
-	tests/test-j0$(EXEEXT) tests/test-j1$(EXEEXT) \
-	tests/test-jn$(EXEEXT) tests/test-y0$(EXEEXT) \
-	tests/test-y1$(EXEEXT) tests/test-yn$(EXEEXT) \
-	tests/test-modf$(EXEEXT) tests/test-frexp$(EXEEXT) \
-	tests/test-logb$(EXEEXT) tests/test-ilogb$(EXEEXT) \
-	tests/test-nan$(EXEEXT) tests/test-__builtin_nans$(EXEEXT) \
+	tests/test-neg$(EXEEXT) tests/test-fdim$(EXEEXT) \
+	tests/test-fma$(EXEEXT) tests/test-fmod$(EXEEXT) \
+	tests/test-mod$(EXEEXT) tests/test-remainder$(EXEEXT) \
+	tests/test-remquo$(EXEEXT) tests/test-scalbn$(EXEEXT) \
+	tests/test-scalbln$(EXEEXT) tests/test-succ$(EXEEXT) \
+	tests/test-pred$(EXEEXT) tests/test-comparison-ops$(EXEEXT) \
+	tests/test-compare$(EXEEXT) tests/test-abs$(EXEEXT) \
+	tests/test-fabs$(EXEEXT) tests/test-ceil$(EXEEXT) \
+	tests/test-floor$(EXEEXT) tests/test-trunc$(EXEEXT) \
+	tests/test-nearbyint$(EXEEXT) tests/test-rint$(EXEEXT) \
+	tests/test-lrint$(EXEEXT) tests/test-llrint$(EXEEXT) \
+	tests/test-round$(EXEEXT) tests/test-lround$(EXEEXT) \
+	tests/test-llround$(EXEEXT) tests/test-nextafter$(EXEEXT) \
+	tests/test-nexttoward$(EXEEXT) tests/test-min$(EXEEXT) \
+	tests/test-max$(EXEEXT) tests/test-fmin$(EXEEXT) \
+	tests/test-fmax$(EXEEXT) tests/test-sqrt$(EXEEXT) \
+	tests/test-cbrt$(EXEEXT) tests/test-hypot$(EXEEXT) \
+	tests/test-pow$(EXEEXT) tests/test-sin$(EXEEXT) \
+	tests/test-cos$(EXEEXT) tests/test-tan$(EXEEXT) \
+	tests/test-asin$(EXEEXT) tests/test-acos$(EXEEXT) \
+	tests/test-atan$(EXEEXT) tests/test-atan2$(EXEEXT) \
+	tests/test-sinh$(EXEEXT) tests/test-cosh$(EXEEXT) \
+	tests/test-tanh$(EXEEXT) tests/test-asinh$(EXEEXT) \
+	tests/test-acosh$(EXEEXT) tests/test-atanh$(EXEEXT) \
+	tests/test-erf$(EXEEXT) tests/test-erfc$(EXEEXT) \
+	tests/test-lgamma$(EXEEXT) tests/test-lgamma_r$(EXEEXT) \
+	tests/test-tgamma$(EXEEXT) tests/test-j0$(EXEEXT) \
+	tests/test-j1$(EXEEXT) tests/test-jn$(EXEEXT) \
+	tests/test-y0$(EXEEXT) tests/test-y1$(EXEEXT) \
+	tests/test-yn$(EXEEXT) tests/test-modf$(EXEEXT) \
+	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
+	tests/test-ilogb$(EXEEXT) tests/test-nan$(EXEEXT) \
+	tests/test-__builtin_nans$(EXEEXT) \
 	tests/test-__builtin_huge_val$(EXEEXT) \
 	tests/test-__builtin_inf$(EXEEXT) tests/test-strtod$(EXEEXT) \
 	tests/test-strfromd_unsafe$(EXEEXT)
@@ -274,6 +275,9 @@ tests_test_erfc_LDADD = $(LDADD)
 tests_test_fabs_SOURCES = tests/test-fabs_dats.c
 tests_test_fabs_OBJECTS = tests/test-fabs_dats.$(OBJEXT)
 tests_test_fabs_LDADD = $(LDADD)
+tests_test_fdim_SOURCES = tests/test-fdim_dats.c
+tests_test_fdim_OBJECTS = tests/test-fdim_dats.$(OBJEXT)
+tests_test_fdim_LDADD = $(LDADD)
 tests_test_floor_SOURCES = tests/test-floor_dats.c
 tests_test_floor_OBJECTS = tests/test-floor_dats.$(OBJEXT)
 tests_test_floor_LDADD = $(LDADD)
@@ -458,6 +462,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-erf_dats.Po \
 	tests/$(DEPDIR)/test-erfc_dats.Po \
 	tests/$(DEPDIR)/test-fabs_dats.Po \
+	tests/$(DEPDIR)/test-fdim_dats.Po \
 	tests/$(DEPDIR)/test-floor_dats.Po \
 	tests/$(DEPDIR)/test-fma_dats.Po \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
@@ -537,12 +542,12 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-fabs_dats.c tests/test-floor_dats.c \
-	tests/test-fma_dats.c tests/test-fmax_dats.c \
-	tests/test-fmin_dats.c tests/test-fmod_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-floor_dats.c tests/test-fma_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-fmod_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
@@ -573,12 +578,12 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
 	tests/test-cos_dats.c tests/test-cosh_dats.c \
 	tests/test-erf_dats.c tests/test-erfc_dats.c \
-	tests/test-fabs_dats.c tests/test-floor_dats.c \
-	tests/test-fma_dats.c tests/test-fmax_dats.c \
-	tests/test-fmin_dats.c tests/test-fmod_dats.c \
-	tests/test-frexp_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-floor_dats.c tests/test-fma_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-fmod_dats.c tests/test-frexp_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-lgamma_dats.c tests/test-lgamma_r_dats.c \
 	tests/test-llrint_dats.c tests/test-llround_dats.c \
 	tests/test-logb_dats.c tests/test-lrint_dats.c \
@@ -2295,6 +2300,12 @@ tests/test-fabs_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-fabs$(EXEEXT): $(tests_test_fabs_OBJECTS) $(tests_test_fabs_DEPENDENCIES) $(EXTRA_tests_test_fabs_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-fabs$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_fabs_OBJECTS) $(tests_test_fabs_LDADD) $(LIBS)
+tests/test-fdim_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fdim$(EXEEXT): $(tests_test_fdim_OBJECTS) $(tests_test_fdim_DEPENDENCIES) $(EXTRA_tests_test_fdim_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fdim$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fdim_OBJECTS) $(tests_test_fdim_LDADD) $(LIBS)
 tests/test-floor_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2618,6 +2629,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fabs_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fdim_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-floor_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
@@ -3012,6 +3024,13 @@ tests/test-binary-arith.log: tests/test-binary-arith$(EXEEXT)
 tests/test-neg.log: tests/test-neg$(EXEEXT)
 	@p='tests/test-neg$(EXEEXT)'; \
 	b='tests/test-neg'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fdim.log: tests/test-fdim$(EXEEXT)
+	@p='tests/test-fdim$(EXEEXT)'; \
+	b='tests/test-fdim'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3757,6 +3776,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
 	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
@@ -3878,6 +3898,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
 	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
