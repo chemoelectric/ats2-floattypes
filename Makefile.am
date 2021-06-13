@@ -99,6 +99,7 @@ check_PROGRAMS += tests/test-fmod
 check_PROGRAMS += tests/test-mod
 check_PROGRAMS += tests/test-remainder
 check_PROGRAMS += tests/test-remquo
+check_PROGRAMS += tests/test-ldexp
 check_PROGRAMS += tests/test-scalbn
 check_PROGRAMS += tests/test-scalbln
 
