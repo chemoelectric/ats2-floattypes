@@ -102,6 +102,7 @@ check_PROGRAMS += tests/test-succ
 check_PROGRAMS += tests/test-pred
 
 check_PROGRAMS += tests/test-comparison-ops
+check_PROGRAMS += tests/test-compare
 
 check_PROGRAMS += tests/test-abs
 check_PROGRAMS += tests/test-fabs
