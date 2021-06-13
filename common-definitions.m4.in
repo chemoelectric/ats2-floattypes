@@ -201,17 +201,25 @@ m4_define([math_functions],
 m4_define([the_math_functions],
   [m4_remove_commas([math_functions])])
 
-m4_define([math_constants_names],
+m4_define(dnl  See the GSL manual.
+[bsd_constants_names],
   [M_E,
    M_LOG2E,
    M_LOG10E,
    M_LN2,
    M_LN10,
+   M_LNPI,
    M_PI,
    M_PI_2,
    M_PI_4,
    M_1_PI,
    M_2_PI,
+   M_SQRTPI,
    M_2_SQRTPI,
    M_SQRT2,
-   M_SQRT1_2])
+   M_SQRT1_2,
+   M_SQRT3,
+   M_EULER])
+
+m4_define([math_constants_names],
+  [bsd_constants_names])

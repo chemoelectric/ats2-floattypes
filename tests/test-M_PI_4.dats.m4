@@ -32,23 +32,8 @@ main() =
   let
     m4_foreachq([t],[all_floattypes],
       [#if HAVE_floattypes_[]t
-
          macdef f2f = $UN.cast{t}
-
-         val _ = assertloc(abs(M_E_[]t - f2f(2.7182818)) < f2f(0.00001))
-         val _ = assertloc(abs(M_LOG2E_[]t - f2f(1.44269504)) < f2f(0.00001))
-         val _ = assertloc(abs(M_LOG10E_[]t - f2f(0.43429448)) < f2f(0.00001))
-         val _ = assertloc(abs(M_LN2_[]t - f2f(0.69314718)) < f2f(0.00001))
-         val _ = assertloc(abs(M_LN10_[]t - f2f(2.30258509)) < f2f(0.00001))
-         val _ = assertloc(abs(M_PI_[]t - f2f(3.14159265)) < f2f(0.00001))
-         val _ = assertloc(abs(M_PI_2_[]t - f2f(1.5707963)) < f2f(0.00001))
          val _ = assertloc(abs(M_PI_4_[]t - f2f(0.785398163)) < f2f(0.00001))
-         val _ = assertloc(abs(M_1_PI_[]t - f2f(0.318309886)) < f2f(0.00001))
-         val _ = assertloc(abs(M_2_PI_[]t - f2f(0.636619772)) < f2f(0.00001))
-         val _ = assertloc(abs(M_2_SQRTPI_[]t - f2f(1.128379167)) < f2f(0.00001))
-         val _ = assertloc(abs(M_SQRT2_[]t - f2f(1.41421356)) < f2f(0.00001))
-         val _ = assertloc(abs(M_SQRT1_2_[]t - f2f(0.70710678)) < f2f(0.00001))
-
        #endif
       ])
   in
