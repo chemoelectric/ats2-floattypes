@@ -42,43 +42,60 @@ typedef $1 = g0float($1_kind)
 
 ])
 
-m4_define([declare_nullop],[fun g0float_$1_$2 : g0float_nullop_type($2[]_kind) = "mac#%"
+m4_define([declare_nullop],
+  [fun g0float_$1_$2 : g0float_nullop_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_uop],[fun g0float_$1_$2 : g0float_uop_type($2[]_kind) = "mac#%"
+m4_define([declare_uop],
+  [fun g0float_$1_$2 : g0float_uop_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_aop],[fun g0float_$1_$2 : g0float_aop_type($2[]_kind) = "mac#%"
+m4_define([declare_aop],
+  [fun g0float_$1_$2 : g0float_aop_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_fmaop],[fun g0float_$1_$2 : g0float_fmaop_type($2[]_kind) = "mac#%"
+m4_define([declare_fmaop],
+  [fun g0float_$1_$2 : g0float_fmaop_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_cmp],[fun g0float_$1_$2 : g0float_cmp_type($2[]_kind) = "mac#%"
+m4_define([declare_nexttowardlike],
+  [fun g0float_$1_$2 : g0float_nexttowardlike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_compare],[fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = "mac#%"
+m4_define([declare_cmp],
+  [fun g0float_$1_$2 : g0float_cmp_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_lroundlike],[fun g0float_$1_$2 : g0float_lroundlike_type($2[]_kind) = "mac#%"
+m4_define([declare_compare],
+  [fun g0float_$1_$2 : g0float_compare_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_llroundlike],[fun g0float_$1_$2 : g0float_llroundlike_type($2[]_kind) = "mac#%"
+m4_define([declare_lroundlike],
+  [fun g0float_$1_$2 : g0float_lroundlike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_frexplike],[fun g0float_$1_$2 : g0float_frexplike_type($2[]_kind) = "mac#%"
+m4_define([declare_llroundlike],
+  [fun g0float_$1_$2 : g0float_llroundlike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_jnlike],[fun g0float_$1_$2 : g0float_jnlike_type($2[]_kind) = "mac#%"
+m4_define([declare_frexplike],
+  [fun g0float_$1_$2 : g0float_frexplike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_ilogblike],[fun g0float_$1_$2 : g0float_ilogblike_type($2[]_kind) = "mac#%"
+m4_define([declare_jnlike],
+  [fun g0float_$1_$2 : g0float_jnlike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_nanlike],[fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind) = "mac#%"
+m4_define([declare_ilogblike],
+  [fun g0float_$1_$2 : g0float_ilogblike_type($2[]_kind) = "mac#%"
 ])
 
-m4_define([declare_strtodlike],[fun g0float_$1_$2 : g0float_strtodlike_type($2[]_kind) = "mac#%"
+m4_define([declare_nanlike],
+  [fun g0float_$1_$2 : g0float_nanlike_type($2[]_kind) = "mac#%"
+])
+
+m4_define([declare_strtodlike],
+  [fun g0float_$1_$2 : g0float_strtodlike_type($2[]_kind) = "mac#%"
 ])
 
 m4_define([declare_strfromdlike_unsafe],
@@ -94,6 +111,10 @@ typedef g0float_nullop_type (tk : tkind) =
 /* Ternary operations similar to fused-multiply-add. */
 typedef g0float_fmaop_type (tk : tkind) =
   (g0float(tk), g0float(tk), g0float(tk)) -<fun0> g0float(tk)
+
+/* Operations similar to C’s ‘nexttoward’. */
+typedef g0float_nexttowardlike_type (tk : tkind) =
+  (g0float(tk), ldouble) -<fun0> g0float(tk)
 
 /* Operations taking a floating-point value and returning
    an int. */
@@ -180,6 +201,12 @@ dnl
 m4_foreachq([func],[ternary_math_functions],
 [m4_foreachq([t],[all_floattypes],[declare_fmaop(func,t)])dnl
 fun {tk : tk} g0float_[]func : g0float_fmaop_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[nexttowardlike_math_functions],
+[m4_foreachq([t],[all_floattypes],[declare_nexttowardlike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_nexttowardlike_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
 dnl

@@ -189,6 +189,15 @@ floattypes_$1 f3) dnl
 #endif /* HAVE_floattypes_$2_$1 */
 ])
 
+m4_define([nexttowardlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+floattypes_$1 dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, atstype_ldouble f2) dnl
+{ return (floattypes_$2_$1 (f1, f2)); }
+#endif /* HAVE_floattypes_$2_$1 */
+])
+
 m4_define([lroundlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -403,6 +412,10 @@ dnl
 m4_foreachq([func],[ternary_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [ternary_fn(t,func)])])
+dnl
+m4_foreachq([func],[nexttowardlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],
+    [nexttowardlike_fn(t,func)])])
 dnl
 m4_foreachq([func],[lroundlike_math_functions],
   [m4_foreachq([t],[all_floattypes],

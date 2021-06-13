@@ -116,6 +116,7 @@ check_PROGRAMS = tests/test-neg$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-rint$(EXEEXT) tests/test-lrint$(EXEEXT) \
 	tests/test-llrint$(EXEEXT) tests/test-round$(EXEEXT) \
 	tests/test-lround$(EXEEXT) tests/test-llround$(EXEEXT) \
+	tests/test-nextafter$(EXEEXT) tests/test-nexttoward$(EXEEXT) \
 	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
 	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
 	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
@@ -323,6 +324,12 @@ tests_test_nearbyint_LDADD = $(LDADD)
 tests_test_neg_SOURCES = tests/test-neg_dats.c
 tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
 tests_test_neg_LDADD = $(LDADD)
+tests_test_nextafter_SOURCES = tests/test-nextafter_dats.c
+tests_test_nextafter_OBJECTS = tests/test-nextafter_dats.$(OBJEXT)
+tests_test_nextafter_LDADD = $(LDADD)
+tests_test_nexttoward_SOURCES = tests/test-nexttoward_dats.c
+tests_test_nexttoward_OBJECTS = tests/test-nexttoward_dats.$(OBJEXT)
+tests_test_nexttoward_LDADD = $(LDADD)
 tests_test_pow_SOURCES = tests/test-pow_dats.c
 tests_test_pow_OBJECTS = tests/test-pow_dats.$(OBJEXT)
 tests_test_pow_LDADD = $(LDADD)
@@ -433,6 +440,8 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-nan_dats.Po \
 	tests/$(DEPDIR)/test-nearbyint_dats.Po \
 	tests/$(DEPDIR)/test-neg_dats.Po \
+	tests/$(DEPDIR)/test-nextafter_dats.Po \
+	tests/$(DEPDIR)/test-nexttoward_dats.Po \
 	tests/$(DEPDIR)/test-pow_dats.Po \
 	tests/$(DEPDIR)/test-pred_dats.Po \
 	tests/$(DEPDIR)/test-rint_dats.Po \
@@ -491,6 +500,7 @@ SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-lround_dats.c tests/test-max_dats.c \
 	tests/test-min_dats.c tests/test-nan_dats.c \
 	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
@@ -521,6 +531,7 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-lround_dats.c tests/test-max_dats.c \
 	tests/test-min_dats.c tests/test-nan_dats.c \
 	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
 	tests/test-pow_dats.c tests/test-pred_dats.c \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-sin_dats.c tests/test-sinh_dats.c \
@@ -2341,6 +2352,18 @@ tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-neg$(EXEEXT): $(tests_test_neg_OBJECTS) $(tests_test_neg_DEPENDENCIES) $(EXTRA_tests_test_neg_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-neg$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_neg_OBJECTS) $(tests_test_neg_LDADD) $(LIBS)
+tests/test-nextafter_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nextafter$(EXEEXT): $(tests_test_nextafter_OBJECTS) $(tests_test_nextafter_DEPENDENCIES) $(EXTRA_tests_test_nextafter_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nextafter$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nextafter_OBJECTS) $(tests_test_nextafter_LDADD) $(LIBS)
+tests/test-nexttoward_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nexttoward$(EXEEXT): $(tests_test_nexttoward_OBJECTS) $(tests_test_nexttoward_DEPENDENCIES) $(EXTRA_tests_test_nexttoward_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nexttoward$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nexttoward_OBJECTS) $(tests_test_nexttoward_LDADD) $(LIBS)
 tests/test-pow_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2497,6 +2520,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nearbyint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nextafter_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nexttoward_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-rint_dats.Po@am__quote@ # am--include-marker
@@ -2958,6 +2983,20 @@ tests/test-lround.log: tests/test-lround$(EXEEXT)
 tests/test-llround.log: tests/test-llround$(EXEEXT)
 	@p='tests/test-llround$(EXEEXT)'; \
 	b='tests/test-llround'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nextafter.log: tests/test-nextafter$(EXEEXT)
+	@p='tests/test-nextafter$(EXEEXT)'; \
+	b='tests/test-nextafter'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nexttoward.log: tests/test-nexttoward$(EXEEXT)
+	@p='tests/test-nexttoward$(EXEEXT)'; \
+	b='tests/test-nexttoward'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -3540,6 +3579,8 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nextafter_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nexttoward_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
@@ -3649,6 +3690,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nextafter_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nexttoward_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
 	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
 	-rm -f tests/$(DEPDIR)/test-rint_dats.Po

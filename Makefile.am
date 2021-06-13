@@ -111,6 +111,9 @@ check_PROGRAMS += tests/test-round
 check_PROGRAMS += tests/test-lround
 check_PROGRAMS += tests/test-llround
 
+check_PROGRAMS += tests/test-nextafter
+check_PROGRAMS += tests/test-nexttoward
+
 check_PROGRAMS += tests/test-min
 check_PROGRAMS += tests/test-max
 check_PROGRAMS += tests/test-fmin

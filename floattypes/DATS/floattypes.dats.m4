@@ -75,6 +75,9 @@ dnl
 m4_foreachq([func],[ternary_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
+m4_foreachq([func],[nexttowardlike_math_functions],
+  [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
+dnl
 m4_foreachq([func],[lroundlike_math_functions],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
