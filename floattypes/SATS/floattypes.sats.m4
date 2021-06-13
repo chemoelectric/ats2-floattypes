@@ -121,6 +121,14 @@ m4_define([declare_strfromdlike_unsafe],
 
 divert[]dnl
 
+m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
+
+m4_foreachq([const],[math_constants_names],
+  [m4_foreachq([t],[all_floattypes],
+    [macdef const[_]t = $extval(g0float(t[_kind]), "[floattypes_]const[_]t")
+])
+])
+
 /* Nullary operations. */
 typedef g0float_nullop_type (tk : tkind) =
   () -<fun0> g0float(tk)
@@ -190,14 +198,6 @@ typedef g0float_strfromdlike_unsafe_type (tk : tkind) =
   (charptr1, size_t, String0, g0float(tk)) -<fun,!refwrt> int
 
 
-m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
-dnl
-m4_foreachq([const],[math_constants_names],
-  [m4_foreachq([t],[all_floattypes],
-    [macdef const[_]t = $extval(g0float(t[_kind]), "[floattypes_]const[_]t")
-])
-])
-dnl
 m4_foreachq([t],[extra_floattypes],[declare_uop([neg],t)])
 m4_foreachq([t],[extra_floattypes],[declare_uop([abs],t)])
 m4_foreachq([t],[extra_floattypes],[declare_uop([succ],t)])
