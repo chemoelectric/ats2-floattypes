@@ -117,6 +117,7 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-M_2_PI$(EXEEXT) tests/test-M_LN10$(EXEEXT) \
 	tests/test-M_LN2$(EXEEXT) tests/test-M_LNPI$(EXEEXT) \
 	tests/test-M_EULER$(EXEEXT) tests/test-int-to-float$(EXEEXT) \
+	tests/test-uint-to-float$(EXEEXT) \
 	tests/test-binary-arith$(EXEEXT) tests/test-neg$(EXEEXT) \
 	tests/test-fdim$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
@@ -494,6 +495,10 @@ tests_test_tgamma_LDADD = $(LDADD)
 tests_test_trunc_SOURCES = tests/test-trunc_dats.c
 tests_test_trunc_OBJECTS = tests/test-trunc_dats.$(OBJEXT)
 tests_test_trunc_LDADD = $(LDADD)
+tests_test_uint_to_float_SOURCES = tests/test-uint-to-float_dats.c
+tests_test_uint_to_float_OBJECTS =  \
+	tests/test-uint-to-float_dats.$(OBJEXT)
+tests_test_uint_to_float_LDADD = $(LDADD)
 tests_test_y0_SOURCES = tests/test-y0_dats.c
 tests_test_y0_OBJECTS = tests/test-y0_dats.$(OBJEXT)
 tests_test_y0_LDADD = $(LDADD)
@@ -609,6 +614,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-tanh_dats.Po \
 	tests/$(DEPDIR)/test-tgamma_dats.Po \
 	tests/$(DEPDIR)/test-trunc_dats.Po \
+	tests/$(DEPDIR)/test-uint-to-float_dats.Po \
 	tests/$(DEPDIR)/test-y0_dats.Po \
 	tests/$(DEPDIR)/test-y1_dats.Po \
 	tests/$(DEPDIR)/test-yn_dats.Po
@@ -677,7 +683,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-strtod_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c \
 	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
 	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
@@ -725,7 +732,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-strtod_dats.c tests/test-succ_dats.c \
 	tests/test-tan_dats.c tests/test-tanh_dats.c \
 	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -2848,6 +2856,12 @@ tests/test-trunc_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-trunc$(EXEEXT): $(tests_test_trunc_OBJECTS) $(tests_test_trunc_DEPENDENCIES) $(EXTRA_tests_test_trunc_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-trunc$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_trunc_OBJECTS) $(tests_test_trunc_LDADD) $(LIBS)
+tests/test-uint-to-float_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-uint-to-float$(EXEEXT): $(tests_test_uint_to_float_OBJECTS) $(tests_test_uint_to_float_DEPENDENCIES) $(EXTRA_tests_test_uint_to_float_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-uint-to-float$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_uint_to_float_OBJECTS) $(tests_test_uint_to_float_LDADD) $(LIBS)
 tests/test-y0_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2969,6 +2983,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tanh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tgamma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-trunc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-uint-to-float_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-yn_dats.Po@am__quote@ # am--include-marker
@@ -3430,6 +3445,13 @@ tests/test-M_EULER.log: tests/test-M_EULER$(EXEEXT)
 tests/test-int-to-float.log: tests/test-int-to-float$(EXEEXT)
 	@p='tests/test-int-to-float$(EXEEXT)'; \
 	b='tests/test-int-to-float'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-uint-to-float.log: tests/test-uint-to-float$(EXEEXT)
+	@p='tests/test-uint-to-float$(EXEEXT)'; \
+	b='tests/test-uint-to-float'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -4292,6 +4314,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-trunc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-uint-to-float_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
@@ -4436,6 +4459,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-trunc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-uint-to-float_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po

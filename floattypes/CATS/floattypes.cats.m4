@@ -61,10 +61,20 @@ _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
 
 divert(-1)
 
-m4_define([integer_to_float],
+fun {tk1, tk2 : tk}
+g0uint2float : g0uint(tk1) -<> g0float(tk2)
+
+m4_define([int_to_float],
 [ATSinline() dnl
 floattypes_$2 dnl
 floattypes_g0int2float_$1_$2 (atstype_$1 i) dnl
+{ return ((floattypes_$2) i); }
+])
+
+m4_define([uint_to_float],
+[ATSinline() dnl
+floattypes_$2 dnl
+floattypes_g0uint2float_$1_$2 (atstype_$1 i) dnl
 { return ((floattypes_$2) i); }
 ])
 
@@ -339,7 +349,9 @@ divert[]dnl
 m4_foreachq([_t],[all_floattypes],
 [#if HAVE_floattypes_[]_t
 m4_foreachq([_i],[all_int_kinds],
-    [integer_to_float(_i,_t)])dnl
+    [int_to_float(_i,_t)])dnl
+m4_foreachq([_i],[all_uint_kinds],
+    [uint_to_float(_i,_t)])dnl
 #endif /* HAVE_floattypes_[]_t */
 
 ])

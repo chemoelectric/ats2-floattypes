@@ -115,6 +115,7 @@ check_PROGRAMS += tests/test-M_LNPI
 check_PROGRAMS += tests/test-M_EULER
 
 check_PROGRAMS += tests/test-int-to-float
+check_PROGRAMS += tests/test-uint-to-float
 
 check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg

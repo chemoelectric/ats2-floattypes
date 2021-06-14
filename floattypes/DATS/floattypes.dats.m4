@@ -35,8 +35,12 @@ staload "floattypes/SATS/floattypes.sats"
 
 divert(-1)
 
-m4_define([implement_integer_to_float],
+m4_define([implement_int_to_float],
   [implement g0int2float<$1[]knd,$2[]_kind> = g0int2float_$1_$2
+])
+
+m4_define([implement_uint_to_float],
+  [implement g0uint2float<$1[]knd,$2[]_kind> = g0uint2float_$1_$2
 ])
 
 m4_define([implement_float],
@@ -46,8 +50,10 @@ m4_define([implement_float],
 divert[]dnl
 
 m4_foreachq([_t],[all_floattypes],
-  [m4_foreachq([_i],[all_int_kinds],
-    [implement_integer_to_float(_i,_t)])
+[m4_foreachq([_i],[all_int_kinds],
+    [implement_int_to_float(_i,_t)])
+m4_foreachq([_i],[all_uint_kinds],
+    [implement_uint_to_float(_i,_t)])
 ])
 
 m4_foreachq([t],[extra_floattypes],[implement_float([neg],t)])
