@@ -43,6 +43,10 @@ typedef $1 = g0float($1_kind)
 
 ])
 
+m4_define([declare_integer_to_float],
+  [fun g0int2float_$1_$2 : g0int($1[]knd) -<> g0float($2[]_kind) = "mac#%"
+])
+
 m4_define([declare_nullop],
   [fun g0float_$1_$2 : g0float_nullop_type($2[]_kind) = "mac#%"
 ])
@@ -196,6 +200,12 @@ typedef g0float_strtodlike_type (tk : tkind) =
 /* An operation similar to C's 'strfromd' function. */
 typedef g0float_strfromdlike_unsafe_type (tk : tkind) =
   (charptr1, size_t, String0, g0float(tk)) -<fun,!refwrt> int
+
+
+m4_foreachq([_t],[all_floattypes],
+  [m4_foreachq([_i],[all_int_kinds],
+    [declare_integer_to_float(_i,_t)])
+])
 
 
 m4_foreachq([t],[extra_floattypes],[declare_uop([neg],t)])

@@ -96,7 +96,6 @@ TESTS += $(check_PROGRAMS)
 
 check_PROGRAMS =
 
-#check_PROGRAMS += tests/test-bsd-constants
 check_PROGRAMS += tests/test-M_E
 check_PROGRAMS += tests/test-M_LOG2E
 check_PROGRAMS += tests/test-M_LOG10E
@@ -114,6 +113,8 @@ check_PROGRAMS += tests/test-M_LN10
 check_PROGRAMS += tests/test-M_LN2
 check_PROGRAMS += tests/test-M_LNPI
 check_PROGRAMS += tests/test-M_EULER
+
+check_PROGRAMS += tests/test-int-to-float
 
 check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg

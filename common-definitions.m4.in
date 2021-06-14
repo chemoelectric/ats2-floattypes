@@ -38,6 +38,28 @@ dnl  whitespace-separated list.
 dnl
 m4_define([m4_remove_commas],[m4_foreachq([x],[$1],[x ])])
 
+dnl  FIXME: Add support for 128-bit integers.
+m4_define([all_int_kinds],
+  [int,
+   sint,
+   lint,
+   llint,
+   int8,
+   int16,
+   int32,
+   int64,
+   ssize])
+m4_define([all_uint_kinds],
+  [uint,
+   usint,
+   ulint,
+   ullint,
+   uint8,
+   uint16,
+   uint32,
+   uint64,
+   size])
+
 m4_define([m4_float_suffix],[@FLOAT_SUFFIX@])
 m4_define([m4_double_suffix],[@DOUBLE_SUFFIX@])
 m4_define([m4_ldouble_suffix],[@LDOUBLE_SUFFIX@])
