@@ -64,6 +64,9 @@ divert(-1)
 fun {tk1, tk2 : tk}
 g0uint2float : g0uint(tk1) -<> g0float(tk2)
 
+fun {tk1, tk2 : tk}
+g0float2uint : g0float(tk1) -<> g0uint(tk2)
+
 m4_define([int_to_float],
 [ATSinline() dnl
 floattypes_$2 dnl
@@ -76,6 +79,20 @@ m4_define([uint_to_float],
 floattypes_$2 dnl
 floattypes_g0uint2float_$1_$2 (atstype_$1 i) dnl
 { return ((floattypes_$2) i); }
+])
+
+m4_define([float_to_int],
+[ATSinline() dnl
+atstype_$2 dnl
+floattypes_g0float2int_$1_$2 (floattypes_$1 f) dnl
+{ return ((atstype_$2) f); }
+])
+
+m4_define([float_to_uint],
+[ATSinline() dnl
+atstype_$2 dnl
+floattypes_g0float2uint_$1_$2 (floattypes_$1 f) dnl
+{ return ((atstype_$2) f); }
 ])
 
 m4_define([negation_op],
@@ -346,13 +363,17 @@ atstype_string fmt, floattypes_$1 fp) dnl
 divert[]dnl
 
 
-m4_foreachq([_t],[all_floattypes],
-[#if HAVE_floattypes_[]_t
+m4_foreachq([_f],[all_floattypes],
+[#if HAVE_floattypes_[]_f
 m4_foreachq([_i],[all_int_kinds],
-    [int_to_float(_i,_t)])dnl
+    [int_to_float(_i,_f)])dnl
 m4_foreachq([_i],[all_uint_kinds],
-    [uint_to_float(_i,_t)])dnl
-#endif /* HAVE_floattypes_[]_t */
+    [uint_to_float(_i,_f)])dnl
+m4_foreachq([_i],[all_int_kinds],
+    [float_to_int(_f,_i)])dnl
+m4_foreachq([_i],[all_uint_kinds],
+    [float_to_uint(_f,_i)])dnl
+#endif /* HAVE_floattypes_[]_f */
 
 ])
 

@@ -43,17 +43,29 @@ m4_define([implement_uint_to_float],
   [implement g0uint2float<$1[]knd,$2[]_kind> = g0uint2float_$1_$2
 ])
 
+m4_define([implement_float_to_int],
+  [implement g0float2int<$1[]_kind,$2[]knd> = g0float2int_$1_$2
+])
+
+m4_define([implement_float_to_uint],
+  [implement g0float2uint<$1[]_kind,$2[]knd> = g0float2uint_$1_$2
+])
+
 m4_define([implement_float],
   [implement g0float_$1<$2[]_kind> = g0float_$1_$2
 ])
 
 divert[]dnl
 
-m4_foreachq([_t],[all_floattypes],
+m4_foreachq([_f],[all_floattypes],
 [m4_foreachq([_i],[all_int_kinds],
-    [implement_int_to_float(_i,_t)])
+    [implement_int_to_float(_i,_f)])
 m4_foreachq([_i],[all_uint_kinds],
-    [implement_uint_to_float(_i,_t)])
+    [implement_uint_to_float(_i,_f)])
+m4_foreachq([_i],[all_int_kinds],
+    [implement_float_to_int(_f,_i)])
+m4_foreachq([_i],[all_uint_kinds],
+    [implement_float_to_uint(_f,_i)])
 ])
 
 m4_foreachq([t],[extra_floattypes],[implement_float([neg],t)])

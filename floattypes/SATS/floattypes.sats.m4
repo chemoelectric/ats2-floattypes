@@ -51,6 +51,14 @@ m4_define([declare_uint_to_float],
   [fun g0uint2float_$1_$2 : g0uint($1[]knd) -<> g0float($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_float_to_int],
+  [fun g0float2int_$1_$2 : g0float($1[]_kind) -<> g0int($2[]knd) = "mac#%"
+])
+
+m4_define([declare_float_to_uint],
+  [fun g0float2uint_$1_$2 : g0float($1[]_kind) -<> g0uint($2[]knd) = "mac#%"
+])
+
 m4_define([declare_nullop],
   [fun g0float_$1_$2 : g0float_nullop_type($2[]_kind) = "mac#%"
 ])
@@ -141,11 +149,18 @@ m4_foreachq([const],[math_constants_names],
 fun {tk1, tk2 : tkind}
 g0uint2float : g0uint(tk1) -<> g0float(tk2)
 
-m4_foreachq([_t],[all_floattypes],
+fun {tk1, tk2 : tkind}
+g0float2uint : g0float(tk1) -<> g0uint(tk2)
+
+m4_foreachq([_f],[all_floattypes],
 [m4_foreachq([_i],[all_int_kinds],
-  [declare_int_to_float(_i,_t)])
+  [declare_int_to_float(_i,_f)])
 m4_foreachq([_i],[all_uint_kinds],
-  [declare_uint_to_float(_i,_t)])
+  [declare_uint_to_float(_i,_f)])
+m4_foreachq([_i],[all_int_kinds],
+  [declare_float_to_int(_f,_i)])
+m4_foreachq([_i],[all_uint_kinds],
+  [declare_float_to_uint(_f,_i)])
 ])
 
 

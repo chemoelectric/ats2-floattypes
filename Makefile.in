@@ -118,6 +118,8 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-M_LN2$(EXEEXT) tests/test-M_LNPI$(EXEEXT) \
 	tests/test-M_EULER$(EXEEXT) tests/test-int-to-float$(EXEEXT) \
 	tests/test-uint-to-float$(EXEEXT) \
+	tests/test-float-to-int$(EXEEXT) \
+	tests/test-float-to-uint$(EXEEXT) \
 	tests/test-binary-arith$(EXEEXT) tests/test-neg$(EXEEXT) \
 	tests/test-fdim$(EXEEXT) tests/test-fma$(EXEEXT) \
 	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
@@ -348,6 +350,14 @@ tests_test_fabs_LDADD = $(LDADD)
 tests_test_fdim_SOURCES = tests/test-fdim_dats.c
 tests_test_fdim_OBJECTS = tests/test-fdim_dats.$(OBJEXT)
 tests_test_fdim_LDADD = $(LDADD)
+tests_test_float_to_int_SOURCES = tests/test-float-to-int_dats.c
+tests_test_float_to_int_OBJECTS =  \
+	tests/test-float-to-int_dats.$(OBJEXT)
+tests_test_float_to_int_LDADD = $(LDADD)
+tests_test_float_to_uint_SOURCES = tests/test-float-to-uint_dats.c
+tests_test_float_to_uint_OBJECTS =  \
+	tests/test-float-to-uint_dats.$(OBJEXT)
+tests_test_float_to_uint_LDADD = $(LDADD)
 tests_test_floor_SOURCES = tests/test-floor_dats.c
 tests_test_floor_OBJECTS = tests/test-floor_dats.$(OBJEXT)
 tests_test_floor_LDADD = $(LDADD)
@@ -566,6 +576,8 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-exponentials_dats.Po \
 	tests/$(DEPDIR)/test-fabs_dats.Po \
 	tests/$(DEPDIR)/test-fdim_dats.Po \
+	tests/$(DEPDIR)/test-float-to-int_dats.Po \
+	tests/$(DEPDIR)/test-float-to-uint_dats.Po \
 	tests/$(DEPDIR)/test-floor_dats.Po \
 	tests/$(DEPDIR)/test-fma_dats.Po \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
@@ -659,6 +671,7 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-cosh_dats.c tests/test-erf_dats.c \
 	tests/test-erfc_dats.c tests/test-exponentials_dats.c \
 	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-fmod_dats.c tests/test-frexp_dats.c \
@@ -708,6 +721,7 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-cosh_dats.c tests/test-erf_dats.c \
 	tests/test-erfc_dats.c tests/test-exponentials_dats.c \
 	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-fmod_dats.c tests/test-frexp_dats.c \
@@ -2568,6 +2582,18 @@ tests/test-fdim_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-fdim$(EXEEXT): $(tests_test_fdim_OBJECTS) $(tests_test_fdim_DEPENDENCIES) $(EXTRA_tests_test_fdim_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-fdim$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_fdim_OBJECTS) $(tests_test_fdim_LDADD) $(LIBS)
+tests/test-float-to-int_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-float-to-int$(EXEEXT): $(tests_test_float_to_int_OBJECTS) $(tests_test_float_to_int_DEPENDENCIES) $(EXTRA_tests_test_float_to_int_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-float-to-int$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_float_to_int_OBJECTS) $(tests_test_float_to_int_LDADD) $(LIBS)
+tests/test-float-to-uint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-float-to-uint$(EXEEXT): $(tests_test_float_to_uint_OBJECTS) $(tests_test_float_to_uint_DEPENDENCIES) $(EXTRA_tests_test_float_to_uint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-float-to-uint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_float_to_uint_OBJECTS) $(tests_test_float_to_uint_LDADD) $(LIBS)
 tests/test-floor_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2935,6 +2961,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-exponentials_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fabs_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fdim_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-float-to-int_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-float-to-uint_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-floor_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
@@ -3452,6 +3480,20 @@ tests/test-int-to-float.log: tests/test-int-to-float$(EXEEXT)
 tests/test-uint-to-float.log: tests/test-uint-to-float$(EXEEXT)
 	@p='tests/test-uint-to-float$(EXEEXT)'; \
 	b='tests/test-uint-to-float'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-float-to-int.log: tests/test-float-to-int$(EXEEXT)
+	@p='tests/test-float-to-int$(EXEEXT)'; \
+	b='tests/test-float-to-int'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-float-to-uint.log: tests/test-float-to-uint$(EXEEXT)
+	@p='tests/test-float-to-uint$(EXEEXT)'; \
+	b='tests/test-float-to-uint'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -4266,6 +4308,8 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-exponentials_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-int_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-uint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
@@ -4411,6 +4455,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-exponentials_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-int_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-uint_dats.Po
 	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po

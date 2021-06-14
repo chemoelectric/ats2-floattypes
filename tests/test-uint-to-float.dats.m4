@@ -34,15 +34,15 @@ main() =
       [#if HAVE_floattypes_[]t
          macdef c = $UN.cast
          macdef f2f = $UN.cast{t}
-         val _ = assertloc((g0uint2float(123U):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(123UL):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(123ULL):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(i2sz 123):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(c{usint}123):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(c{uint8}123):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(c{uint16}123):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(c{uint32}123):t) = f2f (123.0))
-         val _ = assertloc((g0uint2float(c{uint64}123):t) = f2f (123.0))
+         val _ = assertloc(g0uint2float(123U) = f2f(123.0))
+         val _ = assertloc(g0uint2float(123UL) = f2f(123.0))
+         val _ = assertloc(g0uint2float(123ULL) = f2f(123.0))
+         val _ = assertloc(g0uint2float(i2sz 123) = f2f(123.0))
+         val _ = assertloc(g0uint2float(c{usint}123) = f2f(123.0))
+         val _ = assertloc(g0uint2float(c{uint8}123) = f2f(123.0))
+         val _ = assertloc(g0uint2float(c{uint16}123) = f2f(123.0))
+         val _ = assertloc(g0uint2float(c{uint32}123) = f2f(123.0))
+         val _ = assertloc(g0uint2float(c{uint64}123) = f2f(123.0))
        #endif
       ])
   in
