@@ -95,6 +95,13 @@ floattypes_g0float2uint_$1_$2 (floattypes_$1 f) dnl
 { return ((atstype_$2) f); }
 ])
 
+m4_define([float_to_float],
+[ATSinline() dnl
+floattypes_$2 dnl
+floattypes_g0float2float_$1_$2 (floattypes_$1 f) dnl
+{ return ((floattypes_$2) f); }
+])
+
 m4_define([negation_op],
 [#if HAVE_floattypes_$1
 ATSinline() dnl
@@ -364,7 +371,7 @@ divert[]dnl
 
 
 m4_foreachq([_f],[all_floattypes],
-[#if HAVE_floattypes_[]_f
+[[#if HAVE_floattypes_]_f
 m4_foreachq([_i],[all_int_kinds],
     [int_to_float(_i,_f)])dnl
 m4_foreachq([_i],[all_uint_kinds],
@@ -373,10 +380,20 @@ m4_foreachq([_i],[all_int_kinds],
     [float_to_int(_f,_i)])dnl
 m4_foreachq([_i],[all_uint_kinds],
     [float_to_uint(_f,_i)])dnl
-#endif /* HAVE_floattypes_[]_f */
+[#endif /* HAVE_floattypes_]_f */
 
 ])
 
+m4_foreachq([_f1],[all_floattypes],
+[[#if HAVE_floattypes_]_f1
+m4_foreachq([_f2],[all_floattypes],
+[[#if HAVE_floattypes_]_f2
+float_to_float(_f1,_f2)dnl
+[#endif /* HAVE_floattypes_]_f2 */
+])dnl
+[#endif /* HAVE_floattypes_]_f1 */
+
+])
 
 #ifdef __GLIBC__
 

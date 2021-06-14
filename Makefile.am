@@ -118,6 +118,7 @@ check_PROGRAMS += tests/test-int-to-float
 check_PROGRAMS += tests/test-uint-to-float
 check_PROGRAMS += tests/test-float-to-int
 check_PROGRAMS += tests/test-float-to-uint
+check_PROGRAMS += tests/test-float-to-float
 
 check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg

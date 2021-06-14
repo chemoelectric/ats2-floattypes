@@ -51,6 +51,10 @@ m4_define([implement_float_to_uint],
   [implement g0float2uint<$1[]_kind,$2[]knd> = g0float2uint_$1_$2
 ])
 
+m4_define([implement_float_to_float],
+  [implement g0float2float<$1[]_kind,$2[]_kind> = g0float2float_$1_$2
+])
+
 m4_define([implement_float],
   [implement g0float_$1<$2[]_kind> = g0float_$1_$2
 ])
@@ -66,6 +70,8 @@ m4_foreachq([_i],[all_int_kinds],
     [implement_float_to_int(_f,_i)])
 m4_foreachq([_i],[all_uint_kinds],
     [implement_float_to_uint(_f,_i)])
+m4_foreachq([_f2],[all_floattypes],
+    [implement_float_to_float(_f,_f2)])
 ])
 
 m4_foreachq([t],[extra_floattypes],[implement_float([neg],t)])
