@@ -164,7 +164,8 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-fpclassify$(EXEEXT) tests/test-isfinite$(EXEEXT) \
 	tests/test-isinf$(EXEEXT) tests/test-isnan$(EXEEXT) \
 	tests/test-isnormal$(EXEEXT) tests/test-signbit$(EXEEXT) \
-	tests/test-strtod$(EXEEXT) tests/test-strfromd_unsafe$(EXEEXT)
+	tests/test-isgreaterlike$(EXEEXT) tests/test-strtod$(EXEEXT) \
+	tests/test-strfromd_unsafe$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -409,6 +410,10 @@ tests_test_int_to_float_LDADD = $(LDADD)
 tests_test_isfinite_SOURCES = tests/test-isfinite_dats.c
 tests_test_isfinite_OBJECTS = tests/test-isfinite_dats.$(OBJEXT)
 tests_test_isfinite_LDADD = $(LDADD)
+tests_test_isgreaterlike_SOURCES = tests/test-isgreaterlike_dats.c
+tests_test_isgreaterlike_OBJECTS =  \
+	tests/test-isgreaterlike_dats.$(OBJEXT)
+tests_test_isgreaterlike_LDADD = $(LDADD)
 tests_test_isinf_SOURCES = tests/test-isinf_dats.c
 tests_test_isinf_OBJECTS = tests/test-isinf_dats.$(OBJEXT)
 tests_test_isinf_LDADD = $(LDADD)
@@ -630,6 +635,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-ilogb_dats.Po \
 	tests/$(DEPDIR)/test-int-to-float_dats.Po \
 	tests/$(DEPDIR)/test-isfinite_dats.Po \
+	tests/$(DEPDIR)/test-isgreaterlike_dats.Po \
 	tests/$(DEPDIR)/test-isinf_dats.Po \
 	tests/$(DEPDIR)/test-isnan_dats.Po \
 	tests/$(DEPDIR)/test-isnormal_dats.Po \
@@ -728,9 +734,9 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
 	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
 	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
-	tests/test-isinf_dats.c tests/test-isnan_dats.c \
-	tests/test-isnormal_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-isgreaterlike_dats.c tests/test-isinf_dats.c \
+	tests/test-isnan_dats.c tests/test-isnormal_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -783,9 +789,9 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
 	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
 	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
-	tests/test-isinf_dats.c tests/test-isnan_dats.c \
-	tests/test-isnormal_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-isgreaterlike_dats.c tests/test-isinf_dats.c \
+	tests/test-isnan_dats.c tests/test-isnormal_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -2919,6 +2925,12 @@ tests/test-isfinite_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-isfinite$(EXEEXT): $(tests_test_isfinite_OBJECTS) $(tests_test_isfinite_DEPENDENCIES) $(EXTRA_tests_test_isfinite_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-isfinite$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_isfinite_OBJECTS) $(tests_test_isfinite_LDADD) $(LIBS)
+tests/test-isgreaterlike_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isgreaterlike$(EXEEXT): $(tests_test_isgreaterlike_OBJECTS) $(tests_test_isgreaterlike_DEPENDENCIES) $(EXTRA_tests_test_isgreaterlike_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isgreaterlike$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isgreaterlike_OBJECTS) $(tests_test_isgreaterlike_LDADD) $(LIBS)
 tests/test-isinf_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -3278,6 +3290,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ilogb_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-int-to-float_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isfinite_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isgreaterlike_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isinf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnan_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnormal_dats.Po@am__quote@ # am--include-marker
@@ -4383,6 +4396,13 @@ tests/test-signbit.log: tests/test-signbit$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isgreaterlike.log: tests/test-isgreaterlike$(EXEEXT)
+	@p='tests/test-isgreaterlike$(EXEEXT)'; \
+	b='tests/test-isgreaterlike'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-strtod.log: tests/test-strtod$(EXEEXT)
 	@p='tests/test-strtod$(EXEEXT)'; \
 	b='tests/test-strtod'; \
@@ -4705,6 +4725,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isgreaterlike_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po
@@ -4862,6 +4883,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isgreaterlike_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po

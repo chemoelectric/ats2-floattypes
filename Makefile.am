@@ -216,6 +216,7 @@ check_PROGRAMS += tests/test-isinf
 check_PROGRAMS += tests/test-isnan
 check_PROGRAMS += tests/test-isnormal
 check_PROGRAMS += tests/test-signbit
+check_PROGRAMS += tests/test-isgreaterlike
 
 check_PROGRAMS += tests/test-strtod
 check_PROGRAMS += tests/test-strfromd_unsafe
