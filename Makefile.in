@@ -163,7 +163,8 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-__builtin_inf$(EXEEXT) \
 	tests/test-fpclassify$(EXEEXT) tests/test-isfinite$(EXEEXT) \
 	tests/test-isinf$(EXEEXT) tests/test-isnan$(EXEEXT) \
-	tests/test-strtod$(EXEEXT) tests/test-strfromd_unsafe$(EXEEXT)
+	tests/test-isnormal$(EXEEXT) tests/test-strtod$(EXEEXT) \
+	tests/test-strfromd_unsafe$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -414,6 +415,9 @@ tests_test_isinf_LDADD = $(LDADD)
 tests_test_isnan_SOURCES = tests/test-isnan_dats.c
 tests_test_isnan_OBJECTS = tests/test-isnan_dats.$(OBJEXT)
 tests_test_isnan_LDADD = $(LDADD)
+tests_test_isnormal_SOURCES = tests/test-isnormal_dats.c
+tests_test_isnormal_OBJECTS = tests/test-isnormal_dats.$(OBJEXT)
+tests_test_isnormal_LDADD = $(LDADD)
 tests_test_j0_SOURCES = tests/test-j0_dats.c
 tests_test_j0_OBJECTS = tests/test-j0_dats.$(OBJEXT)
 tests_test_j0_LDADD = $(LDADD)
@@ -625,6 +629,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-isfinite_dats.Po \
 	tests/$(DEPDIR)/test-isinf_dats.Po \
 	tests/$(DEPDIR)/test-isnan_dats.Po \
+	tests/$(DEPDIR)/test-isnormal_dats.Po \
 	tests/$(DEPDIR)/test-j0_dats.Po \
 	tests/$(DEPDIR)/test-j1_dats.Po \
 	tests/$(DEPDIR)/test-jn_dats.Po \
@@ -720,7 +725,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
 	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
 	tests/test-isinf_dats.c tests/test-isnan_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-isnormal_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -773,7 +779,8 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
 	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
 	tests/test-isinf_dats.c tests/test-isnan_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-isnormal_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -2918,6 +2925,12 @@ tests/test-isnan_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-isnan$(EXEEXT): $(tests_test_isnan_OBJECTS) $(tests_test_isnan_DEPENDENCIES) $(EXTRA_tests_test_isnan_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-isnan$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_isnan_OBJECTS) $(tests_test_isnan_LDADD) $(LIBS)
+tests/test-isnormal_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isnormal$(EXEEXT): $(tests_test_isnormal_OBJECTS) $(tests_test_isnormal_DEPENDENCIES) $(EXTRA_tests_test_isnormal_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isnormal$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isnormal_OBJECTS) $(tests_test_isnormal_LDADD) $(LIBS)
 tests/test-j0_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -3255,6 +3268,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isfinite_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isinf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnormal_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
@@ -4342,6 +4356,13 @@ tests/test-isnan.log: tests/test-isnan$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isnormal.log: tests/test-isnormal$(EXEEXT)
+	@p='tests/test-isnormal$(EXEEXT)'; \
+	b='tests/test-isnormal'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-strtod.log: tests/test-strtod$(EXEEXT)
 	@p='tests/test-strtod$(EXEEXT)'; \
 	b='tests/test-strtod'; \
@@ -4666,6 +4687,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
@@ -4821,6 +4843,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
