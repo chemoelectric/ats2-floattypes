@@ -13118,6 +13118,12 @@ CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
 
 
 
+
+
+
+
+
+
 #--------------------------------------------------------------------------
 
 
@@ -96605,6 +96611,90 @@ fi
 
       DEF_floattypes_strfromd_decimal128x="#define HAVE_floattypes_strfromd_decimal128x ${HAVE_floattypes_strfromd_decimal128x}"
 
+      DEF_floattypes_FP_FAST_FMA_float="#define HAVE_floattypes_FP_FAST_FMA_float ${HAVE_floattypes_FP_FAST_FMA_float}"
+
+      DEF_floattypes_FP_FAST_FMA_double="#define HAVE_floattypes_FP_FAST_FMA_double ${HAVE_floattypes_FP_FAST_FMA_double}"
+
+      DEF_floattypes_FP_FAST_FMA_ldouble="#define HAVE_floattypes_FP_FAST_FMA_ldouble ${HAVE_floattypes_FP_FAST_FMA_ldouble}"
+
+      DEF_floattypes_FP_FAST_FMA_float32="#define HAVE_floattypes_FP_FAST_FMA_float32 ${HAVE_floattypes_FP_FAST_FMA_float32}"
+
+      DEF_floattypes_FP_FAST_FMA_float64="#define HAVE_floattypes_FP_FAST_FMA_float64 ${HAVE_floattypes_FP_FAST_FMA_float64}"
+
+      DEF_floattypes_FP_FAST_FMA_float128="#define HAVE_floattypes_FP_FAST_FMA_float128 ${HAVE_floattypes_FP_FAST_FMA_float128}"
+
+      DEF_floattypes_FP_FAST_FMA_decimal32="#define HAVE_floattypes_FP_FAST_FMA_decimal32 ${HAVE_floattypes_FP_FAST_FMA_decimal32}"
+
+      DEF_floattypes_FP_FAST_FMA_decimal64="#define HAVE_floattypes_FP_FAST_FMA_decimal64 ${HAVE_floattypes_FP_FAST_FMA_decimal64}"
+
+      DEF_floattypes_FP_FAST_FMA_decimal128="#define HAVE_floattypes_FP_FAST_FMA_decimal128 ${HAVE_floattypes_FP_FAST_FMA_decimal128}"
+
+      DEF_floattypes_FP_FAST_FMA_float32x="#define HAVE_floattypes_FP_FAST_FMA_float32x ${HAVE_floattypes_FP_FAST_FMA_float32x}"
+
+      DEF_floattypes_FP_FAST_FMA_float64x="#define HAVE_floattypes_FP_FAST_FMA_float64x ${HAVE_floattypes_FP_FAST_FMA_float64x}"
+
+      DEF_floattypes_FP_FAST_FMA_float128x="#define HAVE_floattypes_FP_FAST_FMA_float128x ${HAVE_floattypes_FP_FAST_FMA_float128x}"
+
+      DEF_floattypes_FP_FAST_FMA_decimal64x="#define HAVE_floattypes_FP_FAST_FMA_decimal64x ${HAVE_floattypes_FP_FAST_FMA_decimal64x}"
+
+      DEF_floattypes_FP_FAST_FMA_decimal128x="#define HAVE_floattypes_FP_FAST_FMA_decimal128x ${HAVE_floattypes_FP_FAST_FMA_decimal128x}"
+
+      DEF_floattypes_HUGE_VAL_float="#define HAVE_floattypes_HUGE_VAL_float ${HAVE_floattypes_HUGE_VAL_float}"
+
+      DEF_floattypes_HUGE_VAL_double="#define HAVE_floattypes_HUGE_VAL_double ${HAVE_floattypes_HUGE_VAL_double}"
+
+      DEF_floattypes_HUGE_VAL_ldouble="#define HAVE_floattypes_HUGE_VAL_ldouble ${HAVE_floattypes_HUGE_VAL_ldouble}"
+
+      DEF_floattypes_HUGE_VAL_float32="#define HAVE_floattypes_HUGE_VAL_float32 ${HAVE_floattypes_HUGE_VAL_float32}"
+
+      DEF_floattypes_HUGE_VAL_float64="#define HAVE_floattypes_HUGE_VAL_float64 ${HAVE_floattypes_HUGE_VAL_float64}"
+
+      DEF_floattypes_HUGE_VAL_float128="#define HAVE_floattypes_HUGE_VAL_float128 ${HAVE_floattypes_HUGE_VAL_float128}"
+
+      DEF_floattypes_HUGE_VAL_decimal32="#define HAVE_floattypes_HUGE_VAL_decimal32 ${HAVE_floattypes_HUGE_VAL_decimal32}"
+
+      DEF_floattypes_HUGE_VAL_decimal64="#define HAVE_floattypes_HUGE_VAL_decimal64 ${HAVE_floattypes_HUGE_VAL_decimal64}"
+
+      DEF_floattypes_HUGE_VAL_decimal128="#define HAVE_floattypes_HUGE_VAL_decimal128 ${HAVE_floattypes_HUGE_VAL_decimal128}"
+
+      DEF_floattypes_HUGE_VAL_float32x="#define HAVE_floattypes_HUGE_VAL_float32x ${HAVE_floattypes_HUGE_VAL_float32x}"
+
+      DEF_floattypes_HUGE_VAL_float64x="#define HAVE_floattypes_HUGE_VAL_float64x ${HAVE_floattypes_HUGE_VAL_float64x}"
+
+      DEF_floattypes_HUGE_VAL_float128x="#define HAVE_floattypes_HUGE_VAL_float128x ${HAVE_floattypes_HUGE_VAL_float128x}"
+
+      DEF_floattypes_HUGE_VAL_decimal64x="#define HAVE_floattypes_HUGE_VAL_decimal64x ${HAVE_floattypes_HUGE_VAL_decimal64x}"
+
+      DEF_floattypes_HUGE_VAL_decimal128x="#define HAVE_floattypes_HUGE_VAL_decimal128x ${HAVE_floattypes_HUGE_VAL_decimal128x}"
+
+      DEF_floattypes_SNAN_float="#define HAVE_floattypes_SNAN_float ${HAVE_floattypes_SNAN_float}"
+
+      DEF_floattypes_SNAN_double="#define HAVE_floattypes_SNAN_double ${HAVE_floattypes_SNAN_double}"
+
+      DEF_floattypes_SNAN_ldouble="#define HAVE_floattypes_SNAN_ldouble ${HAVE_floattypes_SNAN_ldouble}"
+
+      DEF_floattypes_SNAN_float32="#define HAVE_floattypes_SNAN_float32 ${HAVE_floattypes_SNAN_float32}"
+
+      DEF_floattypes_SNAN_float64="#define HAVE_floattypes_SNAN_float64 ${HAVE_floattypes_SNAN_float64}"
+
+      DEF_floattypes_SNAN_float128="#define HAVE_floattypes_SNAN_float128 ${HAVE_floattypes_SNAN_float128}"
+
+      DEF_floattypes_SNAN_decimal32="#define HAVE_floattypes_SNAN_decimal32 ${HAVE_floattypes_SNAN_decimal32}"
+
+      DEF_floattypes_SNAN_decimal64="#define HAVE_floattypes_SNAN_decimal64 ${HAVE_floattypes_SNAN_decimal64}"
+
+      DEF_floattypes_SNAN_decimal128="#define HAVE_floattypes_SNAN_decimal128 ${HAVE_floattypes_SNAN_decimal128}"
+
+      DEF_floattypes_SNAN_float32x="#define HAVE_floattypes_SNAN_float32x ${HAVE_floattypes_SNAN_float32x}"
+
+      DEF_floattypes_SNAN_float64x="#define HAVE_floattypes_SNAN_float64x ${HAVE_floattypes_SNAN_float64x}"
+
+      DEF_floattypes_SNAN_float128x="#define HAVE_floattypes_SNAN_float128x ${HAVE_floattypes_SNAN_float128x}"
+
+      DEF_floattypes_SNAN_decimal64x="#define HAVE_floattypes_SNAN_decimal64x ${HAVE_floattypes_SNAN_decimal64x}"
+
+      DEF_floattypes_SNAN_decimal128x="#define HAVE_floattypes_SNAN_decimal128x ${HAVE_floattypes_SNAN_decimal128x}"
+
 
 
 _ACEOF
@@ -99771,6 +99861,93 @@ $as_echo '' >> floattypes/HATS/config.hats
         $as_echo "${DEF_floattypes_strfromd_decimal64x}" >> floattypes/HATS/config.hats
 
         $as_echo "${DEF_floattypes_strfromd_decimal128x}" >> floattypes/HATS/config.hats
+$as_echo '' >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_double}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_ldouble}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_decimal32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_decimal64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_decimal128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float32x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_float128x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_decimal64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_FP_FAST_FMA_decimal128x}" >> floattypes/HATS/config.hats
+$as_echo '' >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_double}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_ldouble}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_decimal32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_decimal64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_decimal128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float32x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_float128x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_decimal64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_HUGE_VAL_decimal128x}" >> floattypes/HATS/config.hats
+$as_echo '' >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_double}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_ldouble}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_decimal32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_decimal64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_decimal128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float32x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_float128x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_decimal64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes_SNAN_decimal128x}" >> floattypes/HATS/config.hats
 
   $as_echo '' >> floattypes/HATS/config.hats
 

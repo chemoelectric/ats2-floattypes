@@ -156,6 +156,7 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-yn$(EXEEXT) tests/test-modf$(EXEEXT) \
 	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
 	tests/test-ilogb$(EXEEXT) tests/test-nan$(EXEEXT) \
+	tests/test-huge_val$(EXEEXT) \
 	tests/test-__builtin_nans$(EXEEXT) \
 	tests/test-__builtin_huge_val$(EXEEXT) \
 	tests/test-__builtin_inf$(EXEEXT) tests/test-strtod$(EXEEXT) \
@@ -381,6 +382,9 @@ tests_test_fmod_LDADD = $(LDADD)
 tests_test_frexp_SOURCES = tests/test-frexp_dats.c
 tests_test_frexp_OBJECTS = tests/test-frexp_dats.$(OBJEXT)
 tests_test_frexp_LDADD = $(LDADD)
+tests_test_huge_val_SOURCES = tests/test-huge_val_dats.c
+tests_test_huge_val_OBJECTS = tests/test-huge_val_dats.$(OBJEXT)
+tests_test_huge_val_LDADD = $(LDADD)
 tests_test_hypot_SOURCES = tests/test-hypot_dats.c
 tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
 tests_test_hypot_LDADD = $(LDADD)
@@ -590,6 +594,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
 	tests/$(DEPDIR)/test-fmod_dats.Po \
 	tests/$(DEPDIR)/test-frexp_dats.Po \
+	tests/$(DEPDIR)/test-huge_val_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
 	tests/$(DEPDIR)/test-ilogb_dats.Po \
 	tests/$(DEPDIR)/test-int-to-float_dats.Po \
@@ -682,9 +687,9 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-fmod_dats.c tests/test-frexp_dats.c \
-	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
-	tests/test-int-to-float_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-huge_val_dats.c tests/test-hypot_dats.c \
+	tests/test-ilogb_dats.c tests/test-int-to-float_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -733,9 +738,9 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
 	tests/test-fmod_dats.c tests/test-frexp_dats.c \
-	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
-	tests/test-int-to-float_dats.c tests/test-j0_dats.c \
-	tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-huge_val_dats.c tests/test-hypot_dats.c \
+	tests/test-ilogb_dats.c tests/test-int-to-float_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -2644,6 +2649,12 @@ tests/test-frexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-frexp$(EXEEXT): $(tests_test_frexp_OBJECTS) $(tests_test_frexp_DEPENDENCIES) $(EXTRA_tests_test_frexp_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-frexp$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_frexp_OBJECTS) $(tests_test_frexp_LDADD) $(LIBS)
+tests/test-huge_val_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-huge_val$(EXEEXT): $(tests_test_huge_val_OBJECTS) $(tests_test_huge_val_DEPENDENCIES) $(EXTRA_tests_test_huge_val_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-huge_val$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_huge_val_OBJECTS) $(tests_test_huge_val_LDADD) $(LIBS)
 tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2984,6 +2995,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmod_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-huge_val_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ilogb_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-int-to-float_dats.Po@am__quote@ # am--include-marker
@@ -4003,6 +4015,13 @@ tests/test-nan.log: tests/test-nan$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-huge_val.log: tests/test-huge_val$(EXEEXT)
+	@p='tests/test-huge_val$(EXEEXT)'; \
+	b='tests/test-huge_val'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-__builtin_nans.log: tests/test-__builtin_nans$(EXEEXT)
 	@p='tests/test-__builtin_nans$(EXEEXT)'; \
 	b='tests/test-__builtin_nans'; \
@@ -4339,6 +4358,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po
@@ -4487,6 +4507,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
 	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
 	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po

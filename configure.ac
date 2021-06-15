@@ -452,7 +452,7 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   m4_foreach_w([t],the_floattypes,[
     AS_ECHO(["${DEF_floattypes_[]t}"]) >> floattypes/HATS/config.hats
 ])
-  m4_foreach_w([f],the_math_functions,
+  m4_foreach_w([f],the_math_functions the_math_values,
     [AS_ECHO(['']) >> floattypes/HATS/config.hats
      m4_foreach_w([t],the_floattypes,[
         AS_ECHO(["${DEF_floattypes_[]f[]_[]t}"]) >> floattypes/HATS/config.hats
@@ -469,7 +469,7 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   m4_foreach_w([t],the_floattypes,[
     DEF_floattypes_[]t="@%:@define HAVE_floattypes_[]t ${HAVE_floattypes_[]t}"
 ])
-  m4_foreach_w([f],the_math_functions,
+  m4_foreach_w([f],the_math_functions the_math_values,
     [m4_foreach_w([t],the_floattypes,[
       DEF_floattypes_[]f[]_[]t="@%:@define HAVE_floattypes_[]f[]_[]t ${HAVE_floattypes_[]f[]_[]t}"
 ])])

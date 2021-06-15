@@ -108,7 +108,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_neg_$1 (floattypes_$1 f) dnl
 { return (-f); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([abs_op],
@@ -117,7 +117,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_abs_$1 (floattypes_$1 f) dnl
 { return ((f < 0) ? (-f) : (f)); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([successor_op],
@@ -126,7 +126,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_succ_$1 (floattypes_$1 f) dnl
 { return (f + 1); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([predecessor_op],
@@ -135,7 +135,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_pred_$1 (floattypes_$1 f) dnl
 { return (f - 1); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([binary_op],
@@ -144,7 +144,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (f1 $3 f2); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([mod_op],
@@ -153,7 +153,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_mod_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (floattypes_fmod_$1 (f1, f2)); }
-#endif /* HAVE_floattypes_fmod_$1 */
+#endif
 ])
 
 m4_define([comparison_op],
@@ -162,7 +162,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 $3 f2) ? atsbool_true : atsbool_false); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([compare_op],
@@ -171,7 +171,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_compare_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 < f2) ? -1 : ((f2 < f1) ? 1 : 0)); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([min_op],
@@ -180,7 +180,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_min_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 <= f2) ? f1 : f2); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([max_op],
@@ -189,7 +189,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_max_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return ((f1 >= f2) ? f1 : f2); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([nullary_fn],
@@ -198,7 +198,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (void) dnl
 { return (floattypes_$2_$1 ()); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([unary_fn],
@@ -207,7 +207,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (f)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([binary_fn],
@@ -216,7 +216,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
 { return (floattypes_$2_$1 (f1, f2)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([ternary_fn],
@@ -227,7 +227,7 @@ floattypes_g0float_$2_$1 (floattypes_$1 f1, dnl
 floattypes_$1 f2, dnl
 floattypes_$1 f3) dnl
 { return (floattypes_$2_$1 (f1, f2, f3)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([nexttowardlike_fn],
@@ -236,7 +236,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f1, atstype_ldouble f2) dnl
 { return (floattypes_$2_$1 (f1, f2)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([scalbnlike_fn],
@@ -245,7 +245,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int i) dnl
 { return (floattypes_$2_$1 (f, i)); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([scalblnlike_fn],
@@ -254,7 +254,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_lint i) dnl
 { return (floattypes_$2_$1 (f, i)); }
-#endif /* HAVE_floattypes_$1 */
+#endif
 ])
 
 m4_define([lroundlike_fn],
@@ -263,7 +263,7 @@ ATSinline() dnl
 atstype_lint dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (f)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([llroundlike_fn],
@@ -272,7 +272,7 @@ ATSinline() dnl
 atstype_llint dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (f)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([frexplike_fn],
@@ -281,7 +281,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f, atstype_int *p) dnl
 { return (floattypes_$2_$1 (f, p)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([remquolike_fn],
@@ -291,7 +291,7 @@ floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2, dnl
 atstype_int *quo) dnl
 { return (floattypes_$2_$1 (f1, f2, quo)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([modflike_fn],
@@ -300,7 +300,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f, floattypes_$1 *p) dnl
 { return (floattypes_$2_$1 (f, p)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([jnlike_fn],
@@ -309,7 +309,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (atstype_int n, floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (n, f)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([ilogblike_fn],
@@ -318,7 +318,7 @@ ATSinline() dnl
 atstype_int dnl
 floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 { return (floattypes_$2_$1 (f)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 m4_define([nanlike_fn],
@@ -327,7 +327,7 @@ ATSinline() dnl
 floattypes_$1 dnl
 floattypes_g0float_$2_$1 (atstype_string s) dnl
 { return (floattypes_$2_$1 ((const char *) s)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 dnl
@@ -347,7 +347,7 @@ floattypes_g0float_$2_$1 (atstype_string s, atstype_size *end) dnl
 { char *endptr; floattypes_$1 retval = dnl
 (floattypes_$2_$1 ((const char *) s, &endptr)); dnl
 *end = endptr - s; return retval; }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
 ])
 
 dnl
@@ -364,7 +364,16 @@ atstype_int dnl
 floattypes_g0float_$2_unsafe_$1 (atstype_ptr s, atstype_size n, dnl
 atstype_string fmt, floattypes_$1 fp) dnl
 { return (floattypes_$2_$1 ((char *) s, n, (const char *) fmt, fp)); }
-#endif /* HAVE_floattypes_$2_$1 */
+#endif
+])
+
+m4_define([typed_constant_value],
+[#if HAVE_floattypes_$2_$1
+m4_pushdef([_t],[m4_translit($2,m4_uppercase,m4_lowercase)])dnl
+ATSinline() $3 dnl
+floattypes_g0float_[]_t[]_$1 (void) { return (floattypes_$2_$1); }
+m4_popdef([_t])dnl
+#endif
 ])
 
 divert[]dnl
@@ -477,6 +486,21 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_strfromd_decimal64x strfromd64x
 #define floattypes_strfromd_decimal128x strfromd128x
 
+#define floattypes_HUGE_VAL_float   HUGE_VALF
+#define floattypes_HUGE_VAL_double  HUGE_VAL
+#define floattypes_HUGE_VAL_ldouble HUGE_VALL
+#define floattypes_HUGE_VAL_float32 HUGE_VAL_F32
+#define floattypes_HUGE_VAL_float64 HUGE_VAL_F64
+#define floattypes_HUGE_VAL_float128 HUGE_VAL_F128
+#define floattypes_HUGE_VAL_decimal32 HUGE_VAL_D32
+#define floattypes_HUGE_VAL_decimal64 HUGE_VAL_D64
+#define floattypes_HUGE_VAL_decimal128 HUGE_VAL_D128
+#define floattypes_HUGE_VAL_float32x HUGE_VAL_F32X
+#define floattypes_HUGE_VAL_float64x HUGE_VAL_F64X
+#define floattypes_HUGE_VAL_float128x HUGE_VAL_F128X
+#define floattypes_HUGE_VAL_decimal64x HUGE_VAL_D64X
+#define floattypes_HUGE_VAL_decimal128x HUGE_VAL_D128X
+
 m4_foreachq([t],[extra_floattypes],[negation_op(t)])
 m4_foreachq([t],[extra_floattypes],[abs_op(t)])
 m4_foreachq([t],[extra_floattypes],[successor_op(t)])
@@ -572,5 +596,8 @@ dnl
 m4_foreachq([func],[strfromdlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [strfromdlike_fn(t,func)])])
+dnl
+m4_foreachq([t],[all_floattypes],
+  [typed_constant_value(t,[HUGE_VAL],[floattypes_]t)])
 
 #endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */

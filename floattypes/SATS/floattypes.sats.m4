@@ -139,6 +139,10 @@ m4_define([declare_strfromdlike_unsafe],
   [fun g0float_$1_$2 : g0float_strfromdlike_unsafe_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_typed_constant_value],
+  [fun g0float_$1_$2 : () -<> $3 = "mac#%"
+])
+
 divert[]dnl
 
 m4_foreachq([t],[extra_floattypes],[declare_kind(t)])
@@ -377,3 +381,25 @@ m4_foreachq([func],[strfromd_unsafe],
 fun {tk : tk} g0float_[]func : g0float_strfromdlike_unsafe_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
+dnl
+m4_foreachq([t],[all_floattypes],
+  [declare_typed_constant_value([huge_val],t,[g0float(]t[_kind)])])dnl
+fun {tk : tk} g0float_huge_val : () -<> g0float(tk)
+overload huge_val with g0float_huge_val of default_overload_precedence
+m4_foreachq([t],[all_floattypes],
+  [macdef HUGE_VAL_[]t = g0float_huge_val_[]t ()
+])dnl
+macdef HUGE_VALF = HUGE_VAL_float
+macdef HUGE_VAL = HUGE_VAL_double
+macdef HUGE_VALL = HUGE_VAL_ldouble
+macdef HUGE_VAL_F32 = HUGE_VAL_float32
+macdef HUGE_VAL_F64 = HUGE_VAL_float64
+macdef HUGE_VAL_F128 = HUGE_VAL_float128
+macdef HUGE_VAL_D32 = HUGE_VAL_decimal32
+macdef HUGE_VAL_D64 = HUGE_VAL_decimal64
+macdef HUGE_VAL_D128 = HUGE_VAL_decimal128
+macdef HUGE_VAL_F32X = HUGE_VAL_float32x
+macdef HUGE_VAL_F64X = HUGE_VAL_float64x
+macdef HUGE_VAL_F128X = HUGE_VAL_float128x
+macdef HUGE_VAL_D64X = HUGE_VAL_decimal64x
+macdef HUGE_VAL_D128X = HUGE_VAL_decimal128x

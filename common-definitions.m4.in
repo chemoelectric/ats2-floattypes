@@ -14,6 +14,9 @@ dnl You should have received copies of the GNU General Public License
 dnl along with this program. If not, see
 dnl <https://www.gnu.org/licenses/>.
 
+m4_define([m4_lowercase],[abcdefghijklmnopqrstuvwxyz])
+m4_define([m4_uppercase],[ABCDEFGHIJKLMNOPQRSTUVWXYZ])
+
 dnl  m4_foreachq(x, [item_1, item_2, ..., item_n], stmt)
 m4_define([m4_foreachq],
   [m4_if([$2],[],[],
@@ -222,6 +225,11 @@ m4_define([math_functions],
   [m4_join_lists([regular_math_functions,irregular_math_functions])])
 m4_define([the_math_functions],
   [m4_remove_commas([math_functions])])
+
+m4_define([math_values],
+  [FP_FAST_FMA, HUGE_VAL, SNAN])
+m4_define([the_math_values],
+  [m4_remove_commas([math_values])])
 
 m4_define(dnl  See the GSL manual.
 [bsd_constants_names],
