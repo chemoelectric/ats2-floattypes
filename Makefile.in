@@ -163,8 +163,8 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-__builtin_inf$(EXEEXT) \
 	tests/test-fpclassify$(EXEEXT) tests/test-isfinite$(EXEEXT) \
 	tests/test-isinf$(EXEEXT) tests/test-isnan$(EXEEXT) \
-	tests/test-isnormal$(EXEEXT) tests/test-strtod$(EXEEXT) \
-	tests/test-strfromd_unsafe$(EXEEXT)
+	tests/test-isnormal$(EXEEXT) tests/test-signbit$(EXEEXT) \
+	tests/test-strtod$(EXEEXT) tests/test-strfromd_unsafe$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -505,6 +505,9 @@ tests_test_scalbln_LDADD = $(LDADD)
 tests_test_scalbn_SOURCES = tests/test-scalbn_dats.c
 tests_test_scalbn_OBJECTS = tests/test-scalbn_dats.$(OBJEXT)
 tests_test_scalbn_LDADD = $(LDADD)
+tests_test_signbit_SOURCES = tests/test-signbit_dats.c
+tests_test_signbit_OBJECTS = tests/test-signbit_dats.$(OBJEXT)
+tests_test_signbit_LDADD = $(LDADD)
 tests_test_sin_SOURCES = tests/test-sin_dats.c
 tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
 tests_test_sin_LDADD = $(LDADD)
@@ -659,6 +662,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-round_dats.Po \
 	tests/$(DEPDIR)/test-scalbln_dats.Po \
 	tests/$(DEPDIR)/test-scalbn_dats.Po \
+	tests/$(DEPDIR)/test-signbit_dats.Po \
 	tests/$(DEPDIR)/test-sin_dats.Po \
 	tests/$(DEPDIR)/test-sinh_dats.Po \
 	tests/$(DEPDIR)/test-snan_dats.Po \
@@ -740,13 +744,14 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-remainder_dats.c tests/test-remquo_dats.c \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
-	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-snan_dats.c tests/test-sqrt_dats.c \
-	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-trunc_dats.c tests/test-uint-to-float_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-signbit_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-snan_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
 	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
@@ -794,13 +799,14 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-remainder_dats.c tests/test-remquo_dats.c \
 	tests/test-rint_dats.c tests/test-round_dats.c \
 	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
-	tests/test-sin_dats.c tests/test-sinh_dats.c \
-	tests/test-snan_dats.c tests/test-sqrt_dats.c \
-	tests/test-strfromd_unsafe_dats.c tests/test-strtod_dats.c \
-	tests/test-succ_dats.c tests/test-tan_dats.c \
-	tests/test-tanh_dats.c tests/test-tgamma_dats.c \
-	tests/test-trunc_dats.c tests/test-uint-to-float_dats.c \
-	tests/test-y0_dats.c tests/test-y1_dats.c tests/test-yn_dats.c
+	tests/test-signbit_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-snan_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -3105,6 +3111,12 @@ tests/test-scalbn_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-scalbn$(EXEEXT): $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_DEPENDENCIES) $(EXTRA_tests_test_scalbn_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-scalbn$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_LDADD) $(LIBS)
+tests/test-signbit_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-signbit$(EXEEXT): $(tests_test_signbit_OBJECTS) $(tests_test_signbit_DEPENDENCIES) $(EXTRA_tests_test_signbit_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-signbit$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_signbit_OBJECTS) $(tests_test_signbit_LDADD) $(LIBS)
 tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -3298,6 +3310,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-round_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbln_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbn_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-signbit_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-snan_dats.Po@am__quote@ # am--include-marker
@@ -4363,6 +4376,13 @@ tests/test-isnormal.log: tests/test-isnormal$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-signbit.log: tests/test-signbit$(EXEEXT)
+	@p='tests/test-signbit$(EXEEXT)'; \
+	b='tests/test-signbit'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-strtod.log: tests/test-strtod$(EXEEXT)
 	@p='tests/test-strtod$(EXEEXT)'; \
 	b='tests/test-strtod'; \
@@ -4717,6 +4737,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-round_dats.Po
 	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
 	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-signbit_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-snan_dats.Po
@@ -4873,6 +4894,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-round_dats.Po
 	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
 	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-signbit_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
 	-rm -f tests/$(DEPDIR)/test-snan_dats.Po
