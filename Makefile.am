@@ -203,6 +203,7 @@ check_PROGRAMS += tests/test-logb
 check_PROGRAMS += tests/test-ilogb
 
 check_PROGRAMS += tests/test-nan
+check_PROGRAMS += tests/test-snan
 check_PROGRAMS += tests/test-huge_val
 check_PROGRAMS += tests/test-__builtin_nans
 check_PROGRAMS += tests/test-__builtin_huge_val

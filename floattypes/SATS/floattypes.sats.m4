@@ -403,3 +403,25 @@ macdef HUGE_VAL_F64X = HUGE_VAL_float64x
 macdef HUGE_VAL_F128X = HUGE_VAL_float128x
 macdef HUGE_VAL_D64X = HUGE_VAL_decimal64x
 macdef HUGE_VAL_D128X = HUGE_VAL_decimal128x
+
+m4_foreachq([t],[all_floattypes],
+  [declare_typed_constant_value([snan],t,[g0float(]t[_kind)])])dnl
+fun {tk : tk} g0float_snan : () -<> g0float(tk)
+overload snan with g0float_snan of default_overload_precedence
+m4_foreachq([t],[all_floattypes],
+  [macdef SNAN_[]t = g0float_snan_[]t ()
+])dnl
+macdef SNANF = SNAN_float
+macdef SNAN = SNAN_double
+macdef SNANL = SNAN_ldouble
+macdef SNANF32 = SNAN_float32
+macdef SNANF64 = SNAN_float64
+macdef SNANF128 = SNAN_float128
+macdef SNAND32 = SNAN_decimal32
+macdef SNAND64 = SNAN_decimal64
+macdef SNAND128 = SNAN_decimal128
+macdef SNANF32X = SNAN_float32x
+macdef SNANF64X = SNAN_float64x
+macdef SNANF128X = SNAN_float128x
+macdef SNAND64X = SNAN_decimal64x
+macdef SNAND128X = SNAN_decimal128x

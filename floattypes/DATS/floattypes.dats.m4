@@ -152,3 +152,5 @@ m4_foreachq([func],[strfromd_unsafe],
   [m4_foreachq([t],[all_floattypes],[implement_float(func,t)])])
 dnl
 m4_foreachq([t],[all_floattypes],[implement_float(huge_val,t)])
+m4_foreachq([t],[all_floattypes],[implement_float(snan,t)])
+

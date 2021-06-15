@@ -486,8 +486,8 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_strfromd_decimal64x strfromd64x
 #define floattypes_strfromd_decimal128x strfromd128x
 
-#define floattypes_HUGE_VAL_float   HUGE_VALF
-#define floattypes_HUGE_VAL_double  HUGE_VAL
+#define floattypes_HUGE_VAL_float HUGE_VALF
+#define floattypes_HUGE_VAL_double HUGE_VAL
 #define floattypes_HUGE_VAL_ldouble HUGE_VALL
 #define floattypes_HUGE_VAL_float32 HUGE_VAL_F32
 #define floattypes_HUGE_VAL_float64 HUGE_VAL_F64
@@ -500,6 +500,21 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_HUGE_VAL_float128x HUGE_VAL_F128X
 #define floattypes_HUGE_VAL_decimal64x HUGE_VAL_D64X
 #define floattypes_HUGE_VAL_decimal128x HUGE_VAL_D128X
+
+#define floattypes_SNAN_float SNANF
+#define floattypes_SNAN_double SNAN
+#define floattypes_SNAN_ldouble SNANL
+#define floattypes_SNAN_float32 SNANF32
+#define floattypes_SNAN_float64 SNANF64
+#define floattypes_SNAN_float128 SNANF128
+#define floattypes_SNAN_decimal32 SNAND32
+#define floattypes_SNAN_decimal64 SNAND64
+#define floattypes_SNAN_decimal128 SNAND128
+#define floattypes_SNAN_float32x SNANF32X
+#define floattypes_SNAN_float64x SNANF64X
+#define floattypes_SNAN_float128x SNANF128X
+#define floattypes_SNAN_decimal64x SNAND64X
+#define floattypes_SNAN_decimal128x SNAND128X
 
 m4_foreachq([t],[extra_floattypes],[negation_op(t)])
 m4_foreachq([t],[extra_floattypes],[abs_op(t)])
@@ -599,5 +614,8 @@ m4_foreachq([func],[strfromdlike_math_functions],
 dnl
 m4_foreachq([t],[all_floattypes],
   [typed_constant_value(t,[HUGE_VAL],[floattypes_]t)])
+dnl
+m4_foreachq([t],[all_floattypes],
+  [typed_constant_value(t,[SNAN],[floattypes_]t)])
 
 #endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */
