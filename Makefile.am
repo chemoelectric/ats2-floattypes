@@ -213,6 +213,7 @@ check_PROGRAMS += tests/test-__builtin_inf
 check_PROGRAMS += tests/test-fpclassify
 check_PROGRAMS += tests/test-isfinite
 check_PROGRAMS += tests/test-isinf
+check_PROGRAMS += tests/test-isnan
 
 check_PROGRAMS += tests/test-strtod
 check_PROGRAMS += tests/test-strfromd_unsafe
