@@ -146,7 +146,7 @@ m4_define([binary_math_functions],
 m4_define([the_binary_math_functions],
   [m4_remove_commas([binary_math_functions])])
 
-m4_define([ternary_math_functions],[fma])
+m4_define([ternary_math_functions],[fma, __builtin_fma])
 m4_define([the_ternary_math_functions],
   [m4_remove_commas([ternary_math_functions])])
 

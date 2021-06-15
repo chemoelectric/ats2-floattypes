@@ -123,12 +123,13 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-float-to-float$(EXEEXT) \
 	tests/test-binary-arith$(EXEEXT) tests/test-neg$(EXEEXT) \
 	tests/test-fdim$(EXEEXT) tests/test-fma$(EXEEXT) \
-	tests/test-fmod$(EXEEXT) tests/test-mod$(EXEEXT) \
-	tests/test-remainder$(EXEEXT) tests/test-remquo$(EXEEXT) \
-	tests/test-ldexp$(EXEEXT) tests/test-scalbn$(EXEEXT) \
-	tests/test-scalbln$(EXEEXT) tests/test-succ$(EXEEXT) \
-	tests/test-pred$(EXEEXT) tests/test-abs$(EXEEXT) \
-	tests/test-fabs$(EXEEXT) tests/test-copysign$(EXEEXT) \
+	tests/test-__builtin_fma$(EXEEXT) tests/test-fmod$(EXEEXT) \
+	tests/test-mod$(EXEEXT) tests/test-remainder$(EXEEXT) \
+	tests/test-remquo$(EXEEXT) tests/test-ldexp$(EXEEXT) \
+	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
+	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
+	tests/test-abs$(EXEEXT) tests/test-fabs$(EXEEXT) \
+	tests/test-copysign$(EXEEXT) \
 	tests/test-comparison-ops$(EXEEXT) tests/test-compare$(EXEEXT) \
 	tests/test-ceil$(EXEEXT) tests/test-floor$(EXEEXT) \
 	tests/test-trunc$(EXEEXT) tests/test-nearbyint$(EXEEXT) \
@@ -273,6 +274,10 @@ tests_test_M_SQRT3_LDADD = $(LDADD)
 tests_test_M_SQRTPI_SOURCES = tests/test-M_SQRTPI_dats.c
 tests_test_M_SQRTPI_OBJECTS = tests/test-M_SQRTPI_dats.$(OBJEXT)
 tests_test_M_SQRTPI_LDADD = $(LDADD)
+tests_test___builtin_fma_SOURCES = tests/test-__builtin_fma_dats.c
+tests_test___builtin_fma_OBJECTS =  \
+	tests/test-__builtin_fma_dats.$(OBJEXT)
+tests_test___builtin_fma_LDADD = $(LDADD)
 tests_test___builtin_huge_val_SOURCES =  \
 	tests/test-__builtin_huge_val_dats.c
 tests_test___builtin_huge_val_OBJECTS =  \
@@ -564,6 +569,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-M_SQRT2_dats.Po \
 	tests/$(DEPDIR)/test-M_SQRT3_dats.Po \
 	tests/$(DEPDIR)/test-M_SQRTPI_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_fma_dats.Po \
 	tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po \
 	tests/$(DEPDIR)/test-__builtin_inf_dats.Po \
 	tests/$(DEPDIR)/test-__builtin_nans_dats.Po \
@@ -673,6 +679,7 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-M_PI_2_dats.c tests/test-M_PI_4_dats.c \
 	tests/test-M_SQRT1_2_dats.c tests/test-M_SQRT2_dats.c \
 	tests/test-M_SQRT3_dats.c tests/test-M_SQRTPI_dats.c \
+	tests/test-__builtin_fma_dats.c \
 	tests/test-__builtin_huge_val_dats.c \
 	tests/test-__builtin_inf_dats.c \
 	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
@@ -723,7 +730,7 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-M_PI_dats.c tests/test-M_PI_2_dats.c \
 	tests/test-M_PI_4_dats.c tests/test-M_SQRT1_2_dats.c \
 	tests/test-M_SQRT2_dats.c tests/test-M_SQRT3_dats.c \
-	tests/test-M_SQRTPI_dats.c \
+	tests/test-M_SQRTPI_dats.c tests/test-__builtin_fma_dats.c \
 	tests/test-__builtin_huge_val_dats.c \
 	tests/test-__builtin_inf_dats.c \
 	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
@@ -1099,6 +1106,20 @@ HAVE_floattypes_SNAN_float32x = @HAVE_floattypes_SNAN_float32x@
 HAVE_floattypes_SNAN_float64 = @HAVE_floattypes_SNAN_float64@
 HAVE_floattypes_SNAN_float64x = @HAVE_floattypes_SNAN_float64x@
 HAVE_floattypes_SNAN_ldouble = @HAVE_floattypes_SNAN_ldouble@
+HAVE_floattypes___builtin_fma_decimal128 = @HAVE_floattypes___builtin_fma_decimal128@
+HAVE_floattypes___builtin_fma_decimal128x = @HAVE_floattypes___builtin_fma_decimal128x@
+HAVE_floattypes___builtin_fma_decimal32 = @HAVE_floattypes___builtin_fma_decimal32@
+HAVE_floattypes___builtin_fma_decimal64 = @HAVE_floattypes___builtin_fma_decimal64@
+HAVE_floattypes___builtin_fma_decimal64x = @HAVE_floattypes___builtin_fma_decimal64x@
+HAVE_floattypes___builtin_fma_double = @HAVE_floattypes___builtin_fma_double@
+HAVE_floattypes___builtin_fma_float = @HAVE_floattypes___builtin_fma_float@
+HAVE_floattypes___builtin_fma_float128 = @HAVE_floattypes___builtin_fma_float128@
+HAVE_floattypes___builtin_fma_float128x = @HAVE_floattypes___builtin_fma_float128x@
+HAVE_floattypes___builtin_fma_float32 = @HAVE_floattypes___builtin_fma_float32@
+HAVE_floattypes___builtin_fma_float32x = @HAVE_floattypes___builtin_fma_float32x@
+HAVE_floattypes___builtin_fma_float64 = @HAVE_floattypes___builtin_fma_float64@
+HAVE_floattypes___builtin_fma_float64x = @HAVE_floattypes___builtin_fma_float64x@
+HAVE_floattypes___builtin_fma_ldouble = @HAVE_floattypes___builtin_fma_ldouble@
 HAVE_floattypes___builtin_huge_val_decimal128 = @HAVE_floattypes___builtin_huge_val_decimal128@
 HAVE_floattypes___builtin_huge_val_decimal128x = @HAVE_floattypes___builtin_huge_val_decimal128x@
 HAVE_floattypes___builtin_huge_val_decimal32 = @HAVE_floattypes___builtin_huge_val_decimal32@
@@ -2455,6 +2476,12 @@ tests/test-M_SQRTPI_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-M_SQRTPI$(EXEEXT): $(tests_test_M_SQRTPI_OBJECTS) $(tests_test_M_SQRTPI_DEPENDENCIES) $(EXTRA_tests_test_M_SQRTPI_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-M_SQRTPI$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_M_SQRTPI_OBJECTS) $(tests_test_M_SQRTPI_LDADD) $(LIBS)
+tests/test-__builtin_fma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_fma$(EXEEXT): $(tests_test___builtin_fma_OBJECTS) $(tests_test___builtin_fma_DEPENDENCIES) $(EXTRA_tests_test___builtin_fma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_fma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_fma_OBJECTS) $(tests_test___builtin_fma_LDADD) $(LIBS)
 tests/test-__builtin_huge_val_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -2972,6 +2999,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRT2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRT3_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRTPI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_fma_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_inf_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_nans_dats.Po@am__quote@ # am--include-marker
@@ -3567,6 +3595,13 @@ tests/test-fdim.log: tests/test-fdim$(EXEEXT)
 tests/test-fma.log: tests/test-fma$(EXEEXT)
 	@p='tests/test-fma$(EXEEXT)'; \
 	b='tests/test-fma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_fma.log: tests/test-__builtin_fma$(EXEEXT)
+	@p='tests/test-__builtin_fma$(EXEEXT)'; \
+	b='tests/test-__builtin_fma'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -4343,6 +4378,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-M_SQRT2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_SQRT3_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po
@@ -4493,6 +4529,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-M_SQRT2_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_SQRT3_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_fma_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
 	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po

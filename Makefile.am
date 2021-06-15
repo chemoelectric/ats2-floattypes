@@ -124,6 +124,7 @@ check_PROGRAMS += tests/test-binary-arith
 check_PROGRAMS += tests/test-neg
 check_PROGRAMS += tests/test-fdim
 check_PROGRAMS += tests/test-fma
+check_PROGRAMS += tests/test-__builtin_fma
 check_PROGRAMS += tests/test-fmod
 check_PROGRAMS += tests/test-mod
 check_PROGRAMS += tests/test-remainder

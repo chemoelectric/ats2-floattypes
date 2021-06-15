@@ -945,6 +945,20 @@ HAVE_floattypes_lround_float32
 HAVE_floattypes_lround_ldouble
 HAVE_floattypes_lround_double
 HAVE_floattypes_lround_float
+HAVE_floattypes___builtin_fma_decimal128x
+HAVE_floattypes___builtin_fma_decimal64x
+HAVE_floattypes___builtin_fma_float128x
+HAVE_floattypes___builtin_fma_float64x
+HAVE_floattypes___builtin_fma_float32x
+HAVE_floattypes___builtin_fma_decimal128
+HAVE_floattypes___builtin_fma_decimal64
+HAVE_floattypes___builtin_fma_decimal32
+HAVE_floattypes___builtin_fma_float128
+HAVE_floattypes___builtin_fma_float64
+HAVE_floattypes___builtin_fma_float32
+HAVE_floattypes___builtin_fma_ldouble
+HAVE_floattypes___builtin_fma_double
+HAVE_floattypes___builtin_fma_float
 HAVE_floattypes_fma_decimal128x
 HAVE_floattypes_fma_decimal64x
 HAVE_floattypes_fma_float128x
@@ -70593,6 +70607,1071 @@ $as_echo "$my_cv_math_func_fmad128x" >&6; }
    fi
 
 
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf" >&5
+$as_echo_n "checking for math function __builtin_fmaf... " >&6; }
+if ${my_cv_math_func___builtin_fmaf+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float x = __builtin_fmaf ((floattypes_float) 1.2,
+                                                    (floattypes_float) 3.4,
+                                                    (floattypes_float) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf=yes
+else
+  my_cv_math_func___builtin_fmaf=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fma" >&5
+$as_echo_n "checking for math function __builtin_fma... " >&6; }
+if ${my_cv_math_func___builtin_fma+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_double}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_double x = __builtin_fma ((floattypes_double) 1.2,
+                                                    (floattypes_double) 3.4,
+                                                    (floattypes_double) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fma=yes
+else
+  my_cv_math_func___builtin_fma=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fma=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fma" >&5
+$as_echo "$my_cv_math_func___builtin_fma" >&6; }
+   case x"${my_cv_math_func___builtin_fma}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_double='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_double='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmal" >&5
+$as_echo_n "checking for math function __builtin_fmal... " >&6; }
+if ${my_cv_math_func___builtin_fmal+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_ldouble}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_ldouble x = __builtin_fmal ((floattypes_ldouble) 1.2,
+                                                    (floattypes_ldouble) 3.4,
+                                                    (floattypes_ldouble) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmal=yes
+else
+  my_cv_math_func___builtin_fmal=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmal=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmal" >&5
+$as_echo "$my_cv_math_func___builtin_fmal" >&6; }
+   case x"${my_cv_math_func___builtin_fmal}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_ldouble='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_ldouble='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf32" >&5
+$as_echo_n "checking for math function __builtin_fmaf32... " >&6; }
+if ${my_cv_math_func___builtin_fmaf32+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float32}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float32 x = __builtin_fmaf32 ((floattypes_float32) 1.2,
+                                                    (floattypes_float32) 3.4,
+                                                    (floattypes_float32) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf32=yes
+else
+  my_cv_math_func___builtin_fmaf32=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf32=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf32" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf32" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf32}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float32='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float32='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf64" >&5
+$as_echo_n "checking for math function __builtin_fmaf64... " >&6; }
+if ${my_cv_math_func___builtin_fmaf64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float64}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float64 x = __builtin_fmaf64 ((floattypes_float64) 1.2,
+                                                    (floattypes_float64) 3.4,
+                                                    (floattypes_float64) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf64=yes
+else
+  my_cv_math_func___builtin_fmaf64=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf64=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf64" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf64" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf64}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float64='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float64='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf128" >&5
+$as_echo_n "checking for math function __builtin_fmaf128... " >&6; }
+if ${my_cv_math_func___builtin_fmaf128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float128}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float128 x = __builtin_fmaf128 ((floattypes_float128) 1.2,
+                                                    (floattypes_float128) 3.4,
+                                                    (floattypes_float128) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf128=yes
+else
+  my_cv_math_func___builtin_fmaf128=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf128=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf128" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf128" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf128}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float128='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float128='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmad32" >&5
+$as_echo_n "checking for math function __builtin_fmad32... " >&6; }
+if ${my_cv_math_func___builtin_fmad32+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal32}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal32 x = __builtin_fmad32 ((floattypes_decimal32) 1.2,
+                                                    (floattypes_decimal32) 3.4,
+                                                    (floattypes_decimal32) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmad32=yes
+else
+  my_cv_math_func___builtin_fmad32=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmad32=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmad32" >&5
+$as_echo "$my_cv_math_func___builtin_fmad32" >&6; }
+   case x"${my_cv_math_func___builtin_fmad32}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal32='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal32='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmad64" >&5
+$as_echo_n "checking for math function __builtin_fmad64... " >&6; }
+if ${my_cv_math_func___builtin_fmad64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal64}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal64 x = __builtin_fmad64 ((floattypes_decimal64) 1.2,
+                                                    (floattypes_decimal64) 3.4,
+                                                    (floattypes_decimal64) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmad64=yes
+else
+  my_cv_math_func___builtin_fmad64=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmad64=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmad64" >&5
+$as_echo "$my_cv_math_func___builtin_fmad64" >&6; }
+   case x"${my_cv_math_func___builtin_fmad64}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal64='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal64='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmad128" >&5
+$as_echo_n "checking for math function __builtin_fmad128... " >&6; }
+if ${my_cv_math_func___builtin_fmad128+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal128}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal128 x = __builtin_fmad128 ((floattypes_decimal128) 1.2,
+                                                    (floattypes_decimal128) 3.4,
+                                                    (floattypes_decimal128) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmad128=yes
+else
+  my_cv_math_func___builtin_fmad128=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmad128=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmad128" >&5
+$as_echo "$my_cv_math_func___builtin_fmad128" >&6; }
+   case x"${my_cv_math_func___builtin_fmad128}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal128='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal128='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf32x" >&5
+$as_echo_n "checking for math function __builtin_fmaf32x... " >&6; }
+if ${my_cv_math_func___builtin_fmaf32x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float32x}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float32x x = __builtin_fmaf32x ((floattypes_float32x) 1.2,
+                                                    (floattypes_float32x) 3.4,
+                                                    (floattypes_float32x) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf32x=yes
+else
+  my_cv_math_func___builtin_fmaf32x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf32x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf32x" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf32x" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf32x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float32x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float32x='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf64x" >&5
+$as_echo_n "checking for math function __builtin_fmaf64x... " >&6; }
+if ${my_cv_math_func___builtin_fmaf64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float64x}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float64x x = __builtin_fmaf64x ((floattypes_float64x) 1.2,
+                                                    (floattypes_float64x) 3.4,
+                                                    (floattypes_float64x) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf64x=yes
+else
+  my_cv_math_func___builtin_fmaf64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf64x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf64x" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf64x" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf64x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float64x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float64x='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmaf128x" >&5
+$as_echo_n "checking for math function __builtin_fmaf128x... " >&6; }
+if ${my_cv_math_func___builtin_fmaf128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_float128x}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_float128x x = __builtin_fmaf128x ((floattypes_float128x) 1.2,
+                                                    (floattypes_float128x) 3.4,
+                                                    (floattypes_float128x) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmaf128x=yes
+else
+  my_cv_math_func___builtin_fmaf128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmaf128x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmaf128x" >&5
+$as_echo "$my_cv_math_func___builtin_fmaf128x" >&6; }
+   case x"${my_cv_math_func___builtin_fmaf128x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_float128x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_float128x='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmad64x" >&5
+$as_echo_n "checking for math function __builtin_fmad64x... " >&6; }
+if ${my_cv_math_func___builtin_fmad64x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal64x}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal64x x = __builtin_fmad64x ((floattypes_decimal64x) 1.2,
+                                                    (floattypes_decimal64x) 3.4,
+                                                    (floattypes_decimal64x) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmad64x=yes
+else
+  my_cv_math_func___builtin_fmad64x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmad64x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmad64x" >&5
+$as_echo "$my_cv_math_func___builtin_fmad64x" >&6; }
+   case x"${my_cv_math_func___builtin_fmad64x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal64x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal64x='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+  if :; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for math function __builtin_fmad128x" >&5
+$as_echo_n "checking for math function __builtin_fmad128x... " >&6; }
+if ${my_cv_math_func___builtin_fmad128x+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test "${HAVE_floattypes_decimal128x}" = 1; then
+       $as_echo_n "(ternary) "
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+#define __STDC_WANT_IEC_60559_BFP_EXT__
+#define __STDC_WANT_IEC_60559_DFP_EXT__
+#define __STDC_WANT_IEC_60559_TYPES_EXT__
+#define __STDC_WANT_IEC_60559_FUNCS_EXT__
+#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#include <stddef.h>
+#include <stdlib.h>
+#include <math.h>
+#define floattypes_float float
+#define floattypes_double double
+#define floattypes_ldouble long double
+#define floattypes_float32 _Float32
+#define floattypes_float64 _Float64
+#define floattypes_float128 _Float128
+#define floattypes_decimal32 _Decimal32
+#define floattypes_decimal64 _Decimal64
+#define floattypes_decimal128 _Decimal128
+#define floattypes_float32x _Float32x
+#define floattypes_float64x _Float64x
+#define floattypes_float128x _Float128x
+#define floattypes_decimal64x _Decimal64x
+#define floattypes_decimal128x _Decimal128x
+
+int
+main ()
+{
+floattypes_decimal128x x = __builtin_fmad128x ((floattypes_decimal128x) 1.2,
+                                                    (floattypes_decimal128x) 3.4,
+                                                    (floattypes_decimal128x) 5.6);
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  my_cv_math_func___builtin_fmad128x=yes
+else
+  my_cv_math_func___builtin_fmad128x=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+     else
+        my_cv_math_func___builtin_fmad128x=no
+        $as_echo_n "(type not supported) "
+     fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $my_cv_math_func___builtin_fmad128x" >&5
+$as_echo "$my_cv_math_func___builtin_fmad128x" >&6; }
+   case x"${my_cv_math_func___builtin_fmad128x}" in
+     xyes)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal128x='1'
+
+  fi
+ ;;
+     *)
+  if :; then
+    HAVE_floattypes___builtin_fma_decimal128x='0'
+
+  fi
+ ;;
+   esac
+   fi
+
+
 
 
   if :; then
@@ -96079,6 +97158,34 @@ fi
 
       DEF_floattypes_fma_decimal128x="#define HAVE_floattypes_fma_decimal128x ${HAVE_floattypes_fma_decimal128x}"
 
+      DEF_floattypes___builtin_fma_float="#define HAVE_floattypes___builtin_fma_float ${HAVE_floattypes___builtin_fma_float}"
+
+      DEF_floattypes___builtin_fma_double="#define HAVE_floattypes___builtin_fma_double ${HAVE_floattypes___builtin_fma_double}"
+
+      DEF_floattypes___builtin_fma_ldouble="#define HAVE_floattypes___builtin_fma_ldouble ${HAVE_floattypes___builtin_fma_ldouble}"
+
+      DEF_floattypes___builtin_fma_float32="#define HAVE_floattypes___builtin_fma_float32 ${HAVE_floattypes___builtin_fma_float32}"
+
+      DEF_floattypes___builtin_fma_float64="#define HAVE_floattypes___builtin_fma_float64 ${HAVE_floattypes___builtin_fma_float64}"
+
+      DEF_floattypes___builtin_fma_float128="#define HAVE_floattypes___builtin_fma_float128 ${HAVE_floattypes___builtin_fma_float128}"
+
+      DEF_floattypes___builtin_fma_decimal32="#define HAVE_floattypes___builtin_fma_decimal32 ${HAVE_floattypes___builtin_fma_decimal32}"
+
+      DEF_floattypes___builtin_fma_decimal64="#define HAVE_floattypes___builtin_fma_decimal64 ${HAVE_floattypes___builtin_fma_decimal64}"
+
+      DEF_floattypes___builtin_fma_decimal128="#define HAVE_floattypes___builtin_fma_decimal128 ${HAVE_floattypes___builtin_fma_decimal128}"
+
+      DEF_floattypes___builtin_fma_float32x="#define HAVE_floattypes___builtin_fma_float32x ${HAVE_floattypes___builtin_fma_float32x}"
+
+      DEF_floattypes___builtin_fma_float64x="#define HAVE_floattypes___builtin_fma_float64x ${HAVE_floattypes___builtin_fma_float64x}"
+
+      DEF_floattypes___builtin_fma_float128x="#define HAVE_floattypes___builtin_fma_float128x ${HAVE_floattypes___builtin_fma_float128x}"
+
+      DEF_floattypes___builtin_fma_decimal64x="#define HAVE_floattypes___builtin_fma_decimal64x ${HAVE_floattypes___builtin_fma_decimal64x}"
+
+      DEF_floattypes___builtin_fma_decimal128x="#define HAVE_floattypes___builtin_fma_decimal128x ${HAVE_floattypes___builtin_fma_decimal128x}"
+
       DEF_floattypes_lround_float="#define HAVE_floattypes_lround_float ${HAVE_floattypes_lround_float}"
 
       DEF_floattypes_lround_double="#define HAVE_floattypes_lround_double ${HAVE_floattypes_lround_double}"
@@ -99310,6 +100417,35 @@ $as_echo '' >> floattypes/HATS/config.hats
         $as_echo "${DEF_floattypes_fma_decimal64x}" >> floattypes/HATS/config.hats
 
         $as_echo "${DEF_floattypes_fma_decimal128x}" >> floattypes/HATS/config.hats
+$as_echo '' >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_double}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_ldouble}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_decimal32}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_decimal64}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_decimal128}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float32x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_float128x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_decimal64x}" >> floattypes/HATS/config.hats
+
+        $as_echo "${DEF_floattypes___builtin_fma_decimal128x}" >> floattypes/HATS/config.hats
 $as_echo '' >> floattypes/HATS/config.hats
 
         $as_echo "${DEF_floattypes_lround_float}" >> floattypes/HATS/config.hats
