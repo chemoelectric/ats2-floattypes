@@ -188,6 +188,34 @@ AC_DEFUN([MY_CHECK_MATH_FUNC],
    fi
 ])
 
+AC_DEFUN([MY_CHECK_GENERIC_MATH_MACRO],
+  [if :; then
+   AC_CACHE_CHECK([for math macro $1 acting on type $2],
+                  [AS_TR_SH([my_cv_generic_math_macro_$1_$2])],
+    [if test "[$]{AS_TR_SH([HAVE_floattypes_$2])}" = 1; then
+       AS_ECHO_N(["($5) "])
+       AC_LINK_IFELSE([
+         AC_LANG_PROGRAM(
+           [MY_MATH_HEADERS],
+           [m4_case($5,
+                    [isfinitelike],[int x = $1 ((floattypes_$2) 1.2);],
+                    [isgreaterlike],[int x = $1 ((floattypes_$2) 1.2,
+                                                 (floattypes_$2) 3.4);],
+                    [_Static_assert(false, "This branch should not be reached.");])
+           ])],
+           [AS_TR_SH([my_cv_generic_math_macro_$1_$2])=yes],
+           [AS_TR_SH([my_cv_generic_math_macro_$1_$2])=no])
+     else
+        AS_TR_SH([my_cv_generic_math_macro_$1_$2])=no
+        AS_ECHO_N(["(type not supported) "])
+     fi])
+   case x"${AS_TR_SH([my_cv_generic_math_macro_$1_$2])}" in
+     xyes) $3 ;;
+     *)    $4 ;;
+   esac
+   fi
+])
+
 AC_DEFUN([MY_CHECK_FLOAT_CONSTANT],
   [if :; then
    AC_CACHE_CHECK([for math constant $1],
@@ -382,6 +410,33 @@ check_math_func([strtof128x],[float128x],[floattypes_strtod_float128x],[strtodli
 check_math_func([strtod64x],[decimal64x],[floattypes_strtod_decimal64x],[strtodlike])
 check_math_func([strtod128x],[decimal128x],[floattypes_strtod_decimal128x],[strtodlike])
 
+m4_define([check_math_mac],
+          [MY_CHECK_GENERIC_MATH_MACRO([$1],[$2],[def1([$3])],[def0([$3])],[$4])])
+
+m4_define([check_generic_math_macro],[
+  check_math_mac($1,[float],[floattypes_]$1[_float],[$2])
+  check_math_mac($1,[double],[floattypes_]$1[_double],[$2])
+  check_math_mac($1,[ldouble],[floattypes_]$1[_ldouble],[$2])
+  check_math_mac($1,[float32],[floattypes_]$1[_float32],[$2])
+  check_math_mac($1,[float64],[floattypes_]$1[_float64],[$2])
+  check_math_mac($1,[float128],[floattypes_]$1[_float128],[$2])
+  check_math_mac($1,[decimal32],[floattypes_]$1[_decimal32],[$2])
+  check_math_mac($1,[decimal64],[floattypes_]$1[_decimal64],[$2])
+  check_math_mac($1,[decimal128],[floattypes_]$1[_decimal128],[$2])
+  check_math_mac($1,[float32x],[floattypes_]$1[_float32x],[$2])
+  check_math_mac($1,[float64x],[floattypes_]$1[_float64x],[$2])
+  check_math_mac($1,[float128x],[floattypes_]$1[_float128x],[$2])
+  check_math_mac($1,[decimal64x],[floattypes_]$1[_decimal64x],[$2])
+  check_math_mac($1,[decimal128x],[floattypes_]$1[_decimal128x],[$2])
+])
+
+m4_foreach_w([_macro],the_fpclassifylike_math_macros
+                      the_isfinitelike_math_macros,
+  [check_generic_math_macro([_macro],[isfinitelike])])
+
+m4_foreach_w([_macro],the_isgreaterlike_math_macros,
+  [check_generic_math_macro([_macro],[isgreaterlike])])
+
 #--------------------------------------------------------------------------
 
 m4_define([check_float_const],
@@ -452,7 +507,7 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   m4_foreach_w([t],the_floattypes,[
     AS_ECHO(["${DEF_floattypes_[]t}"]) >> floattypes/HATS/config.hats
 ])
-  m4_foreach_w([f],the_math_functions the_math_values,
+  m4_foreach_w([f],the_math_functions the_math_values the_generic_math_macros,
     [AS_ECHO(['']) >> floattypes/HATS/config.hats
      m4_foreach_w([t],the_floattypes,[
         AS_ECHO(["${DEF_floattypes_[]f[]_[]t}"]) >> floattypes/HATS/config.hats
@@ -469,7 +524,7 @@ AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   m4_foreach_w([t],the_floattypes,[
     DEF_floattypes_[]t="@%:@define HAVE_floattypes_[]t ${HAVE_floattypes_[]t}"
 ])
-  m4_foreach_w([f],the_math_functions the_math_values,
+  m4_foreach_w([f],the_math_functions the_math_values the_generic_math_macros,
     [m4_foreach_w([t],the_floattypes,[
       DEF_floattypes_[]f[]_[]t="@%:@define HAVE_floattypes_[]f[]_[]t ${HAVE_floattypes_[]f[]_[]t}"
 ])])

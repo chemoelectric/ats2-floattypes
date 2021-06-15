@@ -160,7 +160,8 @@ check_PROGRAMS = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-snan$(EXEEXT) tests/test-huge_val$(EXEEXT) \
 	tests/test-__builtin_nans$(EXEEXT) \
 	tests/test-__builtin_huge_val$(EXEEXT) \
-	tests/test-__builtin_inf$(EXEEXT) tests/test-strtod$(EXEEXT) \
+	tests/test-__builtin_inf$(EXEEXT) \
+	tests/test-fpclassify$(EXEEXT) tests/test-strtod$(EXEEXT) \
 	tests/test-strfromd_unsafe$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -384,6 +385,9 @@ tests_test_fmin_LDADD = $(LDADD)
 tests_test_fmod_SOURCES = tests/test-fmod_dats.c
 tests_test_fmod_OBJECTS = tests/test-fmod_dats.$(OBJEXT)
 tests_test_fmod_LDADD = $(LDADD)
+tests_test_fpclassify_SOURCES = tests/test-fpclassify_dats.c
+tests_test_fpclassify_OBJECTS = tests/test-fpclassify_dats.$(OBJEXT)
+tests_test_fpclassify_LDADD = $(LDADD)
 tests_test_frexp_SOURCES = tests/test-frexp_dats.c
 tests_test_frexp_OBJECTS = tests/test-frexp_dats.$(OBJEXT)
 tests_test_frexp_LDADD = $(LDADD)
@@ -602,6 +606,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-fmax_dats.Po \
 	tests/$(DEPDIR)/test-fmin_dats.Po \
 	tests/$(DEPDIR)/test-fmod_dats.Po \
+	tests/$(DEPDIR)/test-fpclassify_dats.Po \
 	tests/$(DEPDIR)/test-frexp_dats.Po \
 	tests/$(DEPDIR)/test-huge_val_dats.Po \
 	tests/$(DEPDIR)/test-hypot_dats.Po \
@@ -697,10 +702,11 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-fmod_dats.c tests/test-frexp_dats.c \
-	tests/test-huge_val_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-int-to-float_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fmod_dats.c tests/test-fpclassify_dats.c \
+	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-int-to-float_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -748,10 +754,11 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
 	tests/test-floor_dats.c tests/test-fma_dats.c \
 	tests/test-fmax_dats.c tests/test-fmin_dats.c \
-	tests/test-fmod_dats.c tests/test-frexp_dats.c \
-	tests/test-huge_val_dats.c tests/test-hypot_dats.c \
-	tests/test-ilogb_dats.c tests/test-int-to-float_dats.c \
-	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-fmod_dats.c tests/test-fpclassify_dats.c \
+	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-int-to-float_dats.c tests/test-j0_dats.c \
+	tests/test-j1_dats.c tests/test-jn_dats.c \
 	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
 	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
 	tests/test-llround_dats.c tests/test-logarithms_dats.c \
@@ -1525,6 +1532,20 @@ HAVE_floattypes_fmod_float32x = @HAVE_floattypes_fmod_float32x@
 HAVE_floattypes_fmod_float64 = @HAVE_floattypes_fmod_float64@
 HAVE_floattypes_fmod_float64x = @HAVE_floattypes_fmod_float64x@
 HAVE_floattypes_fmod_ldouble = @HAVE_floattypes_fmod_ldouble@
+HAVE_floattypes_fpclassify_decimal128 = @HAVE_floattypes_fpclassify_decimal128@
+HAVE_floattypes_fpclassify_decimal128x = @HAVE_floattypes_fpclassify_decimal128x@
+HAVE_floattypes_fpclassify_decimal32 = @HAVE_floattypes_fpclassify_decimal32@
+HAVE_floattypes_fpclassify_decimal64 = @HAVE_floattypes_fpclassify_decimal64@
+HAVE_floattypes_fpclassify_decimal64x = @HAVE_floattypes_fpclassify_decimal64x@
+HAVE_floattypes_fpclassify_double = @HAVE_floattypes_fpclassify_double@
+HAVE_floattypes_fpclassify_float = @HAVE_floattypes_fpclassify_float@
+HAVE_floattypes_fpclassify_float128 = @HAVE_floattypes_fpclassify_float128@
+HAVE_floattypes_fpclassify_float128x = @HAVE_floattypes_fpclassify_float128x@
+HAVE_floattypes_fpclassify_float32 = @HAVE_floattypes_fpclassify_float32@
+HAVE_floattypes_fpclassify_float32x = @HAVE_floattypes_fpclassify_float32x@
+HAVE_floattypes_fpclassify_float64 = @HAVE_floattypes_fpclassify_float64@
+HAVE_floattypes_fpclassify_float64x = @HAVE_floattypes_fpclassify_float64x@
+HAVE_floattypes_fpclassify_ldouble = @HAVE_floattypes_fpclassify_ldouble@
 HAVE_floattypes_frexp_decimal128 = @HAVE_floattypes_frexp_decimal128@
 HAVE_floattypes_frexp_decimal128x = @HAVE_floattypes_frexp_decimal128x@
 HAVE_floattypes_frexp_decimal32 = @HAVE_floattypes_frexp_decimal32@
@@ -1567,6 +1588,146 @@ HAVE_floattypes_ilogb_float32x = @HAVE_floattypes_ilogb_float32x@
 HAVE_floattypes_ilogb_float64 = @HAVE_floattypes_ilogb_float64@
 HAVE_floattypes_ilogb_float64x = @HAVE_floattypes_ilogb_float64x@
 HAVE_floattypes_ilogb_ldouble = @HAVE_floattypes_ilogb_ldouble@
+HAVE_floattypes_isfinite_decimal128 = @HAVE_floattypes_isfinite_decimal128@
+HAVE_floattypes_isfinite_decimal128x = @HAVE_floattypes_isfinite_decimal128x@
+HAVE_floattypes_isfinite_decimal32 = @HAVE_floattypes_isfinite_decimal32@
+HAVE_floattypes_isfinite_decimal64 = @HAVE_floattypes_isfinite_decimal64@
+HAVE_floattypes_isfinite_decimal64x = @HAVE_floattypes_isfinite_decimal64x@
+HAVE_floattypes_isfinite_double = @HAVE_floattypes_isfinite_double@
+HAVE_floattypes_isfinite_float = @HAVE_floattypes_isfinite_float@
+HAVE_floattypes_isfinite_float128 = @HAVE_floattypes_isfinite_float128@
+HAVE_floattypes_isfinite_float128x = @HAVE_floattypes_isfinite_float128x@
+HAVE_floattypes_isfinite_float32 = @HAVE_floattypes_isfinite_float32@
+HAVE_floattypes_isfinite_float32x = @HAVE_floattypes_isfinite_float32x@
+HAVE_floattypes_isfinite_float64 = @HAVE_floattypes_isfinite_float64@
+HAVE_floattypes_isfinite_float64x = @HAVE_floattypes_isfinite_float64x@
+HAVE_floattypes_isfinite_ldouble = @HAVE_floattypes_isfinite_ldouble@
+HAVE_floattypes_isgreater_decimal128 = @HAVE_floattypes_isgreater_decimal128@
+HAVE_floattypes_isgreater_decimal128x = @HAVE_floattypes_isgreater_decimal128x@
+HAVE_floattypes_isgreater_decimal32 = @HAVE_floattypes_isgreater_decimal32@
+HAVE_floattypes_isgreater_decimal64 = @HAVE_floattypes_isgreater_decimal64@
+HAVE_floattypes_isgreater_decimal64x = @HAVE_floattypes_isgreater_decimal64x@
+HAVE_floattypes_isgreater_double = @HAVE_floattypes_isgreater_double@
+HAVE_floattypes_isgreater_float = @HAVE_floattypes_isgreater_float@
+HAVE_floattypes_isgreater_float128 = @HAVE_floattypes_isgreater_float128@
+HAVE_floattypes_isgreater_float128x = @HAVE_floattypes_isgreater_float128x@
+HAVE_floattypes_isgreater_float32 = @HAVE_floattypes_isgreater_float32@
+HAVE_floattypes_isgreater_float32x = @HAVE_floattypes_isgreater_float32x@
+HAVE_floattypes_isgreater_float64 = @HAVE_floattypes_isgreater_float64@
+HAVE_floattypes_isgreater_float64x = @HAVE_floattypes_isgreater_float64x@
+HAVE_floattypes_isgreater_ldouble = @HAVE_floattypes_isgreater_ldouble@
+HAVE_floattypes_isgreaterequal_decimal128 = @HAVE_floattypes_isgreaterequal_decimal128@
+HAVE_floattypes_isgreaterequal_decimal128x = @HAVE_floattypes_isgreaterequal_decimal128x@
+HAVE_floattypes_isgreaterequal_decimal32 = @HAVE_floattypes_isgreaterequal_decimal32@
+HAVE_floattypes_isgreaterequal_decimal64 = @HAVE_floattypes_isgreaterequal_decimal64@
+HAVE_floattypes_isgreaterequal_decimal64x = @HAVE_floattypes_isgreaterequal_decimal64x@
+HAVE_floattypes_isgreaterequal_double = @HAVE_floattypes_isgreaterequal_double@
+HAVE_floattypes_isgreaterequal_float = @HAVE_floattypes_isgreaterequal_float@
+HAVE_floattypes_isgreaterequal_float128 = @HAVE_floattypes_isgreaterequal_float128@
+HAVE_floattypes_isgreaterequal_float128x = @HAVE_floattypes_isgreaterequal_float128x@
+HAVE_floattypes_isgreaterequal_float32 = @HAVE_floattypes_isgreaterequal_float32@
+HAVE_floattypes_isgreaterequal_float32x = @HAVE_floattypes_isgreaterequal_float32x@
+HAVE_floattypes_isgreaterequal_float64 = @HAVE_floattypes_isgreaterequal_float64@
+HAVE_floattypes_isgreaterequal_float64x = @HAVE_floattypes_isgreaterequal_float64x@
+HAVE_floattypes_isgreaterequal_ldouble = @HAVE_floattypes_isgreaterequal_ldouble@
+HAVE_floattypes_isinf_decimal128 = @HAVE_floattypes_isinf_decimal128@
+HAVE_floattypes_isinf_decimal128x = @HAVE_floattypes_isinf_decimal128x@
+HAVE_floattypes_isinf_decimal32 = @HAVE_floattypes_isinf_decimal32@
+HAVE_floattypes_isinf_decimal64 = @HAVE_floattypes_isinf_decimal64@
+HAVE_floattypes_isinf_decimal64x = @HAVE_floattypes_isinf_decimal64x@
+HAVE_floattypes_isinf_double = @HAVE_floattypes_isinf_double@
+HAVE_floattypes_isinf_float = @HAVE_floattypes_isinf_float@
+HAVE_floattypes_isinf_float128 = @HAVE_floattypes_isinf_float128@
+HAVE_floattypes_isinf_float128x = @HAVE_floattypes_isinf_float128x@
+HAVE_floattypes_isinf_float32 = @HAVE_floattypes_isinf_float32@
+HAVE_floattypes_isinf_float32x = @HAVE_floattypes_isinf_float32x@
+HAVE_floattypes_isinf_float64 = @HAVE_floattypes_isinf_float64@
+HAVE_floattypes_isinf_float64x = @HAVE_floattypes_isinf_float64x@
+HAVE_floattypes_isinf_ldouble = @HAVE_floattypes_isinf_ldouble@
+HAVE_floattypes_isless_decimal128 = @HAVE_floattypes_isless_decimal128@
+HAVE_floattypes_isless_decimal128x = @HAVE_floattypes_isless_decimal128x@
+HAVE_floattypes_isless_decimal32 = @HAVE_floattypes_isless_decimal32@
+HAVE_floattypes_isless_decimal64 = @HAVE_floattypes_isless_decimal64@
+HAVE_floattypes_isless_decimal64x = @HAVE_floattypes_isless_decimal64x@
+HAVE_floattypes_isless_double = @HAVE_floattypes_isless_double@
+HAVE_floattypes_isless_float = @HAVE_floattypes_isless_float@
+HAVE_floattypes_isless_float128 = @HAVE_floattypes_isless_float128@
+HAVE_floattypes_isless_float128x = @HAVE_floattypes_isless_float128x@
+HAVE_floattypes_isless_float32 = @HAVE_floattypes_isless_float32@
+HAVE_floattypes_isless_float32x = @HAVE_floattypes_isless_float32x@
+HAVE_floattypes_isless_float64 = @HAVE_floattypes_isless_float64@
+HAVE_floattypes_isless_float64x = @HAVE_floattypes_isless_float64x@
+HAVE_floattypes_isless_ldouble = @HAVE_floattypes_isless_ldouble@
+HAVE_floattypes_islessequal_decimal128 = @HAVE_floattypes_islessequal_decimal128@
+HAVE_floattypes_islessequal_decimal128x = @HAVE_floattypes_islessequal_decimal128x@
+HAVE_floattypes_islessequal_decimal32 = @HAVE_floattypes_islessequal_decimal32@
+HAVE_floattypes_islessequal_decimal64 = @HAVE_floattypes_islessequal_decimal64@
+HAVE_floattypes_islessequal_decimal64x = @HAVE_floattypes_islessequal_decimal64x@
+HAVE_floattypes_islessequal_double = @HAVE_floattypes_islessequal_double@
+HAVE_floattypes_islessequal_float = @HAVE_floattypes_islessequal_float@
+HAVE_floattypes_islessequal_float128 = @HAVE_floattypes_islessequal_float128@
+HAVE_floattypes_islessequal_float128x = @HAVE_floattypes_islessequal_float128x@
+HAVE_floattypes_islessequal_float32 = @HAVE_floattypes_islessequal_float32@
+HAVE_floattypes_islessequal_float32x = @HAVE_floattypes_islessequal_float32x@
+HAVE_floattypes_islessequal_float64 = @HAVE_floattypes_islessequal_float64@
+HAVE_floattypes_islessequal_float64x = @HAVE_floattypes_islessequal_float64x@
+HAVE_floattypes_islessequal_ldouble = @HAVE_floattypes_islessequal_ldouble@
+HAVE_floattypes_islessgreater_decimal128 = @HAVE_floattypes_islessgreater_decimal128@
+HAVE_floattypes_islessgreater_decimal128x = @HAVE_floattypes_islessgreater_decimal128x@
+HAVE_floattypes_islessgreater_decimal32 = @HAVE_floattypes_islessgreater_decimal32@
+HAVE_floattypes_islessgreater_decimal64 = @HAVE_floattypes_islessgreater_decimal64@
+HAVE_floattypes_islessgreater_decimal64x = @HAVE_floattypes_islessgreater_decimal64x@
+HAVE_floattypes_islessgreater_double = @HAVE_floattypes_islessgreater_double@
+HAVE_floattypes_islessgreater_float = @HAVE_floattypes_islessgreater_float@
+HAVE_floattypes_islessgreater_float128 = @HAVE_floattypes_islessgreater_float128@
+HAVE_floattypes_islessgreater_float128x = @HAVE_floattypes_islessgreater_float128x@
+HAVE_floattypes_islessgreater_float32 = @HAVE_floattypes_islessgreater_float32@
+HAVE_floattypes_islessgreater_float32x = @HAVE_floattypes_islessgreater_float32x@
+HAVE_floattypes_islessgreater_float64 = @HAVE_floattypes_islessgreater_float64@
+HAVE_floattypes_islessgreater_float64x = @HAVE_floattypes_islessgreater_float64x@
+HAVE_floattypes_islessgreater_ldouble = @HAVE_floattypes_islessgreater_ldouble@
+HAVE_floattypes_isnan_decimal128 = @HAVE_floattypes_isnan_decimal128@
+HAVE_floattypes_isnan_decimal128x = @HAVE_floattypes_isnan_decimal128x@
+HAVE_floattypes_isnan_decimal32 = @HAVE_floattypes_isnan_decimal32@
+HAVE_floattypes_isnan_decimal64 = @HAVE_floattypes_isnan_decimal64@
+HAVE_floattypes_isnan_decimal64x = @HAVE_floattypes_isnan_decimal64x@
+HAVE_floattypes_isnan_double = @HAVE_floattypes_isnan_double@
+HAVE_floattypes_isnan_float = @HAVE_floattypes_isnan_float@
+HAVE_floattypes_isnan_float128 = @HAVE_floattypes_isnan_float128@
+HAVE_floattypes_isnan_float128x = @HAVE_floattypes_isnan_float128x@
+HAVE_floattypes_isnan_float32 = @HAVE_floattypes_isnan_float32@
+HAVE_floattypes_isnan_float32x = @HAVE_floattypes_isnan_float32x@
+HAVE_floattypes_isnan_float64 = @HAVE_floattypes_isnan_float64@
+HAVE_floattypes_isnan_float64x = @HAVE_floattypes_isnan_float64x@
+HAVE_floattypes_isnan_ldouble = @HAVE_floattypes_isnan_ldouble@
+HAVE_floattypes_isnormal_decimal128 = @HAVE_floattypes_isnormal_decimal128@
+HAVE_floattypes_isnormal_decimal128x = @HAVE_floattypes_isnormal_decimal128x@
+HAVE_floattypes_isnormal_decimal32 = @HAVE_floattypes_isnormal_decimal32@
+HAVE_floattypes_isnormal_decimal64 = @HAVE_floattypes_isnormal_decimal64@
+HAVE_floattypes_isnormal_decimal64x = @HAVE_floattypes_isnormal_decimal64x@
+HAVE_floattypes_isnormal_double = @HAVE_floattypes_isnormal_double@
+HAVE_floattypes_isnormal_float = @HAVE_floattypes_isnormal_float@
+HAVE_floattypes_isnormal_float128 = @HAVE_floattypes_isnormal_float128@
+HAVE_floattypes_isnormal_float128x = @HAVE_floattypes_isnormal_float128x@
+HAVE_floattypes_isnormal_float32 = @HAVE_floattypes_isnormal_float32@
+HAVE_floattypes_isnormal_float32x = @HAVE_floattypes_isnormal_float32x@
+HAVE_floattypes_isnormal_float64 = @HAVE_floattypes_isnormal_float64@
+HAVE_floattypes_isnormal_float64x = @HAVE_floattypes_isnormal_float64x@
+HAVE_floattypes_isnormal_ldouble = @HAVE_floattypes_isnormal_ldouble@
+HAVE_floattypes_isunordered_decimal128 = @HAVE_floattypes_isunordered_decimal128@
+HAVE_floattypes_isunordered_decimal128x = @HAVE_floattypes_isunordered_decimal128x@
+HAVE_floattypes_isunordered_decimal32 = @HAVE_floattypes_isunordered_decimal32@
+HAVE_floattypes_isunordered_decimal64 = @HAVE_floattypes_isunordered_decimal64@
+HAVE_floattypes_isunordered_decimal64x = @HAVE_floattypes_isunordered_decimal64x@
+HAVE_floattypes_isunordered_double = @HAVE_floattypes_isunordered_double@
+HAVE_floattypes_isunordered_float = @HAVE_floattypes_isunordered_float@
+HAVE_floattypes_isunordered_float128 = @HAVE_floattypes_isunordered_float128@
+HAVE_floattypes_isunordered_float128x = @HAVE_floattypes_isunordered_float128x@
+HAVE_floattypes_isunordered_float32 = @HAVE_floattypes_isunordered_float32@
+HAVE_floattypes_isunordered_float32x = @HAVE_floattypes_isunordered_float32x@
+HAVE_floattypes_isunordered_float64 = @HAVE_floattypes_isunordered_float64@
+HAVE_floattypes_isunordered_float64x = @HAVE_floattypes_isunordered_float64x@
+HAVE_floattypes_isunordered_ldouble = @HAVE_floattypes_isunordered_ldouble@
 HAVE_floattypes_j0_decimal128 = @HAVE_floattypes_j0_decimal128@
 HAVE_floattypes_j0_decimal128x = @HAVE_floattypes_j0_decimal128x@
 HAVE_floattypes_j0_decimal32 = @HAVE_floattypes_j0_decimal32@
@@ -1946,6 +2107,20 @@ HAVE_floattypes_scalbn_float32x = @HAVE_floattypes_scalbn_float32x@
 HAVE_floattypes_scalbn_float64 = @HAVE_floattypes_scalbn_float64@
 HAVE_floattypes_scalbn_float64x = @HAVE_floattypes_scalbn_float64x@
 HAVE_floattypes_scalbn_ldouble = @HAVE_floattypes_scalbn_ldouble@
+HAVE_floattypes_signbit_decimal128 = @HAVE_floattypes_signbit_decimal128@
+HAVE_floattypes_signbit_decimal128x = @HAVE_floattypes_signbit_decimal128x@
+HAVE_floattypes_signbit_decimal32 = @HAVE_floattypes_signbit_decimal32@
+HAVE_floattypes_signbit_decimal64 = @HAVE_floattypes_signbit_decimal64@
+HAVE_floattypes_signbit_decimal64x = @HAVE_floattypes_signbit_decimal64x@
+HAVE_floattypes_signbit_double = @HAVE_floattypes_signbit_double@
+HAVE_floattypes_signbit_float = @HAVE_floattypes_signbit_float@
+HAVE_floattypes_signbit_float128 = @HAVE_floattypes_signbit_float128@
+HAVE_floattypes_signbit_float128x = @HAVE_floattypes_signbit_float128x@
+HAVE_floattypes_signbit_float32 = @HAVE_floattypes_signbit_float32@
+HAVE_floattypes_signbit_float32x = @HAVE_floattypes_signbit_float32x@
+HAVE_floattypes_signbit_float64 = @HAVE_floattypes_signbit_float64@
+HAVE_floattypes_signbit_float64x = @HAVE_floattypes_signbit_float64x@
+HAVE_floattypes_signbit_ldouble = @HAVE_floattypes_signbit_ldouble@
 HAVE_floattypes_sin_decimal128 = @HAVE_floattypes_sin_decimal128@
 HAVE_floattypes_sin_decimal128x = @HAVE_floattypes_sin_decimal128x@
 HAVE_floattypes_sin_decimal32 = @HAVE_floattypes_sin_decimal32@
@@ -2674,6 +2849,12 @@ tests/test-fmod_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-fmod$(EXEEXT): $(tests_test_fmod_OBJECTS) $(tests_test_fmod_DEPENDENCIES) $(EXTRA_tests_test_fmod_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-fmod$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_fmod_OBJECTS) $(tests_test_fmod_LDADD) $(LIBS)
+tests/test-fpclassify_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fpclassify$(EXEEXT): $(tests_test_fpclassify_OBJECTS) $(tests_test_fpclassify_DEPENDENCIES) $(EXTRA_tests_test_fpclassify_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fpclassify$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fpclassify_OBJECTS) $(tests_test_fpclassify_LDADD) $(LIBS)
 tests/test-frexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -3032,6 +3213,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmod_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fpclassify_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-huge_val_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
@@ -4096,6 +4278,13 @@ tests/test-__builtin_inf.log: tests/test-__builtin_inf$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fpclassify.log: tests/test-fpclassify$(EXEEXT)
+	@p='tests/test-fpclassify$(EXEEXT)'; \
+	b='tests/test-fpclassify'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/test-strtod.log: tests/test-strtod$(EXEEXT)
 	@p='tests/test-strtod$(EXEEXT)'; \
 	b='tests/test-strtod'; \
@@ -4411,6 +4600,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fpclassify_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
@@ -4562,6 +4752,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
 	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fpclassify_dats.Po
 	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
 	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
 	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po

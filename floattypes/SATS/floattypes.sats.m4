@@ -139,6 +139,14 @@ m4_define([declare_strfromdlike_unsafe],
   [fun g0float_$1_$2 : g0float_strfromdlike_unsafe_type($2[]_kind) = "mac#%"
 ])
 
+m4_define([declare_isfinitelike],
+  [fun g0float_$1_$2 : g0float_isfinitelike_type($2[]_kind) = "mac#%"
+])
+
+m4_define([declare_isgreaterlike],
+  [fun g0float_$1_$2 : g0float_isgreaterlike_type($2[]_kind) = "mac#%"
+])
+
 m4_define([declare_typed_constant_value],
   [fun g0float_$1_$2 : () -<> $3 = "mac#%"
 ])
@@ -241,6 +249,16 @@ typedef g0float_strtodlike_type (tk : tkind) =
 /* An operation similar to C's 'strfromd' function. */
 typedef g0float_strfromdlike_unsafe_type (tk : tkind) =
   (charptr1, size_t, String0, g0float(tk)) -<fun,!refwrt> int
+
+/* Operations taking a floating-point value and returning
+   a bool. */
+typedef g0float_isfinitelike_type (tk : tkind) =
+  (g0float(tk)) -<fun0> bool
+
+/* Operations taking two floating-point values and returning
+   a bool. */
+typedef g0float_isgreaterlike_type (tk : tkind) =
+  (g0float(tk), g0float(tk)) -<fun0> bool
 
 
 m4_foreachq([t],[extra_floattypes],[declare_uop([neg],t)])
@@ -381,7 +399,33 @@ m4_foreachq([func],[strfromd_unsafe],
 fun {tk : tk} g0float_[]func : g0float_strfromdlike_unsafe_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
+
+
+macdef FP_INFINITE = $extval(int, "FP_INFINITE")
+macdef FP_NAN = $extval(int, "FP_NAN")
+macdef FP_NORMAL = $extval(int, "FP_NORMAL")
+macdef FP_SUBNORMAL = $extval(int, "FP_SUBNORMAL")
+macdef FP_ZERO = $extval(int, "FP_ZERO")
+
+m4_foreachq([func],[fpclassifylike_math_macros],
+[m4_foreachq([t],[all_floattypes],[declare_ilogblike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_ilogblike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
 dnl
+m4_foreachq([func],[isfinitelike_math_macros],
+[m4_foreachq([t],[all_floattypes],[declare_isfinitelike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_isfinitelike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+dnl
+m4_foreachq([func],[isgreaterlike_math_macros],
+[m4_foreachq([t],[all_floattypes],[declare_isgreaterlike(func,t)])dnl
+fun {tk : tk} g0float_[]func : g0float_isgreaterlike_type(tk)
+overload func with g0float_[]func of default_overload_precedence
+])
+
+
 m4_foreachq([t],[all_floattypes],
   [declare_typed_constant_value([huge_val],t,[g0float(]t[_kind)])])dnl
 fun {tk : tk} g0float_huge_val : () -<> g0float(tk)

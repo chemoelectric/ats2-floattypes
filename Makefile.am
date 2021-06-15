@@ -210,6 +210,8 @@ check_PROGRAMS += tests/test-__builtin_nans
 check_PROGRAMS += tests/test-__builtin_huge_val
 check_PROGRAMS += tests/test-__builtin_inf
 
+check_PROGRAMS += tests/test-fpclassify
+
 check_PROGRAMS += tests/test-strtod
 check_PROGRAMS += tests/test-strfromd_unsafe
 

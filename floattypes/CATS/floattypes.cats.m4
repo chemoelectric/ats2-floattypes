@@ -321,6 +321,24 @@ floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
 #endif
 ])
 
+m4_define([isfinitelike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_bool dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f) != 0); }
+#endif
+])
+
+m4_define([isgreaterlike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_bool dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f1, floattypes_$1 f2) dnl
+{ return (floattypes_$2_$1 (f1, f2) != 0); }
+#endif
+])
+
 m4_define([nanlike_fn],
 [#if HAVE_floattypes_$2_$1
 ATSinline() dnl
@@ -362,8 +380,17 @@ m4_define([strfromdlike_fn],
 ATSinline() dnl
 atstype_int dnl
 floattypes_g0float_$2_unsafe_$1 (atstype_ptr s, atstype_size n, dnl
-atstype_string fmt, floattypes_$1 fp) dnl
-{ return (floattypes_$2_$1 ((char *) s, n, (const char *) fmt, fp)); }
+atstype_string fmt, floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 ((char *) s, n, (const char *) fmt, f)); }
+#endif
+])
+
+m4_define([fpclassifylike_fn],
+[#if HAVE_floattypes_$2_$1
+ATSinline() dnl
+atstype_int dnl
+floattypes_g0float_$2_$1 (floattypes_$1 f) dnl
+{ return (floattypes_$2_$1 (f)); }
 #endif
 ])
 
@@ -516,6 +543,23 @@ m4_foreachq([func],[regular_math_functions],
 #define floattypes_SNAN_decimal64x SNAND64X
 #define floattypes_SNAN_decimal128x SNAND128X
 
+m4_foreachq([macro],[generic_math_macros],
+[#define floattypes_[]macro[]_float macro
+#define floattypes_[]macro[]_double macro
+#define floattypes_[]macro[]_ldouble macro
+#define floattypes_[]macro[]_float32 macro
+#define floattypes_[]macro[]_float64 macro
+#define floattypes_[]macro[]_float128 macro
+#define floattypes_[]macro[]_decimal32 macro
+#define floattypes_[]macro[]_decimal64 macro
+#define floattypes_[]macro[]_decimal128 macro
+#define floattypes_[]macro[]_float32x macro
+#define floattypes_[]macro[]_float64x macro
+#define floattypes_[]macro[]_float128x macro
+#define floattypes_[]macro[]_decimal64x macro
+#define floattypes_[]macro[]_decimal128x macro
+])
+
 m4_foreachq([t],[extra_floattypes],[negation_op(t)])
 m4_foreachq([t],[extra_floattypes],[abs_op(t)])
 m4_foreachq([t],[extra_floattypes],[successor_op(t)])
@@ -611,6 +655,18 @@ dnl
 m4_foreachq([func],[strfromdlike_math_functions],
   [m4_foreachq([t],[all_floattypes],
     [strfromdlike_fn(t,func)])])
+dnl
+m4_foreachq([func],[fpclassifylike_math_macros],
+  [m4_foreachq([t],[all_floattypes],
+    [ilogblike_fn(t,func)])])
+dnl
+m4_foreachq([func],[isfinitelike_math_macros],
+  [m4_foreachq([t],[all_floattypes],
+    [isfinitelike_fn(t,func)])])
+dnl
+m4_foreachq([func],[isgreaterlike_math_macros],
+  [m4_foreachq([t],[all_floattypes],
+    [isgreaterlike_fn(t,func)])])
 dnl
 m4_foreachq([t],[all_floattypes],
   [typed_constant_value(t,[HUGE_VAL],[floattypes_]t)])

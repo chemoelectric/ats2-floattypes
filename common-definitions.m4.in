@@ -231,6 +231,30 @@ m4_define([math_values],
 m4_define([the_math_values],
   [m4_remove_commas([math_values])])
 
+m4_define([fpclassifylike_math_macros],
+  [fpclassify])
+m4_define([the_fpclassifylike_math_macros],
+  [m4_remove_commas([fpclassifylike_math_macros])])
+
+m4_define([isfinitelike_math_macros],
+  [isfinite, isinf, isnan, isnormal, signbit])
+m4_define([the_isfinitelike_math_macros],
+  [m4_remove_commas([isfinitelike_math_macros])])
+
+m4_define([isgreaterlike_math_macros],
+  [isgreater, isgreaterequal,
+   isless, islessequal,
+   islessgreater, isunordered])
+m4_define([the_isgreaterlike_math_macros],
+  [m4_remove_commas([isgreaterlike_math_macros])])
+
+m4_define([generic_math_macros],
+  [m4_join_lists([fpclassifylike_math_macros,
+                  isfinitelike_math_macros,
+                  isgreaterlike_math_macros])])
+m4_define([the_generic_math_macros],
+  [m4_remove_commas([generic_math_macros])])
+
 m4_define(dnl  See the GSL manual.
 [bsd_constants_names],
   [M_E,
