@@ -50,6 +50,7 @@ libats2_floattypes_la_SOURCES += floattypes/SATS/floattypes_sats.c
 libats2_floattypes_la_SOURCES += floattypes/DATS/floattypes_dats.c
 
 nobase_nodist_pkginclude_HEADERS =
+nobase_nodist_pkginclude_HEADERS += floattypes/CATS/defines.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/CATS/floattypes.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/SATS/floattypes.sats
 nobase_nodist_pkginclude_HEADERS += floattypes/DATS/floattypes.dats
@@ -65,11 +66,13 @@ nobase_nodist_pkghostinclude_HEADERS += floattypes/CATS/constants.cats
 pkgconfigdir = ${libdir}/pkgconfig
 nodist_pkgconfig_DATA = ats2-floattypes.pc
 
+EXTRA_DIST += floattypes/CATS/defines.cats.m4
 EXTRA_DIST += floattypes/CATS/floattypes.cats.m4
 EXTRA_DIST += floattypes/CATS/constants.cats.m4
 EXTRA_DIST += floattypes/SATS/floattypes.sats.m4
 EXTRA_DIST += floattypes/DATS/floattypes.dats.m4
 
+BUILT_SOURCES += floattypes/CATS/defines.cats
 BUILT_SOURCES += floattypes/CATS/floattypes.cats
 BUILT_SOURCES += floattypes/CATS/constants.cats
 BUILT_SOURCES += floattypes/SATS/floattypes.sats
@@ -81,11 +84,13 @@ CLEANFILES += $(BUILT_SOURCES)
 
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats
+floattypes/SATS/floattype_sats.c: floattypes/CATS/defines.cats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/constants.cats
 
 floattypes/DATS/floattype_dats.c: floattypes/DATS/floattypes.dats
 floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
+floattypes/DATS/floattype_dats.c: floattypes/CATS/defines.cats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/constants.cats
 
 ######################################################################

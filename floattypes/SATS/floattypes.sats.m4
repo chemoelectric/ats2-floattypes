@@ -21,6 +21,7 @@ along with this program. If not, see
 */
 
 %{#
+#include "floattypes/CATS/defines.cats"
 #include "floattypes/CATS/floattypes.cats"
 #include "floattypes/CATS/constants.cats"
 %}
@@ -401,6 +402,7 @@ overload func with g0float_[]func of default_overload_precedence
 ])
 
 
+/* Values returned by fpclassify. (Other values are possible.) */
 macdef FP_INFINITE = $extval(int, "FP_INFINITE")
 macdef FP_NAN = $extval(int, "FP_NAN")
 macdef FP_NORMAL = $extval(int, "FP_NORMAL")
@@ -433,6 +435,8 @@ overload huge_val with g0float_huge_val of default_overload_precedence
 m4_foreachq([t],[all_floattypes],
   [macdef HUGE_VAL_[]t = g0float_huge_val_[]t ()
 ])dnl
+
+/* Macros with the same names as the C macros. */
 macdef HUGE_VALF = HUGE_VAL_float
 macdef HUGE_VAL = HUGE_VAL_double
 macdef HUGE_VALL = HUGE_VAL_ldouble
@@ -455,6 +459,8 @@ overload snan with g0float_snan of default_overload_precedence
 m4_foreachq([t],[all_floattypes],
   [macdef SNAN_[]t = g0float_snan_[]t ()
 ])dnl
+
+/* Macros with the same names as the C macros. */
 macdef SNANF = SNAN_float
 macdef SNAN = SNAN_double
 macdef SNANL = SNAN_ldouble

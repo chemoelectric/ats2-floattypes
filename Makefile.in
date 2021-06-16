@@ -2420,13 +2420,15 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 EXTRA_DIST = $(srcdir)/silent-rules.mk README AUTHORS \
+	floattypes/CATS/defines.cats.m4 \
 	floattypes/CATS/floattypes.cats.m4 \
 	floattypes/CATS/constants.cats.m4 \
 	floattypes/SATS/floattypes.sats.m4 \
 	floattypes/DATS/floattypes.dats.m4 \
 	$(check_PROGRAMS:%=%.dats.m4)
-BUILT_SOURCES = floattypes/CATS/floattypes.cats \
-	floattypes/CATS/constants.cats floattypes/SATS/floattypes.sats \
+BUILT_SOURCES = floattypes/CATS/defines.cats \
+	floattypes/CATS/floattypes.cats floattypes/CATS/constants.cats \
+	floattypes/SATS/floattypes.sats \
 	floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes.dats \
 	floattypes/DATS/floattypes_dats.c $(check_PROGRAMS:%=%.dats) \
@@ -2442,7 +2444,8 @@ AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes_dats.c
-nobase_nodist_pkginclude_HEADERS = floattypes/CATS/floattypes.cats \
+nobase_nodist_pkginclude_HEADERS = floattypes/CATS/defines.cats \
+	floattypes/CATS/floattypes.cats \
 	floattypes/SATS/floattypes.sats \
 	floattypes/DATS/floattypes.dats
 nobase_dist_pkginclude_HEADERS = floattypes/HATS/floattypes.hats
@@ -4993,11 +4996,13 @@ uninstall-am: uninstall-libLTLIBRARIES \
 
 floattypes/SATS/floattype_sats.c: floattypes/SATS/floattypes.sats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/floattypes.cats
+floattypes/SATS/floattype_sats.c: floattypes/CATS/defines.cats
 floattypes/SATS/floattype_sats.c: floattypes/CATS/constants.cats
 
 floattypes/DATS/floattype_dats.c: floattypes/DATS/floattypes.dats
 floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
+floattypes/DATS/floattype_dats.c: floattypes/CATS/defines.cats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/constants.cats
 
 $(check_PROGRAMS): floattypes/HATS/floattypes.hats \
