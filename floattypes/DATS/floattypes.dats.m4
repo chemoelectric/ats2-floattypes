@@ -24,10 +24,10 @@ along with this program. If not, see
 #include "floattypes/CATS/floattypes.cats"
 %}
 
-[#define] ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
-[#define] ATS_EXTERN_PREFIX "floattypes_"
+#define ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
+#define ATS_EXTERN_PREFIX "floattypes_"
 
-[#define ATS_DYNLOADFLAG 0]
+#define ATS_DYNLOADFLAG 0
 
 staload "prelude/basics_sta.sats"
 staload "prelude/SATS/float.sats"

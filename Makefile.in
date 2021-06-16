@@ -185,7 +185,9 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
-	ats2-floattypes.pc
+	ats2-floattypes.pc examples/GNUmakefile examples/proofs.sats \
+	examples/proofs.dats examples/array2d.sats \
+	examples/array2d.dats examples/tred2.sats examples/tred2.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -214,9 +216,9 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
-	"$(DESTDIR)$(pkgincludedir)" "$(DESTDIR)$(pkghostincludedir)" \
-	"$(DESTDIR)$(pkgincludedir)"
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(docdir)" \
+	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(pkgincludedir)" \
+	"$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libats2_floattypes_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -818,7 +820,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(nodist_pkgconfig_DATA)
+DATA = $(nobase_nodist_doc_DATA) $(nodist_pkgconfig_DATA)
 HEADERS = $(nobase_dist_pkginclude_HEADERS) \
 	$(nobase_nodist_pkghostinclude_HEADERS) \
 	$(nobase_nodist_pkginclude_HEADERS)
@@ -1030,7 +1032,14 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/ltmain.sh \
 	$(top_srcdir)/build-aux/missing \
-	$(top_srcdir)/build-aux/test-driver AUTHORS COPYING INSTALL \
+	$(top_srcdir)/build-aux/test-driver \
+	$(top_srcdir)/examples/GNUmakefile.in \
+	$(top_srcdir)/examples/array2d.dats.in \
+	$(top_srcdir)/examples/array2d.sats.in \
+	$(top_srcdir)/examples/proofs.dats.in \
+	$(top_srcdir)/examples/proofs.sats.in \
+	$(top_srcdir)/examples/tred2.dats.in \
+	$(top_srcdir)/examples/tred2.sats.in AUTHORS COPYING INSTALL \
 	README build-aux/compile build-aux/config.guess \
 	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
 	build-aux/ltmain.sh build-aux/missing
@@ -2441,6 +2450,11 @@ ACLOCAL_AMFLAGS = -I m4 --install
 AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
 ######################################################################
+nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
+EXAMPLES_SRC = examples/GNUmakefile examples/tred2.sats \
+	examples/tred2.dats
+
+######################################################################
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes_dats.c
@@ -2516,6 +2530,20 @@ common-definitions.m4: $(top_builddir)/config.status $(srcdir)/common-definition
 common-macros.m4: $(top_builddir)/config.status $(srcdir)/common-macros.m4.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/proofs.sats: $(top_builddir)/config.status $(top_srcdir)/examples/proofs.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/proofs.dats: $(top_builddir)/config.status $(top_srcdir)/examples/proofs.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/array2d.sats: $(top_builddir)/config.status $(top_srcdir)/examples/array2d.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/array2d.dats: $(top_builddir)/config.status $(top_srcdir)/examples/array2d.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 clean-checkPROGRAMS:
@@ -3384,6 +3412,30 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
+install-nobase_nodist_docDATA: $(nobase_nodist_doc_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(nobase_nodist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(docdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(docdir)" || exit 1; \
+	fi; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo " $(MKDIR_P) '$(DESTDIR)$(docdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(docdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(docdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(docdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_nodist_docDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_nodist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	dir='$(DESTDIR)$(docdir)'; $(am__uninstall_files_from_dir)
 install-nodist_pkgconfigDATA: $(nodist_pkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(nodist_pkgconfig_DATA)'; test -n "$(pkgconfigdir)" || list=; \
@@ -4614,7 +4666,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: GNUmakefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(pkgincludedir)" "$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(docdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(pkgincludedir)" "$(DESTDIR)$(pkghostincludedir)" "$(DESTDIR)$(pkgincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -4794,6 +4846,7 @@ info: info-am
 info-am:
 
 install-data-am: install-nobase_dist_pkgincludeHEADERS \
+	install-nobase_nodist_docDATA \
 	install-nobase_nodist_pkghostincludeHEADERS \
 	install-nobase_nodist_pkgincludeHEADERS \
 	install-nodist_pkgconfigDATA
@@ -4953,6 +5006,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-nobase_dist_pkgincludeHEADERS \
+	uninstall-nobase_nodist_docDATA \
 	uninstall-nobase_nodist_pkghostincludeHEADERS \
 	uninstall-nobase_nodist_pkgincludeHEADERS \
 	uninstall-nodist_pkgconfigDATA
@@ -4973,6 +5027,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-libLTLIBRARIES install-man \
 	install-nobase_dist_pkgincludeHEADERS \
+	install-nobase_nodist_docDATA \
 	install-nobase_nodist_pkghostincludeHEADERS \
 	install-nobase_nodist_pkgincludeHEADERS \
 	install-nodist_pkgconfigDATA install-pdf install-pdf-am \
@@ -4983,6 +5038,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	recheck tags tags-am uninstall uninstall-am \
 	uninstall-libLTLIBRARIES \
 	uninstall-nobase_dist_pkgincludeHEADERS \
+	uninstall-nobase_nodist_docDATA \
 	uninstall-nobase_nodist_pkghostincludeHEADERS \
 	uninstall-nobase_nodist_pkgincludeHEADERS \
 	uninstall-nodist_pkgconfigDATA

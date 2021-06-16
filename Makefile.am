@@ -44,6 +44,16 @@ DISTCLEANFILES += floattypes/HATS/config.hats
 
 ######################################################################
 
+nobase_nodist_doc_DATA =
+nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
+
+EXAMPLES_SRC =
+EXAMPLES_SRC += examples/GNUmakefile
+EXAMPLES_SRC += examples/tred2.sats
+EXAMPLES_SRC += examples/tred2.dats
+
+######################################################################
+
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES =
 libats2_floattypes_la_SOURCES += floattypes/SATS/floattypes_sats.c

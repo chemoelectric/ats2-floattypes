@@ -1,0 +1,70 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+#define ATS_DYNLOADFLAG 0
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
+
+staload UN = "prelude/SATS/unsafe.sats" // ???????????????????????????????????????????????????????????????????????
+staload "proofs.sats"
+staload "array2d.sats"
+staload "tred2.sats"
+
+implement {tk}
+tred2 {nm, n} {na} {nd} {ne} {nz}
+      (nm, n, a, d, e, z) =
+  if i2sz 0 < n then
+    let
+      prval _ = mul_gte_gte_gte {nm, n - 1} ()
+      prval _ = prop_verify {0 < nm * n} ()
+
+      typedef flt = g0float(tk)
+      var f : flt
+      var g : flt
+      var h : flt
+      var hh : flt
+      var scale : flt
+
+      prfn
+      get {narr : int | nm * n <= narr}
+          {i, j : nat | i < nm; j < n}
+          (arr  : &array(flt, narr),
+           i    : size_t i,
+           j    : size_t j) :<!ref> flt =
+        arr2get {nm, n} (arr, nm, i, j)
+
+      prfn
+      put {narr : int | nm * n <= narr}
+          {i, j : nat | i < nm; j < n}
+          (arr  : &array(flt, narr),
+           i    : size_t i,
+           j    : size_t j,
+           x    : flt) :<!refwrt> void =
+        arr2put {nm, n} (arr, nm, i, j, x)
+
+      overload [] with get of 1000
+      overload [] with put of 1000
+
+      val x = a[i2sz 0, i2sz 0] (* FIXME: This just proves indexing works *)
+      val _ = a[i2sz 0, i2sz 0] := x (* FIXME: This just proves indexing works *)
+    in
+    end

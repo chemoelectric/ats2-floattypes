@@ -1,0 +1,25 @@
+PKGCONFIG = pkg-config
+
+OBJEXT = o
+
+PATSOPT = @PATSOPT@
+PATSOPTFLAGS = `$(PKGCONFIG) --variable=PATSOPTFLAGS ats2-floattypes`
+
+CC = @CC@
+CFLAGS = `$(PKGCONFIG) --cflags ats2-floattypes` \
+			-I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime/
+
+LIBS = `$(PKGCONFIG) --libs ats2-floattypes`
+
+%_sats.c: %.sats $(PATSOPT_DEPS)
+	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -s $(<)
+
+%_dats.c: %.dats $(PATSOPT_DEPS)
+	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -d $(<)
+
+%.$(OBJEXT): %.c
+	$(CC) -c $(CFLAGS) $(<)
+
+.PHONY: clean
+clean:
+	-rm -f *.{c,$(OBJEXT)}

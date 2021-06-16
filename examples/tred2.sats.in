@@ -1,0 +1,71 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
+
+(*
+ * tred2
+ *
+ * This template is a translation of the EISPACK subroutine tred2,
+ * which, in turn, is a translation of the Algol procedure tred2,
+ * Num. Math. 11, 181-195(1968) by Martin, Reinsch, and Wilkinson.
+ * Handbook for Auto. Comp., Vol.II-Linear Algebra, 212-226(1971).
+ *
+ * This template reduces a real symmetric matrix to a symmetric
+ * tridiagonal matrix, using and accumulating orthogonal similarity
+ * transformations.
+ *
+ * On input
+ *
+ *    nm must be set to the row dimension of two-dimensional
+ *      array parameters, which are to be stored in column-major
+ *      order (as in Fortran).
+ *
+ *    n is the order of the matrix.
+ *
+ *    a contains the real symmetric input matrix. Only the
+ *      lower triangle of the matrix need be supplied.
+ *
+ * On output
+ *
+ *    d contains the diagonal elements of the tridiagonal matrix.
+ *
+ *    e contains the subdiagonal elements of the tridiagonal
+ *      matrix in its last n-1 positions. e(1) is set to zero.
+ *
+ *    z contains the orthogonal transformation matrix
+ *      produced in the reduction.
+ *
+ *    a and z may coincide. If distinct, a is unaltered.
+ *)
+fn {tk : tkind}
+tred2 {nm, n : nat | n <= nm}
+      {na    : int | nm * n <= na}
+      {nd    : int | n <= nd}
+      {ne    : int | n <= ne}
+      {nz    : int | nm * n <= nz}
+      (nm    : size_t nm,
+       n     : size_t n,
+       a     : &array(g0float(tk), na),
+       d     : &array(g0float(tk), nd),
+       e     : &array(g0float(tk), ne),
+       z     : &array(g0float(tk), nz)) :<!refwrt> void
