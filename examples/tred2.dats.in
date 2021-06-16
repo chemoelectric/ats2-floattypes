@@ -41,7 +41,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
 
       typedef flt = g0float(tk)
 
-      prfn
+      fn
       get {narr : int | nm * n <= narr}
           {i, j : nat | i < nm; j < n}
           (arr  : &array(flt, narr),
@@ -49,7 +49,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
            j    : size_t j) :<!ref> flt =
         arr2get {nm, n} (arr, nm, i, j)
 
-      prfn
+      fn
       put {narr : int | nm * n <= narr}
           {i, j : nat | i < nm; j < n}
           (arr  : &array(flt, narr),
