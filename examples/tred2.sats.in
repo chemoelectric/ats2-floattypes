@@ -68,4 +68,4 @@ tred2 {nm, n : nat | n <= nm}
        a     : &array(g0float(tk), na),
        d     : &array(g0float(tk), nd),
        e     : &array(g0float(tk), ne),
-       z     : &array(g0float(tk), nz)) :<!refwrt> void
+       z     : &array(g0float(tk), nz)) : void

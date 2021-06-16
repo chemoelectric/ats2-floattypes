@@ -35,9 +35,10 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
       (nm, n, a, d, e, z) =
   if i2sz 0 < n then
     let
-      prval _ = mul_gte_gte_gte {nm, n - 1} ()
-      
+      macdef zero = i2sz 0
+
       (* The arrays have extent. *)
+      prval _ = mul_gte_gte_gte {nm, n - 1} ()
       prval _ = prop_verify {0 < nm * n} ()
 
       typedef flt = g0float(tk)
@@ -68,7 +69,10 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
       var hh : flt
       var scale : flt
       
-      val x = a[i2sz 0, i2sz 0] (* FIXME: This just proves indexing works *)
-      val _ = a[i2sz 0, i2sz 0] := x (* FIXME: This just proves indexing works *)
+      val _ = arr2copy {nm, n, n} (nm, a, z, n, n,
+                                   zero, zero, zero, zero)
+      
+      val x = a[zero, zero] (* FIXME: This just proves indexing works *)
+      val _ = a[zero, zero] := x (* FIXME: This just proves indexing works *)
     in
     end

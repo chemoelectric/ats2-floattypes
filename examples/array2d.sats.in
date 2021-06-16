@@ -54,8 +54,8 @@ fn {t : t@ype}
 arr2copy {m, n1, n2 : int}
          {na1, na2  : int | m * n1 <= na1; m * n2 <= na2}
          {q, r      : nat}
-         {i1, j1    : nat | i1 + q < m; j1 + r < n1}
-         {i2, j2    : nat | i2 + q < m; j2 + r < n2}
+         {i1, j1    : nat | i1 + q <= m; j1 + r <= n1}
+         {i2, j2    : nat | i2 + q <= m; j2 + r <= n2}
          (m  : size_t m,
           a1 : &array(t, na1),
           a2 : &array(t, na2),
@@ -75,8 +75,8 @@ fn {t : t@ype}
 arr2map {m, n1, n2 : int}
         {na1, na2  : int | m * n1 <= na1; m * n2 <= na2}
         {q, r      : nat}
-        {i1, j1    : nat | i1 + q < m; j1 + r < n1}
-        {i2, j2    : nat | i2 + q < m; j2 + r < n2}
+        {i1, j1    : nat | i1 + q <= m; j1 + r <= n1}
+        {i2, j2    : nat | i2 + q <= m; j2 + r <= n2}
         (m  : size_t m,
          a1 : &array(t, na1),
          a2 : &array(t, na2),
