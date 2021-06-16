@@ -18,15 +18,18 @@ along with this program. If not, see
 
 *)
 
-(* Column-major array access, for m-by-n arrays.
-   Reverse the order of indices to get row-major access. *)
+(*
+ * Column-major array access, for m-by-n arrays.
+ *
+ * Reverse the order of indices to get row-major access.
+ *)
 
 fn {t : t@ype}
 arr2get {m, n : int}
         {na   : int | m * n <= na}
         {i, j : nat | i < m; j < n}
-        (a    : &array(t, na),
-         m    : size_t m,
+        (m    : size_t m,
+         a    : &array(t, na),
          i    : size_t i,
          j    : size_t j) :<!ref> t
 
@@ -34,8 +37,52 @@ fn {t : t@ype}
 arr2put {m, n : int}
         {na   : int | m * n <= na}
         {i, j : nat | i < m; j < n}
-        (a    : &array(t, na),
-         m    : size_t m,
+        (m    : size_t m,
+         a    : &array(t, na),
          i    : size_t i,
          j    : size_t j,
          x    : t) :<!refwrt> void
+
+(*
+ * Operations on arrays of the kind above.
+ *)
+
+(* Copy a q-by-r block from one array to another,
+   starting at (i1,j1) in the source array a1 and
+   (i2,j2) in the destination array a2. *)
+fn {t : t@ype}
+arr2copy {m, n1, n2 : int}
+         {na1, na2  : int | m * n1 <= na1; m * n2 <= na2}
+         {q, r      : nat}
+         {i1, j1    : nat | i1 + q < m; j1 + r < n1}
+         {i2, j2    : nat | i2 + q < m; j2 + r < n2}
+         (m  : size_t m,
+          a1 : &array(t, na1),
+          a2 : &array(t, na2),
+          q  : size_t q,
+          r  : size_t r,
+          i1 : size_t i1,
+          j1 : size_t j1,
+          i2 : size_t i2,
+          j2 : size_t j2) : void
+
+(* Map a q-by-r block from one array to another,
+   starting at (i1,j1) in the source array a1 and
+   (i2,j2) in the destination array a2. *)
+fun {t : t@ype}
+arr2map$filter : t -> t
+fn {t : t@ype}
+arr2map {m, n1, n2 : int}
+        {na1, na2  : int | m * n1 <= na1; m * n2 <= na2}
+        {q, r      : nat}
+        {i1, j1    : nat | i1 + q < m; j1 + r < n1}
+        {i2, j2    : nat | i2 + q < m; j2 + r < n2}
+        (m  : size_t m,
+         a1 : &array(t, na1),
+         a2 : &array(t, na2),
+         q  : size_t q,
+         r  : size_t r,
+         i1 : size_t i1,
+         j1 : size_t j1,
+         i2 : size_t i2,
+         j2 : size_t j2) : void

@@ -23,11 +23,13 @@ along with this program. If not, see
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
+staload UN = "prelude/SATS/unsafe.sats" // FIXME: Get rid of this --------------------------------------
+
 staload "proofs.sats"
 staload "array2d.sats"
 
 implement {t}
-arr2get {m, n} {na} {i, j} (a, m, i, j) =
+arr2get {m, n} {na} {i, j} (m, a, i, j) =
   let
     prval _ = mul_gte_gte_gte {j, m} ()
     prval _ = mul_compare_lte {j, n - 1, m} ()
@@ -37,11 +39,66 @@ arr2get {m, n} {na} {i, j} (a, m, i, j) =
   end
 
 implement {t}
-arr2put {m, n} {na} {i, j} (a, m, i, j, x) =
+arr2put {m, n} {na} {i, j} (m, a, i, j, x) =
   let
     prval _ = mul_gte_gte_gte {j, m} ()
     prval _ = mul_compare_lte {j, n - 1, m} ()
     prval _ = prop_verify {0 <= i + (j * m) && i + (j * m) < na} ()
   in
     a[i + (j * m)] := x
+  end
+
+implement {t}
+arr2copy {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
+         (m, a1, a2, q, r, i1, j1, i2, j2) =
+  let
+    implement
+    arr2map$filter<t> (t) = t
+  in
+    arr2map {m, n1, n2} (m, a1, a2, q, r, i1, j1, i2, j2)
+  end
+
+implement {t}
+arr2map {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
+        (m, a1, a2, q, r, i1, j1, i2, j2) =
+  let
+    fun
+    outer_loop {j_a1 : int | j1 <= j_a1; j_a1 <= j1 + r}
+               {j_a2 : int | j_a2 - j2 == j_a1 - j1}
+               .<(j1 + r) - j_a1>.
+               (a1   : &array(t, na1),
+                a2   : &array(t, na2),
+                j_a1 : size_t j_a1,
+                j_a2 : size_t j_a2) : void =
+      let
+        fun
+        inner_loop {i_a1, j_a1 : int | i1 <= i_a1; i_a1 <= i1 + q;
+                                       j1 <= j_a1; j_a1 <= j1 + r}
+                   {i_a2, j_a2 : int | i_a2 - i2 == i_a1 - i1;
+                                       j_a2 - j2 == j_a1 - j1}
+                   .<(i1 + q) - i_a1>.
+                   (a1   : &array(t, na1),
+                    a2   : &array(t, na2),
+                    i_a1 : size_t i_a1,
+                    j_a1 : size_t j_a1,
+                    i_a2 : size_t i_a2,
+                    j_a2 : size_t j_a2) : void =
+          if i_a1 < i1 + q then
+            let
+              val x = arr2get {m, n1} (m, a1, i_a1, j_a1)
+              val y = arr2map$filter(x)
+              val _ = arr2put {m, n2} (m, a2, i_a2, j_a2, y)
+            in
+              inner_loop (a1, a2, succ i_a1, j_a1, succ i_a2, j_a2)
+            end
+      in
+        if j_a1 < j1 + r then
+          let
+            val _ = inner_loop (a1, a2, i1, j_a1, i2, j_a2)
+          in
+            outer_loop (a1, a2, succ j_a1, succ j_a2)
+          end
+      end
+  in
+    outer_loop (a1, a2, j1, j2)
   end

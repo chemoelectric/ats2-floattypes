@@ -24,7 +24,8 @@ along with this program. If not, see
 #include "share/atspre_staload.hats"
 #include "floattypes/HATS/floattypes.hats"
 
-staload UN = "prelude/SATS/unsafe.sats" // ???????????????????????????????????????????????????????????????????????
+staload UN = "prelude/SATS/unsafe.sats" // FIXME: Get rid of this --------------------------------------
+
 staload "proofs.sats"
 staload "array2d.sats"
 staload "tred2.sats"
@@ -47,7 +48,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
           (arr  : &array(flt, narr),
            i    : size_t i,
            j    : size_t j) :<!ref> flt =
-        arr2get {nm, n} (arr, nm, i, j)
+        arr2get {nm, n} (nm, arr, i, j)
 
       fn
       put {narr : int | nm * n <= narr}
@@ -56,7 +57,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
            i    : size_t i,
            j    : size_t j,
            x    : flt) :<!refwrt> void =
-        arr2put {nm, n} (arr, nm, i, j, x)
+        arr2put {nm, n} (nm, arr, i, j, x)
 
       overload [] with get of 1000
       overload [] with put of 1000
@@ -66,7 +67,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
       var h : flt
       var hh : flt
       var scale : flt
-
+      
       val x = a[i2sz 0, i2sz 0] (* FIXME: This just proves indexing works *)
       val _ = a[i2sz 0, i2sz 0] := x (* FIXME: This just proves indexing works *)
     in
