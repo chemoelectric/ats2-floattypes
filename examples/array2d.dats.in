@@ -64,41 +64,40 @@ arr2map {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
   let
     fun
     outer_loop {j_a1 : int | j1 <= j_a1; j_a1 <= j1 + r}
-               {j_a2 : int | j_a2 - j2 == j_a1 - j1}
                .<(j1 + r) - j_a1>.
                (a1   : &array(t, na1),
                 a2   : &array(t, na2),
-                j_a1 : size_t j_a1,
-                j_a2 : size_t j_a2) : void =
+                j_a1 : size_t j_a1) : void =
       let
         fun
-        inner_loop {i_a1, j_a1 : int | i1 <= i_a1; i_a1 <= i1 + q;
-                                       j1 <= j_a1; j_a1 <= j1 + r}
-                   {i_a2, j_a2 : int | i_a2 - i2 == i_a1 - i1;
-                                       j_a2 - j2 == j_a1 - j1}
+        inner_loop {i_a1, j_a1, j_a2 : int
+                      | i1 <= i_a1; i_a1 <= i1 + q;
+                        j1 <= j_a1; j_a1 < j1 + r;
+                        j2 <= j_a2; j_a2 < j2 + r}
                    .<(i1 + q) - i_a1>.
                    (a1   : &array(t, na1),
                     a2   : &array(t, na2),
                     i_a1 : size_t i_a1,
                     j_a1 : size_t j_a1,
-                    i_a2 : size_t i_a2,
                     j_a2 : size_t j_a2) : void =
           if i_a1 < i1 + q then
             let
+              val i_a2 = (i_a1 - i1) + i2
               val x = arr2get {m, n1} (m, a1, i_a1, j_a1)
               val y = arr2map$filter(x)
               val _ = arr2put {m, n2} (m, a2, i_a2, j_a2, y)
             in
-              inner_loop (a1, a2, succ i_a1, j_a1, succ i_a2, j_a2)
+              inner_loop (a1, a2, succ i_a1, j_a1, j_a2)
             end
       in
         if j_a1 < j1 + r then
           let
-            val _ = inner_loop (a1, a2, i1, j_a1, i2, j_a2)
+            val j_a2 = (j_a1 - j1) + j2
+            val _ = inner_loop (a1, a2, i1, j_a1, j_a2)
           in
-            outer_loop (a1, a2, succ j_a1, succ j_a2)
+            outer_loop (a1, a2, succ j_a1)
           end
       end
   in
-    outer_loop (a1, a2, j1, j2)
+    outer_loop (a1, a2, j1)
   end
