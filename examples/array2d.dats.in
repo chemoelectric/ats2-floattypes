@@ -49,18 +49,18 @@ arr2put {m, n} {na} {i, j} (m, a, i, j, x) =
   end
 
 implement {t}
-arr2copy {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
-         (m, a1, a2, q, r, i1, j1, i2, j2) =
+arr2copy_block {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
+               (m, a1, a2, q, r, i1, j1, i2, j2) =
   let
     implement
-    arr2map$filter<t> (t) = t
+    arr2map_block$filter<t> (t) = t
   in
-    arr2map {m, n1, n2} (m, a1, a2, q, r, i1, j1, i2, j2)
+    arr2map_block {m, n1, n2} (m, a1, a2, q, r, i1, j1, i2, j2)
   end
 
 implement {t}
-arr2map {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
-        (m, a1, a2, q, r, i1, j1, i2, j2) =
+arr2map_block {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
+              (m, a1, a2, q, r, i1, j1, i2, j2) =
   let
     fun
     outer_loop {j_a1 : int | j1 <= j_a1; j_a1 <= j1 + r}
@@ -84,7 +84,7 @@ arr2map {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
             let
               val i_a2 = (i_a1 - i1) + i2
               val x = arr2get {m, n1} (m, a1, i_a1, j_a1)
-              val y = arr2map$filter(x)
+              val y = arr2map_block$filter(x)
               val _ = arr2put {m, n2} (m, a2, i_a2, j_a2, y)
             in
               inner_loop (a1, a2, succ i_a1, j_a1, j_a2)

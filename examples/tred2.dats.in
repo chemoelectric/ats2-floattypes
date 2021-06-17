@@ -69,8 +69,8 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
       var hh : flt
       var scale : flt
       
-      val _ = arr2copy {nm, n, n} (nm, a, z, n, n,
-                                   zero, zero, zero, zero)
+      val _ = arr2copy_block {nm, n, n} (nm, a, z, n, n,
+                                         zero, zero, zero, zero)
       
       val x = a[zero, zero] (* FIXME: This just proves indexing works *)
       val _ = a[zero, zero] := x (* FIXME: This just proves indexing works *)
