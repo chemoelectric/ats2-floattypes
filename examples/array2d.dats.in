@@ -66,8 +66,8 @@ implement {t}
 arr2map_block {m, n1, n2} {na1, na2} {q, r} {i1, j1} {i2, j2}
               (m, a1, a2, q, r, i1, j1, i2, j2) =
   let
-    prval _ = lemma_g1uint_param (q) (* Establish that 0 <= q. *)
-    prval _ = lemma_g1uint_param (r) (* Establish that 0 <= r. *)
+    prval _ = lemma_g1uint_param (q)  (* Establish that 0 <= q. *)
+    prval _ = lemma_g1uint_param (r)  (* Establish that 0 <= r. *)
     prval _ = lemma_g1uint_param (i1) (* Establish that 0 <= i1. *)
     prval _ = lemma_g1uint_param (j1) (* Establish that 0 <= j1. *)
     prval _ = lemma_g1uint_param (i2) (* Establish that 0 <= i2. *)
