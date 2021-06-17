@@ -504,6 +504,7 @@ AC_CONFIG_FILES([examples/array2d.sats])
 AC_CONFIG_FILES([examples/array2d.dats])
 AC_CONFIG_FILES([examples/tred2.sats])
 AC_CONFIG_FILES([examples/tred2.dats])
+AC_CONFIG_FILES([examples/tql2-example.dats])
 
 AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   AS_ECHO(['/*']) > floattypes/HATS/config.hats

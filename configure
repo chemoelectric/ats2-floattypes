@@ -107402,6 +107402,8 @@ ac_config_files="$ac_config_files examples/tred2.sats"
 
 ac_config_files="$ac_config_files examples/tred2.dats"
 
+ac_config_files="$ac_config_files examples/tql2-example.dats"
+
 
 ac_config_commands="$ac_config_commands floattypes/HATS/config.hats"
 
@@ -110895,6 +110897,7 @@ do
     "examples/array2d.dats") CONFIG_FILES="$CONFIG_FILES examples/array2d.dats" ;;
     "examples/tred2.sats") CONFIG_FILES="$CONFIG_FILES examples/tred2.sats" ;;
     "examples/tred2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2.dats" ;;
+    "examples/tql2-example.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example.dats" ;;
     "floattypes/HATS/config.hats") CONFIG_COMMANDS="$CONFIG_COMMANDS floattypes/HATS/config.hats" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

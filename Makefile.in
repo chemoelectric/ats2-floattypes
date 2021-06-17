@@ -187,7 +187,8 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
 	ats2-floattypes.pc examples/GNUmakefile examples/proofs.sats \
 	examples/proofs.dats examples/array2d.sats \
-	examples/array2d.dats examples/tred2.sats examples/tred2.dats
+	examples/array2d.dats examples/tred2.sats examples/tred2.dats \
+	examples/tql2-example.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -1038,6 +1039,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/examples/array2d.sats.in \
 	$(top_srcdir)/examples/proofs.dats.in \
 	$(top_srcdir)/examples/proofs.sats.in \
+	$(top_srcdir)/examples/tql2-example.dats.in \
 	$(top_srcdir)/examples/tred2.dats.in \
 	$(top_srcdir)/examples/tred2.sats.in AUTHORS COPYING INSTALL \
 	README build-aux/compile build-aux/config.guess \
@@ -2544,6 +2546,8 @@ examples/array2d.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arra
 examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tql2-example.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 clean-checkPROGRAMS:
