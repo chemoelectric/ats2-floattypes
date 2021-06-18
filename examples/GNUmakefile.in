@@ -16,7 +16,13 @@ tql2-example: $(addsuffix .$(OBJEXT), \
 				tred2_sats tred2_dats \
 				array2d_sats array2d_dats \
 				proofs_sats proofs_dats)
-	$(CC) -o $(@) $(CFLAGS) $(^)
+	$(CC) -o $(@) $(CFLAGS) $(^) $(LIBS)
+
+tred2_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), \
+						tred2_sats array2d_sats proofs_sats)
+array2d_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), \
+						array2d_sats proofs_sats)
+proofs_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), proofs_sats)
 
 %_sats.c: %.sats $(PATSOPT_DEPS)
 	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -s $(<)
