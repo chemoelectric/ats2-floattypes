@@ -61,6 +61,7 @@ libats2_floattypes_la_SOURCES += floattypes/SATS/floattypes_sats.c
 libats2_floattypes_la_SOURCES += floattypes/DATS/floattypes_dats.c
 
 nobase_nodist_pkginclude_HEADERS =
+nobase_nodist_pkginclude_HEADERS += floattypes/CATS/printing.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/CATS/defines.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/CATS/floattypes.cats
 nobase_nodist_pkginclude_HEADERS += floattypes/SATS/floattypes.sats

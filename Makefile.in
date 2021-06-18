@@ -2568,8 +2568,8 @@ EXAMPLES_SRC = examples/GNUmakefile examples/tred2.sats \
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes_dats.c
-nobase_nodist_pkginclude_HEADERS = floattypes/CATS/defines.cats \
-	floattypes/CATS/floattypes.cats \
+nobase_nodist_pkginclude_HEADERS = floattypes/CATS/printing.cats \
+	floattypes/CATS/defines.cats floattypes/CATS/floattypes.cats \
 	floattypes/SATS/floattypes.sats \
 	floattypes/DATS/floattypes.dats
 nobase_dist_pkginclude_HEADERS = floattypes/HATS/floattypes.hats
