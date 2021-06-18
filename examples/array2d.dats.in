@@ -23,8 +23,6 @@ along with this program. If not, see
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
-staload UN = "prelude/SATS/unsafe.sats" // FIXME: Get rid of this --------------------------------------
-
 staload "proofs.sats"
 staload "array2d.sats"
 
