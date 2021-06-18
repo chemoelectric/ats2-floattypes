@@ -11,6 +11,15 @@ CFLAGS = `$(PKGCONFIG) --cflags ats2-floattypes` \
 
 LIBS = `$(PKGCONFIG) --libs ats2-floattypes`
 
+%_sats.c: %.sats
+	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -s $(<)
+
+%_dats.c: %.dats
+	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -d $(<)
+
+%.$(OBJEXT): %.c
+	$(CC) -c $(CFLAGS) $(<)
+
 tql2-example: $(addsuffix .$(OBJEXT), \
 				tql2-example_dats \
 				tred2_sats tred2_dats \
@@ -18,21 +27,13 @@ tql2-example: $(addsuffix .$(OBJEXT), \
 				proofs_sats proofs_dats)
 	$(CC) -o $(@) $(CFLAGS) $(^) $(LIBS)
 
-tred2_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), \
-						tred2_sats array2d_sats proofs_sats)
-array2d_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), \
-						array2d_sats proofs_sats)
-proofs_dats.$(OBJEXT): $(addsuffix .$(OBJEXT), proofs_sats)
+tred2_sats.c: array2d_sats.c proofs_sats.c
+tred2_dats.c: tred2_sats.c
 
-%_sats.c: %.sats $(PATSOPT_DEPS)
-	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -s $(<)
+array2d_sats.c: proofs_sats.c
+array2d_dats.c: array2d_sats.c
 
-%_dats.c: %.dats $(PATSOPT_DEPS)
-	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -d $(<)
-
-%.$(OBJEXT): %.c
-	$(CC) -c $(CFLAGS) $(<)
-
+proofs_dats.c: proofs_sats.c
 .PHONY: clean
 clean:
 	-rm -f *.{c,$(OBJEXT)}

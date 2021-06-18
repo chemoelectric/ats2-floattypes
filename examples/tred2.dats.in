@@ -92,8 +92,8 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                e    : &array(flt, ne),
                z    : &array(flt, nz),
                vars : &vars_t,
-               k0     : size_t k0,
-               k1     : size_t k1) : void =
+               k0   : size_t k0,
+               k1   : size_t k1) : void =
         let
           fun
           loop {k    : int | k0 <= k; k <= k1} .<k1 - k>.
@@ -112,21 +112,21 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
         end
 
       extern fun {k0, k1 : int}
-      forloop_down$action {k      : int | k1 <= k; k <= k0;
-                                          0 <= k1; k1 <= k0; k0 < n}
-                          (d      : &array(flt, nd),
-                           e      : &array(flt, ne),
-                           z      : &array(flt, nz),
-                           vars   : &vars_t,
-                           k      : size_t k) : void
+      forloop_down$action {k    : int | k1 <= k; k <= k0;
+                                        0 <= k1; k1 <= k0; k0 < n}
+                          (d    : &array(flt, nd),
+                           e    : &array(flt, ne),
+                           z    : &array(flt, nz),
+                           vars : &vars_t,
+                           k    : size_t k) : void
       fn
       forloop_down {k0, k1 : int | 0 <= k1; k1 <= k0; k0 < n}
                    (d    : &array(flt, nd),
                     e    : &array(flt, ne),
                     z    : &array(flt, nz),
                     vars : &vars_t,
-                    k0     : size_t k0,
-                    k1     : size_t k1) : void =
+                    k0   : size_t k0,
+                    k1   : size_t k1) : void =
         let
           fun
           loop {k    : int | k1 <= k; k <= k0} .<k - k1>.
@@ -173,7 +173,7 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
             e[i] := d[pred i];
             loop(d, z, i2sz 0)
           end
-        val _ = vars.h := i2f 0;
+        val _ = vars.h := i2f 0
       in
         if i = i2sz 1 then
           simple_situation(d, e, z)
@@ -189,11 +189,11 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
               simple_situation(d, e, z)
             else
               let
-                /*
+                (*
                  * Scale the row. (Doing this is an improvement on the
                  * original Algol 60 code, and eliminates need for the
                  * ‘tol’ parameter employed there.
-                 */
+                 *)
                 implement
                 forloop$action<0, i - 1>(d, e, z, vars, k) =
                   begin
@@ -208,9 +208,9 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                 val _ = vars.h := vars.h - (vars.f * vars.g)
                 val _ = d[i - 1] := vars.f - vars.g
 
-                /*
+                (*
                  * Form a*u.
-                 */
+                 *)
                 implement
                 forloop$action<0, i - 1>(d, e, z, vars, j) =
                   e[j] := i2f 0
@@ -237,9 +237,9 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                   end
                 val _ = forloop(d, e, z, vars, i2sz 0, pred i)
 
-                /*
+                (*
                  * Form p.
-                 */
+                 *)
                 val _ = vars.f := i2f 0
                 implement
                 forloop$action<0, i - 1>(d, e, z, vars, j) =
@@ -249,18 +249,18 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                   end
                 val _ = forloop(d, e, z, vars, i2sz 0, pred i)
 
-                /*
+                (*
                  * Form q.
-                 */
+                 *)
                 val _ = vars.hh := vars.f / (vars.h + vars.h)
                 implement
                 forloop$action<0, i - 1>(d, e, z, vars, j) =
                   e[j] := e[j] - (vars.hh * d[j])
                 val _ = forloop(d, e, z, vars, i2sz 0, pred i)
 
-                /*
+                (*
                  * Form reduced a.
-                 */
+                 *)
                 implement
                 forloop$action<0, i - 1>{j}(d, e, z, vars, j) =
                   let
@@ -346,6 +346,19 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
             accumulation_of_transformation_matrices_action
           val _ = forloop(d, e, z, vars, i2sz 1, pred n)
         in
-        end
+        end;
 
+      if i2sz 1 <= n then
+        let
+          implement
+          forloop$action<0, n - 1>(d, e, z, vars, i) =
+            begin
+              d[i] := z[pred n, i];
+              z[pred n, i] := i2f 0
+            end
+          val _ = forloop(d, e, z, vars, i2sz 0, pred n)
+        in
+        end;
+      z[pred n, pred n] := i2f 1;
+      e[i2sz 0] := i2f 0
     end
