@@ -400,6 +400,15 @@ m4_foreachq([func],[strfromd_unsafe],
 fun {tk : tk} g0float_[]func : g0float_strfromdlike_unsafe_type(tk)
 overload func with g0float_[]func of default_overload_precedence
 ])
+dnl
+m4_foreachq([t],[extra_floattypes],
+[fun print_[]t : g0float(t[]_kind) -> void = "mac#%"
+fun prerr_[]t : g0float(t[]_kind) -> void = "mac#%"
+fun fprint_[]t : fprint_type (g0float(t[]_kind)) = "mac#%"
+overload print with print_[]t
+overload prerr with prerr_[]t
+overload fprint with fprint_[]t
+])
 
 
 /* Values returned by fpclassify. (Other values are possible.) */

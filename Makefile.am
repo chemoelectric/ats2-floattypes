@@ -21,6 +21,7 @@
 EXTRA_DIST =
 BUILT_SOURCES =
 TESTS =
+LDADD =
 
 MOSTLYCLEANFILES =
 CLEANFILES =
@@ -76,12 +77,14 @@ nobase_nodist_pkghostinclude_HEADERS += floattypes/CATS/constants.cats
 pkgconfigdir = ${libdir}/pkgconfig
 nodist_pkgconfig_DATA = ats2-floattypes.pc
 
+EXTRA_DIST += floattypes/CATS/printing.cats.m4
 EXTRA_DIST += floattypes/CATS/defines.cats.m4
 EXTRA_DIST += floattypes/CATS/floattypes.cats.m4
 EXTRA_DIST += floattypes/CATS/constants.cats.m4
 EXTRA_DIST += floattypes/SATS/floattypes.sats.m4
 EXTRA_DIST += floattypes/DATS/floattypes.dats.m4
 
+BUILT_SOURCES += floattypes/CATS/printing.cats
 BUILT_SOURCES += floattypes/CATS/defines.cats
 BUILT_SOURCES += floattypes/CATS/floattypes.cats
 BUILT_SOURCES += floattypes/CATS/constants.cats
@@ -102,12 +105,15 @@ floattypes/DATS/floattype_dats.c: floattypes/SATS/floattypes.sats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/floattypes.cats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/defines.cats
 floattypes/DATS/floattype_dats.c: floattypes/CATS/constants.cats
+floattypes/DATS/floattype_dats.c: floattypes/CATS/printing.cats
 
 ######################################################################
 
 AM_DEFAULT_SOURCE_EXT = _dats.c
 
 TESTS += $(check_PROGRAMS)
+
+LDADD += $(lib_LTLIBRARIES)
 
 check_PROGRAMS =
 

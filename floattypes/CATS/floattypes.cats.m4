@@ -36,14 +36,7 @@ _Static_assert(sizeof (atstype_double) == sizeof (double),
 _Static_assert(sizeof (atstype_ldouble) == sizeof (long double),
                "atstype_ldouble is not the same as long double");
 
-
 divert(-1)
-
-fun {tk1, tk2 : tk}
-g0uint2float : g0uint(tk1) -<> g0float(tk2)
-
-fun {tk1, tk2 : tk}
-g0float2uint : g0float(tk1) -<> g0uint(tk2)
 
 m4_define([int_to_float],
 [ATSinline() dnl
@@ -544,5 +537,14 @@ m4_foreachq([t],[all_floattypes],
 dnl
 m4_foreachq([t],[all_floattypes],
   [typed_constant_value(t,[SNAN],[floattypes_]t)])
+
+m4_foreachq([t],[extra_floattypes],
+[#if HAVE_floattypes_strfromd_[]t
+extern atsvoid_t0ype floattypes_fprint_[]t (atstype_ref r, floattypes_[]t x);
+extern atsvoid_t0ype floattypes_print_[]t (floattypes_[]t x);
+extern atsvoid_t0ype floattypes_prerr_[]t (floattypes_[]t x);
+#endif
+
+])
 
 #endif /* FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__ */

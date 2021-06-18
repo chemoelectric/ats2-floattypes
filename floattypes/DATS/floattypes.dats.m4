@@ -20,14 +20,18 @@ along with this program. If not, see
 
 */
 
-%{#
-#include "floattypes/CATS/floattypes.cats"
-%}
-
 #define ATS_PACKNAME "ATS2_FLOATTYPES.floattypes"
 #define ATS_EXTERN_PREFIX "floattypes_"
 
 #define ATS_DYNLOADFLAG 0
+
+%{#
+#include "floattypes/CATS/floattypes.cats"
+%}
+
+%{
+#include "floattypes/CATS/printing.cats"
+%}
 
 staload "prelude/basics_sta.sats"
 staload "prelude/SATS/float.sats"
@@ -157,3 +161,50 @@ dnl
 m4_foreachq([t],[all_floattypes],[implement_float(huge_val,t)])
 m4_foreachq([t],[all_floattypes],[implement_float(snan,t)])
 
+
+divert(-1)
+m4_foreachq([t],[extra_floattypes],
+[#if HAVE_floattypes_strfromd_[]t #then
+%{
+
+atsvoid_t0ype
+floattypes_fprint_[]t (atstype_ref r, floattypes_[]t x)
+{
+  const int buf_size = 100;
+  char buf[[buf_size]]; /* C99 array. */
+  buf[[buf_size - 1]] = '\0';
+  int size = floattypes_strfromd_[]t (buf, buf_size - 1, "%f", x);
+  if (size <= buf_size - 1)
+    (void) fputs (buf, (FILE *) r);
+  else
+    {
+      char *buf1 = malloc ((size + 1) * sizeof (char));
+      if (buf1 != NULL)
+        {
+          int size1 =
+            floattypes_strfromd_[]t (buf1, size + 1, "%f", x);
+          if (size1 == size)
+            (void) fputs (buf1, (FILE *) r);
+          free (buf1);
+        }
+    }
+}
+
+atsvoid_t0ype
+floattypes_print_[]t (floattypes_[]t x)
+{
+  floattypes_fprint_[]t (stdout, x);
+}
+
+atsvoid_t0ype
+floattypes_prerr_[]t (floattypes_[]t x)
+{
+  floattypes_fprint_[]t (stderr, x);
+}
+
+%}
+
+#endif
+
+])
+divert

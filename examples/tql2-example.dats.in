@@ -21,39 +21,44 @@ along with this program. If not, see
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
+#include "floattypes/HATS/floattypes.hats"
+
 staload "array2d.sats"
 staload _ = "array2d.dats"
 
 staload "tred2.sats"
 staload _ = "tred2.dats"
 
+typedef flt = float128
+macdef f2f = g0float2float
+
 implement
 main () =
   let
-    var a : array(double, 100) = @[double][100](0.0)
-    var z : array(double, 100) = @[double][100](0.0)
+    var a : array(flt, 100) = @[flt][100](f2f 0.0)
+    var z : array(flt, 100) = @[flt][100](f2f 0.0)
 
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 0, 1.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 1, 2.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 2, 3.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 0, 4.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 1, 5.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 2, 6.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 0, 7.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 1, 8.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 2, 9.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 0, f2f 1.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 1, f2f 2.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 2, f2f 3.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 0, f2f 4.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 1, f2f 5.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 2, f2f 6.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 0, f2f 7.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 1, f2f 8.0)
+    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 2, f2f 9.0)
 
     val _ = arr2copy_lower_triangle (i2sz 3, i2sz 3, a, z)
 
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 0) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 1) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 2) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 0) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 1) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 2) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 0) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 1) : double)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 2) : double)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 0) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 1) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 2) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 0) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 1) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 2) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 0) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 1) : flt)
+    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 2) : flt)
   in
     0
   end
