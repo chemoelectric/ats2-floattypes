@@ -169,23 +169,22 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                   z[j, i] := g0int2float 0;
                   loop(d, z, succ j)
                 end
-            in
+          in
             e[i] := d[pred i];
             loop(d, z, i2sz 0)
           end
+        val _ = vars.h := i2f 0;
       in
-        vars.h := i2f 0;
         if i = i2sz 1 then
           simple_situation(d, e, z)
         else
           let
             implement
             forloop$action<0, i - 1>(d, e, z, vars, k) =
-              vars.scale := vars.scale + abs(d[k])                    
+              vars.scale := vars.scale + abs(d[k])
+            val _ = vars.scale := i2f 0
+            val _ = forloop(d, e, z, vars, i2sz 0, pred i)
           in
-            vars.scale := i2f 0;
-            forloop(d, e, z, vars, i2sz 0, pred i);
-
             if vars.scale = i2f 0 then
               simple_situation(d, e, z)
             else
@@ -218,10 +217,11 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                 val _ = forloop(d, e, z, vars, i2sz 0, pred i)
                 implement
                 forloop$action<0, i - 1>{j}(d, e, z, vars, j) =
-                  begin
-                    vars.f := d[j];
-                    z[j, i] := vars.f;
-                    vars.g := e[j] + (z[j, j] * vars.f);
+                  let
+                    val _ = vars.f := d[j];
+                    val _ = z[j, i] := vars.f;
+                    val _ = vars.g := e[j] + (z[j, j] * vars.f);
+                  in
                     if succ j <= pred i then
                       let
                         implement
@@ -230,9 +230,9 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                             vars.g := vars.g + (z[k, j] * d[k]);
                             e[k] := e[k] + (z[k, j] * vars.f)
                           end
+                        val _ = forloop(d, e, z, vars, succ j, pred i)
+                        val _ = e[j] := vars.g
                       in
-                        forloop(d, e, z, vars, succ j, pred i);
-                        e[j] := vars.g
                       end
                   end
                 val _ = forloop(d, e, z, vars, i2sz 0, pred i)
@@ -241,11 +241,48 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                  * Form p.
                  */
                 val _ = vars.f := i2f 0
-                
+                implement
+                forloop$action<0, i - 1>(d, e, z, vars, j) =
+                  begin
+                    e[j] := e[j] / vars.h;
+                    vars.f := vars.f + (e[j] * d[j])
+                  end
+                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+
+                /*
+                 * Form q.
+                 */
+                val _ = vars.hh := vars.f / (vars.h + vars.h)
+                implement
+                forloop$action<0, i - 1>(d, e, z, vars, j) =
+                  e[j] := e[j] - (vars.hh * d[j])
+                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+
+                /*
+                 * Form reduced a.
+                 */
+                implement
+                forloop$action<0, i - 1>{j}(d, e, z, vars, j) =
+                  let
+                    val _ = vars.f := d[j]
+                    val _ = vars.g := e[j]
+                    implement
+                    forloop$action<j, i - 1>(d, e, z, vars, k) =
+                      begin
+                        z[k, j] := z[k, j] - (vars.f * e[k]);
+                        z[k, j] := z[k, j] - (vars.g * d[k])
+                      end
+                    val _ = forloop(d, e, z, vars, j, pred i)
+                    val _ = d[j] := z[i - 1, j]
+                    val _ = z[i, j] = i2f 0
+                  in
+                  end
+                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
               in
               end
+          end;
 
-          end
+        d[i] := vars.h
       end
 
     in
