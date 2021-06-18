@@ -61,37 +61,24 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
       overload [] with get of 1000
       overload [] with put of 1000
 
-      typedef vars_t =
-        @{
-          f = flt,
-          g = flt,
-          h = flt,
-          hh = flt,
-          scale = flt
-        }
-      var vars : vars_t =
-        @{
-          f = nan(""),
-          g = nan(""),
-          h = nan(""),
-          hh = nan(""),
-          scale = nan("")
-        }
-
+      var f : flt = nan("")
+      var g : flt = nan("")
+      var h : flt = nan("")
+      var hh : flt = nan("")
+      var scale : flt = nan("")
+            
       extern fun {k0, k1 : int}
       forloop$action {k    : int | k0 <= k; k <= k1;
                                      0 <= k0; k0 <= k1; k1 < n}
                      (d    : &array(flt, nd),
                       e    : &array(flt, ne),
                       z    : &array(flt, nz),
-                      vars : &vars_t,
                       k    : size_t k) : void
       fn
       forloop {k0, k1 : int | 0 <= k0; k0 <= k1; k1 < n}
               (d    : &array(flt, nd),
                e    : &array(flt, ne),
                z    : &array(flt, nz),
-               vars : &vars_t,
                k0   : size_t k0,
                k1   : size_t k1) : void =
         let
@@ -100,15 +87,14 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                (d    : &array(flt, nd),
                 e    : &array(flt, ne),
                 z    : &array(flt, nz),
-                vars : &vars_t,
                 k    : size_t k) : void =
             begin
-              forloop$action<k0, k1>(d, e, z, vars, k);
+              forloop$action<k0, k1>(d, e, z, k);
               if k < k1 then
-                loop(d, e, z, vars, succ k)
+                loop(d, e, z, succ k)
             end
         in
-          loop(d, e, z, vars, k0)
+          loop(d, e, z, k0)
         end
 
       extern fun {k0, k1 : int}
@@ -117,14 +103,12 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                           (d    : &array(flt, nd),
                            e    : &array(flt, ne),
                            z    : &array(flt, nz),
-                           vars : &vars_t,
                            k    : size_t k) : void
       fn
       forloop_down {k0, k1 : int | 0 <= k1; k1 <= k0; k0 < n}
                    (d    : &array(flt, nd),
                     e    : &array(flt, ne),
                     z    : &array(flt, nz),
-                    vars : &vars_t,
                     k0   : size_t k0,
                     k1   : size_t k1) : void =
         let
@@ -133,15 +117,14 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                (d    : &array(flt, nd),
                 e    : &array(flt, ne),
                 z    : &array(flt, nz),
-                vars : &vars_t,
                 k    : size_t k) : void =
             begin
-              forloop_down$action<k0, k1>(d, e, z, vars, k);
+              forloop_down$action<k0, k1>(d, e, z, k);
               if k1 < k then
-                loop(d, e, z, vars, pred k)
+                loop(d, e, z, pred k)
             end
         in
-          loop(d, e, z, vars, k0)
+          loop(d, e, z, k0)
         end
 
       fn
@@ -149,7 +132,6 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
               (d    : &array(flt, nd),
                e    : &array(flt, ne),
                z    : &array(flt, nz),
-               vars : &vars_t,
                i    : size_t i) : void =
       let
         fn
@@ -173,19 +155,19 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
             e[i] := d[pred i];
             loop(d, z, i2sz 0)
           end
-        val _ = vars.h := i2f 0
+        val _ = h := i2f 0
       in
         if i = i2sz 1 then
           simple_situation(d, e, z)
         else
           let
             implement
-            forloop$action<0, i - 1>(d, e, z, vars, k) =
-              vars.scale := vars.scale + abs(d[k])
-            val _ = vars.scale := i2f 0
-            val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+            forloop$action<0, i - 1>(d, e, z, k) =
+              scale := scale + abs(d[k])
+            val _ = scale := i2f 0
+            val _ = forloop(d, e, z, i2sz 0, pred i)
           in
-            if vars.scale = i2f 0 then
+            if scale = i2f 0 then
               simple_situation(d, e, z)
             else
               let
@@ -195,94 +177,94 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                  * ‘tol’ parameter employed there.
                  *)
                 implement
-                forloop$action<0, i - 1>(d, e, z, vars, k) =
+                forloop$action<0, i - 1>(d, e, z, k) =
                   begin
-                    d[k] := d[k] / vars.scale;
-                    vars.h := vars.h + (d[k] * d[k])
+                    d[k] := d[k] / scale;
+                    h := h + (d[k] * d[k])
                   end
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                val _ = forloop(d, e, z, i2sz 0, pred i)
 
-                val _ = vars.f := d[i - 1]
-                val _ = vars.g := neg(copysign(sqrt(vars.h), vars.f))
-                val _ = e[i] := vars.scale * vars.g
-                val _ = vars.h := vars.h - (vars.f * vars.g)
-                val _ = d[i - 1] := vars.f - vars.g
+                val _ = f := d[i - 1]
+                val _ = g := neg(copysign(sqrt(h), f))
+                val _ = e[i] := scale * g
+                val _ = h := h - (f * g)
+                val _ = d[i - 1] := f - g
 
                 (*
                  * Form a*u.
                  *)
                 implement
-                forloop$action<0, i - 1>(d, e, z, vars, j) =
+                forloop$action<0, i - 1>(d, e, z, j) =
                   e[j] := i2f 0
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                val _ = forloop(d, e, z, i2sz 0, pred i)
                 implement
-                forloop$action<0, i - 1>{j}(d, e, z, vars, j) =
+                forloop$action<0, i - 1>{j}(d, e, z, j) =
                   let
-                    val _ = vars.f := d[j];
-                    val _ = z[j, i] := vars.f;
-                    val _ = vars.g := e[j] + (z[j, j] * vars.f);
+                    val _ = f := d[j];
+                    val _ = z[j, i] := f;
+                    val _ = g := e[j] + (z[j, j] * f);
                   in
                     if succ j <= pred i then
                       let
                         implement
-                        forloop$action<j + 1, i - 1>(d, e, z, vars, k) =
+                        forloop$action<j + 1, i - 1>(d, e, z, k) =
                           begin
-                            vars.g := vars.g + (z[k, j] * d[k]);
-                            e[k] := e[k] + (z[k, j] * vars.f)
+                            g := g + (z[k, j] * d[k]);
+                            e[k] := e[k] + (z[k, j] * f)
                           end
-                        val _ = forloop(d, e, z, vars, succ j, pred i)
-                        val _ = e[j] := vars.g
+                        val _ = forloop(d, e, z, succ j, pred i)
+                        val _ = e[j] := g
                       in
                       end
                   end
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                val _ = forloop(d, e, z, i2sz 0, pred i)
 
                 (*
                  * Form p.
                  *)
-                val _ = vars.f := i2f 0
+                val _ = f := i2f 0
                 implement
-                forloop$action<0, i - 1>(d, e, z, vars, j) =
+                forloop$action<0, i - 1>(d, e, z, j) =
                   begin
-                    e[j] := e[j] / vars.h;
-                    vars.f := vars.f + (e[j] * d[j])
+                    e[j] := e[j] / h;
+                    f := f + (e[j] * d[j])
                   end
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                val _ = forloop(d, e, z, i2sz 0, pred i)
 
                 (*
                  * Form q.
                  *)
-                val _ = vars.hh := vars.f / (vars.h + vars.h)
+                val _ = hh := f / (h + h)
                 implement
-                forloop$action<0, i - 1>(d, e, z, vars, j) =
-                  e[j] := e[j] - (vars.hh * d[j])
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                forloop$action<0, i - 1>(d, e, z, j) =
+                  e[j] := e[j] - (hh * d[j])
+                val _ = forloop(d, e, z, i2sz 0, pred i)
 
                 (*
                  * Form reduced a.
                  *)
                 implement
-                forloop$action<0, i - 1>{j}(d, e, z, vars, j) =
+                forloop$action<0, i - 1>{j}(d, e, z, j) =
                   let
-                    val _ = vars.f := d[j]
-                    val _ = vars.g := e[j]
+                    val _ = f := d[j]
+                    val _ = g := e[j]
                     implement
-                    forloop$action<j, i - 1>(d, e, z, vars, k) =
+                    forloop$action<j, i - 1>(d, e, z, k) =
                       begin
-                        z[k, j] := z[k, j] - (vars.f * e[k]);
-                        z[k, j] := z[k, j] - (vars.g * d[k])
+                        z[k, j] := z[k, j] - (f * e[k]);
+                        z[k, j] := z[k, j] - (g * d[k])
                       end
-                    val _ = forloop(d, e, z, vars, j, pred i)
+                    val _ = forloop(d, e, z, j, pred i)
                     val _ = d[j] := z[i - 1, j]
                     val _ = z[i, j] = i2f 0
                   in
                   end
-                val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                val _ = forloop(d, e, z, i2sz 0, pred i)
               in
               end
           end;
 
-        d[i] := vars.h
+        d[i] := h
       end
 
       fn
@@ -291,41 +273,40 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
                                         (d    : &array(flt, nd),
                                          e    : &array(flt, ne),
                                          z    : &array(flt, nz),
-                                         vars : &vars_t,
                                          i    : size_t i) : void =
         let
           val _ = z[pred n, pred i] := z[pred i, pred i]
           val _ = z[pred i][pred i] := i2f 1
-          val _ = vars.h := d[i]
+          val _ = h := d[i]
         in
-          if vars.h <> i2f 0 then
+          if h <> i2f 0 then
             let
               implement
-              forloop$action<0, i - 1>(d, e, z, vars, k) =
-                d[k] := z[k, i] / vars.h
-              val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+              forloop$action<0, i - 1>(d, e, z, k) =
+                d[k] := z[k, i] / h
+              val _ = forloop(d, e, z, i2sz 0, pred i)
               implement
-              forloop$action<0, i - 1>(d, e, z, vars, j) =
+              forloop$action<0, i - 1>(d, e, z, j) =
                 let
-                  val _ = vars.g := i2f 0
+                  val _ = g := i2f 0
                   implement
-                  forloop$action<0, i - 1>(d, e, z, vars, k) =
-                    vars.g := vars.g + (z[k, i] * z[k, j])
-                  val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                  forloop$action<0, i - 1>(d, e, z, k) =
+                    g := g + (z[k, i] * z[k, j])
+                  val _ = forloop(d, e, z, i2sz 0, pred i)
                   implement
-                  forloop$action<0, i - 1>(d, e, z, vars, k) =
-                    z[k, j] := z[k, j] - (vars.g * d[k])
-                  val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+                  forloop$action<0, i - 1>(d, e, z, k) =
+                    z[k, j] := z[k, j] - (g * d[k])
+                  val _ = forloop(d, e, z, i2sz 0, pred i)
                 in
                 end
-              val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+              val _ = forloop(d, e, z, i2sz 0, pred i)
             in
             end;
           let
             implement
-            forloop$action<0, i - 1>(d, e, z, vars, k) =
+            forloop$action<0, i - 1>(d, e, z, k) =
               z[k, i] := i2f 0
-            val _ = forloop(d, e, z, vars, i2sz 0, pred i)
+            val _ = forloop(d, e, z, i2sz 0, pred i)
           in
           end
         end
@@ -339,24 +320,24 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
           implement
           forloop_down$action<n - 1, 1> =
             action1
-          val _ = forloop_down(d, e, z, vars, pred n, i2sz 1)
+          val _ = forloop_down(d, e, z, pred n, i2sz 1)
 
           implement
           forloop$action<1, n - 1> =
             accumulation_of_transformation_matrices_action
-          val _ = forloop(d, e, z, vars, i2sz 1, pred n)
+          val _ = forloop(d, e, z, i2sz 1, pred n)
         in
         end;
 
       if i2sz 1 <= n then
         let
           implement
-          forloop$action<0, n - 1>(d, e, z, vars, i) =
+          forloop$action<0, n - 1>(d, e, z, i) =
             begin
               d[i] := z[pred n, i];
               z[pred n, i] := i2f 0
             end
-          val _ = forloop(d, e, z, vars, i2sz 0, pred n)
+          val _ = forloop(d, e, z, i2sz 0, pred n)
         in
         end;
       z[pred n, pred n] := i2f 1;
