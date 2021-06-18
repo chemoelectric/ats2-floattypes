@@ -2,38 +2,27 @@ PKGCONFIG = pkg-config
 
 OBJEXT = o
 
-PATSOPT = @PATSOPT@
-PATSOPTFLAGS = `$(PKGCONFIG) --variable=PATSOPTFLAGS ats2-floattypes`
+CC := @CC@
+CPPFLAGS := \
+	$(shell $(PKGCONFIG) --cflags ats2-floattypes) \
+	-I${PATSHOME} \
+	-I${PATSHOME}/ccomp/runtime
+CFLAGS := -L${PATSHOME}/ccomp/atslib/lib \
+			$(shell $(PKGCONFIG) --libs ats2-floattypes)
 
-CC = @CC@
-CFLAGS = `$(PKGCONFIG) --cflags ats2-floattypes` \
-			-I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime/
+# The default C compiler for patscc is unsuitable. One should use the
+# C compiler options with which the library was built.
+PATSCC := patscc
+PATSCCFLAGS := -atsccomp "$(CC) $(CPPFLAGS) $(CFLAGS)" \
+				$(shell $(PKGCONFIG) --variable=PATSCCFLAGS ats2-floattypes)
 
-LIBS = `$(PKGCONFIG) --libs ats2-floattypes`
+tql2-example: tql2-example.dats \
+				tred2.dats tred2.sats \
+				array2d.dats array2d.sats \
+				proofs.dats proofs.sats
+	$(PATSCC) -o $(@) $(PATSCCFLAGS) $(^) $(LDFLAGS)
 
-%_sats.c: %.sats
-	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -s $(<)
-
-%_dats.c: %.dats
-	$(PATSOPT) -o $(@) $(PATSOPTFLAGS) -d $(<)
-
-%.$(OBJEXT): %.c
-	$(CC) -c $(CFLAGS) $(<)
-
-tql2-example: $(addsuffix .$(OBJEXT), \
-				tql2-example_dats \
-				tred2_sats tred2_dats \
-				array2d_sats array2d_dats \
-				proofs_sats proofs_dats)
-	$(CC) -o $(@) $(CFLAGS) $(^) $(LIBS)
-
-tred2_sats.c: array2d_sats.c proofs_sats.c
-tred2_dats.c: tred2_sats.c
-
-array2d_sats.c: proofs_sats.c
-array2d_dats.c: array2d_sats.c
-
-proofs_dats.c: proofs_sats.c
 .PHONY: clean
 clean:
+	-rm -f tql2-example
 	-rm -f *.{c,$(OBJEXT)}

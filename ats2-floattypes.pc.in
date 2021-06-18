@@ -6,12 +6,11 @@ host=@host@
 package=@PACKAGE@
 version=@VERSION@
 
-CPPFLAGS="@CPPFLAGS@ -I${includedir}/${package} -I${includedir}/${package}/${host}"
-PATSOPTFLAGS="-IATS ${includedir}/${package} -IATS ${includedir}/${package}/${host}"
-PATSCCFLAGS="-IIATS ${includedir}/${package} -IIATS ${includedir}/${package}/${host}"
+PATSOPTFLAGS="-IATS ${includedir}/${package}/${host} -IATS ${includedir}/${package}"
+PATSCCFLAGS="-IIATS ${includedir}/${package}/${host} -IIATS ${includedir}/${package}"
 
 Name: ${package}
 Description: More floating-point support for ATS2/Postiats
 Version: ${version}
 Libs: -L${libdir} -lats2-floattypes -lm
-Cflags: ${CPPFLAGS}
+Cflags: @CPPFLAGS@ -I${includedir}/${package}/${host} -I${includedir}/${package}

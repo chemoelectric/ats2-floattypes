@@ -79,13 +79,13 @@ tred2 {nm, n} {na} {nd} {ne} {nz}
         }
 
       extern fun {k0, k1 : int}
-      forloop$action {k      : int | k0 <= k; k <= k1;
+      forloop$action {k    : int | k0 <= k; k <= k1;
                                      0 <= k0; k0 <= k1; k1 < n}
-                     (d      : &array(flt, nd),
-                      e      : &array(flt, ne),
-                      z      : &array(flt, nz),
-                      vars   : &vars_t,
-                      k      : size_t k) : void
+                     (d    : &array(flt, nd),
+                      e    : &array(flt, ne),
+                      z    : &array(flt, nz),
+                      vars : &vars_t,
+                      k    : size_t k) : void
       fn
       forloop {k0, k1 : int | 0 <= k0; k0 <= k1; k1 < n}
               (d    : &array(flt, nd),

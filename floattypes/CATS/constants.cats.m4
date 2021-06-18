@@ -31,6 +31,7 @@ divert[]dnl
 #define FLOATTYPES_CATS_CONSTANTS_HEADER_GUARD__
 
 #include "floattypes/HATS/config.hats"
+#include "floattypes/CATS/defines.cats"
 
 /* e */
 m4_foreachq([t],[all_floattypes],

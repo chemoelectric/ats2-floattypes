@@ -23,6 +23,7 @@ along with this program. If not, see
 #ifndef FLOATTYPES_CATS_DEFINES_HEADER_GUARD__
 #define FLOATTYPES_CATS_DEFINES_HEADER_GUARD__
 
+#include "floattypes/HATS/config.hats"
 
 /* Use #define instead of typedef, because the C compiler might not
    support all the types. */

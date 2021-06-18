@@ -24,6 +24,7 @@ along with this program. If not, see
 #define FLOATTYPES_CATS_FLOATTYPES_HEADER_GUARD__
 
 #include "floattypes/HATS/config.hats"
+#include "floattypes/CATS/defines.cats"
 #include <math.h>
 #include <fenv.h>
 #include <stdlib.h>
