@@ -1882,6 +1882,7 @@ HAVE_floattypes_double
 HAVE_floattypes_float
 M4
 PATSOPT
+PKGCONFIG_PATSHOME
 CPP
 LT_SYS_LIBRARY_PATH
 OTOOL64
@@ -2024,6 +2025,7 @@ LIBS
 CPPFLAGS
 LT_SYS_LIBRARY_PATH
 CPP
+PKGCONFIG_PATSHOME
 GNU_MAKE'
 
 
@@ -2692,6 +2694,9 @@ Some influential environment variables:
   LT_SYS_LIBRARY_PATH
               User-defined run-time library search path.
   CPP         C preprocessor
+  PKGCONFIG_PATSHOME
+              The PATSHOME setting to put in the pkg-config file
+              [default="${PATSHOME}"]
   GNU_MAKE    GNU Make command
 
 Use these variables to override the choices made by `configure' or to help
@@ -13188,11 +13193,19 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_BFP_EXT__=1"
-CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_DFP_EXT__=1"
-CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__=1"
-CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__=1"
-CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__=1"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_BFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_DFP_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_TYPES_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_FUNCS_EXT__"
+CPPFLAGS="${CPPFLAGS}${CPPFLAGS+ }-D__STDC_WANT_IEC_60559_ATTRIBS_EXT__"
+
+
+if test -z "${PKGCONFIG_PATSHOME}"; then
+  PKGCONFIG_PATSHOME="${PATSHOME}"
+fi
+if test -z "${PKGCONFIG_PATSHOME}"; then
+  as_fn_error $? "Please set PKGCONFIG_PATSHOME on the configure command line." "$LINENO" 5
+fi
 
 
 
@@ -107405,7 +107418,7 @@ ac_config_files="$ac_config_files examples/tred2.sats"
 
 ac_config_files="$ac_config_files examples/tred2.dats"
 
-ac_config_files="$ac_config_files examples/tql2-example.dats"
+ac_config_files="$ac_config_files examples/tred2-example.dats"
 
 
 ac_config_commands="$ac_config_commands floattypes/HATS/config.hats"
@@ -110900,7 +110913,7 @@ do
     "examples/array2d.dats") CONFIG_FILES="$CONFIG_FILES examples/array2d.dats" ;;
     "examples/tred2.sats") CONFIG_FILES="$CONFIG_FILES examples/tred2.sats" ;;
     "examples/tred2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2.dats" ;;
-    "examples/tql2-example.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example.dats" ;;
+    "examples/tred2-example.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example.dats" ;;
     "floattypes/HATS/config.hats") CONFIG_COMMANDS="$CONFIG_COMMANDS floattypes/HATS/config.hats" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

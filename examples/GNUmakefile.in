@@ -1,28 +1,25 @@
-PKGCONFIG = pkg-config
-
 OBJEXT = o
 
-CC := @CC@
-CPPFLAGS := \
-	$(shell $(PKGCONFIG) --cflags ats2-floattypes) \
-	-I${PATSHOME} \
-	-I${PATSHOME}/ccomp/runtime
-CFLAGS := -L${PATSHOME}/ccomp/atslib/lib \
-			$(shell $(PKGCONFIG) --libs ats2-floattypes)
+PKGCONFIG := pkg-config
+PKGCONFIG_CMD := $(PKGCONFIG) $(if ${PATSHOME},--define-variable=PATSHOME="${PATSHOME}")
 
-# The default C compiler for patscc is unsuitable. One should use the
-# C compiler options with which the library was built.
+PATSCCOMP := $(shell $(PKGCONFIG_CMD) --variable=PATSCCOMP ats2-floattypes)
+PATSCCFLAGS := $(shell $(PKGCONFIG_CMD) --variable=PATSCCFLAGS ats2-floattypes)
+CFLAGS := $(shell $(PKGCONFIG_CMD) --cflags ats2-floattypes)
+LIBS := $(shell $(PKGCONFIG_CMD) --libs ats2-floattypes)
+
+# The default C compiler settings for patscc are unsuitable. One
+# should use the C compiler options with which the library was built.
 PATSCC := patscc
-PATSCCFLAGS := -atsccomp "$(CC) $(CPPFLAGS) $(CFLAGS)" \
-				$(shell $(PKGCONFIG) --variable=PATSCCFLAGS ats2-floattypes)
+PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
-tql2-example: tql2-example.dats \
+tred2-example: tred2-example.dats \
 				tred2.dats tred2.sats \
 				array2d.dats array2d.sats \
 				proofs.dats proofs.sats
-	$(PATSCC) -o $(@) $(PATSCCFLAGS) $(^) $(LDFLAGS)
+	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)
 
 .PHONY: clean
 clean:
-	-rm -f tql2-example
+	-rm -f tred2-example
 	-rm -f *.{c,$(OBJEXT)}

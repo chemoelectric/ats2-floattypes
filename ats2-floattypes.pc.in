@@ -5,12 +5,35 @@ includedir=@includedir@
 host=@host@
 package=@PACKAGE@
 version=@VERSION@
+pkgincludedir="${includedir}/${package}"
+hostpkgincludedir="${pkgincludedir}/${host}"
 
-PATSOPTFLAGS="-IATS ${includedir}/${package}/${host} -IATS ${includedir}/${package}"
-PATSCCFLAGS="-IIATS ${includedir}/${package}/${host} -IIATS ${includedir}/${package}"
+# It is recommended you override this with
+# --define-variable=PATSHOME="${PATSHOME}"
+PATSHOME="@PKGCONFIG_PATSHOME@"
+
+# The C compiler with which the library was built.
+CC="@CC@"
+
+# The CPPFLAGS includes macro settings that have to be set before
+# <math.h> is included.
+CPPFLAGS="@CPPFLAGS@ -I${hostpkgincludedir} -I${pkgincludedir} -I${PATSHOME} -I${PATSHOME}/ccomp/runtime"
+
+# Options for patsopt.
+PATSOPTFLAGS="-IATS ${hostpkgincludedir} -IATS ${pkgincludedir}"
+
+# Some options for patscc. See also PATSCCOMP, below.
+PATSCCFLAGS="-IIATS ${hostpkgincludedir} -IIATS ${pkgincludedir}"
+
+# Where libatslib.a is kept.
+PATSLDFLAGS="-L${PATSHOME}/ccomp/atslib/lib"
+
+# Recommended values to put in the PATSCCOMP environment variable, or
+# to pass to patscc via the -atsccomp flag.
+PATSCCOMP="${CC} ${CPPFLAGS} ${PATSLDFLAGS}"
 
 Name: ${package}
 Description: More floating-point support for ATS2/Postiats
 Version: ${version}
-Libs: -L${libdir} -lats2-floattypes -lm
-Cflags: @CPPFLAGS@ -I${includedir}/${package}/${host} -I${includedir}/${package}
+Libs: ${PATSLDFLAGS} -L${libdir} -lats2-floattypes -lm
+Cflags: ${CPPFLAGS}

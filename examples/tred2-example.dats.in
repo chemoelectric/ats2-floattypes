@@ -51,10 +51,10 @@ tred2_float128 {nm, n : nat | n <= nm}
 implement
 main () =
   let
-    var a : array(flt, 100) = @[flt][100](f2f 0.0)
-    var d : array(flt, 100) = @[flt][100](f2f 0.0)
-    var e : array(flt, 100) = @[flt][100](f2f 0.0)
-    var z : array(flt, 100) = @[flt][100](f2f 0.0)
+    var a : array(flt, 100) = @[flt][100] (nan(""))
+    var d : array(flt, 10) = @[flt][10] (nan(""))
+    var e : array(flt, 10) = @[flt][10] (nan(""))
+    var z : array(flt, 100) = @[flt][100] (nan(""))
 
     val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 0, f2f 1.0)
     val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 1, f2f 2.0)
@@ -78,7 +78,7 @@ main () =
     val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 1) : flt)
     val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 2) : flt)
 
-//    val _ = tred2_float128(i2sz 3, i2sz 3, a, d, e, a)
+//    val _ = tred2_float128 (i2sz 3, i2sz 3, a, d, e, a)
 
     val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 0, i2sz 0) : flt)
     val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 0, i2sz 1) : flt)
@@ -96,3 +96,13 @@ main () =
   in
     0
   end
+
+(*
+   real[][] a = [
+      [0.3839264, 0, 0, 0, 0],
+      [0.1711146, 0.7542493, 0, 0, 0],
+      [0.14420449, 0.28689129, 0.69339598, 0, 0],
+      [0.20215693, 0.36993965, 0.21283682, 0.33183608, 0],
+      [0.25734144, 0.01083637, 0.41502065, 0.90604563, 0.92236538]
+   ];
+*)
