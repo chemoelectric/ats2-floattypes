@@ -110,7 +110,16 @@ main0 () =
     var e : @[flt][DIM1] = @[flt][DIM1] (nan(""))
     var z : @[flt][DIM2] = @[flt][DIM2] (nan(""))
 
+    var d_approx : @[flt][DIM1] =
+      @[flt][DIM1] ($extval(flt,"0.42257370F128"),
+                    $extval(flt,"0.32685799F128"),
+                    $extval(flt,"0.74074110F128"),
+                    $extval(flt,"0.67323492F128"),
+                    $extval(flt,"0.92236537F128"))
+
     var i : [i : nat | i <= DIM1] size_t i
+
+    val tolerance = $extval(flt, "0.0000001F128")
   in
     tred2_float128 (i2sz DIM1, i2sz DIM1, a, d, e, z);
 
@@ -128,7 +137,10 @@ main0 () =
 
     print!("d =");
     for (i := i2sz 0; i < i2sz DIM1; i := succ i)
-      print!("\t", d[i]);
+      begin
+        print!("\t", d[i]);
+        assertloc (abs(d[i] - d_approx[i]) <= tolerance)
+      end;
     println!();
 
     println!();

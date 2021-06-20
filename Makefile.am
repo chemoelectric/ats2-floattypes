@@ -119,137 +119,148 @@ TESTS += $(check_PROGRAMS)
 
 LDADD += $(lib_LTLIBRARIES)
 
+UNIT_TESTS =
 check_PROGRAMS =
 
-check_PROGRAMS += tests/test-M_E
-check_PROGRAMS += tests/test-M_LOG2E
-check_PROGRAMS += tests/test-M_LOG10E
-check_PROGRAMS += tests/test-M_SQRT2
-check_PROGRAMS += tests/test-M_SQRT1_2
-check_PROGRAMS += tests/test-M_SQRT3
-check_PROGRAMS += tests/test-M_PI
-check_PROGRAMS += tests/test-M_PI_2
-check_PROGRAMS += tests/test-M_PI_4
-check_PROGRAMS += tests/test-M_SQRTPI
-check_PROGRAMS += tests/test-M_2_SQRTPI
-check_PROGRAMS += tests/test-M_1_PI
-check_PROGRAMS += tests/test-M_2_PI
-check_PROGRAMS += tests/test-M_LN10
-check_PROGRAMS += tests/test-M_LN2
-check_PROGRAMS += tests/test-M_LNPI
-check_PROGRAMS += tests/test-M_EULER
+UNIT_TESTS += tests/test-M_E
+UNIT_TESTS += tests/test-M_LOG2E
+UNIT_TESTS += tests/test-M_LOG10E
+UNIT_TESTS += tests/test-M_SQRT2
+UNIT_TESTS += tests/test-M_SQRT1_2
+UNIT_TESTS += tests/test-M_SQRT3
+UNIT_TESTS += tests/test-M_PI
+UNIT_TESTS += tests/test-M_PI_2
+UNIT_TESTS += tests/test-M_PI_4
+UNIT_TESTS += tests/test-M_SQRTPI
+UNIT_TESTS += tests/test-M_2_SQRTPI
+UNIT_TESTS += tests/test-M_1_PI
+UNIT_TESTS += tests/test-M_2_PI
+UNIT_TESTS += tests/test-M_LN10
+UNIT_TESTS += tests/test-M_LN2
+UNIT_TESTS += tests/test-M_LNPI
+UNIT_TESTS += tests/test-M_EULER
 
-check_PROGRAMS += tests/test-int-to-float
-check_PROGRAMS += tests/test-uint-to-float
-check_PROGRAMS += tests/test-float-to-int
-check_PROGRAMS += tests/test-float-to-uint
-check_PROGRAMS += tests/test-float-to-float
+UNIT_TESTS += tests/test-int-to-float
+UNIT_TESTS += tests/test-uint-to-float
+UNIT_TESTS += tests/test-float-to-int
+UNIT_TESTS += tests/test-float-to-uint
+UNIT_TESTS += tests/test-float-to-float
 
-check_PROGRAMS += tests/test-binary-arith
-check_PROGRAMS += tests/test-neg
-check_PROGRAMS += tests/test-fdim
-check_PROGRAMS += tests/test-fma
-check_PROGRAMS += tests/test-__builtin_fma
-check_PROGRAMS += tests/test-fmod
-check_PROGRAMS += tests/test-mod
-check_PROGRAMS += tests/test-remainder
-check_PROGRAMS += tests/test-remquo
-check_PROGRAMS += tests/test-ldexp
-check_PROGRAMS += tests/test-scalbn
-check_PROGRAMS += tests/test-scalbln
+UNIT_TESTS += tests/test-binary-arith
+UNIT_TESTS += tests/test-neg
+UNIT_TESTS += tests/test-fdim
+UNIT_TESTS += tests/test-fma
+UNIT_TESTS += tests/test-__builtin_fma
+UNIT_TESTS += tests/test-fmod
+UNIT_TESTS += tests/test-mod
+UNIT_TESTS += tests/test-remainder
+UNIT_TESTS += tests/test-remquo
+UNIT_TESTS += tests/test-ldexp
+UNIT_TESTS += tests/test-scalbn
+UNIT_TESTS += tests/test-scalbln
 
-check_PROGRAMS += tests/test-succ
-check_PROGRAMS += tests/test-pred
+UNIT_TESTS += tests/test-succ
+UNIT_TESTS += tests/test-pred
 
-check_PROGRAMS += tests/test-abs
-check_PROGRAMS += tests/test-fabs
-check_PROGRAMS += tests/test-copysign
+UNIT_TESTS += tests/test-abs
+UNIT_TESTS += tests/test-fabs
+UNIT_TESTS += tests/test-copysign
 
-check_PROGRAMS += tests/test-comparison-ops
-check_PROGRAMS += tests/test-compare
+UNIT_TESTS += tests/test-comparison-ops
+UNIT_TESTS += tests/test-compare
 
-check_PROGRAMS += tests/test-ceil
-check_PROGRAMS += tests/test-floor
-check_PROGRAMS += tests/test-trunc
-check_PROGRAMS += tests/test-nearbyint
-check_PROGRAMS += tests/test-rint
-check_PROGRAMS += tests/test-lrint
-check_PROGRAMS += tests/test-llrint
-check_PROGRAMS += tests/test-round
-check_PROGRAMS += tests/test-lround
-check_PROGRAMS += tests/test-llround
+UNIT_TESTS += tests/test-ceil
+UNIT_TESTS += tests/test-floor
+UNIT_TESTS += tests/test-trunc
+UNIT_TESTS += tests/test-nearbyint
+UNIT_TESTS += tests/test-rint
+UNIT_TESTS += tests/test-lrint
+UNIT_TESTS += tests/test-llrint
+UNIT_TESTS += tests/test-round
+UNIT_TESTS += tests/test-lround
+UNIT_TESTS += tests/test-llround
 
-check_PROGRAMS += tests/test-nextafter
-check_PROGRAMS += tests/test-nexttoward
+UNIT_TESTS += tests/test-nextafter
+UNIT_TESTS += tests/test-nexttoward
 
-check_PROGRAMS += tests/test-min
-check_PROGRAMS += tests/test-max
-check_PROGRAMS += tests/test-fmin
-check_PROGRAMS += tests/test-fmax
+UNIT_TESTS += tests/test-min
+UNIT_TESTS += tests/test-max
+UNIT_TESTS += tests/test-fmin
+UNIT_TESTS += tests/test-fmax
 
-check_PROGRAMS += tests/test-sqrt
-check_PROGRAMS += tests/test-cbrt
-check_PROGRAMS += tests/test-hypot
-check_PROGRAMS += tests/test-pow
-check_PROGRAMS += tests/test-exponentials
-check_PROGRAMS += tests/test-logarithms
+UNIT_TESTS += tests/test-sqrt
+UNIT_TESTS += tests/test-cbrt
+UNIT_TESTS += tests/test-hypot
+UNIT_TESTS += tests/test-pow
+UNIT_TESTS += tests/test-exponentials
+UNIT_TESTS += tests/test-logarithms
 
-check_PROGRAMS += tests/test-sin
-check_PROGRAMS += tests/test-cos
-check_PROGRAMS += tests/test-tan
-check_PROGRAMS += tests/test-asin
-check_PROGRAMS += tests/test-acos
-check_PROGRAMS += tests/test-atan
-check_PROGRAMS += tests/test-atan2
+UNIT_TESTS += tests/test-sin
+UNIT_TESTS += tests/test-cos
+UNIT_TESTS += tests/test-tan
+UNIT_TESTS += tests/test-asin
+UNIT_TESTS += tests/test-acos
+UNIT_TESTS += tests/test-atan
+UNIT_TESTS += tests/test-atan2
 
-check_PROGRAMS += tests/test-sinh
-check_PROGRAMS += tests/test-cosh
-check_PROGRAMS += tests/test-tanh
-check_PROGRAMS += tests/test-asinh
-check_PROGRAMS += tests/test-acosh
-check_PROGRAMS += tests/test-atanh
+UNIT_TESTS += tests/test-sinh
+UNIT_TESTS += tests/test-cosh
+UNIT_TESTS += tests/test-tanh
+UNIT_TESTS += tests/test-asinh
+UNIT_TESTS += tests/test-acosh
+UNIT_TESTS += tests/test-atanh
 
-check_PROGRAMS += tests/test-erf
-check_PROGRAMS += tests/test-erfc
+UNIT_TESTS += tests/test-erf
+UNIT_TESTS += tests/test-erfc
 
-check_PROGRAMS += tests/test-lgamma
-check_PROGRAMS += tests/test-lgamma_r
-check_PROGRAMS += tests/test-tgamma
+UNIT_TESTS += tests/test-lgamma
+UNIT_TESTS += tests/test-lgamma_r
+UNIT_TESTS += tests/test-tgamma
 
-check_PROGRAMS += tests/test-j0
-check_PROGRAMS += tests/test-j1
-check_PROGRAMS += tests/test-jn
-check_PROGRAMS += tests/test-y0
-check_PROGRAMS += tests/test-y1
-check_PROGRAMS += tests/test-yn
+UNIT_TESTS += tests/test-j0
+UNIT_TESTS += tests/test-j1
+UNIT_TESTS += tests/test-jn
+UNIT_TESTS += tests/test-y0
+UNIT_TESTS += tests/test-y1
+UNIT_TESTS += tests/test-yn
 
-check_PROGRAMS += tests/test-modf
-check_PROGRAMS += tests/test-frexp
-check_PROGRAMS += tests/test-logb
-check_PROGRAMS += tests/test-ilogb
+UNIT_TESTS += tests/test-modf
+UNIT_TESTS += tests/test-frexp
+UNIT_TESTS += tests/test-logb
+UNIT_TESTS += tests/test-ilogb
 
-check_PROGRAMS += tests/test-nan
-check_PROGRAMS += tests/test-snan
-check_PROGRAMS += tests/test-huge_val
-check_PROGRAMS += tests/test-__builtin_nans
-check_PROGRAMS += tests/test-__builtin_huge_val
-check_PROGRAMS += tests/test-__builtin_inf
+UNIT_TESTS += tests/test-nan
+UNIT_TESTS += tests/test-snan
+UNIT_TESTS += tests/test-huge_val
+UNIT_TESTS += tests/test-__builtin_nans
+UNIT_TESTS += tests/test-__builtin_huge_val
+UNIT_TESTS += tests/test-__builtin_inf
 
-check_PROGRAMS += tests/test-fpclassify
-check_PROGRAMS += tests/test-isfinite
-check_PROGRAMS += tests/test-isinf
-check_PROGRAMS += tests/test-isnan
-check_PROGRAMS += tests/test-isnormal
-check_PROGRAMS += tests/test-signbit
-check_PROGRAMS += tests/test-isgreaterlike
+UNIT_TESTS += tests/test-fpclassify
+UNIT_TESTS += tests/test-isfinite
+UNIT_TESTS += tests/test-isinf
+UNIT_TESTS += tests/test-isnan
+UNIT_TESTS += tests/test-isnormal
+UNIT_TESTS += tests/test-signbit
+UNIT_TESTS += tests/test-isgreaterlike
 
-check_PROGRAMS += tests/test-strtod
-check_PROGRAMS += tests/test-strfromd_unsafe
+UNIT_TESTS += tests/test-strtod
+UNIT_TESTS += tests/test-strfromd_unsafe
 
-EXTRA_DIST += $(check_PROGRAMS:%=%.dats.m4)
+check_PROGRAMS += tests/tred2-example1
 
-BUILT_SOURCES += $(check_PROGRAMS:%=%.dats)
+tests_tred2_example1_SOURCES =
+tests_tred2_example1_SOURCES += tests/tred2-example1_dats.c
+tests_tred2_example1_SOURCES += tests/tred2_dats.c
+tests_tred2_example1_SOURCES += tests/tred2_sats.c
+tests_tred2_example1_SOURCES += tests/arr2_dats.c
+tests_tred2_example1_SOURCES += tests/arr2_sats.c
+
+EXTRA_DIST += $(UNIT_TESTS:%=%.dats.m4)
+
+BUILT_SOURCES += $(UNIT_TESTS:%=%.dats)
 BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
+BUILT_SOURCES += $(tests_tred2_example1_SOURCES)
 
 $(check_PROGRAMS): floattypes/HATS/floattypes.hats \
 					$(lib_LTLIBRARIES)
@@ -274,6 +285,8 @@ AM_M4FLAGS =
 AM_PATSOPTFLAGS =
 AM_PATSOPTFLAGS += -IATS $(builddir)
 AM_PATSOPTFLAGS += -IATS $(srcdir)
+AM_PATSOPTFLAGS += -IATS $(builddir)/tests
+AM_PATSOPTFLAGS += -IATS $(srcdir)/tests
 
 ######################################################################
 
