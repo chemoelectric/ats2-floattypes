@@ -116,6 +116,43 @@ main0 () =
                     $extval(flt,"0.74074110F128"),
                     $extval(flt,"0.67323492F128"),
                     $extval(flt,"0.92236537F128"))
+    var e_approx : @[flt][DIM1] =
+      @[flt][DIM1] ($extval(flt,"0.00000000F128"),
+                    $extval(flt,"-0.06061490F128"),
+                    $extval(flt,"0.13558706F128"),
+                    $extval(flt,"0.58589646F128"),
+                    $extval(flt,"-1.02932156F128"))
+    var z_approx : @[flt][DIM2] =
+      @[flt][DIM2] ((* Column 1 *)
+                    $extval(flt,"0.52708373F128"),
+                    $extval(flt,"0.26542373F128"),
+                    $extval(flt,"-0.78088769F128"),
+                    $extval(flt,"0.20481066F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 2 *)
+                    $extval(flt,"0.76146470F128"),
+                    $extval(flt,"-0.49433399F128"),
+                    $extval(flt,"0.25958859F128"),
+                    $extval(flt,"-0.32927068F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 3 *)
+                    $extval(flt,"-0.28257545F128"),
+                    $extval(flt,"-0.82769156F128"),
+                    $extval(flt,"-0.40032406F128"),
+                    $extval(flt,"0.27352960F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 4 *)
+                    $extval(flt,"-0.25001074F128"),
+                    $extval(flt,"-0.01052768F128"),
+                    $extval(flt,"-0.40319825F128"),
+                    $extval(flt,"-0.88023575F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 5 *)
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"1.00000000F128"))
 
     var i : [i : nat | i <= DIM1] size_t i
 
@@ -147,7 +184,10 @@ main0 () =
 
     print!("e =");
     for (i := i2sz 0; i < i2sz DIM1; i := succ i)
-      print!("\t", e[i]);
+      begin
+        print!("\t", e[i]);
+        assertloc (abs(e[i] - e_approx[i]) <= tolerance)
+      end;
     println!();
 
     println!();
@@ -158,7 +198,10 @@ main0 () =
         var j : [j : nat | j <= DIM1] size_t j
       in
         for (j := i2sz 0; j < i2sz DIM1; j := succ j)
-          print!("\t", z[i,j]);
+          begin
+            print!("\t", z[i,j]);
+            assertloc (abs(z[i,j] - z_approx[i,j]) <= tolerance)
+          end;
         println!()
       end
   end

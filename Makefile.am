@@ -247,6 +247,7 @@ UNIT_TESTS += tests/test-isgreaterlike
 UNIT_TESTS += tests/test-strtod
 UNIT_TESTS += tests/test-strfromd_unsafe
 
+check_PROGRAMS += $(UNIT_TESTS)
 check_PROGRAMS += tests/tred2-example1
 
 tests_tred2_example1_SOURCES =

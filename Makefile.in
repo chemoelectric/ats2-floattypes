@@ -108,7 +108,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = tests/tred2-example1$(EXEEXT)
+check_PROGRAMS = $(am__EXEEXT_1) tests/tred2-example1$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -134,6 +134,64 @@ CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
 	tests/tred2-example1.dats tests/tred2.sats tests/tred2.dats \
 	tests/arr2.sats tests/arr2.dats
 CONFIG_CLEAN_VPATH_FILES =
+am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
+	tests/test-M_LOG10E$(EXEEXT) tests/test-M_SQRT2$(EXEEXT) \
+	tests/test-M_SQRT1_2$(EXEEXT) tests/test-M_SQRT3$(EXEEXT) \
+	tests/test-M_PI$(EXEEXT) tests/test-M_PI_2$(EXEEXT) \
+	tests/test-M_PI_4$(EXEEXT) tests/test-M_SQRTPI$(EXEEXT) \
+	tests/test-M_2_SQRTPI$(EXEEXT) tests/test-M_1_PI$(EXEEXT) \
+	tests/test-M_2_PI$(EXEEXT) tests/test-M_LN10$(EXEEXT) \
+	tests/test-M_LN2$(EXEEXT) tests/test-M_LNPI$(EXEEXT) \
+	tests/test-M_EULER$(EXEEXT) tests/test-int-to-float$(EXEEXT) \
+	tests/test-uint-to-float$(EXEEXT) \
+	tests/test-float-to-int$(EXEEXT) \
+	tests/test-float-to-uint$(EXEEXT) \
+	tests/test-float-to-float$(EXEEXT) \
+	tests/test-binary-arith$(EXEEXT) tests/test-neg$(EXEEXT) \
+	tests/test-fdim$(EXEEXT) tests/test-fma$(EXEEXT) \
+	tests/test-__builtin_fma$(EXEEXT) tests/test-fmod$(EXEEXT) \
+	tests/test-mod$(EXEEXT) tests/test-remainder$(EXEEXT) \
+	tests/test-remquo$(EXEEXT) tests/test-ldexp$(EXEEXT) \
+	tests/test-scalbn$(EXEEXT) tests/test-scalbln$(EXEEXT) \
+	tests/test-succ$(EXEEXT) tests/test-pred$(EXEEXT) \
+	tests/test-abs$(EXEEXT) tests/test-fabs$(EXEEXT) \
+	tests/test-copysign$(EXEEXT) \
+	tests/test-comparison-ops$(EXEEXT) tests/test-compare$(EXEEXT) \
+	tests/test-ceil$(EXEEXT) tests/test-floor$(EXEEXT) \
+	tests/test-trunc$(EXEEXT) tests/test-nearbyint$(EXEEXT) \
+	tests/test-rint$(EXEEXT) tests/test-lrint$(EXEEXT) \
+	tests/test-llrint$(EXEEXT) tests/test-round$(EXEEXT) \
+	tests/test-lround$(EXEEXT) tests/test-llround$(EXEEXT) \
+	tests/test-nextafter$(EXEEXT) tests/test-nexttoward$(EXEEXT) \
+	tests/test-min$(EXEEXT) tests/test-max$(EXEEXT) \
+	tests/test-fmin$(EXEEXT) tests/test-fmax$(EXEEXT) \
+	tests/test-sqrt$(EXEEXT) tests/test-cbrt$(EXEEXT) \
+	tests/test-hypot$(EXEEXT) tests/test-pow$(EXEEXT) \
+	tests/test-exponentials$(EXEEXT) \
+	tests/test-logarithms$(EXEEXT) tests/test-sin$(EXEEXT) \
+	tests/test-cos$(EXEEXT) tests/test-tan$(EXEEXT) \
+	tests/test-asin$(EXEEXT) tests/test-acos$(EXEEXT) \
+	tests/test-atan$(EXEEXT) tests/test-atan2$(EXEEXT) \
+	tests/test-sinh$(EXEEXT) tests/test-cosh$(EXEEXT) \
+	tests/test-tanh$(EXEEXT) tests/test-asinh$(EXEEXT) \
+	tests/test-acosh$(EXEEXT) tests/test-atanh$(EXEEXT) \
+	tests/test-erf$(EXEEXT) tests/test-erfc$(EXEEXT) \
+	tests/test-lgamma$(EXEEXT) tests/test-lgamma_r$(EXEEXT) \
+	tests/test-tgamma$(EXEEXT) tests/test-j0$(EXEEXT) \
+	tests/test-j1$(EXEEXT) tests/test-jn$(EXEEXT) \
+	tests/test-y0$(EXEEXT) tests/test-y1$(EXEEXT) \
+	tests/test-yn$(EXEEXT) tests/test-modf$(EXEEXT) \
+	tests/test-frexp$(EXEEXT) tests/test-logb$(EXEEXT) \
+	tests/test-ilogb$(EXEEXT) tests/test-nan$(EXEEXT) \
+	tests/test-snan$(EXEEXT) tests/test-huge_val$(EXEEXT) \
+	tests/test-__builtin_nans$(EXEEXT) \
+	tests/test-__builtin_huge_val$(EXEEXT) \
+	tests/test-__builtin_inf$(EXEEXT) \
+	tests/test-fpclassify$(EXEEXT) tests/test-isfinite$(EXEEXT) \
+	tests/test-isinf$(EXEEXT) tests/test-isnan$(EXEEXT) \
+	tests/test-isnormal$(EXEEXT) tests/test-signbit$(EXEEXT) \
+	tests/test-isgreaterlike$(EXEEXT) tests/test-strtod$(EXEEXT) \
+	tests/test-strfromd_unsafe$(EXEEXT)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -174,6 +232,446 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+tests_test_M_1_PI_SOURCES = tests/test-M_1_PI_dats.c
+tests_test_M_1_PI_OBJECTS = tests/test-M_1_PI_dats.$(OBJEXT)
+tests_test_M_1_PI_LDADD = $(LDADD)
+tests_test_M_1_PI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_2_PI_SOURCES = tests/test-M_2_PI_dats.c
+tests_test_M_2_PI_OBJECTS = tests/test-M_2_PI_dats.$(OBJEXT)
+tests_test_M_2_PI_LDADD = $(LDADD)
+tests_test_M_2_PI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_2_SQRTPI_SOURCES = tests/test-M_2_SQRTPI_dats.c
+tests_test_M_2_SQRTPI_OBJECTS = tests/test-M_2_SQRTPI_dats.$(OBJEXT)
+tests_test_M_2_SQRTPI_LDADD = $(LDADD)
+tests_test_M_2_SQRTPI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_E_SOURCES = tests/test-M_E_dats.c
+tests_test_M_E_OBJECTS = tests/test-M_E_dats.$(OBJEXT)
+tests_test_M_E_LDADD = $(LDADD)
+tests_test_M_E_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_EULER_SOURCES = tests/test-M_EULER_dats.c
+tests_test_M_EULER_OBJECTS = tests/test-M_EULER_dats.$(OBJEXT)
+tests_test_M_EULER_LDADD = $(LDADD)
+tests_test_M_EULER_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_LN10_SOURCES = tests/test-M_LN10_dats.c
+tests_test_M_LN10_OBJECTS = tests/test-M_LN10_dats.$(OBJEXT)
+tests_test_M_LN10_LDADD = $(LDADD)
+tests_test_M_LN10_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_LN2_SOURCES = tests/test-M_LN2_dats.c
+tests_test_M_LN2_OBJECTS = tests/test-M_LN2_dats.$(OBJEXT)
+tests_test_M_LN2_LDADD = $(LDADD)
+tests_test_M_LN2_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_LNPI_SOURCES = tests/test-M_LNPI_dats.c
+tests_test_M_LNPI_OBJECTS = tests/test-M_LNPI_dats.$(OBJEXT)
+tests_test_M_LNPI_LDADD = $(LDADD)
+tests_test_M_LNPI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_LOG10E_SOURCES = tests/test-M_LOG10E_dats.c
+tests_test_M_LOG10E_OBJECTS = tests/test-M_LOG10E_dats.$(OBJEXT)
+tests_test_M_LOG10E_LDADD = $(LDADD)
+tests_test_M_LOG10E_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_LOG2E_SOURCES = tests/test-M_LOG2E_dats.c
+tests_test_M_LOG2E_OBJECTS = tests/test-M_LOG2E_dats.$(OBJEXT)
+tests_test_M_LOG2E_LDADD = $(LDADD)
+tests_test_M_LOG2E_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_PI_SOURCES = tests/test-M_PI_dats.c
+tests_test_M_PI_OBJECTS = tests/test-M_PI_dats.$(OBJEXT)
+tests_test_M_PI_LDADD = $(LDADD)
+tests_test_M_PI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_PI_2_SOURCES = tests/test-M_PI_2_dats.c
+tests_test_M_PI_2_OBJECTS = tests/test-M_PI_2_dats.$(OBJEXT)
+tests_test_M_PI_2_LDADD = $(LDADD)
+tests_test_M_PI_2_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_PI_4_SOURCES = tests/test-M_PI_4_dats.c
+tests_test_M_PI_4_OBJECTS = tests/test-M_PI_4_dats.$(OBJEXT)
+tests_test_M_PI_4_LDADD = $(LDADD)
+tests_test_M_PI_4_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_SQRT1_2_SOURCES = tests/test-M_SQRT1_2_dats.c
+tests_test_M_SQRT1_2_OBJECTS = tests/test-M_SQRT1_2_dats.$(OBJEXT)
+tests_test_M_SQRT1_2_LDADD = $(LDADD)
+tests_test_M_SQRT1_2_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_SQRT2_SOURCES = tests/test-M_SQRT2_dats.c
+tests_test_M_SQRT2_OBJECTS = tests/test-M_SQRT2_dats.$(OBJEXT)
+tests_test_M_SQRT2_LDADD = $(LDADD)
+tests_test_M_SQRT2_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_SQRT3_SOURCES = tests/test-M_SQRT3_dats.c
+tests_test_M_SQRT3_OBJECTS = tests/test-M_SQRT3_dats.$(OBJEXT)
+tests_test_M_SQRT3_LDADD = $(LDADD)
+tests_test_M_SQRT3_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_M_SQRTPI_SOURCES = tests/test-M_SQRTPI_dats.c
+tests_test_M_SQRTPI_OBJECTS = tests/test-M_SQRTPI_dats.$(OBJEXT)
+tests_test_M_SQRTPI_LDADD = $(LDADD)
+tests_test_M_SQRTPI_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test___builtin_fma_SOURCES = tests/test-__builtin_fma_dats.c
+tests_test___builtin_fma_OBJECTS =  \
+	tests/test-__builtin_fma_dats.$(OBJEXT)
+tests_test___builtin_fma_LDADD = $(LDADD)
+tests_test___builtin_fma_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test___builtin_huge_val_SOURCES =  \
+	tests/test-__builtin_huge_val_dats.c
+tests_test___builtin_huge_val_OBJECTS =  \
+	tests/test-__builtin_huge_val_dats.$(OBJEXT)
+tests_test___builtin_huge_val_LDADD = $(LDADD)
+tests_test___builtin_huge_val_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test___builtin_inf_SOURCES = tests/test-__builtin_inf_dats.c
+tests_test___builtin_inf_OBJECTS =  \
+	tests/test-__builtin_inf_dats.$(OBJEXT)
+tests_test___builtin_inf_LDADD = $(LDADD)
+tests_test___builtin_inf_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test___builtin_nans_SOURCES = tests/test-__builtin_nans_dats.c
+tests_test___builtin_nans_OBJECTS =  \
+	tests/test-__builtin_nans_dats.$(OBJEXT)
+tests_test___builtin_nans_LDADD = $(LDADD)
+tests_test___builtin_nans_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_abs_SOURCES = tests/test-abs_dats.c
+tests_test_abs_OBJECTS = tests/test-abs_dats.$(OBJEXT)
+tests_test_abs_LDADD = $(LDADD)
+tests_test_abs_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_acos_SOURCES = tests/test-acos_dats.c
+tests_test_acos_OBJECTS = tests/test-acos_dats.$(OBJEXT)
+tests_test_acos_LDADD = $(LDADD)
+tests_test_acos_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_acosh_SOURCES = tests/test-acosh_dats.c
+tests_test_acosh_OBJECTS = tests/test-acosh_dats.$(OBJEXT)
+tests_test_acosh_LDADD = $(LDADD)
+tests_test_acosh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_asin_SOURCES = tests/test-asin_dats.c
+tests_test_asin_OBJECTS = tests/test-asin_dats.$(OBJEXT)
+tests_test_asin_LDADD = $(LDADD)
+tests_test_asin_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_asinh_SOURCES = tests/test-asinh_dats.c
+tests_test_asinh_OBJECTS = tests/test-asinh_dats.$(OBJEXT)
+tests_test_asinh_LDADD = $(LDADD)
+tests_test_asinh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_atan_SOURCES = tests/test-atan_dats.c
+tests_test_atan_OBJECTS = tests/test-atan_dats.$(OBJEXT)
+tests_test_atan_LDADD = $(LDADD)
+tests_test_atan_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_atan2_SOURCES = tests/test-atan2_dats.c
+tests_test_atan2_OBJECTS = tests/test-atan2_dats.$(OBJEXT)
+tests_test_atan2_LDADD = $(LDADD)
+tests_test_atan2_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_atanh_SOURCES = tests/test-atanh_dats.c
+tests_test_atanh_OBJECTS = tests/test-atanh_dats.$(OBJEXT)
+tests_test_atanh_LDADD = $(LDADD)
+tests_test_atanh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_binary_arith_SOURCES = tests/test-binary-arith_dats.c
+tests_test_binary_arith_OBJECTS =  \
+	tests/test-binary-arith_dats.$(OBJEXT)
+tests_test_binary_arith_LDADD = $(LDADD)
+tests_test_binary_arith_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_cbrt_SOURCES = tests/test-cbrt_dats.c
+tests_test_cbrt_OBJECTS = tests/test-cbrt_dats.$(OBJEXT)
+tests_test_cbrt_LDADD = $(LDADD)
+tests_test_cbrt_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_ceil_SOURCES = tests/test-ceil_dats.c
+tests_test_ceil_OBJECTS = tests/test-ceil_dats.$(OBJEXT)
+tests_test_ceil_LDADD = $(LDADD)
+tests_test_ceil_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_compare_SOURCES = tests/test-compare_dats.c
+tests_test_compare_OBJECTS = tests/test-compare_dats.$(OBJEXT)
+tests_test_compare_LDADD = $(LDADD)
+tests_test_compare_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_comparison_ops_SOURCES = tests/test-comparison-ops_dats.c
+tests_test_comparison_ops_OBJECTS =  \
+	tests/test-comparison-ops_dats.$(OBJEXT)
+tests_test_comparison_ops_LDADD = $(LDADD)
+tests_test_comparison_ops_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_copysign_SOURCES = tests/test-copysign_dats.c
+tests_test_copysign_OBJECTS = tests/test-copysign_dats.$(OBJEXT)
+tests_test_copysign_LDADD = $(LDADD)
+tests_test_copysign_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_cos_SOURCES = tests/test-cos_dats.c
+tests_test_cos_OBJECTS = tests/test-cos_dats.$(OBJEXT)
+tests_test_cos_LDADD = $(LDADD)
+tests_test_cos_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_cosh_SOURCES = tests/test-cosh_dats.c
+tests_test_cosh_OBJECTS = tests/test-cosh_dats.$(OBJEXT)
+tests_test_cosh_LDADD = $(LDADD)
+tests_test_cosh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_erf_SOURCES = tests/test-erf_dats.c
+tests_test_erf_OBJECTS = tests/test-erf_dats.$(OBJEXT)
+tests_test_erf_LDADD = $(LDADD)
+tests_test_erf_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_erfc_SOURCES = tests/test-erfc_dats.c
+tests_test_erfc_OBJECTS = tests/test-erfc_dats.$(OBJEXT)
+tests_test_erfc_LDADD = $(LDADD)
+tests_test_erfc_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_exponentials_SOURCES = tests/test-exponentials_dats.c
+tests_test_exponentials_OBJECTS =  \
+	tests/test-exponentials_dats.$(OBJEXT)
+tests_test_exponentials_LDADD = $(LDADD)
+tests_test_exponentials_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fabs_SOURCES = tests/test-fabs_dats.c
+tests_test_fabs_OBJECTS = tests/test-fabs_dats.$(OBJEXT)
+tests_test_fabs_LDADD = $(LDADD)
+tests_test_fabs_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fdim_SOURCES = tests/test-fdim_dats.c
+tests_test_fdim_OBJECTS = tests/test-fdim_dats.$(OBJEXT)
+tests_test_fdim_LDADD = $(LDADD)
+tests_test_fdim_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_float_to_float_SOURCES = tests/test-float-to-float_dats.c
+tests_test_float_to_float_OBJECTS =  \
+	tests/test-float-to-float_dats.$(OBJEXT)
+tests_test_float_to_float_LDADD = $(LDADD)
+tests_test_float_to_float_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_float_to_int_SOURCES = tests/test-float-to-int_dats.c
+tests_test_float_to_int_OBJECTS =  \
+	tests/test-float-to-int_dats.$(OBJEXT)
+tests_test_float_to_int_LDADD = $(LDADD)
+tests_test_float_to_int_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_float_to_uint_SOURCES = tests/test-float-to-uint_dats.c
+tests_test_float_to_uint_OBJECTS =  \
+	tests/test-float-to-uint_dats.$(OBJEXT)
+tests_test_float_to_uint_LDADD = $(LDADD)
+tests_test_float_to_uint_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_floor_SOURCES = tests/test-floor_dats.c
+tests_test_floor_OBJECTS = tests/test-floor_dats.$(OBJEXT)
+tests_test_floor_LDADD = $(LDADD)
+tests_test_floor_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fma_SOURCES = tests/test-fma_dats.c
+tests_test_fma_OBJECTS = tests/test-fma_dats.$(OBJEXT)
+tests_test_fma_LDADD = $(LDADD)
+tests_test_fma_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fmax_SOURCES = tests/test-fmax_dats.c
+tests_test_fmax_OBJECTS = tests/test-fmax_dats.$(OBJEXT)
+tests_test_fmax_LDADD = $(LDADD)
+tests_test_fmax_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fmin_SOURCES = tests/test-fmin_dats.c
+tests_test_fmin_OBJECTS = tests/test-fmin_dats.$(OBJEXT)
+tests_test_fmin_LDADD = $(LDADD)
+tests_test_fmin_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fmod_SOURCES = tests/test-fmod_dats.c
+tests_test_fmod_OBJECTS = tests/test-fmod_dats.$(OBJEXT)
+tests_test_fmod_LDADD = $(LDADD)
+tests_test_fmod_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_fpclassify_SOURCES = tests/test-fpclassify_dats.c
+tests_test_fpclassify_OBJECTS = tests/test-fpclassify_dats.$(OBJEXT)
+tests_test_fpclassify_LDADD = $(LDADD)
+tests_test_fpclassify_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_frexp_SOURCES = tests/test-frexp_dats.c
+tests_test_frexp_OBJECTS = tests/test-frexp_dats.$(OBJEXT)
+tests_test_frexp_LDADD = $(LDADD)
+tests_test_frexp_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_huge_val_SOURCES = tests/test-huge_val_dats.c
+tests_test_huge_val_OBJECTS = tests/test-huge_val_dats.$(OBJEXT)
+tests_test_huge_val_LDADD = $(LDADD)
+tests_test_huge_val_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_hypot_SOURCES = tests/test-hypot_dats.c
+tests_test_hypot_OBJECTS = tests/test-hypot_dats.$(OBJEXT)
+tests_test_hypot_LDADD = $(LDADD)
+tests_test_hypot_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_ilogb_SOURCES = tests/test-ilogb_dats.c
+tests_test_ilogb_OBJECTS = tests/test-ilogb_dats.$(OBJEXT)
+tests_test_ilogb_LDADD = $(LDADD)
+tests_test_ilogb_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_int_to_float_SOURCES = tests/test-int-to-float_dats.c
+tests_test_int_to_float_OBJECTS =  \
+	tests/test-int-to-float_dats.$(OBJEXT)
+tests_test_int_to_float_LDADD = $(LDADD)
+tests_test_int_to_float_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_isfinite_SOURCES = tests/test-isfinite_dats.c
+tests_test_isfinite_OBJECTS = tests/test-isfinite_dats.$(OBJEXT)
+tests_test_isfinite_LDADD = $(LDADD)
+tests_test_isfinite_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_isgreaterlike_SOURCES = tests/test-isgreaterlike_dats.c
+tests_test_isgreaterlike_OBJECTS =  \
+	tests/test-isgreaterlike_dats.$(OBJEXT)
+tests_test_isgreaterlike_LDADD = $(LDADD)
+tests_test_isgreaterlike_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_isinf_SOURCES = tests/test-isinf_dats.c
+tests_test_isinf_OBJECTS = tests/test-isinf_dats.$(OBJEXT)
+tests_test_isinf_LDADD = $(LDADD)
+tests_test_isinf_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_isnan_SOURCES = tests/test-isnan_dats.c
+tests_test_isnan_OBJECTS = tests/test-isnan_dats.$(OBJEXT)
+tests_test_isnan_LDADD = $(LDADD)
+tests_test_isnan_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_isnormal_SOURCES = tests/test-isnormal_dats.c
+tests_test_isnormal_OBJECTS = tests/test-isnormal_dats.$(OBJEXT)
+tests_test_isnormal_LDADD = $(LDADD)
+tests_test_isnormal_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_j0_SOURCES = tests/test-j0_dats.c
+tests_test_j0_OBJECTS = tests/test-j0_dats.$(OBJEXT)
+tests_test_j0_LDADD = $(LDADD)
+tests_test_j0_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_j1_SOURCES = tests/test-j1_dats.c
+tests_test_j1_OBJECTS = tests/test-j1_dats.$(OBJEXT)
+tests_test_j1_LDADD = $(LDADD)
+tests_test_j1_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_jn_SOURCES = tests/test-jn_dats.c
+tests_test_jn_OBJECTS = tests/test-jn_dats.$(OBJEXT)
+tests_test_jn_LDADD = $(LDADD)
+tests_test_jn_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_ldexp_SOURCES = tests/test-ldexp_dats.c
+tests_test_ldexp_OBJECTS = tests/test-ldexp_dats.$(OBJEXT)
+tests_test_ldexp_LDADD = $(LDADD)
+tests_test_ldexp_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_lgamma_SOURCES = tests/test-lgamma_dats.c
+tests_test_lgamma_OBJECTS = tests/test-lgamma_dats.$(OBJEXT)
+tests_test_lgamma_LDADD = $(LDADD)
+tests_test_lgamma_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_lgamma_r_SOURCES = tests/test-lgamma_r_dats.c
+tests_test_lgamma_r_OBJECTS = tests/test-lgamma_r_dats.$(OBJEXT)
+tests_test_lgamma_r_LDADD = $(LDADD)
+tests_test_lgamma_r_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_llrint_SOURCES = tests/test-llrint_dats.c
+tests_test_llrint_OBJECTS = tests/test-llrint_dats.$(OBJEXT)
+tests_test_llrint_LDADD = $(LDADD)
+tests_test_llrint_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_llround_SOURCES = tests/test-llround_dats.c
+tests_test_llround_OBJECTS = tests/test-llround_dats.$(OBJEXT)
+tests_test_llround_LDADD = $(LDADD)
+tests_test_llround_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_logarithms_SOURCES = tests/test-logarithms_dats.c
+tests_test_logarithms_OBJECTS = tests/test-logarithms_dats.$(OBJEXT)
+tests_test_logarithms_LDADD = $(LDADD)
+tests_test_logarithms_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_logb_SOURCES = tests/test-logb_dats.c
+tests_test_logb_OBJECTS = tests/test-logb_dats.$(OBJEXT)
+tests_test_logb_LDADD = $(LDADD)
+tests_test_logb_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_lrint_SOURCES = tests/test-lrint_dats.c
+tests_test_lrint_OBJECTS = tests/test-lrint_dats.$(OBJEXT)
+tests_test_lrint_LDADD = $(LDADD)
+tests_test_lrint_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_lround_SOURCES = tests/test-lround_dats.c
+tests_test_lround_OBJECTS = tests/test-lround_dats.$(OBJEXT)
+tests_test_lround_LDADD = $(LDADD)
+tests_test_lround_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_max_SOURCES = tests/test-max_dats.c
+tests_test_max_OBJECTS = tests/test-max_dats.$(OBJEXT)
+tests_test_max_LDADD = $(LDADD)
+tests_test_max_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_min_SOURCES = tests/test-min_dats.c
+tests_test_min_OBJECTS = tests/test-min_dats.$(OBJEXT)
+tests_test_min_LDADD = $(LDADD)
+tests_test_min_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_mod_SOURCES = tests/test-mod_dats.c
+tests_test_mod_OBJECTS = tests/test-mod_dats.$(OBJEXT)
+tests_test_mod_LDADD = $(LDADD)
+tests_test_mod_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_modf_SOURCES = tests/test-modf_dats.c
+tests_test_modf_OBJECTS = tests/test-modf_dats.$(OBJEXT)
+tests_test_modf_LDADD = $(LDADD)
+tests_test_modf_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_nan_SOURCES = tests/test-nan_dats.c
+tests_test_nan_OBJECTS = tests/test-nan_dats.$(OBJEXT)
+tests_test_nan_LDADD = $(LDADD)
+tests_test_nan_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_nearbyint_SOURCES = tests/test-nearbyint_dats.c
+tests_test_nearbyint_OBJECTS = tests/test-nearbyint_dats.$(OBJEXT)
+tests_test_nearbyint_LDADD = $(LDADD)
+tests_test_nearbyint_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_neg_SOURCES = tests/test-neg_dats.c
+tests_test_neg_OBJECTS = tests/test-neg_dats.$(OBJEXT)
+tests_test_neg_LDADD = $(LDADD)
+tests_test_neg_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_nextafter_SOURCES = tests/test-nextafter_dats.c
+tests_test_nextafter_OBJECTS = tests/test-nextafter_dats.$(OBJEXT)
+tests_test_nextafter_LDADD = $(LDADD)
+tests_test_nextafter_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_nexttoward_SOURCES = tests/test-nexttoward_dats.c
+tests_test_nexttoward_OBJECTS = tests/test-nexttoward_dats.$(OBJEXT)
+tests_test_nexttoward_LDADD = $(LDADD)
+tests_test_nexttoward_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_pow_SOURCES = tests/test-pow_dats.c
+tests_test_pow_OBJECTS = tests/test-pow_dats.$(OBJEXT)
+tests_test_pow_LDADD = $(LDADD)
+tests_test_pow_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_pred_SOURCES = tests/test-pred_dats.c
+tests_test_pred_OBJECTS = tests/test-pred_dats.$(OBJEXT)
+tests_test_pred_LDADD = $(LDADD)
+tests_test_pred_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_remainder_SOURCES = tests/test-remainder_dats.c
+tests_test_remainder_OBJECTS = tests/test-remainder_dats.$(OBJEXT)
+tests_test_remainder_LDADD = $(LDADD)
+tests_test_remainder_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_remquo_SOURCES = tests/test-remquo_dats.c
+tests_test_remquo_OBJECTS = tests/test-remquo_dats.$(OBJEXT)
+tests_test_remquo_LDADD = $(LDADD)
+tests_test_remquo_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_rint_SOURCES = tests/test-rint_dats.c
+tests_test_rint_OBJECTS = tests/test-rint_dats.$(OBJEXT)
+tests_test_rint_LDADD = $(LDADD)
+tests_test_rint_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_round_SOURCES = tests/test-round_dats.c
+tests_test_round_OBJECTS = tests/test-round_dats.$(OBJEXT)
+tests_test_round_LDADD = $(LDADD)
+tests_test_round_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_scalbln_SOURCES = tests/test-scalbln_dats.c
+tests_test_scalbln_OBJECTS = tests/test-scalbln_dats.$(OBJEXT)
+tests_test_scalbln_LDADD = $(LDADD)
+tests_test_scalbln_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_scalbn_SOURCES = tests/test-scalbn_dats.c
+tests_test_scalbn_OBJECTS = tests/test-scalbn_dats.$(OBJEXT)
+tests_test_scalbn_LDADD = $(LDADD)
+tests_test_scalbn_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_signbit_SOURCES = tests/test-signbit_dats.c
+tests_test_signbit_OBJECTS = tests/test-signbit_dats.$(OBJEXT)
+tests_test_signbit_LDADD = $(LDADD)
+tests_test_signbit_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_sin_SOURCES = tests/test-sin_dats.c
+tests_test_sin_OBJECTS = tests/test-sin_dats.$(OBJEXT)
+tests_test_sin_LDADD = $(LDADD)
+tests_test_sin_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_sinh_SOURCES = tests/test-sinh_dats.c
+tests_test_sinh_OBJECTS = tests/test-sinh_dats.$(OBJEXT)
+tests_test_sinh_LDADD = $(LDADD)
+tests_test_sinh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_snan_SOURCES = tests/test-snan_dats.c
+tests_test_snan_OBJECTS = tests/test-snan_dats.$(OBJEXT)
+tests_test_snan_LDADD = $(LDADD)
+tests_test_snan_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_sqrt_SOURCES = tests/test-sqrt_dats.c
+tests_test_sqrt_OBJECTS = tests/test-sqrt_dats.$(OBJEXT)
+tests_test_sqrt_LDADD = $(LDADD)
+tests_test_sqrt_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_strfromd_unsafe_SOURCES =  \
+	tests/test-strfromd_unsafe_dats.c
+tests_test_strfromd_unsafe_OBJECTS =  \
+	tests/test-strfromd_unsafe_dats.$(OBJEXT)
+tests_test_strfromd_unsafe_LDADD = $(LDADD)
+tests_test_strfromd_unsafe_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_strtod_SOURCES = tests/test-strtod_dats.c
+tests_test_strtod_OBJECTS = tests/test-strtod_dats.$(OBJEXT)
+tests_test_strtod_LDADD = $(LDADD)
+tests_test_strtod_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_succ_SOURCES = tests/test-succ_dats.c
+tests_test_succ_OBJECTS = tests/test-succ_dats.$(OBJEXT)
+tests_test_succ_LDADD = $(LDADD)
+tests_test_succ_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_tan_SOURCES = tests/test-tan_dats.c
+tests_test_tan_OBJECTS = tests/test-tan_dats.$(OBJEXT)
+tests_test_tan_LDADD = $(LDADD)
+tests_test_tan_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_tanh_SOURCES = tests/test-tanh_dats.c
+tests_test_tanh_OBJECTS = tests/test-tanh_dats.$(OBJEXT)
+tests_test_tanh_LDADD = $(LDADD)
+tests_test_tanh_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_tgamma_SOURCES = tests/test-tgamma_dats.c
+tests_test_tgamma_OBJECTS = tests/test-tgamma_dats.$(OBJEXT)
+tests_test_tgamma_LDADD = $(LDADD)
+tests_test_tgamma_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_trunc_SOURCES = tests/test-trunc_dats.c
+tests_test_trunc_OBJECTS = tests/test-trunc_dats.$(OBJEXT)
+tests_test_trunc_LDADD = $(LDADD)
+tests_test_trunc_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_uint_to_float_SOURCES = tests/test-uint-to-float_dats.c
+tests_test_uint_to_float_OBJECTS =  \
+	tests/test-uint-to-float_dats.$(OBJEXT)
+tests_test_uint_to_float_LDADD = $(LDADD)
+tests_test_uint_to_float_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_y0_SOURCES = tests/test-y0_dats.c
+tests_test_y0_OBJECTS = tests/test-y0_dats.$(OBJEXT)
+tests_test_y0_LDADD = $(LDADD)
+tests_test_y0_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_y1_SOURCES = tests/test-y1_dats.c
+tests_test_y1_OBJECTS = tests/test-y1_dats.$(OBJEXT)
+tests_test_y1_LDADD = $(LDADD)
+tests_test_y1_DEPENDENCIES = $(lib_LTLIBRARIES)
+tests_test_yn_SOURCES = tests/test-yn_dats.c
+tests_test_yn_OBJECTS = tests/test-yn_dats.$(OBJEXT)
+tests_test_yn_LDADD = $(LDADD)
+tests_test_yn_DEPENDENCIES = $(lib_LTLIBRARIES)
 am_tests_tred2_example1_OBJECTS = tests/tred2-example1_dats.$(OBJEXT) \
 	tests/tred2_dats.$(OBJEXT) tests/tred2_sats.$(OBJEXT) \
 	tests/arr2_dats.$(OBJEXT) tests/arr2_sats.$(OBJEXT)
@@ -198,6 +696,112 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo \
 	tests/$(DEPDIR)/arr2_dats.Po tests/$(DEPDIR)/arr2_sats.Po \
+	tests/$(DEPDIR)/test-M_1_PI_dats.Po \
+	tests/$(DEPDIR)/test-M_2_PI_dats.Po \
+	tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po \
+	tests/$(DEPDIR)/test-M_EULER_dats.Po \
+	tests/$(DEPDIR)/test-M_E_dats.Po \
+	tests/$(DEPDIR)/test-M_LN10_dats.Po \
+	tests/$(DEPDIR)/test-M_LN2_dats.Po \
+	tests/$(DEPDIR)/test-M_LNPI_dats.Po \
+	tests/$(DEPDIR)/test-M_LOG10E_dats.Po \
+	tests/$(DEPDIR)/test-M_LOG2E_dats.Po \
+	tests/$(DEPDIR)/test-M_PI_2_dats.Po \
+	tests/$(DEPDIR)/test-M_PI_4_dats.Po \
+	tests/$(DEPDIR)/test-M_PI_dats.Po \
+	tests/$(DEPDIR)/test-M_SQRT1_2_dats.Po \
+	tests/$(DEPDIR)/test-M_SQRT2_dats.Po \
+	tests/$(DEPDIR)/test-M_SQRT3_dats.Po \
+	tests/$(DEPDIR)/test-M_SQRTPI_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_fma_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_inf_dats.Po \
+	tests/$(DEPDIR)/test-__builtin_nans_dats.Po \
+	tests/$(DEPDIR)/test-abs_dats.Po \
+	tests/$(DEPDIR)/test-acos_dats.Po \
+	tests/$(DEPDIR)/test-acosh_dats.Po \
+	tests/$(DEPDIR)/test-asin_dats.Po \
+	tests/$(DEPDIR)/test-asinh_dats.Po \
+	tests/$(DEPDIR)/test-atan2_dats.Po \
+	tests/$(DEPDIR)/test-atan_dats.Po \
+	tests/$(DEPDIR)/test-atanh_dats.Po \
+	tests/$(DEPDIR)/test-binary-arith_dats.Po \
+	tests/$(DEPDIR)/test-cbrt_dats.Po \
+	tests/$(DEPDIR)/test-ceil_dats.Po \
+	tests/$(DEPDIR)/test-compare_dats.Po \
+	tests/$(DEPDIR)/test-comparison-ops_dats.Po \
+	tests/$(DEPDIR)/test-copysign_dats.Po \
+	tests/$(DEPDIR)/test-cos_dats.Po \
+	tests/$(DEPDIR)/test-cosh_dats.Po \
+	tests/$(DEPDIR)/test-erf_dats.Po \
+	tests/$(DEPDIR)/test-erfc_dats.Po \
+	tests/$(DEPDIR)/test-exponentials_dats.Po \
+	tests/$(DEPDIR)/test-fabs_dats.Po \
+	tests/$(DEPDIR)/test-fdim_dats.Po \
+	tests/$(DEPDIR)/test-float-to-float_dats.Po \
+	tests/$(DEPDIR)/test-float-to-int_dats.Po \
+	tests/$(DEPDIR)/test-float-to-uint_dats.Po \
+	tests/$(DEPDIR)/test-floor_dats.Po \
+	tests/$(DEPDIR)/test-fma_dats.Po \
+	tests/$(DEPDIR)/test-fmax_dats.Po \
+	tests/$(DEPDIR)/test-fmin_dats.Po \
+	tests/$(DEPDIR)/test-fmod_dats.Po \
+	tests/$(DEPDIR)/test-fpclassify_dats.Po \
+	tests/$(DEPDIR)/test-frexp_dats.Po \
+	tests/$(DEPDIR)/test-huge_val_dats.Po \
+	tests/$(DEPDIR)/test-hypot_dats.Po \
+	tests/$(DEPDIR)/test-ilogb_dats.Po \
+	tests/$(DEPDIR)/test-int-to-float_dats.Po \
+	tests/$(DEPDIR)/test-isfinite_dats.Po \
+	tests/$(DEPDIR)/test-isgreaterlike_dats.Po \
+	tests/$(DEPDIR)/test-isinf_dats.Po \
+	tests/$(DEPDIR)/test-isnan_dats.Po \
+	tests/$(DEPDIR)/test-isnormal_dats.Po \
+	tests/$(DEPDIR)/test-j0_dats.Po \
+	tests/$(DEPDIR)/test-j1_dats.Po \
+	tests/$(DEPDIR)/test-jn_dats.Po \
+	tests/$(DEPDIR)/test-ldexp_dats.Po \
+	tests/$(DEPDIR)/test-lgamma_dats.Po \
+	tests/$(DEPDIR)/test-lgamma_r_dats.Po \
+	tests/$(DEPDIR)/test-llrint_dats.Po \
+	tests/$(DEPDIR)/test-llround_dats.Po \
+	tests/$(DEPDIR)/test-logarithms_dats.Po \
+	tests/$(DEPDIR)/test-logb_dats.Po \
+	tests/$(DEPDIR)/test-lrint_dats.Po \
+	tests/$(DEPDIR)/test-lround_dats.Po \
+	tests/$(DEPDIR)/test-max_dats.Po \
+	tests/$(DEPDIR)/test-min_dats.Po \
+	tests/$(DEPDIR)/test-mod_dats.Po \
+	tests/$(DEPDIR)/test-modf_dats.Po \
+	tests/$(DEPDIR)/test-nan_dats.Po \
+	tests/$(DEPDIR)/test-nearbyint_dats.Po \
+	tests/$(DEPDIR)/test-neg_dats.Po \
+	tests/$(DEPDIR)/test-nextafter_dats.Po \
+	tests/$(DEPDIR)/test-nexttoward_dats.Po \
+	tests/$(DEPDIR)/test-pow_dats.Po \
+	tests/$(DEPDIR)/test-pred_dats.Po \
+	tests/$(DEPDIR)/test-remainder_dats.Po \
+	tests/$(DEPDIR)/test-remquo_dats.Po \
+	tests/$(DEPDIR)/test-rint_dats.Po \
+	tests/$(DEPDIR)/test-round_dats.Po \
+	tests/$(DEPDIR)/test-scalbln_dats.Po \
+	tests/$(DEPDIR)/test-scalbn_dats.Po \
+	tests/$(DEPDIR)/test-signbit_dats.Po \
+	tests/$(DEPDIR)/test-sin_dats.Po \
+	tests/$(DEPDIR)/test-sinh_dats.Po \
+	tests/$(DEPDIR)/test-snan_dats.Po \
+	tests/$(DEPDIR)/test-sqrt_dats.Po \
+	tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po \
+	tests/$(DEPDIR)/test-strtod_dats.Po \
+	tests/$(DEPDIR)/test-succ_dats.Po \
+	tests/$(DEPDIR)/test-tan_dats.Po \
+	tests/$(DEPDIR)/test-tanh_dats.Po \
+	tests/$(DEPDIR)/test-tgamma_dats.Po \
+	tests/$(DEPDIR)/test-trunc_dats.Po \
+	tests/$(DEPDIR)/test-uint-to-float_dats.Po \
+	tests/$(DEPDIR)/test-y0_dats.Po \
+	tests/$(DEPDIR)/test-y1_dats.Po \
+	tests/$(DEPDIR)/test-yn_dats.Po \
 	tests/$(DEPDIR)/tred2-example1_dats.Po \
 	tests/$(DEPDIR)/tred2_dats.Po tests/$(DEPDIR)/tred2_sats.Po
 am__mv = mv -f
@@ -219,9 +823,117 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libats2_floattypes_la_SOURCES) \
+SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
+	tests/test-M_2_PI_dats.c tests/test-M_2_SQRTPI_dats.c \
+	tests/test-M_E_dats.c tests/test-M_EULER_dats.c \
+	tests/test-M_LN10_dats.c tests/test-M_LN2_dats.c \
+	tests/test-M_LNPI_dats.c tests/test-M_LOG10E_dats.c \
+	tests/test-M_LOG2E_dats.c tests/test-M_PI_dats.c \
+	tests/test-M_PI_2_dats.c tests/test-M_PI_4_dats.c \
+	tests/test-M_SQRT1_2_dats.c tests/test-M_SQRT2_dats.c \
+	tests/test-M_SQRT3_dats.c tests/test-M_SQRTPI_dats.c \
+	tests/test-__builtin_fma_dats.c \
+	tests/test-__builtin_huge_val_dats.c \
+	tests/test-__builtin_inf_dats.c \
+	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
+	tests/test-acos_dats.c tests/test-acosh_dats.c \
+	tests/test-asin_dats.c tests/test-asinh_dats.c \
+	tests/test-atan_dats.c tests/test-atan2_dats.c \
+	tests/test-atanh_dats.c tests/test-binary-arith_dats.c \
+	tests/test-cbrt_dats.c tests/test-ceil_dats.c \
+	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
+	tests/test-copysign_dats.c tests/test-cos_dats.c \
+	tests/test-cosh_dats.c tests/test-erf_dats.c \
+	tests/test-erfc_dats.c tests/test-exponentials_dats.c \
+	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-float-to-float_dats.c \
+	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
+	tests/test-floor_dats.c tests/test-fma_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-fmod_dats.c tests/test-fpclassify_dats.c \
+	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
+	tests/test-isgreaterlike_dats.c tests/test-isinf_dats.c \
+	tests/test-isnan_dats.c tests/test-isnormal_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
+	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
+	tests/test-llround_dats.c tests/test-logarithms_dats.c \
+	tests/test-logb_dats.c tests/test-lrint_dats.c \
+	tests/test-lround_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-mod_dats.c \
+	tests/test-modf_dats.c tests/test-nan_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-remainder_dats.c tests/test-remquo_dats.c \
+	tests/test-rint_dats.c tests/test-round_dats.c \
+	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
+	tests/test-signbit_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-snan_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c \
 	$(tests_tred2_example1_SOURCES)
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
+	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
+	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
+	tests/test-M_EULER_dats.c tests/test-M_LN10_dats.c \
+	tests/test-M_LN2_dats.c tests/test-M_LNPI_dats.c \
+	tests/test-M_LOG10E_dats.c tests/test-M_LOG2E_dats.c \
+	tests/test-M_PI_dats.c tests/test-M_PI_2_dats.c \
+	tests/test-M_PI_4_dats.c tests/test-M_SQRT1_2_dats.c \
+	tests/test-M_SQRT2_dats.c tests/test-M_SQRT3_dats.c \
+	tests/test-M_SQRTPI_dats.c tests/test-__builtin_fma_dats.c \
+	tests/test-__builtin_huge_val_dats.c \
+	tests/test-__builtin_inf_dats.c \
+	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
+	tests/test-acos_dats.c tests/test-acosh_dats.c \
+	tests/test-asin_dats.c tests/test-asinh_dats.c \
+	tests/test-atan_dats.c tests/test-atan2_dats.c \
+	tests/test-atanh_dats.c tests/test-binary-arith_dats.c \
+	tests/test-cbrt_dats.c tests/test-ceil_dats.c \
+	tests/test-compare_dats.c tests/test-comparison-ops_dats.c \
+	tests/test-copysign_dats.c tests/test-cos_dats.c \
+	tests/test-cosh_dats.c tests/test-erf_dats.c \
+	tests/test-erfc_dats.c tests/test-exponentials_dats.c \
+	tests/test-fabs_dats.c tests/test-fdim_dats.c \
+	tests/test-float-to-float_dats.c \
+	tests/test-float-to-int_dats.c tests/test-float-to-uint_dats.c \
+	tests/test-floor_dats.c tests/test-fma_dats.c \
+	tests/test-fmax_dats.c tests/test-fmin_dats.c \
+	tests/test-fmod_dats.c tests/test-fpclassify_dats.c \
+	tests/test-frexp_dats.c tests/test-huge_val_dats.c \
+	tests/test-hypot_dats.c tests/test-ilogb_dats.c \
+	tests/test-int-to-float_dats.c tests/test-isfinite_dats.c \
+	tests/test-isgreaterlike_dats.c tests/test-isinf_dats.c \
+	tests/test-isnan_dats.c tests/test-isnormal_dats.c \
+	tests/test-j0_dats.c tests/test-j1_dats.c tests/test-jn_dats.c \
+	tests/test-ldexp_dats.c tests/test-lgamma_dats.c \
+	tests/test-lgamma_r_dats.c tests/test-llrint_dats.c \
+	tests/test-llround_dats.c tests/test-logarithms_dats.c \
+	tests/test-logb_dats.c tests/test-lrint_dats.c \
+	tests/test-lround_dats.c tests/test-max_dats.c \
+	tests/test-min_dats.c tests/test-mod_dats.c \
+	tests/test-modf_dats.c tests/test-nan_dats.c \
+	tests/test-nearbyint_dats.c tests/test-neg_dats.c \
+	tests/test-nextafter_dats.c tests/test-nexttoward_dats.c \
+	tests/test-pow_dats.c tests/test-pred_dats.c \
+	tests/test-remainder_dats.c tests/test-remquo_dats.c \
+	tests/test-rint_dats.c tests/test-round_dats.c \
+	tests/test-scalbln_dats.c tests/test-scalbn_dats.c \
+	tests/test-signbit_dats.c tests/test-sin_dats.c \
+	tests/test-sinh_dats.c tests/test-snan_dats.c \
+	tests/test-sqrt_dats.c tests/test-strfromd_unsafe_dats.c \
+	tests/test-strtod_dats.c tests/test-succ_dats.c \
+	tests/test-tan_dats.c tests/test-tanh_dats.c \
+	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
+	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
+	tests/test-y1_dats.c tests/test-yn_dats.c \
 	$(tests_tred2_example1_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -2073,6 +2785,642 @@ tests/$(am__dirstamp):
 tests/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) tests/$(DEPDIR)
 	@: > tests/$(DEPDIR)/$(am__dirstamp)
+tests/test-M_1_PI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_1_PI$(EXEEXT): $(tests_test_M_1_PI_OBJECTS) $(tests_test_M_1_PI_DEPENDENCIES) $(EXTRA_tests_test_M_1_PI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_1_PI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_1_PI_OBJECTS) $(tests_test_M_1_PI_LDADD) $(LIBS)
+tests/test-M_2_PI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_2_PI$(EXEEXT): $(tests_test_M_2_PI_OBJECTS) $(tests_test_M_2_PI_DEPENDENCIES) $(EXTRA_tests_test_M_2_PI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_2_PI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_2_PI_OBJECTS) $(tests_test_M_2_PI_LDADD) $(LIBS)
+tests/test-M_2_SQRTPI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_2_SQRTPI$(EXEEXT): $(tests_test_M_2_SQRTPI_OBJECTS) $(tests_test_M_2_SQRTPI_DEPENDENCIES) $(EXTRA_tests_test_M_2_SQRTPI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_2_SQRTPI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_2_SQRTPI_OBJECTS) $(tests_test_M_2_SQRTPI_LDADD) $(LIBS)
+tests/test-M_E_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_E$(EXEEXT): $(tests_test_M_E_OBJECTS) $(tests_test_M_E_DEPENDENCIES) $(EXTRA_tests_test_M_E_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_E$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_E_OBJECTS) $(tests_test_M_E_LDADD) $(LIBS)
+tests/test-M_EULER_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_EULER$(EXEEXT): $(tests_test_M_EULER_OBJECTS) $(tests_test_M_EULER_DEPENDENCIES) $(EXTRA_tests_test_M_EULER_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_EULER$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_EULER_OBJECTS) $(tests_test_M_EULER_LDADD) $(LIBS)
+tests/test-M_LN10_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_LN10$(EXEEXT): $(tests_test_M_LN10_OBJECTS) $(tests_test_M_LN10_DEPENDENCIES) $(EXTRA_tests_test_M_LN10_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_LN10$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_LN10_OBJECTS) $(tests_test_M_LN10_LDADD) $(LIBS)
+tests/test-M_LN2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_LN2$(EXEEXT): $(tests_test_M_LN2_OBJECTS) $(tests_test_M_LN2_DEPENDENCIES) $(EXTRA_tests_test_M_LN2_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_LN2$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_LN2_OBJECTS) $(tests_test_M_LN2_LDADD) $(LIBS)
+tests/test-M_LNPI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_LNPI$(EXEEXT): $(tests_test_M_LNPI_OBJECTS) $(tests_test_M_LNPI_DEPENDENCIES) $(EXTRA_tests_test_M_LNPI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_LNPI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_LNPI_OBJECTS) $(tests_test_M_LNPI_LDADD) $(LIBS)
+tests/test-M_LOG10E_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_LOG10E$(EXEEXT): $(tests_test_M_LOG10E_OBJECTS) $(tests_test_M_LOG10E_DEPENDENCIES) $(EXTRA_tests_test_M_LOG10E_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_LOG10E$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_LOG10E_OBJECTS) $(tests_test_M_LOG10E_LDADD) $(LIBS)
+tests/test-M_LOG2E_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_LOG2E$(EXEEXT): $(tests_test_M_LOG2E_OBJECTS) $(tests_test_M_LOG2E_DEPENDENCIES) $(EXTRA_tests_test_M_LOG2E_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_LOG2E$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_LOG2E_OBJECTS) $(tests_test_M_LOG2E_LDADD) $(LIBS)
+tests/test-M_PI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_PI$(EXEEXT): $(tests_test_M_PI_OBJECTS) $(tests_test_M_PI_DEPENDENCIES) $(EXTRA_tests_test_M_PI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_PI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_PI_OBJECTS) $(tests_test_M_PI_LDADD) $(LIBS)
+tests/test-M_PI_2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_PI_2$(EXEEXT): $(tests_test_M_PI_2_OBJECTS) $(tests_test_M_PI_2_DEPENDENCIES) $(EXTRA_tests_test_M_PI_2_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_PI_2$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_PI_2_OBJECTS) $(tests_test_M_PI_2_LDADD) $(LIBS)
+tests/test-M_PI_4_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_PI_4$(EXEEXT): $(tests_test_M_PI_4_OBJECTS) $(tests_test_M_PI_4_DEPENDENCIES) $(EXTRA_tests_test_M_PI_4_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_PI_4$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_PI_4_OBJECTS) $(tests_test_M_PI_4_LDADD) $(LIBS)
+tests/test-M_SQRT1_2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_SQRT1_2$(EXEEXT): $(tests_test_M_SQRT1_2_OBJECTS) $(tests_test_M_SQRT1_2_DEPENDENCIES) $(EXTRA_tests_test_M_SQRT1_2_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_SQRT1_2$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_SQRT1_2_OBJECTS) $(tests_test_M_SQRT1_2_LDADD) $(LIBS)
+tests/test-M_SQRT2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_SQRT2$(EXEEXT): $(tests_test_M_SQRT2_OBJECTS) $(tests_test_M_SQRT2_DEPENDENCIES) $(EXTRA_tests_test_M_SQRT2_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_SQRT2$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_SQRT2_OBJECTS) $(tests_test_M_SQRT2_LDADD) $(LIBS)
+tests/test-M_SQRT3_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_SQRT3$(EXEEXT): $(tests_test_M_SQRT3_OBJECTS) $(tests_test_M_SQRT3_DEPENDENCIES) $(EXTRA_tests_test_M_SQRT3_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_SQRT3$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_SQRT3_OBJECTS) $(tests_test_M_SQRT3_LDADD) $(LIBS)
+tests/test-M_SQRTPI_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-M_SQRTPI$(EXEEXT): $(tests_test_M_SQRTPI_OBJECTS) $(tests_test_M_SQRTPI_DEPENDENCIES) $(EXTRA_tests_test_M_SQRTPI_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-M_SQRTPI$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_M_SQRTPI_OBJECTS) $(tests_test_M_SQRTPI_LDADD) $(LIBS)
+tests/test-__builtin_fma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_fma$(EXEEXT): $(tests_test___builtin_fma_OBJECTS) $(tests_test___builtin_fma_DEPENDENCIES) $(EXTRA_tests_test___builtin_fma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_fma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_fma_OBJECTS) $(tests_test___builtin_fma_LDADD) $(LIBS)
+tests/test-__builtin_huge_val_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_huge_val$(EXEEXT): $(tests_test___builtin_huge_val_OBJECTS) $(tests_test___builtin_huge_val_DEPENDENCIES) $(EXTRA_tests_test___builtin_huge_val_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_huge_val$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_huge_val_OBJECTS) $(tests_test___builtin_huge_val_LDADD) $(LIBS)
+tests/test-__builtin_inf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_inf$(EXEEXT): $(tests_test___builtin_inf_OBJECTS) $(tests_test___builtin_inf_DEPENDENCIES) $(EXTRA_tests_test___builtin_inf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_inf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_inf_OBJECTS) $(tests_test___builtin_inf_LDADD) $(LIBS)
+tests/test-__builtin_nans_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-__builtin_nans$(EXEEXT): $(tests_test___builtin_nans_OBJECTS) $(tests_test___builtin_nans_DEPENDENCIES) $(EXTRA_tests_test___builtin_nans_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-__builtin_nans$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test___builtin_nans_OBJECTS) $(tests_test___builtin_nans_LDADD) $(LIBS)
+tests/test-abs_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-abs$(EXEEXT): $(tests_test_abs_OBJECTS) $(tests_test_abs_DEPENDENCIES) $(EXTRA_tests_test_abs_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-abs$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_abs_OBJECTS) $(tests_test_abs_LDADD) $(LIBS)
+tests/test-acos_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-acos$(EXEEXT): $(tests_test_acos_OBJECTS) $(tests_test_acos_DEPENDENCIES) $(EXTRA_tests_test_acos_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-acos$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_acos_OBJECTS) $(tests_test_acos_LDADD) $(LIBS)
+tests/test-acosh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-acosh$(EXEEXT): $(tests_test_acosh_OBJECTS) $(tests_test_acosh_DEPENDENCIES) $(EXTRA_tests_test_acosh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-acosh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_acosh_OBJECTS) $(tests_test_acosh_LDADD) $(LIBS)
+tests/test-asin_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-asin$(EXEEXT): $(tests_test_asin_OBJECTS) $(tests_test_asin_DEPENDENCIES) $(EXTRA_tests_test_asin_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-asin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_asin_OBJECTS) $(tests_test_asin_LDADD) $(LIBS)
+tests/test-asinh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-asinh$(EXEEXT): $(tests_test_asinh_OBJECTS) $(tests_test_asinh_DEPENDENCIES) $(EXTRA_tests_test_asinh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-asinh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_asinh_OBJECTS) $(tests_test_asinh_LDADD) $(LIBS)
+tests/test-atan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-atan$(EXEEXT): $(tests_test_atan_OBJECTS) $(tests_test_atan_DEPENDENCIES) $(EXTRA_tests_test_atan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-atan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_atan_OBJECTS) $(tests_test_atan_LDADD) $(LIBS)
+tests/test-atan2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-atan2$(EXEEXT): $(tests_test_atan2_OBJECTS) $(tests_test_atan2_DEPENDENCIES) $(EXTRA_tests_test_atan2_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-atan2$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_atan2_OBJECTS) $(tests_test_atan2_LDADD) $(LIBS)
+tests/test-atanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-atanh$(EXEEXT): $(tests_test_atanh_OBJECTS) $(tests_test_atanh_DEPENDENCIES) $(EXTRA_tests_test_atanh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-atanh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_atanh_OBJECTS) $(tests_test_atanh_LDADD) $(LIBS)
+tests/test-binary-arith_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-binary-arith$(EXEEXT): $(tests_test_binary_arith_OBJECTS) $(tests_test_binary_arith_DEPENDENCIES) $(EXTRA_tests_test_binary_arith_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-binary-arith$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_binary_arith_OBJECTS) $(tests_test_binary_arith_LDADD) $(LIBS)
+tests/test-cbrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-cbrt$(EXEEXT): $(tests_test_cbrt_OBJECTS) $(tests_test_cbrt_DEPENDENCIES) $(EXTRA_tests_test_cbrt_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-cbrt$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_cbrt_OBJECTS) $(tests_test_cbrt_LDADD) $(LIBS)
+tests/test-ceil_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-ceil$(EXEEXT): $(tests_test_ceil_OBJECTS) $(tests_test_ceil_DEPENDENCIES) $(EXTRA_tests_test_ceil_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-ceil$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_ceil_OBJECTS) $(tests_test_ceil_LDADD) $(LIBS)
+tests/test-compare_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-compare$(EXEEXT): $(tests_test_compare_OBJECTS) $(tests_test_compare_DEPENDENCIES) $(EXTRA_tests_test_compare_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-compare$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_compare_OBJECTS) $(tests_test_compare_LDADD) $(LIBS)
+tests/test-comparison-ops_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-comparison-ops$(EXEEXT): $(tests_test_comparison_ops_OBJECTS) $(tests_test_comparison_ops_DEPENDENCIES) $(EXTRA_tests_test_comparison_ops_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-comparison-ops$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_comparison_ops_OBJECTS) $(tests_test_comparison_ops_LDADD) $(LIBS)
+tests/test-copysign_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-copysign$(EXEEXT): $(tests_test_copysign_OBJECTS) $(tests_test_copysign_DEPENDENCIES) $(EXTRA_tests_test_copysign_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-copysign$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_copysign_OBJECTS) $(tests_test_copysign_LDADD) $(LIBS)
+tests/test-cos_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-cos$(EXEEXT): $(tests_test_cos_OBJECTS) $(tests_test_cos_DEPENDENCIES) $(EXTRA_tests_test_cos_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-cos$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_cos_OBJECTS) $(tests_test_cos_LDADD) $(LIBS)
+tests/test-cosh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-cosh$(EXEEXT): $(tests_test_cosh_OBJECTS) $(tests_test_cosh_DEPENDENCIES) $(EXTRA_tests_test_cosh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-cosh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_cosh_OBJECTS) $(tests_test_cosh_LDADD) $(LIBS)
+tests/test-erf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-erf$(EXEEXT): $(tests_test_erf_OBJECTS) $(tests_test_erf_DEPENDENCIES) $(EXTRA_tests_test_erf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-erf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_erf_OBJECTS) $(tests_test_erf_LDADD) $(LIBS)
+tests/test-erfc_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-erfc$(EXEEXT): $(tests_test_erfc_OBJECTS) $(tests_test_erfc_DEPENDENCIES) $(EXTRA_tests_test_erfc_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-erfc$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_erfc_OBJECTS) $(tests_test_erfc_LDADD) $(LIBS)
+tests/test-exponentials_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-exponentials$(EXEEXT): $(tests_test_exponentials_OBJECTS) $(tests_test_exponentials_DEPENDENCIES) $(EXTRA_tests_test_exponentials_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-exponentials$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_exponentials_OBJECTS) $(tests_test_exponentials_LDADD) $(LIBS)
+tests/test-fabs_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fabs$(EXEEXT): $(tests_test_fabs_OBJECTS) $(tests_test_fabs_DEPENDENCIES) $(EXTRA_tests_test_fabs_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fabs$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fabs_OBJECTS) $(tests_test_fabs_LDADD) $(LIBS)
+tests/test-fdim_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fdim$(EXEEXT): $(tests_test_fdim_OBJECTS) $(tests_test_fdim_DEPENDENCIES) $(EXTRA_tests_test_fdim_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fdim$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fdim_OBJECTS) $(tests_test_fdim_LDADD) $(LIBS)
+tests/test-float-to-float_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-float-to-float$(EXEEXT): $(tests_test_float_to_float_OBJECTS) $(tests_test_float_to_float_DEPENDENCIES) $(EXTRA_tests_test_float_to_float_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-float-to-float$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_float_to_float_OBJECTS) $(tests_test_float_to_float_LDADD) $(LIBS)
+tests/test-float-to-int_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-float-to-int$(EXEEXT): $(tests_test_float_to_int_OBJECTS) $(tests_test_float_to_int_DEPENDENCIES) $(EXTRA_tests_test_float_to_int_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-float-to-int$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_float_to_int_OBJECTS) $(tests_test_float_to_int_LDADD) $(LIBS)
+tests/test-float-to-uint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-float-to-uint$(EXEEXT): $(tests_test_float_to_uint_OBJECTS) $(tests_test_float_to_uint_DEPENDENCIES) $(EXTRA_tests_test_float_to_uint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-float-to-uint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_float_to_uint_OBJECTS) $(tests_test_float_to_uint_LDADD) $(LIBS)
+tests/test-floor_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-floor$(EXEEXT): $(tests_test_floor_OBJECTS) $(tests_test_floor_DEPENDENCIES) $(EXTRA_tests_test_floor_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-floor$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_floor_OBJECTS) $(tests_test_floor_LDADD) $(LIBS)
+tests/test-fma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fma$(EXEEXT): $(tests_test_fma_OBJECTS) $(tests_test_fma_DEPENDENCIES) $(EXTRA_tests_test_fma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fma_OBJECTS) $(tests_test_fma_LDADD) $(LIBS)
+tests/test-fmax_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmax$(EXEEXT): $(tests_test_fmax_OBJECTS) $(tests_test_fmax_DEPENDENCIES) $(EXTRA_tests_test_fmax_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmax$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmax_OBJECTS) $(tests_test_fmax_LDADD) $(LIBS)
+tests/test-fmin_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmin$(EXEEXT): $(tests_test_fmin_OBJECTS) $(tests_test_fmin_DEPENDENCIES) $(EXTRA_tests_test_fmin_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmin_OBJECTS) $(tests_test_fmin_LDADD) $(LIBS)
+tests/test-fmod_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fmod$(EXEEXT): $(tests_test_fmod_OBJECTS) $(tests_test_fmod_DEPENDENCIES) $(EXTRA_tests_test_fmod_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fmod$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fmod_OBJECTS) $(tests_test_fmod_LDADD) $(LIBS)
+tests/test-fpclassify_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-fpclassify$(EXEEXT): $(tests_test_fpclassify_OBJECTS) $(tests_test_fpclassify_DEPENDENCIES) $(EXTRA_tests_test_fpclassify_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-fpclassify$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_fpclassify_OBJECTS) $(tests_test_fpclassify_LDADD) $(LIBS)
+tests/test-frexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-frexp$(EXEEXT): $(tests_test_frexp_OBJECTS) $(tests_test_frexp_DEPENDENCIES) $(EXTRA_tests_test_frexp_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-frexp$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_frexp_OBJECTS) $(tests_test_frexp_LDADD) $(LIBS)
+tests/test-huge_val_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-huge_val$(EXEEXT): $(tests_test_huge_val_OBJECTS) $(tests_test_huge_val_DEPENDENCIES) $(EXTRA_tests_test_huge_val_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-huge_val$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_huge_val_OBJECTS) $(tests_test_huge_val_LDADD) $(LIBS)
+tests/test-hypot_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-hypot$(EXEEXT): $(tests_test_hypot_OBJECTS) $(tests_test_hypot_DEPENDENCIES) $(EXTRA_tests_test_hypot_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-hypot$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_hypot_OBJECTS) $(tests_test_hypot_LDADD) $(LIBS)
+tests/test-ilogb_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-ilogb$(EXEEXT): $(tests_test_ilogb_OBJECTS) $(tests_test_ilogb_DEPENDENCIES) $(EXTRA_tests_test_ilogb_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-ilogb$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_ilogb_OBJECTS) $(tests_test_ilogb_LDADD) $(LIBS)
+tests/test-int-to-float_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-int-to-float$(EXEEXT): $(tests_test_int_to_float_OBJECTS) $(tests_test_int_to_float_DEPENDENCIES) $(EXTRA_tests_test_int_to_float_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-int-to-float$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_int_to_float_OBJECTS) $(tests_test_int_to_float_LDADD) $(LIBS)
+tests/test-isfinite_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isfinite$(EXEEXT): $(tests_test_isfinite_OBJECTS) $(tests_test_isfinite_DEPENDENCIES) $(EXTRA_tests_test_isfinite_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isfinite$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isfinite_OBJECTS) $(tests_test_isfinite_LDADD) $(LIBS)
+tests/test-isgreaterlike_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isgreaterlike$(EXEEXT): $(tests_test_isgreaterlike_OBJECTS) $(tests_test_isgreaterlike_DEPENDENCIES) $(EXTRA_tests_test_isgreaterlike_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isgreaterlike$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isgreaterlike_OBJECTS) $(tests_test_isgreaterlike_LDADD) $(LIBS)
+tests/test-isinf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isinf$(EXEEXT): $(tests_test_isinf_OBJECTS) $(tests_test_isinf_DEPENDENCIES) $(EXTRA_tests_test_isinf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isinf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isinf_OBJECTS) $(tests_test_isinf_LDADD) $(LIBS)
+tests/test-isnan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isnan$(EXEEXT): $(tests_test_isnan_OBJECTS) $(tests_test_isnan_DEPENDENCIES) $(EXTRA_tests_test_isnan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isnan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isnan_OBJECTS) $(tests_test_isnan_LDADD) $(LIBS)
+tests/test-isnormal_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-isnormal$(EXEEXT): $(tests_test_isnormal_OBJECTS) $(tests_test_isnormal_DEPENDENCIES) $(EXTRA_tests_test_isnormal_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-isnormal$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_isnormal_OBJECTS) $(tests_test_isnormal_LDADD) $(LIBS)
+tests/test-j0_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-j0$(EXEEXT): $(tests_test_j0_OBJECTS) $(tests_test_j0_DEPENDENCIES) $(EXTRA_tests_test_j0_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-j0$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_j0_OBJECTS) $(tests_test_j0_LDADD) $(LIBS)
+tests/test-j1_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-j1$(EXEEXT): $(tests_test_j1_OBJECTS) $(tests_test_j1_DEPENDENCIES) $(EXTRA_tests_test_j1_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-j1$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_j1_OBJECTS) $(tests_test_j1_LDADD) $(LIBS)
+tests/test-jn_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-jn$(EXEEXT): $(tests_test_jn_OBJECTS) $(tests_test_jn_DEPENDENCIES) $(EXTRA_tests_test_jn_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-jn$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_jn_OBJECTS) $(tests_test_jn_LDADD) $(LIBS)
+tests/test-ldexp_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-ldexp$(EXEEXT): $(tests_test_ldexp_OBJECTS) $(tests_test_ldexp_DEPENDENCIES) $(EXTRA_tests_test_ldexp_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-ldexp$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_ldexp_OBJECTS) $(tests_test_ldexp_LDADD) $(LIBS)
+tests/test-lgamma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lgamma$(EXEEXT): $(tests_test_lgamma_OBJECTS) $(tests_test_lgamma_DEPENDENCIES) $(EXTRA_tests_test_lgamma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lgamma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lgamma_OBJECTS) $(tests_test_lgamma_LDADD) $(LIBS)
+tests/test-lgamma_r_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lgamma_r$(EXEEXT): $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_DEPENDENCIES) $(EXTRA_tests_test_lgamma_r_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lgamma_r$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lgamma_r_OBJECTS) $(tests_test_lgamma_r_LDADD) $(LIBS)
+tests/test-llrint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-llrint$(EXEEXT): $(tests_test_llrint_OBJECTS) $(tests_test_llrint_DEPENDENCIES) $(EXTRA_tests_test_llrint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-llrint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_llrint_OBJECTS) $(tests_test_llrint_LDADD) $(LIBS)
+tests/test-llround_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-llround$(EXEEXT): $(tests_test_llround_OBJECTS) $(tests_test_llround_DEPENDENCIES) $(EXTRA_tests_test_llround_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-llround$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_llround_OBJECTS) $(tests_test_llround_LDADD) $(LIBS)
+tests/test-logarithms_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-logarithms$(EXEEXT): $(tests_test_logarithms_OBJECTS) $(tests_test_logarithms_DEPENDENCIES) $(EXTRA_tests_test_logarithms_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-logarithms$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_logarithms_OBJECTS) $(tests_test_logarithms_LDADD) $(LIBS)
+tests/test-logb_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-logb$(EXEEXT): $(tests_test_logb_OBJECTS) $(tests_test_logb_DEPENDENCIES) $(EXTRA_tests_test_logb_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-logb$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_logb_OBJECTS) $(tests_test_logb_LDADD) $(LIBS)
+tests/test-lrint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lrint$(EXEEXT): $(tests_test_lrint_OBJECTS) $(tests_test_lrint_DEPENDENCIES) $(EXTRA_tests_test_lrint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lrint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lrint_OBJECTS) $(tests_test_lrint_LDADD) $(LIBS)
+tests/test-lround_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-lround$(EXEEXT): $(tests_test_lround_OBJECTS) $(tests_test_lround_DEPENDENCIES) $(EXTRA_tests_test_lround_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-lround$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_lround_OBJECTS) $(tests_test_lround_LDADD) $(LIBS)
+tests/test-max_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-max$(EXEEXT): $(tests_test_max_OBJECTS) $(tests_test_max_DEPENDENCIES) $(EXTRA_tests_test_max_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-max$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_max_OBJECTS) $(tests_test_max_LDADD) $(LIBS)
+tests/test-min_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-min$(EXEEXT): $(tests_test_min_OBJECTS) $(tests_test_min_DEPENDENCIES) $(EXTRA_tests_test_min_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-min$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_min_OBJECTS) $(tests_test_min_LDADD) $(LIBS)
+tests/test-mod_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-mod$(EXEEXT): $(tests_test_mod_OBJECTS) $(tests_test_mod_DEPENDENCIES) $(EXTRA_tests_test_mod_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-mod$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_mod_OBJECTS) $(tests_test_mod_LDADD) $(LIBS)
+tests/test-modf_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-modf$(EXEEXT): $(tests_test_modf_OBJECTS) $(tests_test_modf_DEPENDENCIES) $(EXTRA_tests_test_modf_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-modf$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_modf_OBJECTS) $(tests_test_modf_LDADD) $(LIBS)
+tests/test-nan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nan$(EXEEXT): $(tests_test_nan_OBJECTS) $(tests_test_nan_DEPENDENCIES) $(EXTRA_tests_test_nan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nan_OBJECTS) $(tests_test_nan_LDADD) $(LIBS)
+tests/test-nearbyint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nearbyint$(EXEEXT): $(tests_test_nearbyint_OBJECTS) $(tests_test_nearbyint_DEPENDENCIES) $(EXTRA_tests_test_nearbyint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nearbyint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nearbyint_OBJECTS) $(tests_test_nearbyint_LDADD) $(LIBS)
+tests/test-neg_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-neg$(EXEEXT): $(tests_test_neg_OBJECTS) $(tests_test_neg_DEPENDENCIES) $(EXTRA_tests_test_neg_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-neg$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_neg_OBJECTS) $(tests_test_neg_LDADD) $(LIBS)
+tests/test-nextafter_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nextafter$(EXEEXT): $(tests_test_nextafter_OBJECTS) $(tests_test_nextafter_DEPENDENCIES) $(EXTRA_tests_test_nextafter_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nextafter$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nextafter_OBJECTS) $(tests_test_nextafter_LDADD) $(LIBS)
+tests/test-nexttoward_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-nexttoward$(EXEEXT): $(tests_test_nexttoward_OBJECTS) $(tests_test_nexttoward_DEPENDENCIES) $(EXTRA_tests_test_nexttoward_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-nexttoward$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_nexttoward_OBJECTS) $(tests_test_nexttoward_LDADD) $(LIBS)
+tests/test-pow_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-pow$(EXEEXT): $(tests_test_pow_OBJECTS) $(tests_test_pow_DEPENDENCIES) $(EXTRA_tests_test_pow_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-pow$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_pow_OBJECTS) $(tests_test_pow_LDADD) $(LIBS)
+tests/test-pred_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-pred$(EXEEXT): $(tests_test_pred_OBJECTS) $(tests_test_pred_DEPENDENCIES) $(EXTRA_tests_test_pred_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-pred$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_pred_OBJECTS) $(tests_test_pred_LDADD) $(LIBS)
+tests/test-remainder_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-remainder$(EXEEXT): $(tests_test_remainder_OBJECTS) $(tests_test_remainder_DEPENDENCIES) $(EXTRA_tests_test_remainder_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-remainder$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_remainder_OBJECTS) $(tests_test_remainder_LDADD) $(LIBS)
+tests/test-remquo_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-remquo$(EXEEXT): $(tests_test_remquo_OBJECTS) $(tests_test_remquo_DEPENDENCIES) $(EXTRA_tests_test_remquo_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-remquo$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_remquo_OBJECTS) $(tests_test_remquo_LDADD) $(LIBS)
+tests/test-rint_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-rint$(EXEEXT): $(tests_test_rint_OBJECTS) $(tests_test_rint_DEPENDENCIES) $(EXTRA_tests_test_rint_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-rint$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_rint_OBJECTS) $(tests_test_rint_LDADD) $(LIBS)
+tests/test-round_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-round$(EXEEXT): $(tests_test_round_OBJECTS) $(tests_test_round_DEPENDENCIES) $(EXTRA_tests_test_round_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-round$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_round_OBJECTS) $(tests_test_round_LDADD) $(LIBS)
+tests/test-scalbln_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-scalbln$(EXEEXT): $(tests_test_scalbln_OBJECTS) $(tests_test_scalbln_DEPENDENCIES) $(EXTRA_tests_test_scalbln_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-scalbln$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_scalbln_OBJECTS) $(tests_test_scalbln_LDADD) $(LIBS)
+tests/test-scalbn_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-scalbn$(EXEEXT): $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_DEPENDENCIES) $(EXTRA_tests_test_scalbn_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-scalbn$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_scalbn_OBJECTS) $(tests_test_scalbn_LDADD) $(LIBS)
+tests/test-signbit_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-signbit$(EXEEXT): $(tests_test_signbit_OBJECTS) $(tests_test_signbit_DEPENDENCIES) $(EXTRA_tests_test_signbit_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-signbit$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_signbit_OBJECTS) $(tests_test_signbit_LDADD) $(LIBS)
+tests/test-sin_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sin$(EXEEXT): $(tests_test_sin_OBJECTS) $(tests_test_sin_DEPENDENCIES) $(EXTRA_tests_test_sin_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sin_OBJECTS) $(tests_test_sin_LDADD) $(LIBS)
+tests/test-sinh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sinh$(EXEEXT): $(tests_test_sinh_OBJECTS) $(tests_test_sinh_DEPENDENCIES) $(EXTRA_tests_test_sinh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sinh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sinh_OBJECTS) $(tests_test_sinh_LDADD) $(LIBS)
+tests/test-snan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-snan$(EXEEXT): $(tests_test_snan_OBJECTS) $(tests_test_snan_DEPENDENCIES) $(EXTRA_tests_test_snan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-snan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_snan_OBJECTS) $(tests_test_snan_LDADD) $(LIBS)
+tests/test-sqrt_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-sqrt$(EXEEXT): $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_DEPENDENCIES) $(EXTRA_tests_test_sqrt_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-sqrt$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_sqrt_OBJECTS) $(tests_test_sqrt_LDADD) $(LIBS)
+tests/test-strfromd_unsafe_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-strfromd_unsafe$(EXEEXT): $(tests_test_strfromd_unsafe_OBJECTS) $(tests_test_strfromd_unsafe_DEPENDENCIES) $(EXTRA_tests_test_strfromd_unsafe_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-strfromd_unsafe$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_strfromd_unsafe_OBJECTS) $(tests_test_strfromd_unsafe_LDADD) $(LIBS)
+tests/test-strtod_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-strtod$(EXEEXT): $(tests_test_strtod_OBJECTS) $(tests_test_strtod_DEPENDENCIES) $(EXTRA_tests_test_strtod_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-strtod$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_strtod_OBJECTS) $(tests_test_strtod_LDADD) $(LIBS)
+tests/test-succ_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-succ$(EXEEXT): $(tests_test_succ_OBJECTS) $(tests_test_succ_DEPENDENCIES) $(EXTRA_tests_test_succ_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-succ$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_succ_OBJECTS) $(tests_test_succ_LDADD) $(LIBS)
+tests/test-tan_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-tan$(EXEEXT): $(tests_test_tan_OBJECTS) $(tests_test_tan_DEPENDENCIES) $(EXTRA_tests_test_tan_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-tan$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_tan_OBJECTS) $(tests_test_tan_LDADD) $(LIBS)
+tests/test-tanh_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-tanh$(EXEEXT): $(tests_test_tanh_OBJECTS) $(tests_test_tanh_DEPENDENCIES) $(EXTRA_tests_test_tanh_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-tanh$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_tanh_OBJECTS) $(tests_test_tanh_LDADD) $(LIBS)
+tests/test-tgamma_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-tgamma$(EXEEXT): $(tests_test_tgamma_OBJECTS) $(tests_test_tgamma_DEPENDENCIES) $(EXTRA_tests_test_tgamma_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-tgamma$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_tgamma_OBJECTS) $(tests_test_tgamma_LDADD) $(LIBS)
+tests/test-trunc_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-trunc$(EXEEXT): $(tests_test_trunc_OBJECTS) $(tests_test_trunc_DEPENDENCIES) $(EXTRA_tests_test_trunc_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-trunc$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_trunc_OBJECTS) $(tests_test_trunc_LDADD) $(LIBS)
+tests/test-uint-to-float_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-uint-to-float$(EXEEXT): $(tests_test_uint_to_float_OBJECTS) $(tests_test_uint_to_float_DEPENDENCIES) $(EXTRA_tests_test_uint_to_float_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-uint-to-float$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_uint_to_float_OBJECTS) $(tests_test_uint_to_float_LDADD) $(LIBS)
+tests/test-y0_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-y0$(EXEEXT): $(tests_test_y0_OBJECTS) $(tests_test_y0_DEPENDENCIES) $(EXTRA_tests_test_y0_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-y0$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_y0_OBJECTS) $(tests_test_y0_LDADD) $(LIBS)
+tests/test-y1_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-y1$(EXEEXT): $(tests_test_y1_OBJECTS) $(tests_test_y1_DEPENDENCIES) $(EXTRA_tests_test_y1_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-y1$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_y1_OBJECTS) $(tests_test_y1_LDADD) $(LIBS)
+tests/test-yn_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/test-yn$(EXEEXT): $(tests_test_yn_OBJECTS) $(tests_test_yn_DEPENDENCIES) $(EXTRA_tests_test_yn_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/test-yn$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_test_yn_OBJECTS) $(tests_test_yn_LDADD) $(LIBS)
 tests/tred2-example1_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 tests/tred2_dats.$(OBJEXT): tests/$(am__dirstamp) \
@@ -2103,6 +3451,112 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/arr2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/arr2_sats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_1_PI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_2_PI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_EULER_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_E_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_LN10_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_LN2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_LNPI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_LOG10E_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_LOG2E_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_PI_2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_PI_4_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_PI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRT1_2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRT2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRT3_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_SQRTPI_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_fma_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_inf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-__builtin_nans_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-abs_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-acos_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-acosh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-asin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-asinh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-atanh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-binary-arith_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cbrt_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ceil_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-compare_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-comparison-ops_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-copysign_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cos_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-cosh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-erfc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-exponentials_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fabs_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fdim_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-float-to-float_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-float-to-int_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-float-to-uint_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-floor_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fma_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmax_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fmod_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-fpclassify_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-frexp_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-huge_val_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-hypot_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ilogb_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-int-to-float_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isfinite_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isgreaterlike_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isinf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-isnormal_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j0_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-j1_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-jn_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-ldexp_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lgamma_r_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-llrint_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-llround_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-logarithms_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-logb_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lrint_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-lround_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-max_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-min_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-mod_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-modf_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nearbyint_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-neg_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nextafter_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-nexttoward_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pow_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-pred_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-remainder_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-remquo_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-rint_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-round_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbln_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-scalbn_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-signbit_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sin_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sinh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-snan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-sqrt_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-strtod_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-succ_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tan_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tanh_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-tgamma_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-trunc_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-uint-to-float_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y0_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y1_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-yn_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2_sats.Po@am__quote@ # am--include-marker
@@ -2466,6 +3920,748 @@ recheck: all $(check_PROGRAMS)
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
+tests/test-M_E.log: tests/test-M_E$(EXEEXT)
+	@p='tests/test-M_E$(EXEEXT)'; \
+	b='tests/test-M_E'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_LOG2E.log: tests/test-M_LOG2E$(EXEEXT)
+	@p='tests/test-M_LOG2E$(EXEEXT)'; \
+	b='tests/test-M_LOG2E'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_LOG10E.log: tests/test-M_LOG10E$(EXEEXT)
+	@p='tests/test-M_LOG10E$(EXEEXT)'; \
+	b='tests/test-M_LOG10E'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_SQRT2.log: tests/test-M_SQRT2$(EXEEXT)
+	@p='tests/test-M_SQRT2$(EXEEXT)'; \
+	b='tests/test-M_SQRT2'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_SQRT1_2.log: tests/test-M_SQRT1_2$(EXEEXT)
+	@p='tests/test-M_SQRT1_2$(EXEEXT)'; \
+	b='tests/test-M_SQRT1_2'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_SQRT3.log: tests/test-M_SQRT3$(EXEEXT)
+	@p='tests/test-M_SQRT3$(EXEEXT)'; \
+	b='tests/test-M_SQRT3'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_PI.log: tests/test-M_PI$(EXEEXT)
+	@p='tests/test-M_PI$(EXEEXT)'; \
+	b='tests/test-M_PI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_PI_2.log: tests/test-M_PI_2$(EXEEXT)
+	@p='tests/test-M_PI_2$(EXEEXT)'; \
+	b='tests/test-M_PI_2'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_PI_4.log: tests/test-M_PI_4$(EXEEXT)
+	@p='tests/test-M_PI_4$(EXEEXT)'; \
+	b='tests/test-M_PI_4'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_SQRTPI.log: tests/test-M_SQRTPI$(EXEEXT)
+	@p='tests/test-M_SQRTPI$(EXEEXT)'; \
+	b='tests/test-M_SQRTPI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_2_SQRTPI.log: tests/test-M_2_SQRTPI$(EXEEXT)
+	@p='tests/test-M_2_SQRTPI$(EXEEXT)'; \
+	b='tests/test-M_2_SQRTPI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_1_PI.log: tests/test-M_1_PI$(EXEEXT)
+	@p='tests/test-M_1_PI$(EXEEXT)'; \
+	b='tests/test-M_1_PI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_2_PI.log: tests/test-M_2_PI$(EXEEXT)
+	@p='tests/test-M_2_PI$(EXEEXT)'; \
+	b='tests/test-M_2_PI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_LN10.log: tests/test-M_LN10$(EXEEXT)
+	@p='tests/test-M_LN10$(EXEEXT)'; \
+	b='tests/test-M_LN10'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_LN2.log: tests/test-M_LN2$(EXEEXT)
+	@p='tests/test-M_LN2$(EXEEXT)'; \
+	b='tests/test-M_LN2'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_LNPI.log: tests/test-M_LNPI$(EXEEXT)
+	@p='tests/test-M_LNPI$(EXEEXT)'; \
+	b='tests/test-M_LNPI'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-M_EULER.log: tests/test-M_EULER$(EXEEXT)
+	@p='tests/test-M_EULER$(EXEEXT)'; \
+	b='tests/test-M_EULER'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-int-to-float.log: tests/test-int-to-float$(EXEEXT)
+	@p='tests/test-int-to-float$(EXEEXT)'; \
+	b='tests/test-int-to-float'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-uint-to-float.log: tests/test-uint-to-float$(EXEEXT)
+	@p='tests/test-uint-to-float$(EXEEXT)'; \
+	b='tests/test-uint-to-float'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-float-to-int.log: tests/test-float-to-int$(EXEEXT)
+	@p='tests/test-float-to-int$(EXEEXT)'; \
+	b='tests/test-float-to-int'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-float-to-uint.log: tests/test-float-to-uint$(EXEEXT)
+	@p='tests/test-float-to-uint$(EXEEXT)'; \
+	b='tests/test-float-to-uint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-float-to-float.log: tests/test-float-to-float$(EXEEXT)
+	@p='tests/test-float-to-float$(EXEEXT)'; \
+	b='tests/test-float-to-float'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-binary-arith.log: tests/test-binary-arith$(EXEEXT)
+	@p='tests/test-binary-arith$(EXEEXT)'; \
+	b='tests/test-binary-arith'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-neg.log: tests/test-neg$(EXEEXT)
+	@p='tests/test-neg$(EXEEXT)'; \
+	b='tests/test-neg'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fdim.log: tests/test-fdim$(EXEEXT)
+	@p='tests/test-fdim$(EXEEXT)'; \
+	b='tests/test-fdim'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fma.log: tests/test-fma$(EXEEXT)
+	@p='tests/test-fma$(EXEEXT)'; \
+	b='tests/test-fma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_fma.log: tests/test-__builtin_fma$(EXEEXT)
+	@p='tests/test-__builtin_fma$(EXEEXT)'; \
+	b='tests/test-__builtin_fma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmod.log: tests/test-fmod$(EXEEXT)
+	@p='tests/test-fmod$(EXEEXT)'; \
+	b='tests/test-fmod'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-mod.log: tests/test-mod$(EXEEXT)
+	@p='tests/test-mod$(EXEEXT)'; \
+	b='tests/test-mod'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-remainder.log: tests/test-remainder$(EXEEXT)
+	@p='tests/test-remainder$(EXEEXT)'; \
+	b='tests/test-remainder'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-remquo.log: tests/test-remquo$(EXEEXT)
+	@p='tests/test-remquo$(EXEEXT)'; \
+	b='tests/test-remquo'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-ldexp.log: tests/test-ldexp$(EXEEXT)
+	@p='tests/test-ldexp$(EXEEXT)'; \
+	b='tests/test-ldexp'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-scalbn.log: tests/test-scalbn$(EXEEXT)
+	@p='tests/test-scalbn$(EXEEXT)'; \
+	b='tests/test-scalbn'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-scalbln.log: tests/test-scalbln$(EXEEXT)
+	@p='tests/test-scalbln$(EXEEXT)'; \
+	b='tests/test-scalbln'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-succ.log: tests/test-succ$(EXEEXT)
+	@p='tests/test-succ$(EXEEXT)'; \
+	b='tests/test-succ'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-pred.log: tests/test-pred$(EXEEXT)
+	@p='tests/test-pred$(EXEEXT)'; \
+	b='tests/test-pred'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-abs.log: tests/test-abs$(EXEEXT)
+	@p='tests/test-abs$(EXEEXT)'; \
+	b='tests/test-abs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fabs.log: tests/test-fabs$(EXEEXT)
+	@p='tests/test-fabs$(EXEEXT)'; \
+	b='tests/test-fabs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-copysign.log: tests/test-copysign$(EXEEXT)
+	@p='tests/test-copysign$(EXEEXT)'; \
+	b='tests/test-copysign'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-comparison-ops.log: tests/test-comparison-ops$(EXEEXT)
+	@p='tests/test-comparison-ops$(EXEEXT)'; \
+	b='tests/test-comparison-ops'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-compare.log: tests/test-compare$(EXEEXT)
+	@p='tests/test-compare$(EXEEXT)'; \
+	b='tests/test-compare'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-ceil.log: tests/test-ceil$(EXEEXT)
+	@p='tests/test-ceil$(EXEEXT)'; \
+	b='tests/test-ceil'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-floor.log: tests/test-floor$(EXEEXT)
+	@p='tests/test-floor$(EXEEXT)'; \
+	b='tests/test-floor'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-trunc.log: tests/test-trunc$(EXEEXT)
+	@p='tests/test-trunc$(EXEEXT)'; \
+	b='tests/test-trunc'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nearbyint.log: tests/test-nearbyint$(EXEEXT)
+	@p='tests/test-nearbyint$(EXEEXT)'; \
+	b='tests/test-nearbyint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-rint.log: tests/test-rint$(EXEEXT)
+	@p='tests/test-rint$(EXEEXT)'; \
+	b='tests/test-rint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lrint.log: tests/test-lrint$(EXEEXT)
+	@p='tests/test-lrint$(EXEEXT)'; \
+	b='tests/test-lrint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-llrint.log: tests/test-llrint$(EXEEXT)
+	@p='tests/test-llrint$(EXEEXT)'; \
+	b='tests/test-llrint'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-round.log: tests/test-round$(EXEEXT)
+	@p='tests/test-round$(EXEEXT)'; \
+	b='tests/test-round'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lround.log: tests/test-lround$(EXEEXT)
+	@p='tests/test-lround$(EXEEXT)'; \
+	b='tests/test-lround'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-llround.log: tests/test-llround$(EXEEXT)
+	@p='tests/test-llround$(EXEEXT)'; \
+	b='tests/test-llround'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nextafter.log: tests/test-nextafter$(EXEEXT)
+	@p='tests/test-nextafter$(EXEEXT)'; \
+	b='tests/test-nextafter'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nexttoward.log: tests/test-nexttoward$(EXEEXT)
+	@p='tests/test-nexttoward$(EXEEXT)'; \
+	b='tests/test-nexttoward'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-min.log: tests/test-min$(EXEEXT)
+	@p='tests/test-min$(EXEEXT)'; \
+	b='tests/test-min'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-max.log: tests/test-max$(EXEEXT)
+	@p='tests/test-max$(EXEEXT)'; \
+	b='tests/test-max'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmin.log: tests/test-fmin$(EXEEXT)
+	@p='tests/test-fmin$(EXEEXT)'; \
+	b='tests/test-fmin'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fmax.log: tests/test-fmax$(EXEEXT)
+	@p='tests/test-fmax$(EXEEXT)'; \
+	b='tests/test-fmax'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sqrt.log: tests/test-sqrt$(EXEEXT)
+	@p='tests/test-sqrt$(EXEEXT)'; \
+	b='tests/test-sqrt'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-cbrt.log: tests/test-cbrt$(EXEEXT)
+	@p='tests/test-cbrt$(EXEEXT)'; \
+	b='tests/test-cbrt'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-hypot.log: tests/test-hypot$(EXEEXT)
+	@p='tests/test-hypot$(EXEEXT)'; \
+	b='tests/test-hypot'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-pow.log: tests/test-pow$(EXEEXT)
+	@p='tests/test-pow$(EXEEXT)'; \
+	b='tests/test-pow'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-exponentials.log: tests/test-exponentials$(EXEEXT)
+	@p='tests/test-exponentials$(EXEEXT)'; \
+	b='tests/test-exponentials'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-logarithms.log: tests/test-logarithms$(EXEEXT)
+	@p='tests/test-logarithms$(EXEEXT)'; \
+	b='tests/test-logarithms'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sin.log: tests/test-sin$(EXEEXT)
+	@p='tests/test-sin$(EXEEXT)'; \
+	b='tests/test-sin'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-cos.log: tests/test-cos$(EXEEXT)
+	@p='tests/test-cos$(EXEEXT)'; \
+	b='tests/test-cos'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-tan.log: tests/test-tan$(EXEEXT)
+	@p='tests/test-tan$(EXEEXT)'; \
+	b='tests/test-tan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-asin.log: tests/test-asin$(EXEEXT)
+	@p='tests/test-asin$(EXEEXT)'; \
+	b='tests/test-asin'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-acos.log: tests/test-acos$(EXEEXT)
+	@p='tests/test-acos$(EXEEXT)'; \
+	b='tests/test-acos'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-atan.log: tests/test-atan$(EXEEXT)
+	@p='tests/test-atan$(EXEEXT)'; \
+	b='tests/test-atan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-atan2.log: tests/test-atan2$(EXEEXT)
+	@p='tests/test-atan2$(EXEEXT)'; \
+	b='tests/test-atan2'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-sinh.log: tests/test-sinh$(EXEEXT)
+	@p='tests/test-sinh$(EXEEXT)'; \
+	b='tests/test-sinh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-cosh.log: tests/test-cosh$(EXEEXT)
+	@p='tests/test-cosh$(EXEEXT)'; \
+	b='tests/test-cosh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-tanh.log: tests/test-tanh$(EXEEXT)
+	@p='tests/test-tanh$(EXEEXT)'; \
+	b='tests/test-tanh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-asinh.log: tests/test-asinh$(EXEEXT)
+	@p='tests/test-asinh$(EXEEXT)'; \
+	b='tests/test-asinh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-acosh.log: tests/test-acosh$(EXEEXT)
+	@p='tests/test-acosh$(EXEEXT)'; \
+	b='tests/test-acosh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-atanh.log: tests/test-atanh$(EXEEXT)
+	@p='tests/test-atanh$(EXEEXT)'; \
+	b='tests/test-atanh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-erf.log: tests/test-erf$(EXEEXT)
+	@p='tests/test-erf$(EXEEXT)'; \
+	b='tests/test-erf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-erfc.log: tests/test-erfc$(EXEEXT)
+	@p='tests/test-erfc$(EXEEXT)'; \
+	b='tests/test-erfc'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lgamma.log: tests/test-lgamma$(EXEEXT)
+	@p='tests/test-lgamma$(EXEEXT)'; \
+	b='tests/test-lgamma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-lgamma_r.log: tests/test-lgamma_r$(EXEEXT)
+	@p='tests/test-lgamma_r$(EXEEXT)'; \
+	b='tests/test-lgamma_r'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-tgamma.log: tests/test-tgamma$(EXEEXT)
+	@p='tests/test-tgamma$(EXEEXT)'; \
+	b='tests/test-tgamma'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-j0.log: tests/test-j0$(EXEEXT)
+	@p='tests/test-j0$(EXEEXT)'; \
+	b='tests/test-j0'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-j1.log: tests/test-j1$(EXEEXT)
+	@p='tests/test-j1$(EXEEXT)'; \
+	b='tests/test-j1'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-jn.log: tests/test-jn$(EXEEXT)
+	@p='tests/test-jn$(EXEEXT)'; \
+	b='tests/test-jn'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-y0.log: tests/test-y0$(EXEEXT)
+	@p='tests/test-y0$(EXEEXT)'; \
+	b='tests/test-y0'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-y1.log: tests/test-y1$(EXEEXT)
+	@p='tests/test-y1$(EXEEXT)'; \
+	b='tests/test-y1'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-yn.log: tests/test-yn$(EXEEXT)
+	@p='tests/test-yn$(EXEEXT)'; \
+	b='tests/test-yn'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-modf.log: tests/test-modf$(EXEEXT)
+	@p='tests/test-modf$(EXEEXT)'; \
+	b='tests/test-modf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-frexp.log: tests/test-frexp$(EXEEXT)
+	@p='tests/test-frexp$(EXEEXT)'; \
+	b='tests/test-frexp'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-logb.log: tests/test-logb$(EXEEXT)
+	@p='tests/test-logb$(EXEEXT)'; \
+	b='tests/test-logb'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-ilogb.log: tests/test-ilogb$(EXEEXT)
+	@p='tests/test-ilogb$(EXEEXT)'; \
+	b='tests/test-ilogb'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-nan.log: tests/test-nan$(EXEEXT)
+	@p='tests/test-nan$(EXEEXT)'; \
+	b='tests/test-nan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-snan.log: tests/test-snan$(EXEEXT)
+	@p='tests/test-snan$(EXEEXT)'; \
+	b='tests/test-snan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-huge_val.log: tests/test-huge_val$(EXEEXT)
+	@p='tests/test-huge_val$(EXEEXT)'; \
+	b='tests/test-huge_val'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_nans.log: tests/test-__builtin_nans$(EXEEXT)
+	@p='tests/test-__builtin_nans$(EXEEXT)'; \
+	b='tests/test-__builtin_nans'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_huge_val.log: tests/test-__builtin_huge_val$(EXEEXT)
+	@p='tests/test-__builtin_huge_val$(EXEEXT)'; \
+	b='tests/test-__builtin_huge_val'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-__builtin_inf.log: tests/test-__builtin_inf$(EXEEXT)
+	@p='tests/test-__builtin_inf$(EXEEXT)'; \
+	b='tests/test-__builtin_inf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-fpclassify.log: tests/test-fpclassify$(EXEEXT)
+	@p='tests/test-fpclassify$(EXEEXT)'; \
+	b='tests/test-fpclassify'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isfinite.log: tests/test-isfinite$(EXEEXT)
+	@p='tests/test-isfinite$(EXEEXT)'; \
+	b='tests/test-isfinite'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isinf.log: tests/test-isinf$(EXEEXT)
+	@p='tests/test-isinf$(EXEEXT)'; \
+	b='tests/test-isinf'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isnan.log: tests/test-isnan$(EXEEXT)
+	@p='tests/test-isnan$(EXEEXT)'; \
+	b='tests/test-isnan'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isnormal.log: tests/test-isnormal$(EXEEXT)
+	@p='tests/test-isnormal$(EXEEXT)'; \
+	b='tests/test-isnormal'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-signbit.log: tests/test-signbit$(EXEEXT)
+	@p='tests/test-signbit$(EXEEXT)'; \
+	b='tests/test-signbit'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-isgreaterlike.log: tests/test-isgreaterlike$(EXEEXT)
+	@p='tests/test-isgreaterlike$(EXEEXT)'; \
+	b='tests/test-isgreaterlike'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-strtod.log: tests/test-strtod$(EXEEXT)
+	@p='tests/test-strtod$(EXEEXT)'; \
+	b='tests/test-strtod'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/test-strfromd_unsafe.log: tests/test-strfromd_unsafe$(EXEEXT)
+	@p='tests/test-strfromd_unsafe$(EXEEXT)'; \
+	b='tests/test-strfromd_unsafe'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 tests/tred2-example1.log: tests/tred2-example1$(EXEEXT)
 	@p='tests/tred2-example1$(EXEEXT)'; \
 	b='tests/tred2-example1'; \
@@ -2726,6 +4922,112 @@ distclean: distclean-am
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f tests/$(DEPDIR)/arr2_dats.Po
 	-rm -f tests/$(DEPDIR)/arr2_sats.Po
+	-rm -f tests/$(DEPDIR)/test-M_1_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_2_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_EULER_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LN10_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LN2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LNPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LOG10E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LOG2E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_4_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT1_2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT3_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_fma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po
+	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-acos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-acosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-asin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-asinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-binary-arith_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ceil_dats.Po
+	-rm -f tests/$(DEPDIR)/test-compare_dats.Po
+	-rm -f tests/$(DEPDIR)/test-comparison-ops_dats.Po
+	-rm -f tests/$(DEPDIR)/test-copysign_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-exponentials_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-int_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-uint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fpclassify_dats.Po
+	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isgreaterlike_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po
+	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
+	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
+	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ldexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llrint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llround_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logarithms_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lrint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lround_dats.Po
+	-rm -f tests/$(DEPDIR)/test-max_dats.Po
+	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-mod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-modf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nextafter_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nexttoward_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-remainder_dats.Po
+	-rm -f tests/$(DEPDIR)/test-remquo_dats.Po
+	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-round_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-signbit_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-snan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-trunc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-uint-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
+	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
+	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_sats.Po
@@ -2784,6 +5086,112 @@ maintainer-clean: maintainer-clean-am
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f tests/$(DEPDIR)/arr2_dats.Po
 	-rm -f tests/$(DEPDIR)/arr2_sats.Po
+	-rm -f tests/$(DEPDIR)/test-M_1_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_2_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_EULER_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LN10_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LN2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LNPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LOG10E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_LOG2E_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_4_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_PI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT1_2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRT3_dats.Po
+	-rm -f tests/$(DEPDIR)/test-M_SQRTPI_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_fma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_inf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-__builtin_nans_dats.Po
+	-rm -f tests/$(DEPDIR)/test-abs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-acos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-acosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-asin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-asinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atan2_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-atanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-binary-arith_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cbrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ceil_dats.Po
+	-rm -f tests/$(DEPDIR)/test-compare_dats.Po
+	-rm -f tests/$(DEPDIR)/test-comparison-ops_dats.Po
+	-rm -f tests/$(DEPDIR)/test-copysign_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cos_dats.Po
+	-rm -f tests/$(DEPDIR)/test-cosh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-erfc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-exponentials_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fabs_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fdim_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-int_dats.Po
+	-rm -f tests/$(DEPDIR)/test-float-to-uint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-floor_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmax_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fmod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-fpclassify_dats.Po
+	-rm -f tests/$(DEPDIR)/test-frexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-huge_val_dats.Po
+	-rm -f tests/$(DEPDIR)/test-hypot_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ilogb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-int-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isfinite_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isgreaterlike_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isinf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-isnormal_dats.Po
+	-rm -f tests/$(DEPDIR)/test-j0_dats.Po
+	-rm -f tests/$(DEPDIR)/test-j1_dats.Po
+	-rm -f tests/$(DEPDIR)/test-jn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-ldexp_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lgamma_r_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llrint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-llround_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logarithms_dats.Po
+	-rm -f tests/$(DEPDIR)/test-logb_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lrint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-lround_dats.Po
+	-rm -f tests/$(DEPDIR)/test-max_dats.Po
+	-rm -f tests/$(DEPDIR)/test-min_dats.Po
+	-rm -f tests/$(DEPDIR)/test-mod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-modf_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nearbyint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-neg_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nextafter_dats.Po
+	-rm -f tests/$(DEPDIR)/test-nexttoward_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pow_dats.Po
+	-rm -f tests/$(DEPDIR)/test-pred_dats.Po
+	-rm -f tests/$(DEPDIR)/test-remainder_dats.Po
+	-rm -f tests/$(DEPDIR)/test-remquo_dats.Po
+	-rm -f tests/$(DEPDIR)/test-rint_dats.Po
+	-rm -f tests/$(DEPDIR)/test-round_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbln_dats.Po
+	-rm -f tests/$(DEPDIR)/test-scalbn_dats.Po
+	-rm -f tests/$(DEPDIR)/test-signbit_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sin_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sinh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-snan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-sqrt_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strfromd_unsafe_dats.Po
+	-rm -f tests/$(DEPDIR)/test-strtod_dats.Po
+	-rm -f tests/$(DEPDIR)/test-succ_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tan_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tanh_dats.Po
+	-rm -f tests/$(DEPDIR)/test-tgamma_dats.Po
+	-rm -f tests/$(DEPDIR)/test-trunc_dats.Po
+	-rm -f tests/$(DEPDIR)/test-uint-to-float_dats.Po
+	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
+	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
+	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_sats.Po
