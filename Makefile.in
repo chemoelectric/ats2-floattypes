@@ -675,22 +675,25 @@ tests_test_yn_SOURCES = tests/test-yn_dats.c
 tests_test_yn_OBJECTS = tests/test-yn_dats.$(OBJEXT)
 tests_test_yn_LDADD = $(LDADD)
 tests_test_yn_DEPENDENCIES = $(lib_LTLIBRARIES)
-am_tests_tred2_example1_OBJECTS = tests/tred2-example1_dats.$(OBJEXT) \
-	tests/tred2_dats.$(OBJEXT) tests/tred2_sats.$(OBJEXT) \
-	tests/arr2_dats.$(OBJEXT) tests/arr2_sats.$(OBJEXT)
-tests_tred2_example1_OBJECTS = $(am_tests_tred2_example1_OBJECTS)
+nodist_tests_tred2_example1_OBJECTS =  \
+	tests/tred2-example1_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
+	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
+	tests/arr2_sats.$(OBJEXT)
+tests_tred2_example1_OBJECTS = $(nodist_tests_tred2_example1_OBJECTS)
 tests_tred2_example1_LDADD = $(LDADD)
 tests_tred2_example1_DEPENDENCIES = $(lib_LTLIBRARIES)
-am_tests_tred2_example2_OBJECTS = tests/tred2-example2_dats.$(OBJEXT) \
-	tests/tred2_dats.$(OBJEXT) tests/tred2_sats.$(OBJEXT) \
-	tests/arr2_dats.$(OBJEXT) tests/arr2_sats.$(OBJEXT)
-tests_tred2_example2_OBJECTS = $(am_tests_tred2_example2_OBJECTS)
+nodist_tests_tred2_example2_OBJECTS =  \
+	tests/tred2-example2_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
+	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
+	tests/arr2_sats.$(OBJEXT)
+tests_tred2_example2_OBJECTS = $(nodist_tests_tred2_example2_OBJECTS)
 tests_tred2_example2_LDADD = $(LDADD)
 tests_tred2_example2_DEPENDENCIES = $(lib_LTLIBRARIES)
-am_tests_tred2_example3_OBJECTS = tests/tred2-example3_dats.$(OBJEXT) \
-	tests/tred2_dats.$(OBJEXT) tests/tred2_sats.$(OBJEXT) \
-	tests/arr2_dats.$(OBJEXT) tests/arr2_sats.$(OBJEXT)
-tests_tred2_example3_OBJECTS = $(am_tests_tred2_example3_OBJECTS)
+nodist_tests_tred2_example3_OBJECTS =  \
+	tests/tred2-example3_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
+	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
+	tests/arr2_sats.$(OBJEXT)
+tests_tred2_example3_OBJECTS = $(nodist_tests_tred2_example3_OBJECTS)
 tests_tred2_example3_LDADD = $(LDADD)
 tests_tred2_example3_DEPENDENCIES = $(lib_LTLIBRARIES)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -895,9 +898,9 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
 	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
 	tests/test-y1_dats.c tests/test-yn_dats.c \
-	$(tests_tred2_example1_SOURCES) \
-	$(tests_tred2_example2_SOURCES) \
-	$(tests_tred2_example3_SOURCES)
+	$(nodist_tests_tred2_example1_SOURCES) \
+	$(nodist_tests_tred2_example2_SOURCES) \
+	$(nodist_tests_tred2_example3_SOURCES)
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
 	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
@@ -952,10 +955,7 @@ DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-tan_dats.c tests/test-tanh_dats.c \
 	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
 	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
-	tests/test-y1_dats.c tests/test-yn_dats.c \
-	$(tests_tred2_example1_SOURCES) \
-	$(tests_tred2_example2_SOURCES) \
-	$(tests_tred2_example3_SOURCES)
+	tests/test-y1_dats.c tests/test-yn_dats.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -2584,9 +2584,10 @@ BUILT_SOURCES = floattypes/CATS/printing.cats \
 	floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes.dats \
 	floattypes/DATS/floattypes_dats.c $(UNIT_TESTS:%=%.dats) \
-	$(check_PROGRAMS:%=%_dats.c) $(tests_tred2_example1_SOURCES) \
-	$(tests_tred2_example2_SOURCES) \
-	$(tests_tred2_example3_SOURCES)
+	$(check_PROGRAMS:%=%_dats.c) \
+	$(nodist_tests_tred2_example1_SOURCES) \
+	$(nodist_tests_tred2_example2_SOURCES) \
+	$(nodist_tests_tred2_example3_SOURCES)
 TESTS = $(check_PROGRAMS)
 LDADD = $(lib_LTLIBRARIES)
 MOSTLYCLEANFILES = 
@@ -2598,6 +2599,7 @@ AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
 EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
+	examples/tred2-example2.dats examples/tred2-example3.dats \
 	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
 	examples/arr2.dats
 
@@ -2655,13 +2657,13 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 	tests/test-isnormal tests/test-signbit \
 	tests/test-isgreaterlike tests/test-strtod \
 	tests/test-strfromd_unsafe
-tests_tred2_example1_SOURCES = tests/tred2-example1_dats.c \
+nodist_tests_tred2_example1_SOURCES = tests/tred2-example1_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
-tests_tred2_example2_SOURCES = tests/tred2-example2_dats.c \
+nodist_tests_tred2_example2_SOURCES = tests/tred2-example2_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
-tests_tred2_example3_SOURCES = tests/tred2-example3_dats.c \
+nodist_tests_tred2_example3_SOURCES = tests/tred2-example3_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
 
