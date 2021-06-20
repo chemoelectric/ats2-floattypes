@@ -74,7 +74,7 @@ main0 () =
     overload [] with get2 of 1000
     overload [] with put2 of 1000
 
-    var a : array(flt, DIM2) =
+    var a : @[flt][DIM2] =
       @[flt][DIM2] ((* Column 1 *)
                     $extval(flt,"0.3839264F128"),
                     $extval(flt,"0.1711146F128"),
@@ -106,9 +106,9 @@ main0 () =
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.92236538F128"))
 
-    var d : array(flt, DIM1) = @[flt][DIM1] (nan(""))
-    var e : array(flt, DIM1) = @[flt][DIM1] (nan(""))
-    var z : array(flt, DIM2) = @[flt][DIM2] (nan(""))
+    var d : @[flt][DIM1] = @[flt][DIM1] (nan(""))
+    var e : @[flt][DIM1] = @[flt][DIM1] (nan(""))
+    var z : @[flt][DIM2] = @[flt][DIM2] (nan(""))
 
     var i : [i : nat | i <= DIM1] size_t i
   in
