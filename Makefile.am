@@ -45,21 +45,6 @@ DISTCLEANFILES += floattypes/HATS/config.hats
 
 ######################################################################
 
-nobase_nodist_doc_DATA =
-nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
-
-EXAMPLES_SRC =
-EXAMPLES_SRC += examples/GNUmakefile
-EXAMPLES_SRC += examples/tred2-example1.dats
-EXAMPLES_SRC += examples/tred2-example2.dats
-EXAMPLES_SRC += examples/tred2-example3.dats
-EXAMPLES_SRC += examples/tred2.sats
-EXAMPLES_SRC += examples/tred2.dats
-EXAMPLES_SRC += examples/arr2.sats
-EXAMPLES_SRC += examples/arr2.dats
-
-######################################################################
-
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES =
 libats2_floattypes_la_SOURCES += floattypes/SATS/floattypes_sats.c
@@ -288,6 +273,21 @@ $(check_PROGRAMS): floattypes/HATS/floattypes.hats \
 
 clean-local:
 	-rm -f tests/*{.dats,_dats.{c,$(OBJEXT)}}
+
+######################################################################
+
+nobase_nodist_doc_DATA =
+nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
+
+EXAMPLES_SRC =
+EXAMPLES_SRC += examples/GNUmakefile
+EXAMPLES_SRC += examples/tred2-example1.dats
+EXAMPLES_SRC += examples/tred2-example2.dats
+EXAMPLES_SRC += examples/tred2-example3.dats
+EXAMPLES_SRC += examples/tred2.sats
+EXAMPLES_SRC += examples/tred2.dats
+EXAMPLES_SRC += examples/arr2.sats
+EXAMPLES_SRC += examples/arr2.dats
 
 ######################################################################
 

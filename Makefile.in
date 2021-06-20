@@ -2597,13 +2597,6 @@ ACLOCAL_AMFLAGS = -I m4 --install
 AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
 ######################################################################
-nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
-EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
-	examples/tred2-example2.dats examples/tred2-example3.dats \
-	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
-	examples/arr2.dats
-
-######################################################################
 lib_LTLIBRARIES = libats2-floattypes.la
 libats2_floattypes_la_SOURCES = floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes_dats.c
@@ -2666,6 +2659,13 @@ nodist_tests_tred2_example2_SOURCES = tests/tred2-example2_dats.c \
 nodist_tests_tred2_example3_SOURCES = tests/tred2-example3_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
+
+######################################################################
+nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
+EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
+	examples/tred2-example2.dats examples/tred2-example3.dats \
+	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
+	examples/arr2.dats
 
 ######################################################################
 # It is assumed here that you have PATSHOME set in your environment.
