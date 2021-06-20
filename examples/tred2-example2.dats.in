@@ -1,0 +1,209 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+
+#include "floattypes/HATS/floattypes.hats"
+
+staload "arr2.sats"
+staload _ = "arr2.dats"
+
+staload "tred2.sats"
+staload _ = "tred2.dats"
+
+macdef f2f = g0float2float
+
+typedef flt = float128
+
+fn
+tred2_float128 {nm, n : nat | n <= nm}
+               {na    : int | nm * n <= na}
+               {nd    : int | n <= nd}
+               {ne    : int | n <= ne}
+               {nz    : int | nm * n <= nz}
+               (nm    : size_t nm,
+                n     : size_t n,
+                a     : &array(float128, na),
+                d     : &array(float128, nd),
+                e     : &array(float128, ne),
+                z     : &array(float128, nz)) : void =
+  tred2<float128_kind>(nm, n, a, d, e, z)
+
+implement
+main0 () =
+  let
+    #define DIM1 5
+    #define DIM2 25
+    prval _ = prop_verify {DIM1 * DIM1 == DIM2} ()
+
+    fn {}
+    get2 {narr : int | DIM2 <= narr}
+         {i, j : int | i < DIM1; j < DIM1}
+         (arr  : &(@[INV(flt)][narr]),
+          i    : size_t i,
+          j    : size_t j) :<> flt =
+      arr2get<flt> {DIM1, DIM1} (i2sz DIM1, arr, i, j)
+
+    fn {}
+    put2 {narr : int | DIM2 <= narr}
+         {i, j : int | i < DIM1; j < DIM1}
+         (arr  : &(@[INV(flt)][narr]),
+          i    : size_t i,
+          j    : size_t j,
+          x    : flt) :<!wrt> void =
+      arr2put<flt> {DIM1, DIM1} (i2sz DIM1, arr, i, j, x)
+
+    overload [] with get2 of 1000
+    overload [] with put2 of 1000
+
+    var a : @[flt][DIM2] =
+      @[flt][DIM2] ((* Column 1 *)
+                    $extval(flt,"0.3839264F128"),
+                    $extval(flt,"0.1711146F128"),
+                    $extval(flt,"0.14420449F128"),
+                    $extval(flt,"0.20215693F128"),
+                    $extval(flt,"0.25734144F128"),
+                    (* Column 2 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.7542493F128"),
+                    $extval(flt,"0.28689129F128"),
+                    $extval(flt,"0.36993965F128"),
+                    $extval(flt,"0.01083637F128"),
+                    (* Column 3 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.69339598F128"),
+                    $extval(flt,"0.21283682F128"),
+                    $extval(flt,"0.41502065F128"),
+                    (* Column 4 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.33183608F128"),
+                    $extval(flt,"0.90604563F128"),
+                    (* Column 5 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.92236538F128"))
+
+    var d : @[flt][DIM1] = @[flt][DIM1] (nan(""))
+    var e : @[flt][DIM1] = @[flt][DIM1] (nan(""))
+
+    (* Use the same array for output as for input. *)
+    macdef z = a
+
+    var d_approx : @[flt][DIM1] =
+      @[flt][DIM1] ($extval(flt,"0.42257370F128"),
+                    $extval(flt,"0.32685799F128"),
+                    $extval(flt,"0.74074110F128"),
+                    $extval(flt,"0.67323492F128"),
+                    $extval(flt,"0.92236537F128"))
+    var e_approx : @[flt][DIM1] =
+      @[flt][DIM1] ($extval(flt,"0.00000000F128"),
+                    $extval(flt,"-0.06061490F128"),
+                    $extval(flt,"0.13558706F128"),
+                    $extval(flt,"0.58589646F128"),
+                    $extval(flt,"-1.02932156F128"))
+    var z_approx : @[flt][DIM2] =
+      @[flt][DIM2] ((* Column 1 *)
+                    $extval(flt,"0.52708373F128"),
+                    $extval(flt,"0.26542373F128"),
+                    $extval(flt,"-0.78088769F128"),
+                    $extval(flt,"0.20481066F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 2 *)
+                    $extval(flt,"0.76146470F128"),
+                    $extval(flt,"-0.49433399F128"),
+                    $extval(flt,"0.25958859F128"),
+                    $extval(flt,"-0.32927068F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 3 *)
+                    $extval(flt,"-0.28257545F128"),
+                    $extval(flt,"-0.82769156F128"),
+                    $extval(flt,"-0.40032406F128"),
+                    $extval(flt,"0.27352960F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 4 *)
+                    $extval(flt,"-0.25001074F128"),
+                    $extval(flt,"-0.01052768F128"),
+                    $extval(flt,"-0.40319825F128"),
+                    $extval(flt,"-0.88023575F128"),
+                    $extval(flt,"0.00000000F128"),
+                    (* Column 5 *)
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"0.00000000F128"),
+                    $extval(flt,"1.00000000F128"))
+
+    var i : [i : nat | i <= DIM1] size_t i
+
+    val tolerance = $extval(flt, "0.0000001F128")
+  in
+    tred2_float128 (i2sz DIM1, i2sz DIM1, a, d, e, z);
+
+    print!("a =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      let
+        var j : [j : nat | j <= DIM1] size_t j
+      in
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
+          print!("\t", a[i,j]);
+        println!()
+      end;
+
+    println!();
+
+    print!("d =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      begin
+        print!("\t", d[i]);
+        assertloc (abs(d[i] - d_approx[i]) <= tolerance)
+      end;
+    println!();
+
+    println!();
+
+    print!("e =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      begin
+        print!("\t", e[i]);
+        assertloc (abs(e[i] - e_approx[i]) <= tolerance)
+      end;
+    println!();
+
+    println!();
+
+    print!("z =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      let
+        var j : [j : nat | j <= DIM1] size_t j
+      in
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
+          begin
+            print!("\t", z[i,j]);
+            assertloc (abs(z[i,j] - z_approx[i,j]) <= tolerance)
+          end;
+        println!()
+      end
+  end

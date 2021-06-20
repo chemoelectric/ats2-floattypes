@@ -249,6 +249,8 @@ UNIT_TESTS += tests/test-strfromd_unsafe
 
 check_PROGRAMS += $(UNIT_TESTS)
 check_PROGRAMS += tests/tred2-example1
+check_PROGRAMS += tests/tred2-example2
+check_PROGRAMS += tests/tred2-example3
 
 tests_tred2_example1_SOURCES =
 tests_tred2_example1_SOURCES += tests/tred2-example1_dats.c
@@ -257,11 +259,27 @@ tests_tred2_example1_SOURCES += tests/tred2_sats.c
 tests_tred2_example1_SOURCES += tests/arr2_dats.c
 tests_tred2_example1_SOURCES += tests/arr2_sats.c
 
+tests_tred2_example2_SOURCES =
+tests_tred2_example2_SOURCES += tests/tred2-example2_dats.c
+tests_tred2_example2_SOURCES += tests/tred2_dats.c
+tests_tred2_example2_SOURCES += tests/tred2_sats.c
+tests_tred2_example2_SOURCES += tests/arr2_dats.c
+tests_tred2_example2_SOURCES += tests/arr2_sats.c
+
+tests_tred2_example3_SOURCES =
+tests_tred2_example3_SOURCES += tests/tred2-example3_dats.c
+tests_tred2_example3_SOURCES += tests/tred2_dats.c
+tests_tred2_example3_SOURCES += tests/tred2_sats.c
+tests_tred2_example3_SOURCES += tests/arr2_dats.c
+tests_tred2_example3_SOURCES += tests/arr2_sats.c
+
 EXTRA_DIST += $(UNIT_TESTS:%=%.dats.m4)
 
 BUILT_SOURCES += $(UNIT_TESTS:%=%.dats)
 BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
 BUILT_SOURCES += $(tests_tred2_example1_SOURCES)
+BUILT_SOURCES += $(tests_tred2_example2_SOURCES)
+BUILT_SOURCES += $(tests_tred2_example3_SOURCES)
 
 $(check_PROGRAMS): floattypes/HATS/floattypes.hats \
 					$(lib_LTLIBRARIES)
