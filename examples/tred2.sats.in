@@ -58,14 +58,14 @@ along with this program. If not, see
  *    a and z may coincide. If distinct, a is unaltered.
  *)
 fn {tk : tkind}
-tred2 {nm, n : nat | n <= nm}
+tred2 {nm, n : int | n <= nm}
       {na    : int | nm * n <= na}
       {nd    : int | n <= nd}
       {ne    : int | n <= ne}
       {nz    : int | nm * n <= nz}
       (nm    : size_t nm,
        n     : size_t n,
-       a     : &array(g0float(tk), na),
-       d     : &array(g0float(tk), nd),
-       e     : &array(g0float(tk), ne),
-       z     : &array(g0float(tk), nz)) : void
+       a     : &(@[INV(g0float(tk))][na]),
+       d     : &(@[INV(g0float(tk))][nd]),
+       e     : &(@[INV(g0float(tk))][ne]),
+       z     : &(@[INV(g0float(tk))][nz])) :<!wrt> void

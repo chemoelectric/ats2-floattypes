@@ -185,9 +185,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
-	ats2-floattypes.pc examples/GNUmakefile examples/proofs.sats \
-	examples/proofs.dats examples/array2d.sats \
-	examples/array2d.dats examples/tred2.sats examples/tred2.dats \
+	ats2-floattypes.pc examples/GNUmakefile examples/arr2.sats \
+	examples/arr2.dats examples/tred2.sats examples/tred2.dats \
 	examples/tred2-example.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -1141,10 +1140,8 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/missing \
 	$(top_srcdir)/build-aux/test-driver \
 	$(top_srcdir)/examples/GNUmakefile.in \
-	$(top_srcdir)/examples/array2d.dats.in \
-	$(top_srcdir)/examples/array2d.sats.in \
-	$(top_srcdir)/examples/proofs.dats.in \
-	$(top_srcdir)/examples/proofs.sats.in \
+	$(top_srcdir)/examples/arr2.dats.in \
+	$(top_srcdir)/examples/arr2.sats.in \
 	$(top_srcdir)/examples/tred2-example.dats.in \
 	$(top_srcdir)/examples/tred2.dats.in \
 	$(top_srcdir)/examples/tred2.sats.in AUTHORS COPYING INSTALL \
@@ -2644,13 +2641,9 @@ ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.i
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/proofs.sats: $(top_builddir)/config.status $(top_srcdir)/examples/proofs.sats.in
+examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/proofs.dats: $(top_builddir)/config.status $(top_srcdir)/examples/proofs.dats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/array2d.sats: $(top_builddir)/config.status $(top_srcdir)/examples/array2d.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/array2d.dats: $(top_builddir)/config.status $(top_srcdir)/examples/array2d.dats.in
+examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

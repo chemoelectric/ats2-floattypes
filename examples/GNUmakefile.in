@@ -14,9 +14,8 @@ PATSCC := patscc
 PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
 tred2-example: tred2-example.dats \
-				tred2.dats tred2.sats \
-				array2d.dats array2d.sats \
-				proofs.dats proofs.sats
+				tred2.sats tred2.dats \
+				arr2.sats arr2.dats
 	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)
 
 .PHONY: clean

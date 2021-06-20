@@ -107406,13 +107406,13 @@ ac_config_files="$ac_config_files ats2-floattypes.pc"
 
 ac_config_files="$ac_config_files examples/GNUmakefile"
 
-ac_config_files="$ac_config_files examples/proofs.sats"
+#################AC_CONFIG_FILES([examples/proofs.sats])
+#################AC_CONFIG_FILES([examples/proofs.dats])
+#################AC_CONFIG_FILES([examples/array2d.sats])
+#################AC_CONFIG_FILES([examples/array2d.dats])
+ac_config_files="$ac_config_files examples/arr2.sats"
 
-ac_config_files="$ac_config_files examples/proofs.dats"
-
-ac_config_files="$ac_config_files examples/array2d.sats"
-
-ac_config_files="$ac_config_files examples/array2d.dats"
+ac_config_files="$ac_config_files examples/arr2.dats"
 
 ac_config_files="$ac_config_files examples/tred2.sats"
 
@@ -110907,10 +110907,8 @@ do
     "common-macros.m4") CONFIG_FILES="$CONFIG_FILES common-macros.m4" ;;
     "ats2-floattypes.pc") CONFIG_FILES="$CONFIG_FILES ats2-floattypes.pc" ;;
     "examples/GNUmakefile") CONFIG_FILES="$CONFIG_FILES examples/GNUmakefile" ;;
-    "examples/proofs.sats") CONFIG_FILES="$CONFIG_FILES examples/proofs.sats" ;;
-    "examples/proofs.dats") CONFIG_FILES="$CONFIG_FILES examples/proofs.dats" ;;
-    "examples/array2d.sats") CONFIG_FILES="$CONFIG_FILES examples/array2d.sats" ;;
-    "examples/array2d.dats") CONFIG_FILES="$CONFIG_FILES examples/array2d.dats" ;;
+    "examples/arr2.sats") CONFIG_FILES="$CONFIG_FILES examples/arr2.sats" ;;
+    "examples/arr2.dats") CONFIG_FILES="$CONFIG_FILES examples/arr2.dats" ;;
     "examples/tred2.sats") CONFIG_FILES="$CONFIG_FILES examples/tred2.sats" ;;
     "examples/tred2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2.dats" ;;
     "examples/tred2-example.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example.dats" ;;
