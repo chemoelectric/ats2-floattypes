@@ -50,8 +50,11 @@ nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
 
 EXAMPLES_SRC =
 EXAMPLES_SRC += examples/GNUmakefile
+EXAMPLES_SRC += examples/tred2-example1.dats
 EXAMPLES_SRC += examples/tred2.sats
 EXAMPLES_SRC += examples/tred2.dats
+EXAMPLES_SRC += examples/arr2.sats
+EXAMPLES_SRC += examples/arr2.dats
 
 ######################################################################
 

@@ -13,7 +13,7 @@ LIBS := $(shell $(PKGCONFIG_CMD) --libs ats2-floattypes)
 PATSCC := patscc
 PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
-tred2-example: tred2-example.dats \
+tred2-example1: tred2-example1.dats \
 				tred2.sats tred2.dats \
 				arr2.sats arr2.dats
 	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)

@@ -510,11 +510,11 @@ AC_CONFIG_FILES([common-macros.m4])
 AC_CONFIG_FILES([ats2-floattypes.pc])
 
 AC_CONFIG_FILES([examples/GNUmakefile])
-AC_CONFIG_FILES([examples/arr2.sats])
-AC_CONFIG_FILES([examples/arr2.dats])
+AC_CONFIG_FILES([examples/tred2-example1.dats])
 AC_CONFIG_FILES([examples/tred2.sats])
 AC_CONFIG_FILES([examples/tred2.dats])
-AC_CONFIG_FILES([examples/tred2-example.dats])
+AC_CONFIG_FILES([examples/arr2.sats])
+AC_CONFIG_FILES([examples/arr2.dats])
 
 AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   AS_ECHO(['/*']) > floattypes/HATS/config.hats

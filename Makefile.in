@@ -185,9 +185,9 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
-	ats2-floattypes.pc examples/GNUmakefile examples/arr2.sats \
-	examples/arr2.dats examples/tred2.sats examples/tred2.dats \
-	examples/tred2-example.dats
+	ats2-floattypes.pc examples/GNUmakefile \
+	examples/tred2-example1.dats examples/tred2.sats \
+	examples/tred2.dats examples/arr2.sats examples/arr2.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -1142,7 +1142,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/examples/GNUmakefile.in \
 	$(top_srcdir)/examples/arr2.dats.in \
 	$(top_srcdir)/examples/arr2.sats.in \
-	$(top_srcdir)/examples/tred2-example.dats.in \
+	$(top_srcdir)/examples/tred2-example1.dats.in \
 	$(top_srcdir)/examples/tred2.dats.in \
 	$(top_srcdir)/examples/tred2.sats.in AUTHORS COPYING INSTALL \
 	README build-aux/compile build-aux/config.guess \
@@ -2559,8 +2559,9 @@ AUTOMAKE_OPTIONS = foreign subdir-objects -Wno-portability
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
-EXAMPLES_SRC = examples/GNUmakefile examples/tred2.sats \
-	examples/tred2.dats
+EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
+	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
+	examples/arr2.dats
 
 ######################################################################
 lib_LTLIBRARIES = libats2-floattypes.la
@@ -2641,15 +2642,15 @@ ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.i
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
+examples/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/tred2-example.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example.dats.in
+examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 clean-checkPROGRAMS:
