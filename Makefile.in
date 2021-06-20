@@ -109,7 +109,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = $(am__EXEEXT_1) tests/tred2-example1$(EXEEXT) \
-	tests/tred2-example2$(EXEEXT) tests/tred2-example3$(EXEEXT)
+	tests/tred2-example2$(EXEEXT) tests/tred2-example3$(EXEEXT) \
+	tests/tred2-example4$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -131,10 +132,11 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
 	ats2-floattypes.pc examples/GNUmakefile \
 	examples/tred2-example1.dats examples/tred2-example2.dats \
-	examples/tred2-example3.dats examples/tred2.sats \
-	examples/tred2.dats examples/arr2.sats examples/arr2.dats \
-	tests/tred2-example1.dats tests/tred2-example2.dats \
-	tests/tred2-example3.dats tests/tred2.sats tests/tred2.dats \
+	examples/tred2-example3.dats examples/tred2-example4.dats \
+	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
+	examples/arr2.dats tests/tred2-example1.dats \
+	tests/tred2-example2.dats tests/tred2-example3.dats \
+	tests/tred2-example4.dats tests/tred2.sats tests/tred2.dats \
 	tests/arr2.sats tests/arr2.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
@@ -696,6 +698,13 @@ nodist_tests_tred2_example3_OBJECTS =  \
 tests_tred2_example3_OBJECTS = $(nodist_tests_tred2_example3_OBJECTS)
 tests_tred2_example3_LDADD = $(LDADD)
 tests_tred2_example3_DEPENDENCIES = $(lib_LTLIBRARIES)
+nodist_tests_tred2_example4_OBJECTS =  \
+	tests/tred2-example4_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
+	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
+	tests/arr2_sats.$(OBJEXT)
+tests_tred2_example4_OBJECTS = $(nodist_tests_tred2_example4_OBJECTS)
+tests_tred2_example4_LDADD = $(LDADD)
+tests_tred2_example4_DEPENDENCIES = $(lib_LTLIBRARIES)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -823,6 +832,7 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/tred2-example1_dats.Po \
 	tests/$(DEPDIR)/tred2-example2_dats.Po \
 	tests/$(DEPDIR)/tred2-example3_dats.Po \
+	tests/$(DEPDIR)/tred2-example4_dats.Po \
 	tests/$(DEPDIR)/tred2_dats.Po tests/$(DEPDIR)/tred2_sats.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -900,7 +910,8 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-y1_dats.c tests/test-yn_dats.c \
 	$(nodist_tests_tred2_example1_SOURCES) \
 	$(nodist_tests_tred2_example2_SOURCES) \
-	$(nodist_tests_tred2_example3_SOURCES)
+	$(nodist_tests_tred2_example3_SOURCES) \
+	$(nodist_tests_tred2_example4_SOURCES)
 DIST_SOURCES = $(libats2_floattypes_la_SOURCES) \
 	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
 	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
@@ -1180,6 +1191,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/examples/tred2-example1.dats.in \
 	$(top_srcdir)/examples/tred2-example2.dats.in \
 	$(top_srcdir)/examples/tred2-example3.dats.in \
+	$(top_srcdir)/examples/tred2-example4.dats.in \
 	$(top_srcdir)/examples/tred2.dats.in \
 	$(top_srcdir)/examples/tred2.sats.in AUTHORS COPYING INSTALL \
 	README build-aux/compile build-aux/config.guess \
@@ -2587,7 +2599,8 @@ BUILT_SOURCES = floattypes/CATS/printing.cats \
 	$(check_PROGRAMS:%=%_dats.c) \
 	$(nodist_tests_tred2_example1_SOURCES) \
 	$(nodist_tests_tred2_example2_SOURCES) \
-	$(nodist_tests_tred2_example3_SOURCES)
+	$(nodist_tests_tred2_example3_SOURCES) \
+	$(nodist_tests_tred2_example4_SOURCES)
 TESTS = $(check_PROGRAMS)
 LDADD = $(lib_LTLIBRARIES)
 MOSTLYCLEANFILES = 
@@ -2657,6 +2670,9 @@ nodist_tests_tred2_example2_SOURCES = tests/tred2-example2_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
 nodist_tests_tred2_example3_SOURCES = tests/tred2-example3_dats.c \
+	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
+	tests/arr2_sats.c
+nodist_tests_tred2_example4_SOURCES = tests/tred2-example4_dats.c \
 	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
 	tests/arr2_sats.c
 
@@ -2735,6 +2751,8 @@ examples/tred2-example2.dats: $(top_builddir)/config.status $(top_srcdir)/exampl
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example3.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tred2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example4.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
@@ -2748,6 +2766,8 @@ tests/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/
 tests/tred2-example2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example2.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example3.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/tred2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example4.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -3488,6 +3508,12 @@ tests/tred2-example3_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/tred2-example3$(EXEEXT): $(tests_tred2_example3_OBJECTS) $(tests_tred2_example3_DEPENDENCIES) $(EXTRA_tests_tred2_example3_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/tred2-example3$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_tred2_example3_OBJECTS) $(tests_tred2_example3_LDADD) $(LIBS)
+tests/tred2-example4_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/tred2-example4$(EXEEXT): $(tests_tred2_example4_OBJECTS) $(tests_tred2_example4_DEPENDENCIES) $(EXTRA_tests_tred2_example4_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/tred2-example4$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_tred2_example4_OBJECTS) $(tests_tred2_example4_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -3613,6 +3639,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example3_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example4_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2_sats.Po@am__quote@ # am--include-marker
 
@@ -4738,6 +4765,13 @@ tests/tred2-example3.log: tests/tred2-example3$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/tred2-example4.log: tests/tred2-example4$(EXEEXT)
+	@p='tests/tred2-example4$(EXEEXT)'; \
+	b='tests/tred2-example4'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -5100,6 +5134,7 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example3_dats.Po
+	-rm -f tests/$(DEPDIR)/tred2-example4_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_sats.Po
 	-rm -f GNUmakefile
@@ -5266,6 +5301,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example3_dats.Po
+	-rm -f tests/$(DEPDIR)/tred2-example4_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2_sats.Po
 	-rm -f GNUmakefile

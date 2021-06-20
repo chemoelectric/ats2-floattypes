@@ -14,7 +14,7 @@ PATSCC := patscc
 PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
 .PHONY: all
-all: $(addprefix tred2-example, 1 2 3)
+all: $(addprefix tred2-example, 1 2 3 4)
 
 tred2-example1: tred2-example1.dats \
 				tred2.sats tred2.dats \
@@ -27,6 +27,11 @@ tred2-example2: tred2-example2.dats \
 	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)
 
 tred2-example3: tred2-example3.dats \
+				tred2.sats tred2.dats \
+				arr2.sats arr2.dats
+	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)
+
+tred2-example4: tred2-example4.dats \
 				tred2.sats tred2.dats \
 				arr2.sats arr2.dats
 	$(PATSCC_CMD) -o $(@) $(PATSCCFLAGS) $(^) $(LIBS)

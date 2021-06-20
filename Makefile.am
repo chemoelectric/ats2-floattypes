@@ -238,6 +238,7 @@ check_PROGRAMS += $(UNIT_TESTS)
 check_PROGRAMS += tests/tred2-example1
 check_PROGRAMS += tests/tred2-example2
 check_PROGRAMS += tests/tred2-example3
+check_PROGRAMS += tests/tred2-example4
 
 nodist_tests_tred2_example1_SOURCES =
 nodist_tests_tred2_example1_SOURCES += tests/tred2-example1_dats.c
@@ -260,6 +261,13 @@ nodist_tests_tred2_example3_SOURCES += tests/tred2_sats.c
 nodist_tests_tred2_example3_SOURCES += tests/arr2_dats.c
 nodist_tests_tred2_example3_SOURCES += tests/arr2_sats.c
 
+nodist_tests_tred2_example4_SOURCES =
+nodist_tests_tred2_example4_SOURCES += tests/tred2-example4_dats.c
+nodist_tests_tred2_example4_SOURCES += tests/tred2_dats.c
+nodist_tests_tred2_example4_SOURCES += tests/tred2_sats.c
+nodist_tests_tred2_example4_SOURCES += tests/arr2_dats.c
+nodist_tests_tred2_example4_SOURCES += tests/arr2_sats.c
+
 EXTRA_DIST += $(UNIT_TESTS:%=%.dats.m4)
 
 BUILT_SOURCES += $(UNIT_TESTS:%=%.dats)
@@ -267,6 +275,7 @@ BUILT_SOURCES += $(check_PROGRAMS:%=%_dats.c)
 BUILT_SOURCES += $(nodist_tests_tred2_example1_SOURCES)
 BUILT_SOURCES += $(nodist_tests_tred2_example2_SOURCES)
 BUILT_SOURCES += $(nodist_tests_tred2_example3_SOURCES)
+BUILT_SOURCES += $(nodist_tests_tred2_example4_SOURCES)
 
 $(check_PROGRAMS): floattypes/HATS/floattypes.hats \
 					$(lib_LTLIBRARIES)
