@@ -19,10 +19,6 @@ along with this program. If not, see
 *)
 
 (*
-  FIXME: Rewrite copy_lower_triangle to have <!refwrt> effects.
-  FIXME: Make the entire thing <!refwrt>.
-  FIXME: Come up with better names.
-  FIXME: Eliminate ‘var’ variables.
   FIXME: Wrap this so one can use uninitialized arrays.
            (We can initialize just the portion used,
             without rewriting this all to handle

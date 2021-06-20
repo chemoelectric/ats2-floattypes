@@ -1,0 +1,57 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+#define ATS_DYNLOADFLAG 0
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+
+staload "prelude/SATS/arith_prf.sats"
+
+staload "arr2.sats"
+
+prfn
+mul_compare_lte {i, j, n : nat | i <= j}
+                () :<prf> [i * n <= j * n] void =
+  mul_gte_gte_gte {j - i, n} ()
+
+implement {t}
+arr2get {m, n} {na} {i, j} (m, a, i, j) =
+  let
+    prval _ = lemma_g1uint_param (i) (* Establish that 0 <= i. *)
+    prval _ = lemma_g1uint_param (j) (* Establish that 0 <= j. *)
+    prval _ = mul_gte_gte_gte {j, m} ()
+    prval _ = mul_compare_lte {j, n - 1, m} ()
+    prval _ = prop_verify {0 <= i + (j * m) && i + (j * m) < na} ()
+  in
+    a[i + (j * m)]
+  end
+
+implement {t}
+arr2put {m, n} {na} {i, j} (m, a, i, j, x) =
+  let
+    prval _ = lemma_g1uint_param (i) (* Establish that 0 <= i. *)
+    prval _ = lemma_g1uint_param (j) (* Establish that 0 <= j. *)
+    prval _ = mul_gte_gte_gte {j, m} ()
+    prval _ = mul_compare_lte {j, n - 1, m} ()
+    prval _ = prop_verify {0 <= i + (j * m) && i + (j * m) < na} ()
+  in
+    a[i + (j * m)] := x
+  end

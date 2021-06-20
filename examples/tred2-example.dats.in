@@ -29,6 +29,8 @@ staload _ = "arr2.dats"
 staload "tred2.sats"
 staload _ = "tred2.dats"
 
+macdef f2f = g0float2float
+
 typedef flt = float128
 
 fn
@@ -45,102 +47,106 @@ tred2_float128 {nm, n : nat | n <= nm}
                 z     : &array(float128, nz)) : void =
   tred2<float128_kind>(nm, n, a, d, e, z)
 
-
-(*
-extern fn {t : t@ype}
-arr2get {m, n : int}
-        {na   : int | m * n <= na}
-        {i, j : int | i < m; j < n}
-        (m    : size_t m,
-         a    : &(@[INV(t)][na]),
-         i    : size_t i,
-         j    : size_t j) :<ref> t
-
-extern fn {t : t@ype}
-arr2put {m, n : int}
-        {na   : int | m * n <= na}
-        {i, j : int | i < m; j < n}
-        (m    : size_t m,
-         a    : &(@[INV(t)][na]),
-         i    : size_t i,
-         j    : size_t j,
-         x    : t) :<!refwrt> void
-
-implement {t}
-arr2get {m, n} {na} {i, j} (m, a, i, j) =
-  let
-    prval _ = lemma_g1uint_param (i) (* Establish that 0 <= i. *)
-    prval _ = lemma_g1uint_param (j) (* Establish that 0 <= j. *)
-    prval _ = mul_gte_gte_gte {j, m} ()
-    prval _ = mul_compare_lte {j, n - 1, m} ()
-    prval _ = prop_verify {0 <= i + (j * m) && i + (j * m) < na} ()
-  in
-    a[i + (j * m)]
-  end
-
-overload [] with arr2get of 1000
-overload [] with arr2put of 1000
-*)
-
 implement
-main () =
+main0 () =
   let
-(*
-    var a : array(flt, 100) = @[flt][100] (nan(""))
-    var d : array(flt, 10) = @[flt][10] (nan(""))
-    var e : array(flt, 10) = @[flt][10] (nan(""))
-    var z : array(flt, 100) = @[flt][100] (nan(""))
-*)
+    #define DIM1 5
+    #define DIM2 25
+    prval _ = prop_verify {DIM1 * DIM1 == DIM2} ()
 
-(*
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 0, f2f 1.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 1, f2f 2.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 0, i2sz 2, f2f 3.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 0, f2f 4.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 1, f2f 5.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 1, i2sz 2, f2f 6.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 0, f2f 7.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 1, f2f 8.0)
-    val _ = arr2put {3, 3} (i2sz 3, a, i2sz 2, i2sz 2, f2f 9.0)
+    fn {}
+    get2 {narr : int | DIM2 <= narr}
+         {i, j : int | i < DIM1; j < DIM1}
+         (arr  : &(@[INV(flt)][narr]),
+          i    : size_t i,
+          j    : size_t j) :<> flt =
+      arr2get<flt> {DIM1, DIM1} (i2sz DIM1, arr, i, j)
 
-    val _ = arr2copy_lower_triangle (i2sz 3, i2sz 3, a, z)
+    fn {}
+    put2 {narr : int | DIM2 <= narr}
+         {i, j : int | i < DIM1; j < DIM1}
+         (arr  : &(@[INV(flt)][narr]),
+          i    : size_t i,
+          j    : size_t j,
+          x    : flt) :<!wrt> void =
+      arr2put<flt> {DIM1, DIM1} (i2sz DIM1, arr, i, j, x)
 
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 0, i2sz 2) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 1, i2sz 2) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, z, i2sz 2, i2sz 2) : flt)
+    overload [] with get2 of 1000
+    overload [] with put2 of 1000
 
-//    val _ = tred2_float128 (i2sz 3, i2sz 3, a, d, e, a)
+    var a : array(flt, DIM2) =
+      @[flt][DIM2] ((* Column 1 *)
+                    $extval(flt,"0.3839264F128"),
+                    $extval(flt,"0.1711146F128"),
+                    $extval(flt,"0.14420449F128"),
+                    $extval(flt,"0.20215693F128"),
+                    $extval(flt,"0.25734144F128"),
+                    (* Column 2 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.7542493F128"),
+                    $extval(flt,"0.28689129F128"),
+                    $extval(flt,"0.36993965F128"),
+                    $extval(flt,"0.01083637F128"),
+                    (* Column 3 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.69339598F128"),
+                    $extval(flt,"0.21283682F128"),
+                    $extval(flt,"0.41502065F128"),
+                    (* Column 4 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.33183608F128"),
+                    $extval(flt,"0.90604563F128"),
+                    (* Column 5 *)
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.0F128"),
+                    $extval(flt,"0.92236538F128"))
 
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 0, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 0, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 0, i2sz 2) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 1, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 1, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 1, i2sz 2) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 2, i2sz 0) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 2, i2sz 1) : flt)
-    val _ = println!(arr2get {3, 3} (i2sz 3, a, i2sz 2, i2sz 2) : flt)
+    var d : array(flt, DIM1) = @[flt][DIM1] (nan(""))
+    var e : array(flt, DIM1) = @[flt][DIM1] (nan(""))
+    var z : array(flt, DIM2) = @[flt][DIM2] (nan(""))
 
-    val _ = println!(d[i2sz 0] : flt)
-    val _ = println!(d[i2sz 1] : flt)
-    val _ = println!(d[i2sz 2] : flt)
-*)
+    var i : [i : nat | i <= DIM1] size_t i
   in
-    0
-  end
+    tred2_float128 (i2sz DIM1, i2sz DIM1, a, d, e, z);
 
-(*
-   real[][] a = [
-      [0.3839264, 0, 0, 0, 0],
-      [0.1711146, 0.7542493, 0, 0, 0],
-      [0.14420449, 0.28689129, 0.69339598, 0, 0],
-      [0.20215693, 0.36993965, 0.21283682, 0.33183608, 0],
-      [0.25734144, 0.01083637, 0.41502065, 0.90604563, 0.92236538]
-   ];
-*)
+    print!("a =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      let
+        var j : [j : nat | j <= DIM1] size_t j
+      in
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
+          print!("\t", a[i,j]);
+        println!()
+      end;
+
+    println!();
+
+    print!("d =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      print!("\t", d[i]);
+    println!();
+
+    println!();
+
+    print!("e =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      print!("\t", e[i]);
+    println!();
+
+    println!();
+
+    print!("z =");
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      let
+        var j : [j : nat | j <= DIM1] size_t j
+      in
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
+          print!("\t", z[i,j]);
+        println!()
+      end
+  end

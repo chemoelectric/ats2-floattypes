@@ -18,8 +18,27 @@ along with this program. If not, see
 
 *)
 
-(* Proof that, for non-negative numbers, i * n <= j * n
-   if i <= j. *)
-prfun
-mul_compare_lte {i, j, n : nat | i <= j}
-                () :<prf> [i * n <= j * n] void
+(*
+ * Column-major array access, for m-by-n arrays.
+ *
+ * Reverse the order of indices to get row-major access.
+ *)
+
+fn {t : t@ype}
+arr2get {m, n : int}
+        {na   : int | m * n <= na}
+        {i, j : int | i < m; j < n}
+        (m    : size_t m,
+         a    : &(@[INV(t)][na]),
+         i    : size_t i,
+         j    : size_t j) :<> t
+
+fn {t : t@ype}
+arr2put {m, n : int}
+        {na   : int | m * n <= na}
+        {i, j : int | i < m; j < n}
+        (m    : size_t m,
+         a    : &(@[INV(t)][na]),
+         i    : size_t i,
+         j    : size_t j,
+         x    : t) :<!wrt> void
