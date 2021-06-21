@@ -107414,6 +107414,32 @@ ac_config_files="$ac_config_files common-macros.m4"
 ac_config_files="$ac_config_files ats2-floattypes.pc"
 
 
+ac_config_files="$ac_config_files examples/arr2.sats"
+
+ac_config_files="$ac_config_files examples/arr2.dats"
+
+ac_config_files="$ac_config_files examples/tred2.sats"
+
+ac_config_files="$ac_config_files examples/tred2.dats"
+
+ac_config_files="$ac_config_files examples/tql2.sats"
+
+ac_config_files="$ac_config_files examples/tql2.dats"
+
+
+ac_config_files="$ac_config_files tests/arr2.sats:examples/arr2.sats.in"
+
+ac_config_files="$ac_config_files tests/arr2.dats:examples/arr2.dats.in"
+
+ac_config_files="$ac_config_files tests/tred2.sats:examples/tred2.sats.in"
+
+ac_config_files="$ac_config_files tests/tred2.dats:examples/tred2.dats.in"
+
+ac_config_files="$ac_config_files tests/tql2.sats:examples/tql2.sats.in"
+
+ac_config_files="$ac_config_files tests/tql2.dats:examples/tql2.dats.in"
+
+
 ac_config_files="$ac_config_files examples/GNUmakefile"
 
 ac_config_files="$ac_config_files examples/tred2-example1.dats"
@@ -107424,13 +107450,7 @@ ac_config_files="$ac_config_files examples/tred2-example3.dats"
 
 ac_config_files="$ac_config_files examples/tred2-example4.dats"
 
-ac_config_files="$ac_config_files examples/tred2.sats"
-
-ac_config_files="$ac_config_files examples/tred2.dats"
-
-ac_config_files="$ac_config_files examples/arr2.sats"
-
-ac_config_files="$ac_config_files examples/arr2.dats"
+ac_config_files="$ac_config_files examples/tql2-example1.dats"
 
 
 ac_config_files="$ac_config_files tests/tred2-example1.dats:examples/tred2-example1.dats.in"
@@ -107441,13 +107461,7 @@ ac_config_files="$ac_config_files tests/tred2-example3.dats:examples/tred2-examp
 
 ac_config_files="$ac_config_files tests/tred2-example4.dats:examples/tred2-example4.dats.in"
 
-ac_config_files="$ac_config_files tests/tred2.sats:examples/tred2.sats.in"
-
-ac_config_files="$ac_config_files tests/tred2.dats:examples/tred2.dats.in"
-
-ac_config_files="$ac_config_files tests/arr2.sats:examples/arr2.sats.in"
-
-ac_config_files="$ac_config_files tests/arr2.dats:examples/arr2.dats.in"
+ac_config_files="$ac_config_files tests/tql2-example1.dats:examples/tql2-example1.dats.in"
 
 
 ac_config_commands="$ac_config_commands floattypes/HATS/config.hats"
@@ -110939,23 +110953,29 @@ do
     "common-definitions.m4") CONFIG_FILES="$CONFIG_FILES common-definitions.m4" ;;
     "common-macros.m4") CONFIG_FILES="$CONFIG_FILES common-macros.m4" ;;
     "ats2-floattypes.pc") CONFIG_FILES="$CONFIG_FILES ats2-floattypes.pc" ;;
+    "examples/arr2.sats") CONFIG_FILES="$CONFIG_FILES examples/arr2.sats" ;;
+    "examples/arr2.dats") CONFIG_FILES="$CONFIG_FILES examples/arr2.dats" ;;
+    "examples/tred2.sats") CONFIG_FILES="$CONFIG_FILES examples/tred2.sats" ;;
+    "examples/tred2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2.dats" ;;
+    "examples/tql2.sats") CONFIG_FILES="$CONFIG_FILES examples/tql2.sats" ;;
+    "examples/tql2.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2.dats" ;;
+    "tests/arr2.sats") CONFIG_FILES="$CONFIG_FILES tests/arr2.sats:examples/arr2.sats.in" ;;
+    "tests/arr2.dats") CONFIG_FILES="$CONFIG_FILES tests/arr2.dats:examples/arr2.dats.in" ;;
+    "tests/tred2.sats") CONFIG_FILES="$CONFIG_FILES tests/tred2.sats:examples/tred2.sats.in" ;;
+    "tests/tred2.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2.dats:examples/tred2.dats.in" ;;
+    "tests/tql2.sats") CONFIG_FILES="$CONFIG_FILES tests/tql2.sats:examples/tql2.sats.in" ;;
+    "tests/tql2.dats") CONFIG_FILES="$CONFIG_FILES tests/tql2.dats:examples/tql2.dats.in" ;;
     "examples/GNUmakefile") CONFIG_FILES="$CONFIG_FILES examples/GNUmakefile" ;;
     "examples/tred2-example1.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example1.dats" ;;
     "examples/tred2-example2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example2.dats" ;;
     "examples/tred2-example3.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example3.dats" ;;
     "examples/tred2-example4.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2-example4.dats" ;;
-    "examples/tred2.sats") CONFIG_FILES="$CONFIG_FILES examples/tred2.sats" ;;
-    "examples/tred2.dats") CONFIG_FILES="$CONFIG_FILES examples/tred2.dats" ;;
-    "examples/arr2.sats") CONFIG_FILES="$CONFIG_FILES examples/arr2.sats" ;;
-    "examples/arr2.dats") CONFIG_FILES="$CONFIG_FILES examples/arr2.dats" ;;
+    "examples/tql2-example1.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example1.dats" ;;
     "tests/tred2-example1.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example1.dats:examples/tred2-example1.dats.in" ;;
     "tests/tred2-example2.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example2.dats:examples/tred2-example2.dats.in" ;;
     "tests/tred2-example3.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example3.dats:examples/tred2-example3.dats.in" ;;
     "tests/tred2-example4.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example4.dats:examples/tred2-example4.dats.in" ;;
-    "tests/tred2.sats") CONFIG_FILES="$CONFIG_FILES tests/tred2.sats:examples/tred2.sats.in" ;;
-    "tests/tred2.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2.dats:examples/tred2.dats.in" ;;
-    "tests/arr2.sats") CONFIG_FILES="$CONFIG_FILES tests/arr2.sats:examples/arr2.sats.in" ;;
-    "tests/arr2.dats") CONFIG_FILES="$CONFIG_FILES tests/arr2.dats:examples/arr2.dats.in" ;;
+    "tests/tql2-example1.dats") CONFIG_FILES="$CONFIG_FILES tests/tql2-example1.dats:examples/tql2-example1.dats.in" ;;
     "floattypes/HATS/config.hats") CONFIG_COMMANDS="$CONFIG_COMMANDS floattypes/HATS/config.hats" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

@@ -114,7 +114,8 @@ check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_3)
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example1_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example2_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example3_SOURCES) \
-@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example4_SOURCES)
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example4_SOURCES) \
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tql2_example1_SOURCES)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -134,14 +135,16 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
-	ats2-floattypes.pc examples/GNUmakefile \
+	ats2-floattypes.pc examples/arr2.sats examples/arr2.dats \
+	examples/tred2.sats examples/tred2.dats examples/tql2.sats \
+	examples/tql2.dats tests/arr2.sats tests/arr2.dats \
+	tests/tred2.sats tests/tred2.dats tests/tql2.sats \
+	tests/tql2.dats examples/GNUmakefile \
 	examples/tred2-example1.dats examples/tred2-example2.dats \
 	examples/tred2-example3.dats examples/tred2-example4.dats \
-	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
-	examples/arr2.dats tests/tred2-example1.dats \
+	examples/tql2-example1.dats tests/tred2-example1.dats \
 	tests/tred2-example2.dats tests/tred2-example3.dats \
-	tests/tred2-example4.dats tests/tred2.sats tests/tred2.dats \
-	tests/arr2.sats tests/arr2.dats
+	tests/tred2-example4.dats tests/tql2-example1.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-M_LOG10E$(EXEEXT) tests/test-M_SQRT2$(EXEEXT) \
@@ -203,7 +206,7 @@ am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-strfromd_unsafe$(EXEEXT)
 am__EXEEXT_2 = tests/tred2-example1$(EXEEXT) \
 	tests/tred2-example2$(EXEEXT) tests/tred2-example3$(EXEEXT) \
-	tests/tred2-example4$(EXEEXT)
+	tests/tred2-example4$(EXEEXT) tests/tql2-example1$(EXEEXT)
 @HAVE_FLOAT128_TRUE@am__EXEEXT_3 = $(am__EXEEXT_2)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -685,6 +688,17 @@ tests_test_yn_SOURCES = tests/test-yn_dats.c
 tests_test_yn_OBJECTS = tests/test-yn_dats.$(OBJEXT)
 tests_test_yn_LDADD = $(LDADD)
 tests_test_yn_DEPENDENCIES = $(lib_LTLIBRARIES)
+@HAVE_FLOAT128_TRUE@nodist_tests_tql2_example1_OBJECTS =  \
+@HAVE_FLOAT128_TRUE@	tests/tql2-example1_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tql2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tql2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_sats.$(OBJEXT)
+tests_tql2_example1_OBJECTS = $(nodist_tests_tql2_example1_OBJECTS)
+tests_tql2_example1_LDADD = $(LDADD)
+tests_tql2_example1_DEPENDENCIES = $(lib_LTLIBRARIES)
 @HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_OBJECTS =  \
 @HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.$(OBJEXT) \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
@@ -845,6 +859,8 @@ am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	tests/$(DEPDIR)/test-y0_dats.Po \
 	tests/$(DEPDIR)/test-y1_dats.Po \
 	tests/$(DEPDIR)/test-yn_dats.Po \
+	tests/$(DEPDIR)/tql2-example1_dats.Po \
+	tests/$(DEPDIR)/tql2_dats.Po tests/$(DEPDIR)/tql2_sats.Po \
 	tests/$(DEPDIR)/tred2-example1_dats.Po \
 	tests/$(DEPDIR)/tred2-example2_dats.Po \
 	tests/$(DEPDIR)/tred2-example3_dats.Po \
@@ -924,6 +940,7 @@ SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
 	tests/test-tgamma_dats.c tests/test-trunc_dats.c \
 	tests/test-uint-to-float_dats.c tests/test-y0_dats.c \
 	tests/test-y1_dats.c tests/test-yn_dats.c \
+	$(nodist_tests_tql2_example1_SOURCES) \
 	$(nodist_tests_tred2_example1_SOURCES) \
 	$(nodist_tests_tred2_example2_SOURCES) \
 	$(nodist_tests_tred2_example3_SOURCES) \
@@ -1204,6 +1221,9 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/examples/GNUmakefile.in \
 	$(top_srcdir)/examples/arr2.dats.in \
 	$(top_srcdir)/examples/arr2.sats.in \
+	$(top_srcdir)/examples/tql2-example1.dats.in \
+	$(top_srcdir)/examples/tql2.dats.in \
+	$(top_srcdir)/examples/tql2.sats.in \
 	$(top_srcdir)/examples/tred2-example1.dats.in \
 	$(top_srcdir)/examples/tred2-example2.dats.in \
 	$(top_srcdir)/examples/tred2-example3.dats.in \
@@ -2676,7 +2696,7 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 	tests/test-isgreaterlike tests/test-strtod \
 	tests/test-strfromd_unsafe
 EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
-	tests/tred2-example3 tests/tred2-example4
+	tests/tred2-example3 tests/tred2-example4 tests/tql2-example1
 @HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_SOURCES =  \
 @HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.c \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
@@ -2693,12 +2713,18 @@ EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
 @HAVE_FLOAT128_TRUE@	tests/tred2-example4_dats.c \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
 @HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
+@HAVE_FLOAT128_TRUE@nodist_tests_tql2_example1_SOURCES =  \
+@HAVE_FLOAT128_TRUE@	tests/tql2-example1_dats.c \
+@HAVE_FLOAT128_TRUE@	tests/tql2_dats.c tests/tql2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
 EXAMPLES_SRC = examples/GNUmakefile \
-	$(EXAMPLE_PROGS:tests/%=examples/%.dats) examples/tred2.sats \
-	examples/tred2.dats examples/arr2.sats examples/arr2.dats
+	$(EXAMPLE_PROGS:tests/%=examples/%.dats) examples/tql2.sats \
+	examples/tql2.dats examples/tred2.sats examples/tred2.dats \
+	examples/arr2.sats examples/arr2.dats
 
 ######################################################################
 # It is assumed here that you have PATSHOME set in your environment.
@@ -2760,6 +2786,30 @@ common-macros.m4: $(top_builddir)/config.status $(srcdir)/common-macros.m4.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tql2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/tql2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/tql2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.sats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/tql2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example1.dats.in
@@ -2770,13 +2820,7 @@ examples/tred2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/exampl
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example4.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
+examples/tql2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -2786,13 +2830,7 @@ tests/tred2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/examples/
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example4.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-tests/tred2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-tests/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-tests/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-tests/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
+tests/tql2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 clean-checkPROGRAMS:
@@ -3499,7 +3537,11 @@ tests/test-yn_dats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/test-yn$(EXEEXT): $(tests_test_yn_OBJECTS) $(tests_test_yn_DEPENDENCIES) $(EXTRA_tests_test_yn_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/test-yn$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_test_yn_OBJECTS) $(tests_test_yn_LDADD) $(LIBS)
-tests/tred2-example1_dats.$(OBJEXT): tests/$(am__dirstamp) \
+tests/tql2-example1_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+tests/tql2_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+tests/tql2_sats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 tests/tred2_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
@@ -3508,6 +3550,12 @@ tests/tred2_sats.$(OBJEXT): tests/$(am__dirstamp) \
 tests/arr2_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 tests/arr2_sats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/tql2-example1$(EXEEXT): $(tests_tql2_example1_OBJECTS) $(tests_tql2_example1_DEPENDENCIES) $(EXTRA_tests_tql2_example1_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/tql2-example1$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_tql2_example1_OBJECTS) $(tests_tql2_example1_LDADD) $(LIBS)
+tests/tred2-example1_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
 tests/tred2-example1$(EXEEXT): $(tests_tred2_example1_OBJECTS) $(tests_tred2_example1_DEPENDENCIES) $(EXTRA_tests_tred2_example1_DEPENDENCIES) tests/$(am__dirstamp)
@@ -3653,6 +3701,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y0_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-y1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-yn_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tql2-example1_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tql2_dats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tql2_sats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/tred2-example3_dats.Po@am__quote@ # am--include-marker
@@ -4789,6 +4840,13 @@ tests/tred2-example4.log: tests/tred2-example4$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/tql2-example1.log: tests/tql2-example1$(EXEEXT)
+	@p='tests/tql2-example1$(EXEEXT)'; \
+	b='tests/tql2-example1'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -5148,6 +5206,9 @@ distclean: distclean-am
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2-example1_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2_sats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example3_dats.Po
@@ -5315,6 +5376,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f tests/$(DEPDIR)/test-y0_dats.Po
 	-rm -f tests/$(DEPDIR)/test-y1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-yn_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2-example1_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2_dats.Po
+	-rm -f tests/$(DEPDIR)/tql2_sats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example2_dats.Po
 	-rm -f tests/$(DEPDIR)/tred2-example3_dats.Po

@@ -50,7 +50,7 @@ along with this program. If not, see
  *    d contains the diagonal elements of the tridiagonal matrix.
  *
  *    e contains the subdiagonal elements of the tridiagonal
- *      matrix in its last n-1 positions. e(1) is set to zero.
+ *      matrix in its last n-1 positions. e[0] is set to zero.
  *
  *    z contains the orthogonal transformation matrix
  *      produced in the reduction.

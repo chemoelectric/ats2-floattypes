@@ -18,13 +18,6 @@ along with this program. If not, see
 
 *)
 
-(*
-  FIXME: Wrap this so one can use uninitialized arrays.
-           (We can initialize just the portion used,
-            without rewriting this all to handle
-            uninitialized arrays.)
-*)
-
 #define ATS_DYNLOADFLAG 0
 
 #include "share/atspre_define.hats"
@@ -287,17 +280,11 @@ internal_tred2 {nm, n} {na} {nd} {ne} {nz}
 
 implement {tk}
 tred2 (nm, n, a, d, e, z) =
-  let
-    (* The sizes are nonnegative. *)
-    prval _ = lemma_g1uint_param nm
-    prval _ = lemma_g1uint_param n
-  in
-    (*
-     * We have no *proof* of termination, because we
-     * used for-loops without termination metrics.
-     *
-     * However, the user does not need to know that.
-     * Therefore mask the !ntm effect.
-     *)
-    $effmask_ntm (internal_tred2 (nm, n, a, d, e, z))
-  end
+  (*
+   * We have no *proof* of termination, because we
+   * used for-loops without termination metrics.
+   *
+   * However, the user does not need to know that.
+   * Therefore mask the !ntm effect.
+   *)
+  $effmask_ntm (internal_tred2 (nm, n, a, d, e, z))

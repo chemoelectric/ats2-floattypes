@@ -1,0 +1,90 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+#include "floattypes/HATS/floattypes.hats"
+
+typedef tql2_ierr_t (n, i : int) =
+  [0 <= i; i <= max(n, 0)] int i
+typedef tql2_ierr_t (n : int) =
+  [i : int] tql2_ierr_t (n, i)
+
+(*
+ * tql2
+ *
+ * This template is a translation of the EISPACK subroutine tql2,
+ * which, in turn, is a translation of the Algol procedure tql2,
+ * Num. Math. 11, 293-306(1968) by Bowdler, Martin, Reinsch, and
+ * Wilkinson. Handbook for Auto. Comp., vol.II-Linear Algebra,
+ * 227-240(1971).
+ *
+ * This template finds the eigenvalues and eigenvectors of a symmetric
+ * tridiagonal matrix by the QL method. The eigenvectors of a full
+ * symmetric matrix can also be found if tred2 has been used to reduce
+ * this full matrix to tridiagonal form.
+ *
+ * On input
+ *
+ *    nm must be set to the row dimension of two-dimensional
+ *      array parameters, which are to be stored in column-major
+ *      order (as in Fortran).
+ *
+ *    n is the order of the matrix.
+ *
+ *    d contains the diagonal elements of the input matrix.
+ *
+ *    e contains the subdiagonal elements of the input matrix
+ *      in its last n-1 positions. e[0] is arbitrary.
+ *
+ *    z contains the transformation matrix produced in the
+ *      reduction by tred2, if performed. If the eigenvectors
+ *      of the tridiagonal matrix are desired, z must contain
+ *      the identity matrix.
+ *
+ *  On output
+ *
+ *    d contains the eigenvalues in ascending order. If an
+ *      error exit is made, the eigenvalues are correct but
+ *      unordered for indices 0,1,...,ierr-2.
+ *
+ *    e has been destroyed.
+ *
+ *    z contains orthonormal eigenvectors of the symmetric
+ *      tridiagonal (or full) matrix. If an error exit is made,
+ *      z contains the eigenvectors associated with the stored
+ *      eigenvalues.
+ *
+ *    ierr is set to
+ *      zero       for normal return,
+ *      j          if the j-th eigenvalue has not been
+ *                 determined after 30 iterations.
+ *)
+fn {tk : tkind}
+tql2 {nm, n : int | n <= nm}
+     {nd    : int | n <= nd}
+     {ne    : int | n <= ne}
+     {nz    : int | nm * n <= nz}
+     (nm    : size_t nm,
+      n     : size_t n,
+      d     : &(@[INV(g0float(tk))][nd]),
+      e     : &(@[INV(g0float(tk))][ne]),
+      z     : &(@[INV(g0float(tk))][nz]),
+      ierr  : &(INV(Int)?) >> tql2_ierr_t(n)) :<!wrt> void

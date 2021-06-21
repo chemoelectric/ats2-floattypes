@@ -29,6 +29,9 @@ staload _ = "arr2.dats"
 staload "tred2.sats"
 staload _ = "tred2.dats"
 
+staload "tql2.sats"
+staload _ = "tql2.dats"
+
 macdef f2f = g0float2float
 
 typedef flt = float128
@@ -47,11 +50,24 @@ tred2_float128 {nm, n : nat | n <= nm}
                 z     : &(@[float128][nz])) :<!wrt> void =
   tred2<float128_kind>(nm, n, a, d, e, z)
 
+fn
+tql2_float128 {nm, n : int | n <= nm}
+              {nd    : int | n <= nd}
+              {ne    : int | n <= ne}
+              {nz    : int | nm * n <= nz}
+              (nm    : size_t nm,
+               n     : size_t n,
+               d     : &(@[float128][nd]),
+               e     : &(@[float128][ne]),
+               z     : &(@[float128][nz]),
+               ierr  : &(INV(Int)?) >> tql2_ierr_t(n)) :<!wrt> void =
+  tql2<float128_kind>(nm, n, d, e, z, ierr)
+
 implement
 main0 () =
   let
-    #define DIM1 10
-    #define DIM2 100
+    #define DIM1 5
+    #define DIM2 25
     prval _ = prop_verify {DIM1 * DIM1 == DIM2} ()
 
     fn {}
@@ -74,7 +90,6 @@ main0 () =
     overload [] with get2 of 1000
     overload [] with put2 of 1000
 
-    (* Simulate a 5x5 matrix stored in a 10x10 Fortran array. *)
     var a : @[flt][DIM2] =
       @[flt][DIM2] ((* Column 1 *)
                     $extval(flt,"0.3839264F128"),
@@ -82,44 +97,24 @@ main0 () =
                     $extval(flt,"0.14420449F128"),
                     $extval(flt,"0.20215693F128"),
                     $extval(flt,"0.25734144F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 2 *)
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.7542493F128"),
                     $extval(flt,"0.28689129F128"),
                     $extval(flt,"0.36993965F128"),
                     $extval(flt,"0.01083637F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 3 *)
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.69339598F128"),
                     $extval(flt,"0.21283682F128"),
                     $extval(flt,"0.41502065F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 4 *)
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.33183608F128"),
                     $extval(flt,"0.90604563F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 5 *)
                     $extval(flt,"0.0F128"),
                     $extval(flt,"0.0F128"),
@@ -143,7 +138,6 @@ main0 () =
                     $extval(flt,"0.13558706F128"),
                     $extval(flt,"0.58589646F128"),
                     $extval(flt,"-1.02932156F128"))
-
     var z_approx : @[flt][DIM2] =
       @[flt][DIM2] ((* Column 1 *)
                     $extval(flt,"0.52708373F128"),
@@ -151,44 +145,24 @@ main0 () =
                     $extval(flt,"-0.78088769F128"),
                     $extval(flt,"0.20481066F128"),
                     $extval(flt,"0.00000000F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 2 *)
                     $extval(flt,"0.76146470F128"),
                     $extval(flt,"-0.49433399F128"),
                     $extval(flt,"0.25958859F128"),
                     $extval(flt,"-0.32927068F128"),
                     $extval(flt,"0.00000000F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 3 *)
                     $extval(flt,"-0.28257545F128"),
                     $extval(flt,"-0.82769156F128"),
                     $extval(flt,"-0.40032406F128"),
                     $extval(flt,"0.27352960F128"),
                     $extval(flt,"0.00000000F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 4 *)
                     $extval(flt,"-0.25001074F128"),
                     $extval(flt,"-0.01052768F128"),
                     $extval(flt,"-0.40319825F128"),
                     $extval(flt,"-0.88023575F128"),
                     $extval(flt,"0.00000000F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
-                    $extval(flt,"0.0F128"),
                     (* Column 5 *)
                     $extval(flt,"0.00000000F128"),
                     $extval(flt,"0.00000000F128"),
@@ -196,53 +170,105 @@ main0 () =
                     $extval(flt,"0.00000000F128"),
                     $extval(flt,"1.00000000F128"))
 
-    var i : [i : nat | i <= 5] size_t i
+    var d_approx2 : @[flt][DIM1] =
+      @[flt][DIM1] ($extval(flt,"-0.41904961F128"),
+                    $extval(flt,"0.27680065F128"),
+                    $extval(flt,"0.44578453F128"),
+                    $extval(flt,"0.81388033F128"),
+                    $extval(flt,"1.96835718F128"))
+    var z_approx2 : @[flt][DIM2] =
+      @[flt][DIM2] ((* Column 1 *)
+                    $extval(flt,"0.02101129F128"),
+                    $extval(flt,"-0.27236554F128"),
+                    $extval(flt,"0.12989462F128"),
+                    $extval(flt,"0.76984248F128"),
+                    $extval(flt,"-0.56200131F128"),
+                    (* Column 2 *)
+                    $extval(flt,"-0.94925365F128"),
+                    $extval(flt,"0.20835401F128"),
+                    $extval(flt,"-0.03876834F128"),
+                    $extval(flt,"0.19660664F128"),
+                    $extval(flt,"0.12389089F128"),
+                    (* Column 3 *)
+                    $extval(flt,"0.18151657F128"),
+                    $extval(flt,"0.33570241F128"),
+                    $extval(flt,"-0.86899388F128"),
+                    $extval(flt,"0.30812183F128"),
+                    $extval(flt,"0.06531617F128"),
+                    (* Column 4 *)
+                    $extval(flt,"-0.08818892F128"),
+                    $extval(flt,"-0.82825691F128"),
+                    $extval(flt,"-0.26710419F128"),
+                    $extval(flt,"0.10053812F128"),
+                    $extval(flt,"0.47408927F128"),
+                    (* Column 5 *)
+                    $extval(flt,"0.24031328F128"),
+                    $extval(flt,"0.28930952F128"),
+                    $extval(flt,"0.39386469F128"),
+                    $extval(flt,"0.51346023F128"),
+                    $extval(flt,"0.66315815F128"))
+
+    var i : [i : nat | i <= DIM1] size_t i
+    var ierr : tql2_ierr_t (DIM1)
 
     val tolerance = $extval(flt, "0.0000001F128")
   in
-    tred2_float128 (i2sz DIM1, i2sz 5, a, d, e, z);
+    tred2_float128 (i2sz DIM1, i2sz DIM1, a, d, e, z);
 
     print!("a =");
-    for (i := i2sz 0; i < i2sz 5; i := succ i)
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
       let
-        var j : [j : nat | j <= 5] size_t j
+        var j : [j : nat | j <= DIM1] size_t j
       in
-        for (j := i2sz 0; j < i2sz 5; j := succ j)
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
           print!("\t", a[i,j]);
         println!()
       end;
 
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      assertloc (abs(d[i] - d_approx[i]) <= tolerance);
+
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      assertloc (abs(e[i] - e_approx[i]) <= tolerance);
+
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
+      let
+        var j : [j : nat | j <= DIM1] size_t j
+      in
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
+          assertloc (abs(z[i,j] - z_approx[i,j]) <= tolerance);
+      end;
+
+    tql2_float128 (i2sz DIM1, i2sz DIM1, d, e, z, ierr);
+
     println!();
 
+    println!("ierr =\t", ierr);
+    assertloc (ierr = 0);
+
+    println!();
+
+    println!("Eigenvalues of a:");
     print!("d =");
-    for (i := i2sz 0; i < i2sz 5; i := succ i)
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
       begin
         print!("\t", d[i]);
-        assertloc (abs(d[i] - d_approx[i]) <= tolerance)
+        assertloc (abs(d[i] - d_approx2[i]) <= tolerance)
       end;
     println!();
 
     println!();
 
-    print!("e =");
-    for (i := i2sz 0; i < i2sz 5; i := succ i)
-      begin
-        print!("\t", e[i]);
-        assertloc (abs(e[i] - e_approx[i]) <= tolerance)
-      end;
-    println!();
-
-    println!();
-
+    println!("Eigenvectors of a:");
     print!("z =");
-    for (i := i2sz 0; i < i2sz 5; i := succ i)
+    for (i := i2sz 0; i < i2sz DIM1; i := succ i)
       let
-        var j : [j : nat | j <= 5] size_t j
+        var j : [j : nat | j <= DIM1] size_t j
       in
-        for (j := i2sz 0; j < i2sz 5; j := succ j)
+        for (j := i2sz 0; j < i2sz DIM1; j := succ j)
           begin
             print!("\t", z[i,j]);
-            assertloc (abs(z[i,j] - z_approx[i,j]) <= tolerance)
+            assertloc (abs(z[i,j] - z_approx2[i,j]) <= tolerance)
           end;
         println!()
       end

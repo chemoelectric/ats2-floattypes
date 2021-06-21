@@ -1,0 +1,297 @@
+(*
+
+Copyright © 2021 Barry Schwartz
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License, as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received copies of the GNU General Public License
+along with this program. If not, see
+<https://www.gnu.org/licenses/>.
+
+*)
+
+(*
+  FIXME: Structure the code better and get rid of some assertloc.
+*)
+
+#define ATS_DYNLOADFLAG 0
+
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
+
+#include "floattypes/HATS/floattypes.hats"
+
+staload "arr2.sats"
+staload _ = "arr2.dats"
+
+staload "tred2.sats"
+staload _ = "tred2.dats"
+
+staload "tql2.sats"
+
+fn {}
+andalso1 {x, y : bool}
+         (x : bool x, y : bool y) :<>
+    [z : bool | z == (x && y)] bool z =
+  if x then
+    y
+  else
+    false
+
+typedef nsize_t (n, i : int) =
+  [0 <= i; i <= n] size_t i
+typedef nsize_t (n : int) =
+  [i : int] nsize_t (n, i)
+
+prfn
+lemma_nsize_t_param {n : int} {i : int}
+                    (i : nsize_t (n, i)) :<prf>
+    [0 <= i; i <= n] void = ()
+
+extern fn {tk : tkind}
+internal_tql2 {nm, n : int | n <= nm}
+              {nd    : int | n <= nd}
+              {ne    : int | n <= ne}
+              {nz    : int | nm * n <= nz}
+              (nm    : size_t nm,
+               n     : size_t n,
+               d     : &(@[INV(g0float(tk))][nd]),
+               e     : &(@[INV(g0float(tk))][ne]),
+               z     : &(@[INV(g0float(tk))][nz])) :<!wrt,!ntm>
+    tql2_ierr_t(n)
+
+implement {tk}
+internal_tql2 {nm, n} {nd} {ne} {nz}
+              (nm, n, d, e, z) =
+  let
+    val maxiter = 30U
+    var early_exit : Bool = false
+    var ierr : tql2_ierr_t(n) = 0
+  in
+    if i2sz 2 <= n then
+      let
+        (* The sizes are nonnegative. *)
+        prval _ = lemma_g1uint_param nm
+        prval _ = lemma_g1uint_param n
+
+        (* The arrays have extent. *)
+        prval _ = mul_gte_gte_gte {nm, n - 1} ()
+        prval _ = prop_verify {0 < nm * n} ()
+
+        typedef flt = g0float(tk)
+        typedef d_t = @[INV(flt)][nd]
+        typedef e_t = @[INV(flt)][ne]
+        typedef z_t = @[INV(flt)][nz]
+
+        macdef i2flt = g0int2float<intknd,tk>
+
+        fn {}
+        nm_by_n_get {narr : int | nm * n <= narr}
+                    {i, j : nat | i < nm; j < n}
+                    (arr  : &(@[INV(flt)][narr]),
+                     i    : size_t i,
+                     j    : size_t j) :<> flt =
+          arr2get<flt> {nm, n} (nm, arr, i, j)
+
+        fn {}
+        nm_by_n_put {narr : int | nm * n <= narr}
+                    {i, j : nat | i < nm; j < n}
+                    (arr  : &(@[INV(flt)][narr]),
+                     i    : size_t i,
+                     j    : size_t j,
+                     x    : flt) :<!wrt> void =
+          arr2put<flt> {nm, n} (nm, arr, i, j, x)
+
+        overload [] with nm_by_n_get of 1000
+        overload [] with nm_by_n_put of 1000
+
+        var c : flt = nan("")
+        var c2 : flt = nan("")
+        var c3 : flt = nan("")
+        var dl1 : flt = nan("")
+        var el1 : flt = nan("")
+        var f : flt = nan("")
+        var g : flt = nan("")
+        var h : flt = nan("")
+        var p : flt = nan("")
+        var r : flt = nan("")
+        var s : flt = nan("")
+        var s2 : flt = nan("")
+        var tst1 : flt = nan("")
+
+        var ix : nsize_t (n)
+      in
+        for (ix := i2sz 0; ix < pred n; ix := succ ix)
+            e[ix] := e[succ ix];
+
+        f := i2flt 0;
+        tst1 := i2flt 0;
+        e[pred n] := i2flt 0;
+
+        for (ix := i2sz 0;
+             (not early_exit) \andalso1 (ix < n);
+             ix := succ ix)
+          let
+            var iteration_counter : uint = 0U
+            var m : nsize_t (n)
+          in
+            h := abs(d[ix]) + abs(e[ix]);
+            if tst1 < h then
+              tst1 := h;
+
+            (* Look for a small sub-diagonal element. (The loop
+             * always terminates, because e[n - 1] is zero.) *)
+            m := ix;
+            while (tst1 <> tst1 + let
+                                    val _ =
+                                      $effmask_exn
+                                        (assertloc (m < n))
+                                  in
+                                    abs(e[m])
+                                  end)
+              m := succ m;
+
+            if m <> ix then
+              let
+                val _ = $effmask_exn (assertloc (succ ix < n))
+                var loop_done : Bool = false
+              in
+                while (not loop_done)
+                  begin
+                    if iteration_counter = maxiter then
+                      begin
+                        ierr := g1u2i (succ ix);
+                        loop_done := true;
+                        early_exit := true
+                      end
+                    else
+                      let
+                        val _ = $effmask_exn (assertloc (m < n))
+                        var i : nsize_t (n)
+                        var ii : nsize_t (n)
+                      in
+                        iteration_counter := succ iteration_counter;
+
+                        (* Form shift. *)
+                        g := d[ix];
+                        p := (d[succ ix] - g) / (e[ix] + e[ix]);
+                        r := hypot(p, i2flt 1);
+                        d[ix] := e[ix] / (p + copysign(r, p));
+                        d[succ ix] := e[ix] * (p + copysign(r, p));
+                        dl1 := d[succ ix];
+                        h := g - d[ix];
+                        for (i := ix + i2sz 2; i < n; i := succ i)
+                          d[i] := d[i] - h;
+                        f := f + h;
+
+                        (* QL transformation. *)
+                        p := d[m];
+                        c := i2flt 1;
+                        c2 := c;
+                        el1 := e[succ ix];
+                        s := i2flt 0;
+                        for (ii := i2sz 0; ii + ix < m; ii := succ ii)
+                          let
+                            val i = m - succ ii
+                            var k : nsize_t (n)
+                          in
+                            c3 := c2;
+                            c2 := c;
+                            s2 := s;
+                            g := c * e[i];
+                            h := c * p;
+                            r := hypot(p, e[i]);
+                            e[succ i] := s * r;
+                            s := e[i] / r;
+                            c := p / r;
+                            p := c * d[i] - s * g;
+                            d[succ i] := h + s * (c * g + s * d[i]);
+
+                            (* Form vector. *)
+                            for (k := i2sz 0; k < n; k := succ k)
+                              begin
+                                h := z[k][succ i];
+                                z[k][succ i] := s * z[k,i] + c * h;
+                                z[k,i] := c * z[k,i] - s * h
+                              end
+
+                          end
+                      end;
+                    p := (neg(s) * s2 * c3 * el1 * e[ix]) / dl1;
+                    e[ix] := s * p;
+                    d[ix] := c * p;
+                    if not loop_done then
+                      if tst1 + abs(e[ix]) <= tst1 then
+                        loop_done := true
+                  end
+              end;
+
+            if not early_exit then
+              d[ix] := d[ix] + f
+          end;
+
+        if not early_exit then
+          (*
+           * Sort the eigenvalues and eigenvectors. The eigenvalues
+           * will be in ascending order.
+             
+           * The algorithm is an unstable selection sort. (If we
+           * changed the sorting algorithm, we would be more likely
+           * to get results different from what the Fortran subroutine
+           * would.)
+           *)
+          let
+            var i : nsize_t (n - 1)
+          in
+            for (i := i2sz 0; i < pred n; i := succ i)
+              let
+                var k : nsize_t (n - 1)
+                var j : nsize_t (n)
+              in
+                k := i;
+                p := d[i];
+                for (j := i; j < n; j := succ j)
+                  if d[j] < p then
+                    begin
+                      k := j;
+                      p := d[j]
+                    end;
+                if k <> i then
+                  let
+                    var j : nsize_t (n)
+                  in
+                    (* Swap two eigenvalue entries. *)
+                    d[k] := d[i];
+                    d[i] := p;
+                    (* Swap two eigenvector columns. *)
+                    for (j := i2sz 0; j < n; j := succ j)
+                      begin
+                        p := z[j,i];
+                        z[j,i] := z[j,k];
+                        z[j,k] := p
+                      end
+                  end
+              end
+          end
+     end;
+     ierr
+  end
+
+implement {tk}
+tql2 (nm, n, d, e, z, ierr) =
+  (*
+   * We have no *proof* of termination, because we
+   * used for-loops without termination metrics.
+   *
+   * However, the user does not need to know that.
+   * Therefore mask the !ntm effect.
+   *)
+  ierr := $effmask_ntm (internal_tql2 (nm, n, d, e, z))

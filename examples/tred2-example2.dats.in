@@ -41,10 +41,10 @@ tred2_float128 {nm, n : nat | n <= nm}
                {nz    : int | nm * n <= nz}
                (nm    : size_t nm,
                 n     : size_t n,
-                a     : &array(float128, na),
-                d     : &array(float128, nd),
-                e     : &array(float128, ne),
-                z     : &array(float128, nz)) : void =
+                a     : &(@[float128][na]),
+                d     : &(@[float128][nd]),
+                e     : &(@[float128][ne]),
+                z     : &(@[float128][nz])) :<!wrt> void =
   tred2<float128_kind>(nm, n, a, d, e, z)
 
 implement

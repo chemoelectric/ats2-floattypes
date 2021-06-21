@@ -241,6 +241,7 @@ EXAMPLE_PROGS += tests/tred2-example1
 EXAMPLE_PROGS += tests/tred2-example2
 EXAMPLE_PROGS += tests/tred2-example3
 EXAMPLE_PROGS += tests/tred2-example4
+EXAMPLE_PROGS += tests/tql2-example1
 
 if HAVE_FLOAT128
 
@@ -278,6 +279,16 @@ nodist_tests_tred2_example4_SOURCES += tests/arr2_dats.c
 nodist_tests_tred2_example4_SOURCES += tests/arr2_sats.c
 BUILT_SOURCES += $(nodist_tests_tred2_example4_SOURCES)
 
+nodist_tests_tql2_example1_SOURCES =
+nodist_tests_tql2_example1_SOURCES += tests/tql2-example1_dats.c
+nodist_tests_tql2_example1_SOURCES += tests/tql2_dats.c
+nodist_tests_tql2_example1_SOURCES += tests/tql2_sats.c
+nodist_tests_tql2_example1_SOURCES += tests/tred2_dats.c
+nodist_tests_tql2_example1_SOURCES += tests/tred2_sats.c
+nodist_tests_tql2_example1_SOURCES += tests/arr2_dats.c
+nodist_tests_tql2_example1_SOURCES += tests/arr2_sats.c
+BUILT_SOURCES += $(nodist_tests_tql2_example1_SOURCES)
+
 endif HAVE_FLOAT128
 
 EXTRA_DIST += $(UNIT_TESTS:%=%.dats.m4)
@@ -299,6 +310,8 @@ nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
 EXAMPLES_SRC =
 EXAMPLES_SRC += examples/GNUmakefile
 EXAMPLES_SRC += $(EXAMPLE_PROGS:tests/%=examples/%.dats)
+EXAMPLES_SRC += examples/tql2.sats
+EXAMPLES_SRC += examples/tql2.dats
 EXAMPLES_SRC += examples/tred2.sats
 EXAMPLES_SRC += examples/tred2.dats
 EXAMPLES_SRC += examples/arr2.sats
