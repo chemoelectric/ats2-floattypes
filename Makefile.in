@@ -2698,8 +2698,8 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
 EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
 	examples/tred2-example2.dats examples/tred2-example3.dats \
-	examples/tred2.sats examples/tred2.dats examples/arr2.sats \
-	examples/arr2.dats
+	examples/tred2-example4.dats examples/tred2.sats \
+	examples/tred2.dats examples/arr2.sats examples/arr2.dats
 
 ######################################################################
 # It is assumed here that you have PATSHOME set in your environment.
