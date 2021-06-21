@@ -637,6 +637,8 @@ ifnGNUmake
 ifGNUmake
 GNU_MAKE
 GNU
+HAVE_FLOAT128_FALSE
+HAVE_FLOAT128_TRUE
 HAVE_floattypes_HUGE_VAL_decimal128x
 HAVE_floattypes_HUGE_VAL_decimal64x
 HAVE_floattypes_HUGE_VAL_float128x
@@ -107269,8 +107271,16 @@ $as_echo "$my_cv_float_const_HUGE_VAL_D128X" >&6; }
 
 #--------------------------------------------------------------------------
 
-#PATSCCFLAGS=`AS_ECHO_N(["${CPPFLAGS}"]) | ${SED} -e 's|-D|-DDATS |g'`
-#AC_SUBST([PATSCCFLAGS])
+ if test "${HAVE_floattypes_sqrt_float128}" = 1 && \
+   test "${HAVE_floattypes_hypot_float128}" = 1 && \
+   test "${HAVE_floattypes_copysign_float128}" = 1; then
+  HAVE_FLOAT128_TRUE=
+  HAVE_FLOAT128_FALSE='#'
+else
+  HAVE_FLOAT128_TRUE='#'
+  HAVE_FLOAT128_FALSE=
+fi
+
 
 # You can use ‘@GNU@’ to make GNU Make constructs unbothersome to
 # Automake. (By the way, you often can use ‘$(eval ...)’ as well, but
@@ -107618,6 +107628,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${HAVE_FLOAT128_TRUE}" && test -z "${HAVE_FLOAT128_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_FLOAT128\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

@@ -491,8 +491,10 @@ check_HUGE_VALlike_float_const([HUGE_VAL],[floattype])
 
 #--------------------------------------------------------------------------
 
-#PATSCCFLAGS=`AS_ECHO_N(["${CPPFLAGS}"]) | ${SED} -e 's|-D|-DDATS |g'`
-#AC_SUBST([PATSCCFLAGS])
+AM_CONDITIONAL([HAVE_FLOAT128],
+  [test "${HAVE_floattypes_sqrt_float128}" = 1 && \
+   test "${HAVE_floattypes_hypot_float128}" = 1 && \
+   test "${HAVE_floattypes_copysign_float128}" = 1])
 
 # You can use ‘@GNU@’ to make GNU Make constructs unbothersome to
 # Automake. (By the way, you often can use ‘$(eval ...)’ as well, but

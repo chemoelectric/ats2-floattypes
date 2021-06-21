@@ -108,9 +108,15 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = $(am__EXEEXT_1) tests/tred2-example1$(EXEEXT) \
-	tests/tred2-example2$(EXEEXT) tests/tred2-example3$(EXEEXT) \
-	tests/tred2-example4$(EXEEXT)
+check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2)
+@HAVE_FLOAT128_TRUE@am__append_1 = tests/tred2-example1 \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example2 tests/tred2-example3 \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example4
+@HAVE_FLOAT128_TRUE@am__append_2 =  \
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example1_SOURCES) \
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example2_SOURCES) \
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example3_SOURCES) \
+@HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example4_SOURCES)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -197,6 +203,10 @@ am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-isnormal$(EXEEXT) tests/test-signbit$(EXEEXT) \
 	tests/test-isgreaterlike$(EXEEXT) tests/test-strtod$(EXEEXT) \
 	tests/test-strfromd_unsafe$(EXEEXT)
+@HAVE_FLOAT128_TRUE@am__EXEEXT_2 = tests/tred2-example1$(EXEEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example2$(EXEEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example3$(EXEEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example4$(EXEEXT)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -677,31 +687,39 @@ tests_test_yn_SOURCES = tests/test-yn_dats.c
 tests_test_yn_OBJECTS = tests/test-yn_dats.$(OBJEXT)
 tests_test_yn_LDADD = $(LDADD)
 tests_test_yn_DEPENDENCIES = $(lib_LTLIBRARIES)
-nodist_tests_tred2_example1_OBJECTS =  \
-	tests/tred2-example1_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
-	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
-	tests/arr2_sats.$(OBJEXT)
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_OBJECTS =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_sats.$(OBJEXT)
 tests_tred2_example1_OBJECTS = $(nodist_tests_tred2_example1_OBJECTS)
 tests_tred2_example1_LDADD = $(LDADD)
 tests_tred2_example1_DEPENDENCIES = $(lib_LTLIBRARIES)
-nodist_tests_tred2_example2_OBJECTS =  \
-	tests/tred2-example2_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
-	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
-	tests/arr2_sats.$(OBJEXT)
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example2_OBJECTS =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_sats.$(OBJEXT)
 tests_tred2_example2_OBJECTS = $(nodist_tests_tred2_example2_OBJECTS)
 tests_tred2_example2_LDADD = $(LDADD)
 tests_tred2_example2_DEPENDENCIES = $(lib_LTLIBRARIES)
-nodist_tests_tred2_example3_OBJECTS =  \
-	tests/tred2-example3_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
-	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
-	tests/arr2_sats.$(OBJEXT)
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example3_OBJECTS =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example3_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_sats.$(OBJEXT)
 tests_tred2_example3_OBJECTS = $(nodist_tests_tred2_example3_OBJECTS)
 tests_tred2_example3_LDADD = $(LDADD)
 tests_tred2_example3_DEPENDENCIES = $(lib_LTLIBRARIES)
-nodist_tests_tred2_example4_OBJECTS =  \
-	tests/tred2-example4_dats.$(OBJEXT) tests/tred2_dats.$(OBJEXT) \
-	tests/tred2_sats.$(OBJEXT) tests/arr2_dats.$(OBJEXT) \
-	tests/arr2_sats.$(OBJEXT)
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example4_OBJECTS =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example4_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/tred2_sats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.$(OBJEXT) \
+@HAVE_FLOAT128_TRUE@	tests/arr2_sats.$(OBJEXT)
 tests_tred2_example4_OBJECTS = $(nodist_tests_tred2_example4_OBJECTS)
 tests_tred2_example4_LDADD = $(LDADD)
 tests_tred2_example4_DEPENDENCIES = $(lib_LTLIBRARIES)
@@ -2595,12 +2613,8 @@ BUILT_SOURCES = floattypes/CATS/printing.cats \
 	floattypes/CATS/constants.cats floattypes/SATS/floattypes.sats \
 	floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes.dats \
-	floattypes/DATS/floattypes_dats.c $(UNIT_TESTS:%=%.dats) \
-	$(check_PROGRAMS:%=%_dats.c) \
-	$(nodist_tests_tred2_example1_SOURCES) \
-	$(nodist_tests_tred2_example2_SOURCES) \
-	$(nodist_tests_tred2_example3_SOURCES) \
-	$(nodist_tests_tred2_example4_SOURCES)
+	floattypes/DATS/floattypes_dats.c $(am__append_2) \
+	$(UNIT_TESTS:%=%.dats) $(check_PROGRAMS:%=%_dats.c)
 TESTS = $(check_PROGRAMS)
 LDADD = $(lib_LTLIBRARIES)
 MOSTLYCLEANFILES = 
@@ -2663,18 +2677,22 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 	tests/test-isnormal tests/test-signbit \
 	tests/test-isgreaterlike tests/test-strtod \
 	tests/test-strfromd_unsafe
-nodist_tests_tred2_example1_SOURCES = tests/tred2-example1_dats.c \
-	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
-	tests/arr2_sats.c
-nodist_tests_tred2_example2_SOURCES = tests/tred2-example2_dats.c \
-	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
-	tests/arr2_sats.c
-nodist_tests_tred2_example3_SOURCES = tests/tred2-example3_dats.c \
-	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
-	tests/arr2_sats.c
-nodist_tests_tred2_example4_SOURCES = tests/tred2-example4_dats.c \
-	tests/tred2_dats.c tests/tred2_sats.c tests/arr2_dats.c \
-	tests/arr2_sats.c
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_SOURCES =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.c \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example2_SOURCES =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example2_dats.c \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example3_SOURCES =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example3_dats.c \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
+@HAVE_FLOAT128_TRUE@nodist_tests_tred2_example4_SOURCES =  \
+@HAVE_FLOAT128_TRUE@	tests/tred2-example4_dats.c \
+@HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
+@HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
