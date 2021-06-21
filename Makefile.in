@@ -108,10 +108,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2)
-@HAVE_FLOAT128_TRUE@am__append_1 = tests/tred2-example1 \
-@HAVE_FLOAT128_TRUE@	tests/tred2-example2 tests/tred2-example3 \
-@HAVE_FLOAT128_TRUE@	tests/tred2-example4
+check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_3)
+@HAVE_FLOAT128_TRUE@am__append_1 = $(EXAMPLE_PROGS:tests/%=examples/%)
 @HAVE_FLOAT128_TRUE@am__append_2 =  \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example1_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example2_SOURCES) \
@@ -203,10 +201,10 @@ am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-isnormal$(EXEEXT) tests/test-signbit$(EXEEXT) \
 	tests/test-isgreaterlike$(EXEEXT) tests/test-strtod$(EXEEXT) \
 	tests/test-strfromd_unsafe$(EXEEXT)
-@HAVE_FLOAT128_TRUE@am__EXEEXT_2 = tests/tred2-example1$(EXEEXT) \
-@HAVE_FLOAT128_TRUE@	tests/tred2-example2$(EXEEXT) \
-@HAVE_FLOAT128_TRUE@	tests/tred2-example3$(EXEEXT) \
-@HAVE_FLOAT128_TRUE@	tests/tred2-example4$(EXEEXT)
+am__EXEEXT_2 = tests/tred2-example1$(EXEEXT) \
+	tests/tred2-example2$(EXEEXT) tests/tred2-example3$(EXEEXT) \
+	tests/tred2-example4$(EXEEXT)
+@HAVE_FLOAT128_TRUE@am__EXEEXT_3 = $(am__EXEEXT_2)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -2677,6 +2675,8 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 	tests/test-isnormal tests/test-signbit \
 	tests/test-isgreaterlike tests/test-strtod \
 	tests/test-strfromd_unsafe
+EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
+	tests/tred2-example3 tests/tred2-example4
 @HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_SOURCES =  \
 @HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.c \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
@@ -2696,9 +2696,8 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
-EXAMPLES_SRC = examples/GNUmakefile examples/tred2-example1.dats \
-	examples/tred2-example2.dats examples/tred2-example3.dats \
-	examples/tred2-example4.dats examples/tred2.sats \
+EXAMPLES_SRC = examples/GNUmakefile \
+	$(EXAMPLE_PROGS:tests/%=examples/%.dats) examples/tred2.sats \
 	examples/tred2.dats examples/arr2.sats examples/arr2.dats
 
 ######################################################################

@@ -236,12 +236,15 @@ UNIT_TESTS += tests/test-strfromd_unsafe
 
 check_PROGRAMS += $(UNIT_TESTS)
 
+EXAMPLE_PROGS =
+EXAMPLE_PROGS += tests/tred2-example1
+EXAMPLE_PROGS += tests/tred2-example2
+EXAMPLE_PROGS += tests/tred2-example3
+EXAMPLE_PROGS += tests/tred2-example4
+
 if HAVE_FLOAT128
 
-check_PROGRAMS += tests/tred2-example1
-check_PROGRAMS += tests/tred2-example2
-check_PROGRAMS += tests/tred2-example3
-check_PROGRAMS += tests/tred2-example4
+check_PROGRAMS += $(EXAMPLE_PROGS:tests/%=examples/%)
 
 nodist_tests_tred2_example1_SOURCES =
 nodist_tests_tred2_example1_SOURCES += tests/tred2-example1_dats.c
@@ -295,10 +298,7 @@ nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
 
 EXAMPLES_SRC =
 EXAMPLES_SRC += examples/GNUmakefile
-EXAMPLES_SRC += examples/tred2-example1.dats
-EXAMPLES_SRC += examples/tred2-example2.dats
-EXAMPLES_SRC += examples/tred2-example3.dats
-EXAMPLES_SRC += examples/tred2-example4.dats
+EXAMPLES_SRC += $(EXAMPLE_PROGS:tests/%=examples/%.dats)
 EXAMPLES_SRC += examples/tred2.sats
 EXAMPLES_SRC += examples/tred2.dats
 EXAMPLES_SRC += examples/arr2.sats
