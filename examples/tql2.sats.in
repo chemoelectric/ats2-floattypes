@@ -88,3 +88,23 @@ tql2 {nm, n : int | n <= nm}
       e     : &(@[INV(g0float(tk))][ne]),
       z     : &(@[INV(g0float(tk))][nz]),
       ierr  : &(INV(Int)?) >> tql2_ierr_t(n)) :<!wrt> void
+
+(*
+ * tql2_with_maxiter
+ *
+ * Like tql2 except you can set the maximum number of iterations.
+ *
+ * (This is useful for testing the implementation.)
+ *)
+fn {tk : tkind}
+tql2_with_maxiter {nm, n   : int | n <= nm}
+                  {nd      : int | n <= nd}
+                  {ne      : int | n <= ne}
+                  {nz      : int | nm * n <= nz}
+                  (nm      : size_t nm,
+                   n       : size_t n,
+                   d       : &(@[INV(g0float(tk))][nd]),
+                   e       : &(@[INV(g0float(tk))][ne]),
+                   z       : &(@[INV(g0float(tk))][nz]),
+                   ierr    : &(INV(Int)?) >> tql2_ierr_t(n),
+                   maxiter : uint) :<!wrt> void

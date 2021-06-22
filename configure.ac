@@ -531,12 +531,14 @@ AC_CONFIG_FILES([examples/tred2-example2.dats])
 AC_CONFIG_FILES([examples/tred2-example3.dats])
 AC_CONFIG_FILES([examples/tred2-example4.dats])
 AC_CONFIG_FILES([examples/tql2-example1.dats])
+AC_CONFIG_FILES([examples/tql2-example2.dats])
 
 AC_CONFIG_FILES([tests/tred2-example1.dats:examples/tred2-example1.dats.in])
 AC_CONFIG_FILES([tests/tred2-example2.dats:examples/tred2-example2.dats.in])
 AC_CONFIG_FILES([tests/tred2-example3.dats:examples/tred2-example3.dats.in])
 AC_CONFIG_FILES([tests/tred2-example4.dats:examples/tred2-example4.dats.in])
 AC_CONFIG_FILES([tests/tql2-example1.dats:examples/tql2-example1.dats.in])
+AC_CONFIG_FILES([tests/tql2-example2.dats:examples/tql2-example2.dats.in])
 
 AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   AS_ECHO(['/*']) > floattypes/HATS/config.hats

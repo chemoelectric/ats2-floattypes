@@ -57,22 +57,22 @@ lemma_nsize_t_param {n : int} {i : int}
     [0 <= i; i <= n] void = ()
 
 extern fn {tk : tkind}
-internal_tql2 {nm, n : int | n <= nm}
-              {nd    : int | n <= nd}
-              {ne    : int | n <= ne}
-              {nz    : int | nm * n <= nz}
-              (nm    : size_t nm,
-               n     : size_t n,
-               d     : &(@[INV(g0float(tk))][nd]),
-               e     : &(@[INV(g0float(tk))][ne]),
-               z     : &(@[INV(g0float(tk))][nz])) :<!wrt,!ntm>
+internal_tql2 {nm, n   : int | n <= nm}
+              {nd      : int | n <= nd}
+              {ne      : int | n <= ne}
+              {nz      : int | nm * n <= nz}
+              (nm      : size_t nm,
+               n       : size_t n,
+               d       : &(@[INV(g0float(tk))][nd]),
+               e       : &(@[INV(g0float(tk))][ne]),
+               z       : &(@[INV(g0float(tk))][nz]),
+               maxiter : uint) :<!wrt,!ntm>
     tql2_ierr_t(n)
 
 implement {tk}
 internal_tql2 {nm, n} {nd} {ne} {nz}
-              (nm, n, d, e, z) =
+              (nm, n, d, e, z, maxiter) =
   let
-    val maxiter = 30U
     var early_exit : Bool = false
     var ierr : tql2_ierr_t(n) = 0
   in
@@ -294,4 +294,16 @@ tql2 (nm, n, d, e, z, ierr) =
    * However, the user does not need to know that.
    * Therefore mask the !ntm effect.
    *)
-  ierr := $effmask_ntm (internal_tql2 (nm, n, d, e, z))
+  ierr := $effmask_ntm (internal_tql2 (nm, n, d, e, z, 30U))
+
+
+implement {tk}
+tql2_with_maxiter (nm, n, d, e, z, ierr, maxiter) =
+  (*
+   * We have no *proof* of termination, because we
+   * used for-loops without termination metrics.
+   *
+   * However, the user does not need to know that.
+   * Therefore mask the !ntm effect.
+   *)
+  ierr := $effmask_ntm (internal_tql2 (nm, n, d, e, z, maxiter))
