@@ -2808,6 +2808,7 @@ DECIMAL64_EXAMPLE_PROGS = tests/decimal-example1
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
 EXAMPLES_SRC = examples/README examples/GNUmakefile \
 	$(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%.dats) \
+	$(DECIMAL64_EXAMPLE_PROGS:tests/%=examples/%.dats) \
 	examples/tql2.sats examples/tql2.dats examples/tred2.sats \
 	examples/tred2.dats examples/arr2.sats examples/arr2.dats
 

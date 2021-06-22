@@ -357,6 +357,7 @@ EXAMPLES_SRC =
 EXAMPLES_SRC += examples/README
 EXAMPLES_SRC += examples/GNUmakefile
 EXAMPLES_SRC += $(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%.dats)
+EXAMPLES_SRC += $(DECIMAL64_EXAMPLE_PROGS:tests/%=examples/%.dats)
 EXAMPLES_SRC += examples/tql2.sats
 EXAMPLES_SRC += examples/tql2.dats
 EXAMPLES_SRC += examples/tred2.sats
