@@ -243,6 +243,7 @@ EXAMPLE_PROGS += tests/tred2-example3
 EXAMPLE_PROGS += tests/tred2-example4
 EXAMPLE_PROGS += tests/tql2-example1
 EXAMPLE_PROGS += tests/tql2-example2
+EXAMPLE_PROGS += tests/tql2-example3
 
 if HAVE_FLOAT128
 
@@ -299,6 +300,16 @@ nodist_tests_tql2_example2_SOURCES += tests/tred2_sats.c
 nodist_tests_tql2_example2_SOURCES += tests/arr2_dats.c
 nodist_tests_tql2_example2_SOURCES += tests/arr2_sats.c
 BUILT_SOURCES += $(nodist_tests_tql2_example2_SOURCES)
+
+nodist_tests_tql2_example3_SOURCES =
+nodist_tests_tql2_example3_SOURCES += tests/tql2-example3_dats.c
+nodist_tests_tql2_example3_SOURCES += tests/tql2_dats.c
+nodist_tests_tql2_example3_SOURCES += tests/tql2_sats.c
+nodist_tests_tql2_example3_SOURCES += tests/tred2_dats.c
+nodist_tests_tql2_example3_SOURCES += tests/tred2_sats.c
+nodist_tests_tql2_example3_SOURCES += tests/arr2_dats.c
+nodist_tests_tql2_example3_SOURCES += tests/arr2_sats.c
+BUILT_SOURCES += $(nodist_tests_tql2_example3_SOURCES)
 
 endif HAVE_FLOAT128
 

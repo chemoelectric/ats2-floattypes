@@ -36,24 +36,35 @@ PATSCC := patscc
 PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
 TRED2_EXAMPLES := 1 2 3 4
-TQL2_EXAMPLES := 1 2
+TQL2_EXAMPLES := 1 2 3
 
 .PHONY: all
-all: $(addprefix tred2-example, 1 2 3 4)
-all: $(addprefix tql2-example, 1 2)
+all: $(addprefix tred2-example, $(TRED2_EXAMPLES))
+all: $(addprefix tql2-example, $(TQL2_EXAMPLES))
 
-$(foreach n,1 2 3 4,\
+$(foreach n,$(TRED2_EXAMPLES),\
 $(eval tred2-example$(n): tred2-example$(n)_dats.$$(OBJEXT) \
 				tred2_sats.$$(OBJEXT) tred2_dats.$$(OBJEXT) \
 				arr2_sats.$$(OBJEXT) arr2_dats.$$(OBJEXT); \
 	$$(PATSCC_CMD) -o $$(@) $$(PATSCCFLAGS) $$(^) $$(LIBS)))
 
-$(foreach n,1 2,\
+$(foreach n,$(TRED2_EXAMPLES),\
+$(eval tred2-example$(n)_dats.$(OBJEXT): tred2-example$(n).dats \
+										tred2.sats tred2.dats \
+										arr2.sats arr2.dats))
+
+$(foreach n,$(TQL2_EXAMPLES),\
 $(eval tql2-example$(n): tql2-example$(n)_dats.$$(OBJEXT) \
 				tql2_sats.$$(OBJEXT) tql2_dats.$$(OBJEXT) \
 				tred2_sats.$$(OBJEXT) tred2_dats.$$(OBJEXT) \
 				arr2_sats.$$(OBJEXT) arr2_dats.$$(OBJEXT); \
 	$$(PATSCC_CMD) -o $$(@) $$(PATSCCFLAGS) $$(^) $$(LIBS)))
+
+$(foreach n,$(TQL2_EXAMPLES),\
+$(eval tql2-example$(n)_dats.$(OBJEXT): tql2-example$(n).dats \
+										tql2.sats tql2.dats \
+										tred2.sats tred2.dats \
+										arr2.sats arr2.dats))
 
 arr2_sats.$(OBJEXT): arr2.sats
 arr2_dats.$(OBJEXT): arr2.dats arr2.sats
@@ -61,14 +72,6 @@ tred2_sats.$(OBJEXT): tred2.sats arr2.sats
 tred2_dats.$(OBJEXT): tred2.dats tred2.sats arr2.dats arr2.sats
 tql2_sats.$(OBJEXT): tql2.sats tred2.sats arr2.sats
 tql2_dats.$(OBJEXT): tql2.dats tql2.sats tred2.dats tred2.sats arr2.dats arr2.sats
-tred2-example1_dats.$(OBJEXT): tred2-example1.dats tred2.dats tred2.sats arr2.dats arr2.sats
-tred2-example2_dats.$(OBJEXT): tred2-example2.dats tred2.dats tred2.sats arr2.dats arr2.sats
-tred2-example3_dats.$(OBJEXT): tred2-example3.dats tred2.dats tred2.sats arr2.dats arr2.sats
-tred2-example4_dats.$(OBJEXT): tred2-example4.dats tred2.dats tred2.sats arr2.dats arr2.sats
-tql2-example1_dats.$(OBJEXT): tql2-example1.dats tql2.dats tql2.sats \
-								tred2.dats tred2.sats arr2.dats arr2.sats
-tql2-example2_dats.$(OBJEXT): tql2-example2.dats tql2.dats tql2.sats \
-								tred2.dats tred2.sats arr2.dats arr2.sats
 
 %_sats.o: %.sats
 	$(PATSCC_CMD) -c -o $(@) $(PATSCCFLAGS) $(<)
