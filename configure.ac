@@ -511,6 +511,9 @@ AC_CONFIG_FILES([common-macros.m4])
 
 AC_CONFIG_FILES([ats2-floattypes.pc])
 
+AC_CONFIG_FILES([examples/README])
+AC_CONFIG_FILES([examples/GNUmakefile])
+
 AC_CONFIG_FILES([examples/arr2.sats])
 AC_CONFIG_FILES([examples/arr2.dats])
 AC_CONFIG_FILES([examples/tred2.sats])
@@ -525,7 +528,6 @@ AC_CONFIG_FILES([tests/tred2.dats:examples/tred2.dats.in])
 AC_CONFIG_FILES([tests/tql2.sats:examples/tql2.sats.in])
 AC_CONFIG_FILES([tests/tql2.dats:examples/tql2.dats.in])
 
-AC_CONFIG_FILES([examples/GNUmakefile])
 AC_CONFIG_FILES([examples/tred2-example1.dats])
 AC_CONFIG_FILES([examples/tred2-example2.dats])
 AC_CONFIG_FILES([examples/tred2-example3.dats])

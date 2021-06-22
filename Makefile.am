@@ -341,6 +341,7 @@ nobase_nodist_doc_DATA =
 nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
 
 EXAMPLES_SRC =
+EXAMPLES_SRC += examples/README
 EXAMPLES_SRC += examples/GNUmakefile
 EXAMPLES_SRC += $(EXAMPLE_PROGS:tests/%=examples/%.dats)
 EXAMPLES_SRC += examples/tql2.sats

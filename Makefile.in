@@ -138,11 +138,11 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
-	ats2-floattypes.pc examples/arr2.sats examples/arr2.dats \
-	examples/tred2.sats examples/tred2.dats examples/tql2.sats \
-	examples/tql2.dats tests/arr2.sats tests/arr2.dats \
-	tests/tred2.sats tests/tred2.dats tests/tql2.sats \
-	tests/tql2.dats examples/GNUmakefile \
+	ats2-floattypes.pc examples/README examples/GNUmakefile \
+	examples/arr2.sats examples/arr2.dats examples/tred2.sats \
+	examples/tred2.dats examples/tql2.sats examples/tql2.dats \
+	tests/arr2.sats tests/arr2.dats tests/tred2.sats \
+	tests/tred2.dats tests/tql2.sats tests/tql2.dats \
 	examples/tred2-example1.dats examples/tred2-example2.dats \
 	examples/tred2-example3.dats examples/tred2-example4.dats \
 	examples/tql2-example1.dats examples/tql2-example2.dats \
@@ -1266,6 +1266,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/missing \
 	$(top_srcdir)/build-aux/test-driver \
 	$(top_srcdir)/examples/GNUmakefile.in \
+	$(top_srcdir)/examples/README.in \
 	$(top_srcdir)/examples/arr2.dats.in \
 	$(top_srcdir)/examples/arr2.sats.in \
 	$(top_srcdir)/examples/tql2-example1.dats.in \
@@ -2787,7 +2788,7 @@ EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
-EXAMPLES_SRC = examples/GNUmakefile \
+EXAMPLES_SRC = examples/README examples/GNUmakefile \
 	$(EXAMPLE_PROGS:tests/%=examples/%.dats) examples/tql2.sats \
 	examples/tql2.dats examples/tred2.sats examples/tred2.dats \
 	examples/arr2.sats examples/arr2.dats
@@ -2852,6 +2853,10 @@ common-macros.m4: $(top_builddir)/config.status $(srcdir)/common-macros.m4.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 ats2-floattypes.pc: $(top_builddir)/config.status $(srcdir)/ats2-floattypes.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/README: $(top_builddir)/config.status $(top_srcdir)/examples/README.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/arr2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/arr2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/arr2.dats.in
@@ -2875,8 +2880,6 @@ tests/tred2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2.dat
 tests/tql2.sats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.sats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tql2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2.dats.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-examples/GNUmakefile: $(top_builddir)/config.status $(top_srcdir)/examples/GNUmakefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

@@ -1,0 +1,9 @@
+Some examples using the floattypes package.
+-------------------------------------------
+
+tred2-example$(n) : reduction of a symmetric matrix to tridiagonal
+                    form.
+
+tql2-example$(n) : find the eigenvalues and eigenvectors of a
+                   symmetrix matrix that has first been reduced to
+                   tridiagonal form.
