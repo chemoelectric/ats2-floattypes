@@ -36,7 +36,7 @@ PATSCC := patscc
 PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
 TRED2_EXAMPLES := 1 2 3 4
-TQL2_EXAMPLES := 1 2 3
+TQL2_EXAMPLES := 1 2 3 4
 
 .PHONY: all
 all: $(addprefix tred2-example, $(TRED2_EXAMPLES))
