@@ -108,8 +108,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_3)
-@HAVE_FLOAT128_TRUE@am__append_1 = $(EXAMPLE_PROGS:tests/%=examples/%)
+check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_3) $(am__EXEEXT_5)
+@HAVE_FLOAT128_TRUE@am__append_1 = $(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%)
 @HAVE_FLOAT128_TRUE@am__append_2 =  \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example1_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tred2_example2_SOURCES) \
@@ -119,6 +119,8 @@ check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_3)
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tql2_example2_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tql2_example3_SOURCES) \
 @HAVE_FLOAT128_TRUE@	$(nodist_tests_tql2_example4_SOURCES)
+@HAVE_DECIMAL64_TRUE@am__append_3 = $(DECIMAL64_EXAMPLE_PROGS:tests/%=examples/%)
+@HAVE_DECIMAL64_TRUE@am__append_4 = $(nodist_tests_decimal_example1_SOURCES)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_gnu_make.m4 \
@@ -147,10 +149,11 @@ CONFIG_CLEAN_FILES = common-definitions.m4 common-macros.m4 \
 	examples/tred2-example3.dats examples/tred2-example4.dats \
 	examples/tql2-example1.dats examples/tql2-example2.dats \
 	examples/tql2-example3.dats examples/tql2-example4.dats \
-	tests/tred2-example1.dats tests/tred2-example2.dats \
-	tests/tred2-example3.dats tests/tred2-example4.dats \
-	tests/tql2-example1.dats tests/tql2-example2.dats \
-	tests/tql2-example3.dats tests/tql2-example4.dats
+	examples/decimal-example1.dats tests/tred2-example1.dats \
+	tests/tred2-example2.dats tests/tred2-example3.dats \
+	tests/tred2-example4.dats tests/tql2-example1.dats \
+	tests/tql2-example2.dats tests/tql2-example3.dats \
+	tests/tql2-example4.dats tests/decimal-example1.dats
 CONFIG_CLEAN_VPATH_FILES =
 am__EXEEXT_1 = tests/test-M_E$(EXEEXT) tests/test-M_LOG2E$(EXEEXT) \
 	tests/test-M_LOG10E$(EXEEXT) tests/test-M_SQRT2$(EXEEXT) \
@@ -216,6 +219,8 @@ am__EXEEXT_2 = tests/tred2-example1$(EXEEXT) \
 	tests/tql2-example2$(EXEEXT) tests/tql2-example3$(EXEEXT) \
 	tests/tql2-example4$(EXEEXT)
 @HAVE_FLOAT128_TRUE@am__EXEEXT_3 = $(am__EXEEXT_2)
+am__EXEEXT_4 = tests/decimal-example1$(EXEEXT)
+@HAVE_DECIMAL64_TRUE@am__EXEEXT_5 = $(am__EXEEXT_4)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -256,6 +261,12 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+@HAVE_DECIMAL64_TRUE@nodist_tests_decimal_example1_OBJECTS =  \
+@HAVE_DECIMAL64_TRUE@	tests/decimal-example1_dats.$(OBJEXT)
+tests_decimal_example1_OBJECTS =  \
+	$(nodist_tests_decimal_example1_OBJECTS)
+tests_decimal_example1_LDADD = $(LDADD)
+tests_decimal_example1_DEPENDENCIES = $(lib_LTLIBRARIES)
 tests_test_M_1_PI_SOURCES = tests/test-M_1_PI_dats.c
 tests_test_M_1_PI_OBJECTS = tests/test-M_1_PI_dats.$(OBJEXT)
 tests_test_M_1_PI_LDADD = $(LDADD)
@@ -794,6 +805,7 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = floattypes/DATS/$(DEPDIR)/floattypes_dats.Plo \
 	floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo \
 	tests/$(DEPDIR)/arr2_dats.Po tests/$(DEPDIR)/arr2_sats.Po \
+	tests/$(DEPDIR)/decimal-example1_dats.Po \
 	tests/$(DEPDIR)/test-M_1_PI_dats.Po \
 	tests/$(DEPDIR)/test-M_2_PI_dats.Po \
 	tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po \
@@ -929,16 +941,17 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libats2_floattypes_la_SOURCES) tests/test-M_1_PI_dats.c \
-	tests/test-M_2_PI_dats.c tests/test-M_2_SQRTPI_dats.c \
-	tests/test-M_E_dats.c tests/test-M_EULER_dats.c \
-	tests/test-M_LN10_dats.c tests/test-M_LN2_dats.c \
-	tests/test-M_LNPI_dats.c tests/test-M_LOG10E_dats.c \
-	tests/test-M_LOG2E_dats.c tests/test-M_PI_dats.c \
-	tests/test-M_PI_2_dats.c tests/test-M_PI_4_dats.c \
-	tests/test-M_SQRT1_2_dats.c tests/test-M_SQRT2_dats.c \
-	tests/test-M_SQRT3_dats.c tests/test-M_SQRTPI_dats.c \
-	tests/test-__builtin_fma_dats.c \
+SOURCES = $(libats2_floattypes_la_SOURCES) \
+	$(nodist_tests_decimal_example1_SOURCES) \
+	tests/test-M_1_PI_dats.c tests/test-M_2_PI_dats.c \
+	tests/test-M_2_SQRTPI_dats.c tests/test-M_E_dats.c \
+	tests/test-M_EULER_dats.c tests/test-M_LN10_dats.c \
+	tests/test-M_LN2_dats.c tests/test-M_LNPI_dats.c \
+	tests/test-M_LOG10E_dats.c tests/test-M_LOG2E_dats.c \
+	tests/test-M_PI_dats.c tests/test-M_PI_2_dats.c \
+	tests/test-M_PI_4_dats.c tests/test-M_SQRT1_2_dats.c \
+	tests/test-M_SQRT2_dats.c tests/test-M_SQRT3_dats.c \
+	tests/test-M_SQRTPI_dats.c tests/test-__builtin_fma_dats.c \
 	tests/test-__builtin_huge_val_dats.c \
 	tests/test-__builtin_inf_dats.c \
 	tests/test-__builtin_nans_dats.c tests/test-abs_dats.c \
@@ -1269,6 +1282,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/examples/README.in \
 	$(top_srcdir)/examples/arr2.dats.in \
 	$(top_srcdir)/examples/arr2.sats.in \
+	$(top_srcdir)/examples/decimal-example1.dats.in \
 	$(top_srcdir)/examples/tql2-example1.dats.in \
 	$(top_srcdir)/examples/tql2-example2.dats.in \
 	$(top_srcdir)/examples/tql2-example3.dats.in \
@@ -2683,7 +2697,8 @@ BUILT_SOURCES = floattypes/CATS/printing.cats \
 	floattypes/SATS/floattypes_sats.c \
 	floattypes/DATS/floattypes.dats \
 	floattypes/DATS/floattypes_dats.c $(am__append_2) \
-	$(UNIT_TESTS:%=%.dats) $(check_PROGRAMS:%=%_dats.c)
+	$(am__append_4) $(UNIT_TESTS:%=%.dats) \
+	$(check_PROGRAMS:%=%_dats.c)
 TESTS = $(check_PROGRAMS)
 LDADD = $(lib_LTLIBRARIES)
 MOSTLYCLEANFILES = 
@@ -2746,9 +2761,10 @@ UNIT_TESTS = tests/test-M_E tests/test-M_LOG2E tests/test-M_LOG10E \
 	tests/test-isnormal tests/test-signbit \
 	tests/test-isgreaterlike tests/test-strtod \
 	tests/test-strfromd_unsafe
-EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
+FLOAT128_EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
 	tests/tred2-example3 tests/tred2-example4 tests/tql2-example1 \
 	tests/tql2-example2 tests/tql2-example3 tests/tql2-example4
+DECIMAL64_EXAMPLE_PROGS = tests/decimal-example1
 @HAVE_FLOAT128_TRUE@nodist_tests_tred2_example1_SOURCES =  \
 @HAVE_FLOAT128_TRUE@	tests/tred2-example1_dats.c \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
@@ -2785,13 +2801,15 @@ EXAMPLE_PROGS = tests/tred2-example1 tests/tred2-example2 \
 @HAVE_FLOAT128_TRUE@	tests/tql2_dats.c tests/tql2_sats.c \
 @HAVE_FLOAT128_TRUE@	tests/tred2_dats.c tests/tred2_sats.c \
 @HAVE_FLOAT128_TRUE@	tests/arr2_dats.c tests/arr2_sats.c
+@HAVE_DECIMAL64_TRUE@nodist_tests_decimal_example1_SOURCES =  \
+@HAVE_DECIMAL64_TRUE@	tests/decimal-example1_dats.c
 
 ######################################################################
 nobase_nodist_doc_DATA = $(EXAMPLES_SRC)
 EXAMPLES_SRC = examples/README examples/GNUmakefile \
-	$(EXAMPLE_PROGS:tests/%=examples/%.dats) examples/tql2.sats \
-	examples/tql2.dats examples/tred2.sats examples/tred2.dats \
-	examples/arr2.sats examples/arr2.dats
+	$(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%.dats) \
+	examples/tql2.sats examples/tql2.dats examples/tred2.sats \
+	examples/tred2.dats examples/arr2.sats examples/arr2.dats
 
 ######################################################################
 # It is assumed here that you have PATSHOME set in your environment.
@@ -2897,6 +2915,8 @@ examples/tql2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/example
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 examples/tql2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example4.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+examples/decimal-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/decimal-example1.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tred2-example2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tred2-example2.dats.in
@@ -2912,6 +2932,8 @@ tests/tql2-example2.dats: $(top_builddir)/config.status $(top_srcdir)/examples/t
 tests/tql2-example3.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example3.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tests/tql2-example4.dats: $(top_builddir)/config.status $(top_srcdir)/examples/tql2-example4.dats.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+tests/decimal-example1.dats: $(top_builddir)/config.status $(top_srcdir)/examples/decimal-example1.dats.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 clean-checkPROGRAMS:
@@ -2982,6 +3004,12 @@ tests/$(am__dirstamp):
 tests/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) tests/$(DEPDIR)
 	@: > tests/$(DEPDIR)/$(am__dirstamp)
+tests/decimal-example1_dats.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
+
+tests/decimal-example1$(EXEEXT): $(tests_decimal_example1_OBJECTS) $(tests_decimal_example1_DEPENDENCIES) $(EXTRA_tests_decimal_example1_DEPENDENCIES) tests/$(am__dirstamp)
+	@rm -f tests/decimal-example1$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_decimal_example1_OBJECTS) $(tests_decimal_example1_LDADD) $(LIBS)
 tests/test-M_1_PI_dats.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 
@@ -3694,6 +3722,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/arr2_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/arr2_sats.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/decimal-example1_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_1_PI_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_2_PI_dats.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po@am__quote@ # am--include-marker
@@ -4970,6 +4999,13 @@ tests/tql2-example4.log: tests/tql2-example4$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+tests/decimal-example1.log: tests/decimal-example1$(EXEEXT)
+	@p='tests/decimal-example1$(EXEEXT)'; \
+	b='tests/decimal-example1'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .test.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -5223,6 +5259,7 @@ distclean: distclean-am
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f tests/$(DEPDIR)/arr2_dats.Po
 	-rm -f tests/$(DEPDIR)/arr2_sats.Po
+	-rm -f tests/$(DEPDIR)/decimal-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_1_PI_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_2_PI_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po
@@ -5396,6 +5433,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f floattypes/SATS/$(DEPDIR)/floattypes_sats.Plo
 	-rm -f tests/$(DEPDIR)/arr2_dats.Po
 	-rm -f tests/$(DEPDIR)/arr2_sats.Po
+	-rm -f tests/$(DEPDIR)/decimal-example1_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_1_PI_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_2_PI_dats.Po
 	-rm -f tests/$(DEPDIR)/test-M_2_SQRTPI_dats.Po

@@ -236,19 +236,22 @@ UNIT_TESTS += tests/test-strfromd_unsafe
 
 check_PROGRAMS += $(UNIT_TESTS)
 
-EXAMPLE_PROGS =
-EXAMPLE_PROGS += tests/tred2-example1
-EXAMPLE_PROGS += tests/tred2-example2
-EXAMPLE_PROGS += tests/tred2-example3
-EXAMPLE_PROGS += tests/tred2-example4
-EXAMPLE_PROGS += tests/tql2-example1
-EXAMPLE_PROGS += tests/tql2-example2
-EXAMPLE_PROGS += tests/tql2-example3
-EXAMPLE_PROGS += tests/tql2-example4
+FLOAT128_EXAMPLE_PROGS =
+FLOAT128_EXAMPLE_PROGS += tests/tred2-example1
+FLOAT128_EXAMPLE_PROGS += tests/tred2-example2
+FLOAT128_EXAMPLE_PROGS += tests/tred2-example3
+FLOAT128_EXAMPLE_PROGS += tests/tred2-example4
+FLOAT128_EXAMPLE_PROGS += tests/tql2-example1
+FLOAT128_EXAMPLE_PROGS += tests/tql2-example2
+FLOAT128_EXAMPLE_PROGS += tests/tql2-example3
+FLOAT128_EXAMPLE_PROGS += tests/tql2-example4
+
+DECIMAL64_EXAMPLE_PROGS =
+DECIMAL64_EXAMPLE_PROGS += tests/decimal-example1
 
 if HAVE_FLOAT128
 
-check_PROGRAMS += $(EXAMPLE_PROGS:tests/%=examples/%)
+check_PROGRAMS += $(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%)
 
 nodist_tests_tred2_example1_SOURCES =
 nodist_tests_tred2_example1_SOURCES += tests/tred2-example1_dats.c
@@ -324,6 +327,16 @@ BUILT_SOURCES += $(nodist_tests_tql2_example4_SOURCES)
 
 endif HAVE_FLOAT128
 
+if HAVE_DECIMAL64
+
+check_PROGRAMS += $(DECIMAL64_EXAMPLE_PROGS:tests/%=examples/%)
+
+nodist_tests_decimal_example1_SOURCES =
+nodist_tests_decimal_example1_SOURCES += tests/decimal-example1_dats.c
+BUILT_SOURCES += $(nodist_tests_decimal_example1_SOURCES)
+
+endif HAVE_DECIMAL64
+
 EXTRA_DIST += $(UNIT_TESTS:%=%.dats.m4)
 
 BUILT_SOURCES += $(UNIT_TESTS:%=%.dats)
@@ -343,7 +356,7 @@ nobase_nodist_doc_DATA += $(EXAMPLES_SRC)
 EXAMPLES_SRC =
 EXAMPLES_SRC += examples/README
 EXAMPLES_SRC += examples/GNUmakefile
-EXAMPLES_SRC += $(EXAMPLE_PROGS:tests/%=examples/%.dats)
+EXAMPLES_SRC += $(FLOAT128_EXAMPLE_PROGS:tests/%=examples/%.dats)
 EXAMPLES_SRC += examples/tql2.sats
 EXAMPLES_SRC += examples/tql2.dats
 EXAMPLES_SRC += examples/tred2.sats

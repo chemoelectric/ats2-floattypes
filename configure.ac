@@ -316,7 +316,7 @@ MY_CHECK_FLOAT_LITERAL_SUFFIXES([float64],[_Float64],[F64 f64])
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([float128],[_Float128],[F128 f128 Q q])
 
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal32],[_Decimal32],[D32 d32 DF df])
-MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal64],[_Decimal64],[D64 d64 DD dd])
+MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal64],[_Decimal64],[D64 d64 DD dd ])
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([decimal128],[_Decimal128],[D128 d128 DL dl])
 
 MY_CHECK_FLOAT_LITERAL_SUFFIXES([float32x],[_Float32x],[F32x f32x Fx fx])
@@ -494,7 +494,11 @@ check_HUGE_VALlike_float_const([HUGE_VAL],[floattype])
 AM_CONDITIONAL([HAVE_FLOAT128],
   [test "${HAVE_floattypes_sqrt_float128}" = 1 && \
    test "${HAVE_floattypes_hypot_float128}" = 1 && \
-   test "${HAVE_floattypes_copysign_float128}" = 1])
+   test "${HAVE_floattypes_copysign_float128}" = 1 && \
+   test "${FLOAT128_SUFFIX}" = "F128"])
+
+AM_CONDITIONAL([HAVE_DECIMAL64],
+  [test "${HAVE_floattypes_decimal64}" = 1])
 
 # You can use ‘@GNU@’ to make GNU Make constructs unbothersome to
 # Automake. (By the way, you often can use ‘$(eval ...)’ as well, but
@@ -536,6 +540,7 @@ AC_CONFIG_FILES([examples/tql2-example1.dats])
 AC_CONFIG_FILES([examples/tql2-example2.dats])
 AC_CONFIG_FILES([examples/tql2-example3.dats])
 AC_CONFIG_FILES([examples/tql2-example4.dats])
+AC_CONFIG_FILES([examples/decimal-example1.dats])
 
 AC_CONFIG_FILES([tests/tred2-example1.dats:examples/tred2-example1.dats.in])
 AC_CONFIG_FILES([tests/tred2-example2.dats:examples/tred2-example2.dats.in])
@@ -545,6 +550,7 @@ AC_CONFIG_FILES([tests/tql2-example1.dats:examples/tql2-example1.dats.in])
 AC_CONFIG_FILES([tests/tql2-example2.dats:examples/tql2-example2.dats.in])
 AC_CONFIG_FILES([tests/tql2-example3.dats:examples/tql2-example3.dats.in])
 AC_CONFIG_FILES([tests/tql2-example4.dats:examples/tql2-example4.dats.in])
+AC_CONFIG_FILES([tests/decimal-example1.dats:examples/decimal-example1.dats.in])
 
 AC_CONFIG_COMMANDS([floattypes/HATS/config.hats],[
   AS_ECHO(['/*']) > floattypes/HATS/config.hats

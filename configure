@@ -637,6 +637,8 @@ ifnGNUmake
 ifGNUmake
 GNU_MAKE
 GNU
+HAVE_DECIMAL64_FALSE
+HAVE_DECIMAL64_TRUE
 HAVE_FLOAT128_FALSE
 HAVE_FLOAT128_TRUE
 HAVE_floattypes_HUGE_VAL_decimal128x
@@ -107273,12 +107275,22 @@ $as_echo "$my_cv_float_const_HUGE_VAL_D128X" >&6; }
 
  if test "${HAVE_floattypes_sqrt_float128}" = 1 && \
    test "${HAVE_floattypes_hypot_float128}" = 1 && \
-   test "${HAVE_floattypes_copysign_float128}" = 1; then
+   test "${HAVE_floattypes_copysign_float128}" = 1 && \
+   test "${FLOAT128_SUFFIX}" = "F128"; then
   HAVE_FLOAT128_TRUE=
   HAVE_FLOAT128_FALSE='#'
 else
   HAVE_FLOAT128_TRUE='#'
   HAVE_FLOAT128_FALSE=
+fi
+
+
+ if test "${HAVE_floattypes_decimal64}" = 1; then
+  HAVE_DECIMAL64_TRUE=
+  HAVE_DECIMAL64_FALSE='#'
+else
+  HAVE_DECIMAL64_TRUE='#'
+  HAVE_DECIMAL64_FALSE=
 fi
 
 
@@ -107461,6 +107473,8 @@ ac_config_files="$ac_config_files examples/tql2-example3.dats"
 
 ac_config_files="$ac_config_files examples/tql2-example4.dats"
 
+ac_config_files="$ac_config_files examples/decimal-example1.dats"
+
 
 ac_config_files="$ac_config_files tests/tred2-example1.dats:examples/tred2-example1.dats.in"
 
@@ -107477,6 +107491,8 @@ ac_config_files="$ac_config_files tests/tql2-example2.dats:examples/tql2-example
 ac_config_files="$ac_config_files tests/tql2-example3.dats:examples/tql2-example3.dats.in"
 
 ac_config_files="$ac_config_files tests/tql2-example4.dats:examples/tql2-example4.dats.in"
+
+ac_config_files="$ac_config_files tests/decimal-example1.dats:examples/decimal-example1.dats.in"
 
 
 ac_config_commands="$ac_config_commands floattypes/HATS/config.hats"
@@ -107661,6 +107677,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_FLOAT128_TRUE}" && test -z "${HAVE_FLOAT128_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_FLOAT128\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${HAVE_DECIMAL64_TRUE}" && test -z "${HAVE_DECIMAL64_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_DECIMAL64\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
@@ -110990,6 +111010,7 @@ do
     "examples/tql2-example2.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example2.dats" ;;
     "examples/tql2-example3.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example3.dats" ;;
     "examples/tql2-example4.dats") CONFIG_FILES="$CONFIG_FILES examples/tql2-example4.dats" ;;
+    "examples/decimal-example1.dats") CONFIG_FILES="$CONFIG_FILES examples/decimal-example1.dats" ;;
     "tests/tred2-example1.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example1.dats:examples/tred2-example1.dats.in" ;;
     "tests/tred2-example2.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example2.dats:examples/tred2-example2.dats.in" ;;
     "tests/tred2-example3.dats") CONFIG_FILES="$CONFIG_FILES tests/tred2-example3.dats:examples/tred2-example3.dats.in" ;;
@@ -110998,6 +111019,7 @@ do
     "tests/tql2-example2.dats") CONFIG_FILES="$CONFIG_FILES tests/tql2-example2.dats:examples/tql2-example2.dats.in" ;;
     "tests/tql2-example3.dats") CONFIG_FILES="$CONFIG_FILES tests/tql2-example3.dats:examples/tql2-example3.dats.in" ;;
     "tests/tql2-example4.dats") CONFIG_FILES="$CONFIG_FILES tests/tql2-example4.dats:examples/tql2-example4.dats.in" ;;
+    "tests/decimal-example1.dats") CONFIG_FILES="$CONFIG_FILES tests/decimal-example1.dats:examples/decimal-example1.dats.in" ;;
     "floattypes/HATS/config.hats") CONFIG_COMMANDS="$CONFIG_COMMANDS floattypes/HATS/config.hats" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

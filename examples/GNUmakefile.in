@@ -37,10 +37,12 @@ PATSCC_CMD := $(PATSCC) -atsccomp "$(PATSCCOMP)"
 
 TRED2_EXAMPLES := 1 2 3 4
 TQL2_EXAMPLES := 1 2 3 4
+DECIMAL_EXAMPLES := 1
 
 .PHONY: all
 all: $(addprefix tred2-example, $(TRED2_EXAMPLES))
 all: $(addprefix tql2-example, $(TQL2_EXAMPLES))
+all: $(addprefix decimal-example, $(DECIMAL_EXAMPLES))
 
 $(foreach n,$(TRED2_EXAMPLES),\
 $(eval tred2-example$(n): tred2-example$(n)_dats.$$(OBJEXT) \
@@ -66,6 +68,13 @@ $(eval tql2-example$(n)_dats.$(OBJEXT): tql2-example$(n).dats \
 										tred2.sats tred2.dats \
 										arr2.sats arr2.dats))
 
+$(foreach n,$(DECIMAL_EXAMPLES),\
+$(eval decimal-example$(n): decimal-example$(n)_dats.$$(OBJEXT);\
+	$$(PATSCC_CMD) -o $$(@) $$(PATSCCFLAGS) $$(^) $$(LIBS)))
+
+$(foreach n,$(DECIMAL_EXAMPLES),\
+$(eval decimal-example$(n)_dats.$(OBJEXT): decimal-example$(n).dats))
+
 arr2_sats.$(OBJEXT): arr2.sats
 arr2_dats.$(OBJEXT): arr2.dats arr2.sats
 tred2_sats.$(OBJEXT): tred2.sats arr2.sats
@@ -81,5 +90,5 @@ tql2_dats.$(OBJEXT): tql2.dats tql2.sats tred2.dats tred2.sats arr2.dats arr2.sa
 
 .PHONY: clean
 clean:
-	-rm -f tred2-example?
+	-rm -f {tred2,tql2,decimal}-example?
 	-rm -f *.{c,$(OBJEXT)}
