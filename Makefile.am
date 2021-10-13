@@ -65,7 +65,6 @@ nobase_nodist_pkghostinclude_HEADERS =
 nobase_nodist_pkghostinclude_HEADERS += floattypes/HATS/config.hats
 nobase_nodist_pkghostinclude_HEADERS += floattypes/CATS/constants.cats
 
-pkgconfigdir = ${libdir}/pkgconfig
 nodist_pkgconfig_DATA = ats2-floattypes.pc
 
 EXTRA_DIST += floattypes/CATS/printing.cats.m4

@@ -18,7 +18,7 @@
 
 #--------------------------------------------------------------------------
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.71])
 AC_INIT([ats2-floattypes],[1.0.0],[],[ats2-floattypes],[])
 
 AC_CONFIG_SRCDIR([floattypes/SATS/floattypes.sats.m4])
@@ -255,7 +255,6 @@ AC_DEFUN([MY_CHECK_FLOAT_CONSTANT],
 # Checks for programs.
 
 AC_PROG_CC
-AC_PROG_CC_C99
 AC_PROG_CC_C_O
 AC_CHECK_PROGS([PATSOPT],[patsopt])
 AC_CHECK_PROGS([M4],[m4])
@@ -267,6 +266,10 @@ AC_PROG_AWK
 AC_PROG_SED
 AC_PROG_FGREP
 AC_PROG_EGREP
+
+PKG_PROG_PKG_CONFIG
+PKG_CONFIG="${PKG_CONFIG} --define-variable=PATSHOME=\"${PATSHOME}\""
+PKG_INSTALLDIR
 
 #--------------------------------------------------------------------------
 #
