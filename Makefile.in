@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 #
-# Copyright © 2021 Barry Schwartz
+# Copyright © 2021, 2022 Barry Schwartz
 #
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License, as
@@ -1346,7 +1346,9 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
+EXT_CPPFLAGS = @EXT_CPPFLAGS@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 FLOAT128X_SUFFIX = @FLOAT128X_SUFFIX@
 FLOAT128_SUFFIX = @FLOAT128_SUFFIX@
 FLOAT32X_SUFFIX = @FLOAT32X_SUFFIX@

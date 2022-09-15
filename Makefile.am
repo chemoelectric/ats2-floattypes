@@ -1,5 +1,5 @@
 #
-# Copyright © 2021 Barry Schwartz
+# Copyright © 2021, 2022 Barry Schwartz
 #
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License, as

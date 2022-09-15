@@ -15,9 +15,13 @@ PATSHOME="@PKGCONFIG_PATSHOME@"
 # The C compiler with which the library was built.
 CC="@CC@"
 
-# The CPPFLAGS includes macro settings that have to be set before
-# <math.h> is included.
-CPPFLAGS="@CPPFLAGS@ -I${hostpkgincludedir} -I${pkgincludedir} -I${PATSHOME} -I${PATSHOME}/ccomp/runtime"
+# CPPFLAGS for building with the library.
+CPPFLAGS="-I${hostpkgincludedir} -I${pkgincludedir} -I${PATSHOME} -I${PATSHOME}/ccomp/runtime"
+
+# EXT_CPPFLAGS includes macro settings that have to be set before
+# <math.h> is included. However, autoconf's AC_USE_SYSTEM_EXTENSIONS
+# also will set these, so they are not included in CPPFLAGS.
+EXT_CPPFLAGS="@EXT_CPPFLAGS@"
 
 # Options for patsopt.
 PATSOPTFLAGS="-IATS ${hostpkgincludedir} -IATS ${pkgincludedir}"
