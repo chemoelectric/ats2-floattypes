@@ -1,3 +1,12 @@
+************************************************************************
+
+          THIS PACKAGE IS SUPERSEDED BY ats2-xprelude
+
+(It did not work very well, anyway.)
+
+************************************************************************
+
+
 Floating-point support for ATS2/Postiats beyond what is in the
 prelude.
 
